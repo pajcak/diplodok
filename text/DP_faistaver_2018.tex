@@ -72,6 +72,8 @@ Součástí práce bude také dokumentace včetně instalační příručky pomo
 Jedná se o část aplikace, která je viditelná běžným uživatelům.\\ \\
 \textbf{Backend}\\
 Jedná se o část aplikace, uživatelům \uv{schovaná} za frontendem a slouží především ke zpracování dat.\\ \\
+\textbf{CHUL}\\
+Children Usability Lab - labratoř testování použirelnosti na Fakultě informačních technologií ČVUT v Praze.\\ \\
 
 \section{Rozbor zadání} \label{sec:analyza_rozbor_zadani}
 \begin{enumerate}
@@ -89,14 +91,16 @@ změna rozlišení, možnost komprese, editace meta-informací, transformace obr
 CHUL).\\}
 	V této produktivní části je na základě návrhu implementován prototyp rozšíření stávající aplikace se všemi zadanými funkcionalitami. Výstupem implementace je pak produkt splňující specifikované požadavky alespoň rámcově, ale zároveň tak, aby bylo možné jej začít testovat a v případě nalezení chyb je opravovat.  
 	\item \textbf{Aplikaci podrobte integračním a akceptačním testům.\\}
-	Tímto bodem se zabývá celá kapitola o testování (vizte \ref{chap:testovani}), ve které se provedou nejprve zmíněné integrační testy, kterými se ověří bezchybná komunikace mezi jednotlivými komponentami uvnitř rozšíření stávající aplikace. V poslední řadě se provedou akceptační testy právě v ChUL laboratoři.
+	Tímto bodem se zabývá celá kapitola o testování (vizte \ref{chap:testovani}), ve které se provedou nejprve zmíněné integrační testy, kterými se ověří bezchybná komunikace mezi jednotlivými komponentami uvnitř rozšíření stávající aplikace. V poslední řadě se provedou akceptační testy právě v CHUL laboratoři.
 \end{enumerate}
 
 \section{Předchozí práce a aktuální stav} \label{sec:analyza_predchozi_prace}
-.......
-
+Jak bylo řečeno v úvodu, bakalářská práce Karolíny Solanské vyvinula systém, který slouží jako webová aplikace zajišťující plánování a organizaci testů použitelnosti. Tento systém byl vytvořen jako plně funkční vůči zadaným požadavkům a je nasazen v laboratoři CHUL. 
+	Systém je celý implementován v jazyku PHP s použitím frameworku Nette. Systém je nasazený na externím serveru s přístupem přes protokoly HTTP a HTTPS. Technologie pro použitou databázi je PostgreSQL.
+	Aktuální stav správy videa je příliš nepohodlný a zdlouhavý. Webová aplikace nijak nekomunikuje s jakýmkoliv zařízením v laboratoři CHUL. Vše okolo videí se tedy musí dělat víceméně ručně. V tomto kontextu se pracuje s úžasnou knihovnou \textit{libyuri}(vizte \cite{yuri}), která za pomocí dvou konfiguračních souborů spustí nahrávání, sloučí obrazy a zvuk, uloží a případně zobrazí v systému SAGE. Naneštěstí existují pouze tyto 2 konfigurace, které se ještě ke všemu musí ručně pouštět z příkazové řádky. Nyní neexistuje žádná jednoduchá možnost, jak pohodlně pracovat se záznamy (například ořezávat, přidávat titulek apod.) a tím se tedy bude zabývat tato práce.
+	
 \subsection{Požadavky předchozí práce} \label{subsec:analyza_predchozi_prace_pozadavky}
-Zde jsou uvedeny všechny funkční požadavky z předchzí práce, zaměřené na správu videa a které podpořily důvod vzniku této práce.
+Zde jsou uvedeny všechny funkční požadavky z předchozí práce, zaměřené na správu videa a které podpořily důvod vzniku této práce.
 \begin{enumerate}
 	\item \textbf{Systém ke každému scénáři po proběhlém testu připojí video/videa.\\}
 Před začátkem testu si moderátor zvolí scénář a testera, který test provádí. Následně zvolí spuštění testu a test začne. Po dokončení scénáře pak moderátor zvolí ukončení testu. Systém si zaznamená čas a dle toho připojí k jednotlivými experimentům výsek videa odpovídající časovým značkám začátku a konce experimentu.
@@ -116,16 +120,6 @@ Moderátor a zadavatel mají možnost video převést na jiný formát, předev�
 	\item \textbf{Moderátor může k videu nahrát mluvený komentář.\\}
 Uživatel bude moci nahrát zvuk k libovolnému videu ze vstupního zařízení.
 \end{enumerate}
-
-
-
-\section{Existující komplexní řešení} \label{sec:analyza_existujici_reseni}
-...tadaaa
-\subsection{} \label{subsec:analyza_reseni_}
-\subsection{} \label{subsec:analyza_reseni_}
-
-
-
 
 \section{Specifikace požadavků} \label{sec:analyza_rozbor_zadani}
 \subsection{Funkční požadavky} \label{subsec:analyza_fp}
@@ -227,6 +221,13 @@ Uživatel bude moci nahrát zvuk k libovolnému videu ze vstupního zařízení.
     % \item \textbf{ \\}
   \end{description}
 
+
+
+\section{Existující komplexní řešení} \label{sec:analyza_existujici_reseni}
+Při hledání pomocného softwaru, který by řešení značně ulehčil je třeba postupovat od komplexních řešení, které jsou již funkční a otestované komunitou a které by se vypořádaly s velkým počtem funkcionalit. Pokud se nepodaří najít řešení o vhodné úrovni komplexnosti, pak se musí úroveň rozsáhlosti snižovat a poohlížet se tak po technologiích řešící pouze jednotlivé funkcionality.
+
+\subsection{} \label{subsec:analyza_reseni_}
+\subsection{} \label{subsec:analyza_reseni_}
 
 \section{Výběr technologií} \label{sec:analyza_technologie}
 \subsection{Porovnávací metodika} \label{subsec:analyza_technologie_metodika}
