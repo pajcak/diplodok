@@ -52,31 +52,18 @@
 
 \begin{introduction}
 Testování použitelnosti je proces při kterém se aplikace testuje přímo za pomocí vzorku koncových uživatelů a díky kterému 
-se autoři aplikace dozvědí, jak jsou různé prvky uživatelského rozhraní srozumitelné a jak dobře jsou uživatelé schopni se v aplikaci orientovat. V současném světě technologií tento proces vyžaduje informační systém jako řešení pro usnadnění testování, plánování i komunikace mezi jednotlivými subjekty v laboratoři testování použitelnosti. Vývoj takovéhoto systému byl zahájen bakalářskou prací Karolíny Solanské s názvem Children Usability Lab - aplikace pro správu laboratoře (odkazem \cite{solankar}). Její práce vyvinula systém, který slouží jako webová aplikace zajišťující plánování a organizaci testů použitelnosti. Zmíněná předchozí bakalářská práce měla neobvykle větší počet stran a přesto je v implementovaném systému spoustu možností pro vyvinutí nových funkcí. Na tomto základě se dá říci, že se jedná o celkem rozsáhlý systém. Jeden ze směrů, kterým by se systém mohl začít rozšiřovat byla veškerá práce s videem což bylo ostatně zmíněno v kapitole o dalším vývoji.
+se autoři aplikace dozvědí, jak jsou různé prvky uživatelského rozhraní srozumitelné a jak dobře jsou uživatelé schopni se v aplikaci orientovat. V současném světě technologií tento proces vyžaduje informační systém jako řešení pro usnadnění testování, plánování i komunikace mezi jednotlivými subjekty v laboratoři testování použitelnosti. Vývoj takovéhoto systému byl zahájen bakalářskou prací Karolíny Solanské s názvem Children Usability Lab - aplikace pro správu laboratoře (odkazem \cite{solankar}). Její práce vyvinula systém, který slouží jako webová aplikace zajišťující plánování a organizaci testů použitelnosti. Zmíněná bakalářská práce měla neobvykle větší počet stran, avšak podařilo se implementovat zcela funkční systém, ale i přesto je v něm spoustu možností pro vyvinutí nových funkcí. Na tomto základě se dá říci, že se jedná o celkem rozsáhlý systém. Jeden ze směrů, kterým by se systém mohl začít rozšiřovat byla veškerá práce s videem což bylo ostatně zmíněno v uvedené práci v kapitole o dalším vývoji.
 
-Laboratoř použitelnosti na Fakultě informačních technologií ČVUT v Praze je vybavena spoustou zařízení, která jsou schopná zaznamenávat různorodá data. Jedná se nejen o všechna výpočetní zařízení, na kterých probíhají samotné testy, jako hlavní stolní počítač, tablet apod., ale také spousta kamer, mikrofonů či dokonce snímač pohybu očí po obrazovce. Není pochyb o tom, že data z těchto nahrávání schopných zařízení mohou značně přispět ke zkvalitnění vyhodnocování testů použitelnosti. V aktuálním stavu je práce se záznamy velice obtížná a neúčinná, jak je uvedeno v kapitole o současném stavu (). Z těchto důvodů je nutné rozšířit stávající systém o funkcionalitu, která práci s těmito záznamy značně ulehčí a zefektivní. Jedná se o to, aby uživatelé systému mohli jednoduše pouze přes webové rozhraní spustit a zastavit nahrávání z vybraných zařízení, záznamy roztřídit, uložit v požadovaném formátu a kompresi, upravovat zadaným výčtem způsobů, poslat přes síť do systému SAGE a podobně.
-
-
--------------------------
-Testování použitelnosti samotné je pomerne složitý proces vyžadující ruzné
-druhy dokumentace. Bezproblémový prubeh také vyžaduje dobrou komunikaci
-mezi úcastníky testování, organizátory i zadávající firmou. Pro laborator
-použitelnosti na FIT CVUT je tedy treba vytvorit systém, který by byl schopen
-splnit tyto funkce a poskytl svým uživatelum všechny potrebné informace.
-Vetšina lidí dnes používá internet alespon v nejaké míre a cílová skupina laboratore
-na testování použitelnosti - tedy majitelé firem ci vývojári - se bez
-nej v podstate neobejde.
-Provoz laboratore použitelnosti vyžaduje velmi dobrou organizaci a použitelný
-informacní systém se tedy jeví jako dobré rešení pro usnadnení testování, plánování
-i komunikace mezi jednotlivými subjekty.
-Jelikož se laborator na FIT CVUT zameruje na testování použitelnosti s detmi,
-v práci se zároven zabývám specifikací, jak presne by melo probíhat testování
-použitelnosti a jeho jednotlivé náležitosti a zároven jak tento proces prizpusobit
-detským uživatelum.
-
+Laboratoř použitelnosti na Fakultě informačních technologií ČVUT v Praze je vybavena spoustou zařízení, která jsou schopná zaznamenávat různorodá data. Jedná se nejen o všechna výpočetní zařízení, na kterých probíhají samotné testy, jako hlavní stolní počítač, tablet apod., ale také spousta kamer, mikrofonů či dokonce snímač pohybu očí po obrazovce. Není pochyb o tom, že data z těchto nahrávání schopných zařízení mohou značně přispět ke zkvalitnění vyhodnocování testů použitelnosti. V aktuálním stavu je práce se záznamy velice obtížná a neúčinná, jak je uvedeno v kapitole o současném stavu (\ref{sec:analyza_predchozi_prace}). Z těchto důvodů je nutné rozšířit stávající systém o funkcionalitu, která práci s těmito záznamy značně ulehčí a zefektivní. Jedná se o to, aby uživatelé systému mohli jednoduše pouze přes webové rozhraní spustit a zastavit nahrávání z vybraných zařízení, záznamy roztřídit, uložit v požadovaném formátu a kompresi, upravovat zadaným výčtem způsobů, posílat přes síť do systému SAGE a podobně.
 \end{introduction}
 
 \chapter{Cíl práce}
+Cílem této diplomové práce je nejprve seznámení se s bakalářskou prací Karolíny Solanské s názvem Children Usability Lab - aplikace pro správu laboratoře (\cite{solankar}). V uvedené práci je třeba analyzovat veškeré specifické požadavky zaměřené na správu videa. Tyto požadavky je nutné znovu probrat s koordinátory  laboratoře Children Usability Lab, aktualizovat je a zakomponovat do specifických požadavků této práce. Vedle převzatých požadavků se nadefinuje i spousta dalších, nových funkčních i nefunkčních požadavků, které byly nashromážděny během posledních let běhu testů v laboratoři. Další částí analýzy je pak ponoření se do světa technologií, které usnadňují práci s videem a z existujících je třeba vybrat pokud možno ty nejvhodnější, které by se daly použít v praktické části této práce.
+	
+	Výstup analytické části si poté převezme návrhová a implementační část, ve kterých se pomocí nástrojů softwarového inženýrství promění nabyté poznatky v reálný produkt, tedy modul pro správu videa, který půjde se stávajícím systémem provázat.
+	
+	Se vzniklým testovatelným řešením se pak postoupí do testovací části, kde se otestují funkčnosti zadané specifikací, provede se nasazení, případné opravy nalezených chyb a dále akceptační testování.
+Součástí práce bude také dokumentace včetně instalační příručky pomocí které bude možné systém nasadit v různých laboratořích pro testování použitelnosti.
 
 \chapter{Analýza}
 
