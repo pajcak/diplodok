@@ -37,7 +37,7 @@
 \acknowledgements{Rád bych poděkoval vedoucímu mé diplomové práce Ing. Jiřímu Chludilovi i oponentovi Ing. Jiřímu Melnikovovi za užitečné připomínky a mnoho cenných rad. Dále chci poděkovat své rodině a blízkým přátelům za podporu a motivaci při tvorbě této práce i během celého studia.}
 \abstractCS{Tato diplomová práce navazuje na bakalářskou práci Karolíny Solanské s názvem Children Usability Lab - aplikace pro správu laboratoře. Její bakalářská práce je zde rozšířena o návrh a implementaci subsystému pro management veškerých záznamů nahrávaných v laboratoři Children Usability Lab. Součástí této práce je také analýza současného systému i existujících řešení pro požadovanou správu záznamů, dále pak návrh, realizace a její následné testování. Implementované rozšíření stávajícího systému plně pokrývá dohodnuté zadání i specifikované požadavky.
 \par
- Závěrem této diplomové práce je podrobení subsystému integračním i akceptačním testům. Subsystém se podařilo úspěšně nasadit do počítačového prostředí laboratoře Children Usability Lab, kde usnadňuje a zefektivňuje tamní usability testování.}
+Závěrem této diplomové práce je podrobení subsystému integračním i akceptačním testům. Subsystém se podařilo úspěšně nasadit do počítačového prostředí laboratoře Children Usability Lab, kde usnadňuje a zefektivňuje tamní usability testování.}
 
 \abstractEN{Sem doplňte ekvivalent abstraktu Vaší práce v~angličtině.}
 \placeForDeclarationOfAuthenticity{V~Praze}
@@ -74,6 +74,14 @@ Jedná se o část aplikace, která je viditelná běžným uživatelům.\\ \\
 Jedná se o část aplikace, uživatelům \uv{schovaná} za frontendem a slouží především ke zpracování dat.\\ \\
 \textbf{CHUL}\\
 Children Usability Lab - labratoř testování použirelnosti na Fakultě informačních technologií ČVUT v Praze.\\ \\
+\textbf{CDN}\\
+TODO.\\ \\
+\textbf{Hosting}\\
+TODO.\\ \\
+\textbf{}\\
+TODO.\\ \\
+\textbf{}\\
+TODO.\\ \\
 
 \section{Rozbor zadání} \label{sec:analyza_rozbor_zadani}
 \begin{enumerate}
@@ -121,7 +129,7 @@ Moderátor a zadavatel mají možnost video převést na jiný formát, předev�
 Uživatel bude moci nahrát zvuk k libovolnému videu ze vstupního zařízení.
 \end{enumerate}
 
-\section{Specifikace požadavků} \label{sec:analyza_rozbor_zadani}
+\section{Specifikace požadavků} \label{sec:analyza_pozadavky}
 \subsection{Funkční požadavky} \label{subsec:analyza_fp}
 \begin{description}
   \item \textbf{F1 -- Nahrávání záznamů}
@@ -227,13 +235,26 @@ Uživatel bude moci nahrát zvuk k libovolnému videu ze vstupního zařízení.
 Při hledání pomocného softwaru, který by řešení značně ulehčil je třeba postupovat od komplexních řešení, které jsou již funkční a otestované komunitou a které by se vypořádaly s velkým počtem funkcionalit. Pokud se nepodaří najít řešení o vhodné úrovni komplexnosti, pak se musí úroveň rozsáhlosti snižovat a poohlížet se tak po technologiích řešící pouze jednotlivé funkcionality.
 
 \subsection{Libyuri} \label{subsec:analyza_reseni_yuri}
-Knihovna libyuri (\cite{yuri}) je framework, poskytující prostředky pro vytváření vícevláknových aplikací zpracovávajících video a audio. Knihovna je modulární, což znamená, že jednotlivá úprava videa je zpracovávána jedním modulem (například ořez videa). Zpracování videa a audia v libyuri je pak možné pomocí vytvoření orientovaného grafu, kde jednotlivé fáze zpracování (moduly) jsou reprezentovány jako uzly grafu a datová propojení mezi moduly jako orientované hrany grafu. Modulů v této knihovně je již nepřeberná spousta, počínaje moduly, které přebírají obrazová data z různých zdrojů (například kamery, V4L zařízení, Decklink zařízení, ... ) přes moduly pro zpracování obrazových i zvukových rámců a podobně. Knihovna je také velice snadno rozšiřitelná a díky dobré dokumentaci a šablonám pro vytvoření modulů je opravdu snadné rozšířit tento mocný nástroj o téměř libovolnou funkcionalitu.
+Knihovna libyuri (\cite{yuri}) je framework, poskytující prostředky pro vytváření vícevláknových aplikací zpracovávajících video a audio. Knihovna je modulární, což znamená, že jednotlivá úprava videa je zpracovávána jedním modulem (například ořez videa). Zpracování videa a audia v Libyuri je pak možné pomocí vytvoření orientovaného grafu, kde jednotlivé fáze zpracování (moduly) jsou reprezentovány jako uzly grafu a datová propojení mezi moduly jako orientované hrany grafu. Modulů v této knihovně je již nepřeberná spousta, počínaje moduly, které přebírají obrazová data z různých zdrojů (například kamery, V4L zařízení, Decklink zařízení, ...) přes moduly pro zpracování obrazových i zvukových rámců a podobně. Knihovna je také velice snadno rozšiřitelná a díky dobré dokumentaci a šablonám pro vytvoření modulů je opravdu snadné rozšířit tento mocný nástroj o téměř libovolnou funkcionalitu.
+
 	Licence libyuri je dle (\cite{yuri}) pod modifikovanou BSD licencí přičemž moduly používající technologie jiných autorů jsou pod licencemi dalšími, vesměs to však jsou open-source licence, což je další plus.
 
 \subsection{Ultragrid} \label{subsec:analyza_reseni_ultragrid}
-Ultragrid je software pro nízko-latenční přenos video dat po síti. Software podporuje mnoho známých video standardů, jako například PAL/NTSC, HD, 2K i 4K. Pro zobrazování dat využívá technologie OpenGL a SDL. Je schopný přenosového módu tzv. dual-link, což je ve zkratce posílání dat dvěma různými cestami pro zajištění větší šířky pásma.
+Ultragrid (odkazem \cite{ultragrid_web}) je software vyvíjený lidmi ze sdružení CESNET z brněnské laboratoře SITOLA, pro nízko-latenční přenos video dat po síti. Software podporuje mnoho známých video standardů, jako například PAL/NTSC, HD, 2K i 4K. Pro zobrazování dat využívá technologie OpenGL a SDL. UltraGrid používá streamy videa bez komprese, nebo s velmi malou kompresí k zaručení až 8K rozlišení s až 100ms latencí mezi koncovými body. Software se již používá v mnoha oblastech jako jsou kolaborující prostředí, lékařská kinematografie, různé vzdělávací aktivity a jiné. Je schopný přenosového módu tzv. dual-link, což je ve zkratce posílání dat dvěma různými cestami pro zajištění větší šířky pásma. Ultragrid je dle (\cite{ultragrid_wiki}) open-source software pod BSD licencí.
+	
+	Tento software je také možné použít, jako komplexní řešení neboť podobně jako Libyuri funguje na základě propojování uzlů, které pracují s videem. Ultragrid má oproti Libyuri o trochu lepší dokumentaci, ale na druhou stranu má o mnohem menší počet modulů což je mnohem větší slabina než zmíněná dokumentace. Navíc se nepodařilo nalézt srozumitelný návod či šablonu pro vytvoření vlastních modulů.
+
+\subsection{Video.js} \label{subsec:analyza_reseni_videojs}
+Video.js je open-source knihovna pro práci s videem na webu (vizte \cite{videojs_web}). Tato knihovna je vlastně obalení pro nativní webový videopřehrávač v technologii HTML5, avšak s přidanými užitečnými funkcionalitami. Jelikož je tento software open-source a byl stavěný tak, aby byl dobře rozšiřitelný, tak se komunitě v průběhu času podařilo vyvinout nemalý počet užitečných pluginů (více zde \cite{videojs_plg}). Knihovna má výbornou dokumentaci (\cite{videojs_doc}), kde je mimo jiné i popsáno, jak lze napsat vlastní plugin, což je zvládnutelné i se základními znalostmi jazyku JavaScript. 
+	
+	Použití této knihovny je velice vhodné pro frontendovou část řešení této práce. Díky již zmíněným přednostem je lepší a snadněji rozšiřitelný než samotný přehrávač vestavěný v jazyku HTML5. Knihovnu je možné buď stáhnout a v případě potřeby i upravit před použitím nebo použít CDN Fastly (\cite{fastly_cdn}), který poskytuje hosting všem nezbytným souborům knihovny Videojs. Knihovna je kompatibilní s prohlížeči se zabudovaným HTML5 nebo případně i s technologií Flash. Podporovanými prohlížeči je většina dnes nejčastěji používaných jako například Firefox verze 3.5 a vyšší, Internet Explorer 6 a vyšší, Chrome verze 3 a vyšší, Opera a další (více na wiki projektu \cite{videojs_wiki}).
+
+
+
+TODO JESTE ASPON JEDNU DVE
 
 \section{Výběr technologií} \label{sec:analyza_technologie}
+
 \subsection{Porovnávací metodika} \label{subsec:analyza_technologie_metodika}
 \subsection{Vybrané technologie} \label{subsec:analyza_technologie_vybrane}
 ...nette, html5, javascript, yuri,... ps Libyuri byla specifikovana v jednom z NefPoz nahore
