@@ -217,7 +217,7 @@ Uživatel bude moci nahrát zvuk k libovolnému videu ze vstupního zařízení.
     \item \textbf{N10 -- Technologie pro databázový systém.\\}
 	Technologie databázového systému použitého pro celou webovou aplikaci je PostgreSQL.
     \item \textbf{N11 -- Technologie pro tvorbu modulů.\\}
-	Moduly budou vytvořeny jako kompatibilní s knihovnou Libyuri a připadně budou použity existujicí moduly.
+	Moduly budou vytvořeny jako kompatibilní s knihovnou libyuri a připadně budou použity existujicí moduly.
     % \item \textbf{ \\}
   \end{description}
 
@@ -226,8 +226,12 @@ Uživatel bude moci nahrát zvuk k libovolnému videu ze vstupního zařízení.
 \section{Existující komplexní řešení} \label{sec:analyza_existujici_reseni}
 Při hledání pomocného softwaru, který by řešení značně ulehčil je třeba postupovat od komplexních řešení, které jsou již funkční a otestované komunitou a které by se vypořádaly s velkým počtem funkcionalit. Pokud se nepodaří najít řešení o vhodné úrovni komplexnosti, pak se musí úroveň rozsáhlosti snižovat a poohlížet se tak po technologiích řešící pouze jednotlivé funkcionality.
 
-\subsection{} \label{subsec:analyza_reseni_}
-\subsection{} \label{subsec:analyza_reseni_}
+\subsection{Libyuri} \label{subsec:analyza_reseni_yuri}
+Knihovna libyuri (\cite{yuri}) je framework, poskytující prostředky pro vytváření vícevláknových aplikací zpracovávajících video a audio. Knihovna je modulární, což znamená, že jednotlivá úprava videa je zpracovávána jedním modulem (například ořez videa). Zpracování videa a audia v libyuri je pak možné pomocí vytvoření orientovaného grafu, kde jednotlivé fáze zpracování (moduly) jsou reprezentovány jako uzly grafu a datová propojení mezi moduly jako orientované hrany grafu. Modulů v této knihovně je již nepřeberná spousta, počínaje moduly, které přebírají obrazová data z různých zdrojů (například kamery, V4L zařízení, Decklink zařízení, ... ) přes moduly pro zpracování obrazových i zvukových rámců a podobně. Knihovna je také velice snadno rozšiřitelná a díky dobré dokumentaci a šablonám pro vytvoření modulů je opravdu snadné rozšířit tento mocný nástroj o téměř libovolnou funkcionalitu.
+	Licence libyuri je dle (\cite{yuri}) pod modifikovanou BSD licencí přičemž moduly používající technologie jiných autorů jsou pod licencemi dalšími, vesměs to však jsou open-source licence, což je další plus.
+
+\subsection{Ultragrid} \label{subsec:analyza_reseni_ultragrid}
+Ultragrid je software pro nízko-latenční přenos video dat po síti. Software podporuje mnoho známých video standardů, jako například PAL/NTSC, HD, 2K i 4K. Pro zobrazování dat využívá technologie OpenGL a SDL. Je schopný přenosového módu tzv. dual-link, což je ve zkratce posílání dat dvěma různými cestami pro zajištění větší šířky pásma.
 
 \section{Výběr technologií} \label{sec:analyza_technologie}
 \subsection{Porovnávací metodika} \label{subsec:analyza_technologie_metodika}
@@ -235,7 +239,7 @@ Při hledání pomocného softwaru, který by řešení značně ulehčil je tř
 ...nette, html5, javascript, yuri,... ps Libyuri byla specifikovana v jednom z NefPoz nahore
 
 \chapter{Návrh} \label{chap:navrh}
-blablabla praktiky vzory, blabla pak fronted a bekend
+blablabla praktiky vzory, blabla pak frontend a bekend
 
 Návrh je rozdělen do podkapitol pro backend, kde je uvedeno, jaká je struktura té části aplikace, která je uživateli odstíněna, ale která také zajišťuje většinu funkcionalit.
 \section{Praktiky a vzory} \label{sec:navrh_praktiky}
