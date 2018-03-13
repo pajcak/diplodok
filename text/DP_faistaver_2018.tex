@@ -263,9 +263,36 @@ OBS neboli Open Broadcaster Software je dle (\cite{obs}) software pro nahráván
 
 
 \section{Výběr technologií} \label{sec:analyza_technologie}
+Technologie nashromážděné rešerší je nutné zredukovat, neboť čím menší počet jich použijeme a čím větší část požadavků pokryjí, tím lépe. Nejprve je uvedena porovnávací metodika, která obsahuje výčet funkcí a charakteristik pro výběr technologií a pomocí priorit těchto charakteristik jsou pak technologie porovnány formou tabulky (...TODO ref na tabuli).
 
 \subsection{Porovnávací metodika} \label{subsec:analyza_technologie_metodika}
+Aby výběr těch nejvhodnějších technologií proběhl kvalitně, je zapotřebí k tomu použít určitou metodiku, tedy souhrn postupů, které pokryjí proces výběru. Jednou z těchto metod je stanovení výčtu obecných vlastností a funkcionalit softwaru, jejichž úroveň a kvalita se změří na nalezených technologiích. Dalším postupem je shrnutí nashromážděných hodnocení, zde například formou tabulky (TODO REF TABLE) a následné vyhodnocení, jehož výstupem bude redukovaný výčet technologií, které ve výběru \uv{uspěly} a budou použity v implementační části této práce.
+	
+	Nejprve je tedy výčtem uveden seznam obecných prioritních charakteristik softwaru, přičemž u každé z nich je definováno, co se pod ní, v kontextu této práce, myslí.
 
+\begin{description}
+\item \textbf{Licence\\}
+Preferováno open-source řešení nad proprietárním. Prioritní licence jsou například GPLv2, MIT, Apache či WTFPL.
+\item \textbf{Dokumentace\\}
+Je technická i uživatelská dokumentace dostatečně specifická? Souhlasí verze dokumentace s verzí produktu a koresponduje s jejím aktuálním stavem?
+\item \textbf{Podpora\\}
+Je produkt stále ještě vyvíjen a alespoň některá z jeho verzí aktivně podporována? Existuje možnost snadné zpětné vazby od uživatele technologie k jejím udržovatelům?.
+\item \textbf{Integrace\\}
+Zda a jak je možné technologii integrovat do systému této práce.
+\item \textbf{Komunita\\}
+Velikost uživatelské komunity vybrané technologie. Existence dalších zdrojů informací o produktu např. webové stránky obsahující informace jiné než v technické dokumentaci.
+\item \textbf{Multiplatformnost\\}
+Je technologie multiplatformní? Je možné ji bez větších problémů zprovoznit na novějších verzích operačních systémů Windows i na několika různých distribucích systému Linux?
+\item \textbf{Rozšiřitelnost\\}
+Je možné technologii snadno rozšiřovat a upravovat, pokud to licence umožňuje? Je například možné jej rozšířit o moduly s požadovanou funkcionalitou, pokud je zatím technologie nepokrývá?
+\item \textbf{Zkušenosti\\}
+Má autor této práce nějaké zkušenosti s danou technologií, které by mu umožnily snadnější, rychlejší a efektivnější implementaci řešení?
+\end{description}
+
+Po porovnání všech nashromážděných technologií pomocí specifikovaných charakteristik bylo dosaženo výsledku, který je popsán tabulkou TODO NUM TABLE.
+
+	Jak již bylo zmíněno na začátku sekce o existujících řešeních (\ref{sec:analyza_existujici_reseni}), tak z důvodu úspory místa byly zde v práci analyzovány pouze takové technologie, které měly již předem potenciál dobrého vyhodnocení v tomto porovnání. Ovšem, v tabulce jsou již zmíněna i jména technologií, které byly taktéž analyzovány, avšak postup analýzy již v rešeršní části práce zmíněn nebyl, neboť jejich hodnocení dopadlo hůře.
+	
 \subsection{Vybrané technologie} \label{subsec:analyza_technologie_vybrane}
 ...nette, html5, javascript, yuri,... ps Libyuri byla specifikovana v jednom z NefPoz nahore
 
