@@ -75,13 +75,13 @@ Jedná se o část aplikace, uživatelům \uv{schovaná} za frontendem a slouž�
 \textbf{CHUL}\\
 Children Usability Lab - labratoř testování použirelnosti na Fakultě informačních technologií ČVUT v Praze.\\ \\
 \textbf{CDN}\\
-TODO.\\ \\
+CDN neboli Content Delivery Network je systém serverů rozmístěných po internetu, které spolupracují pro zajištění rychlého doručení dat klientovi.\\ \\
 \textbf{Hosting}\\
-TODO.\\ \\
+Pronájem úložného prostoru uživateli na proprietárních serverech.\\ \\
 \textbf{Framework}\\
-TODO.\\ \\
-\textbf{}\\
-TODO.\\ \\
+Jedná se o softwarovou strukturu fungující jako knihovna funkcí a podpůrných nástrojů, která usnadňuje vývoj jiných softwarových projektů.\\ \\
+% \textbf{}\\
+% TODO.\\ \\
 
 \section{Rozbor zadání} \label{sec:analyza_rozbor_zadani}
 \begin{enumerate}
@@ -229,44 +229,60 @@ Uživatel bude moci nahrát zvuk k libovolnému videu ze vstupního zařízení.
     % \item \textbf{ \\}
   \end{description}
 
-
-
 \section{Existující komplexní řešení} \label{sec:analyza_existujici_reseni}
 Při hledání pomocného softwaru, který by řešení značně ulehčil je třeba postupovat od komplexních řešení, které jsou již funkční a otestované komunitou a které by se vypořádaly s velkým počtem funkcionalit. Pokud se nepodaří najít řešení o vhodné úrovni komplexnosti, pak se musí úroveň rozsáhlosti snižovat a poohlížet se tak po technologiích řešící pouze jednotlivé funkcionality. Přednost mají open-source řešení, které je možné libovolně použít a rozšířit.
 
 	Pro úspor místa jsou zde uvedeny především ta nalezená řešení, která byla při rešerši velice dobře hodnocena a několik málo ostatních průměrných nebo podprůměrných adeptů je pak s těmito společně shrnuto v sekci o výběru technologií (\ref{sec:analyza_technologie}).
 
-\subsection{Libyuri} \label{subsec:analyza_reseni_yuri}
+\subsection{Technologie pro backend} \label{subsec:analyza_reseni_backend}
+V této části jsou uvedeny některé technologie, které byly rešerší nalezeny jako kandidátní technologie pro backendovou část aplikace. Je třeba nejprve zohlednit technologie, které byly zmíněny ve výčtu nefunkčních požadavků (\ref{subsec:analyza_np}), pokud nějaké. V nefunkčních požadavcích N8 a N10 jsou zadány technologie pro backendovou část a to jsou knihovna Libyuri pro správu videa a databázový systém PostgreSQL. V rešeršní části je ze zmíněných dvou analyzována pouze knihovna Libyuri, neboť databázový systém PostgreSQL byl již použit v předchozí bakalářské práci, je tedy zakomponován v existujícím systému a nevyskytl se závažný důvod to měnit.
+
+\subsubsection{Libyuri} \label{subsubsec:analyza_reseni_yuri}
 Knihovna libyuri (\cite{yuri}) je framework, poskytující prostředky pro vytváření vícevláknových aplikací zpracovávajících video a audio. Knihovna je modulární, což znamená, že jednotlivá úprava videa je zpracovávána jedním modulem (například ořez videa). Zpracování videa a audia v Libyuri je pak možné pomocí vytvoření orientovaného grafu, kde jednotlivé fáze zpracování (moduly) jsou reprezentovány jako uzly grafu a datová propojení mezi moduly jako orientované hrany grafu. Modulů v této knihovně je již nepřeberná spousta, počínaje moduly, které přebírají obrazová data z různých zdrojů (například kamery, V4L zařízení, Decklink zařízení, ...) přes moduly pro zpracování obrazových i zvukových rámců a podobně. Knihovna je také velice snadno rozšiřitelná a díky dobré dokumentaci a šablonám pro vytvoření modulů je opravdu snadné rozšířit tento mocný nástroj o téměř libovolnou funkcionalitu.
 
 	Licence libyuri je dle (\cite{yuri}) pod modifikovanou BSD licencí přičemž moduly používající technologie jiných autorů jsou pod licencemi dalšími, vesměs to však jsou open-source licence, což je další plus.
 
-\subsection{Ultragrid} \label{subsec:analyza_reseni_ultragrid}
+\subsubsection{Ultragrid} \label{subsubsec:analyza_reseni_ultragrid}
 Ultragrid (odkazem \cite{ultragrid_web}) je software vyvíjený lidmi ze sdružení CESNET z brněnské laboratoře SITOLA, pro nízko-latenční přenos video dat po síti. Software podporuje mnoho známých video standardů, jako například PAL/NTSC, HD, 2K i 4K. Pro zobrazování dat využívá technologie OpenGL a SDL. UltraGrid používá streamy videa bez komprese, nebo s velmi malou kompresí k zaručení až 8K rozlišení s až 100ms latencí mezi koncovými body. Software se již používá v mnoha oblastech jako jsou kolaborující prostředí, lékařská kinematografie, různé vzdělávací aktivity a jiné. Je schopný přenosového módu tzv. dual-link, což je ve zkratce posílání dat dvěma různými cestami pro zajištění větší šířky pásma. Ultragrid je dle (\cite{ultragrid_wiki}) open-source software pod BSD licencí.
 	
 	Tento software je také možné použít, jako komplexní řešení neboť podobně jako Libyuri funguje na základě propojování uzlů, které pracují s videem. Ultragrid má oproti Libyuri o trochu lepší dokumentaci, ale na druhou stranu má o mnohem menší počet modulů což je mnohem větší slabina než zmíněná dokumentace. Navíc se nepodařilo nalézt srozumitelný návod či šablonu pro vytvoření vlastních modulů.
 
-\subsection{FFmpeg} \label{subsec:analyza_reseni_ffmpeg}
+\subsubsection{FFmpeg} \label{subsubsec:analyza_reseni_ffmpeg}
 FFmpeg (odkazem \cite{ffmpeg}) je jeden z nejlepších a nejznámějších open-source multimediálních frameworků vůbec, který je schopný kódovat, dekódovat, konvertovat, streamovat, filtrovat i přehrávat nejen audio i video záznamy. Tento software podporuje téměř všechny známé formáty záznamů od zastaralých, po ty nejnovější. Je také velmi dobře portabilní, neboť se dá zkompilovat a spustit na distribucích operačních systémů typu Linux, Mac OS X, Microsoft Windows, BSD, Solaris, a tak podobně.
 
 	Díky známosti, spolehlivosti a komunitě tohoto frameworku by byla chyba jej nepoužít právě při zpracování videa. Naštěstí výše zmíněná softwarová řešení jako Libyuri a Ultragrid tento framework mají v sobě již zakomponován (pokud jsou ovšem zkompilovány s podporou pro FFmpeg).
 
-\subsection{Video.js} \label{subsec:analyza_reseni_videojs}
-Video.js je open-source knihovna pro práci s videem na webu (vizte \cite{videojs_web}). Tato knihovna je vlastně obalení pro nativní webový videopřehrávač v technologii HTML5, avšak s přidanými užitečnými funkcionalitami. Jelikož je tento software open-source a byl stavěný tak, aby byl dobře rozšiřitelný, tak se komunitě v průběhu času podařilo vyvinout nemalý počet užitečných pluginů (více zde \cite{videojs_plg}). Knihovna má výbornou dokumentaci (\cite{videojs_doc}), kde je mimo jiné i popsáno, jak lze napsat vlastní plugin, což je zvládnutelné i se základními znalostmi jazyku JavaScript. 
-	
-	Použití této knihovny je velice vhodné pro frontendovou část řešení této práce. Díky již zmíněným přednostem je lepší a snadněji rozšiřitelný než samotný přehrávač vestavěný v jazyku HTML5. Knihovnu je možné buď stáhnout a v případě potřeby i upravit před použitím nebo použít CDN Fastly (\cite{fastly_cdn}), která poskytuje hosting všem nezbytným souborům knihovny Videojs. Knihovna je kompatibilní s prohlížeči se zabudovaným HTML5 nebo případně i s technologií Flash. Podporovanými prohlížeči je většina dnes nejčastěji používaných jako například Firefox verze 3.5 a vyšší, Internet Explorer 6 a vyšší, Chrome verze 3 a vyšší, Opera a další (více na wiki projektu \cite{videojs_wiki}).
-
-\subsection{Open Broadcaster Software} \label{subsec:analyza_reseni_obs}
+\subsubsection{Open Broadcaster Software} \label{subsubsec:analyza_reseni_obs}
 OBS neboli Open Broadcaster Software je dle (\cite{obs}) software pro nahrávání a streamování videa vyvíjený dobrovolníky z celého světa. OBS je distribuovaný open-source software pod GPLv2 licencí. Tento software umožňuje spolehlivé nahrávání videa i audia v reálném čase a jeho následné zpracování. Je zde také možné nahrávat současně z více zdrojů, jako například monitoru, kamery, speciální tzv \uv{grabovací} grafické karty, webkamery a dalších.
 
 	OBS má dobrou dokumentaci (vizte \cite{obs_doc}), ve které je mimo jiné zmíněno, že je možné software lehce přizpůsobit pomocí skriptovacích jazyků Lua či Python. Většina funkcionalit v OBS je přidána pomocí plugin modulů, které jsou reprezentovány typicky dynamickými knihovnami nebo skripty. Jelikož se jedná o open-source software, pak je možné moduly ve formě pluginů i libovolně vytvářet na což je v dokumentaci taktéž podrobný návod. Nevýhodou tohoto řešení je velice omezená manipulace s binární podobou programu z prostředí příkazové řádky, což je v případě potenciální automatizace nežádoucí.
 
 
+
+\subsection{Technologie pro frontend} \label{subsec:analyza_reseni_frontend}
+Stejně jako v úvodu technologií pro backend (\ref{subsec:analyza_reseni_backend}) je při rešerši žádoucí respektovat frontendové technologie dohodnuté nefunkčními požadavky (\ref{subsec:analyza_np}). V tomto případě je nefunkčním požadavkem N7 specifikován výčet tří technologií, které jsou framework Nette jazyku PHP, dále značkovací jazyk HTML5 a skriptovací jazyk JavaScript. Technologie HTML5 i JavaScript jsou nativní technologie pro vývoj frontendu webových aplikací a v tomto kontextu se tedy nedají brát jako komplexní řešení pro nějakou podmnožinu specifikovaných úkolů a není tedy důvod je zde analyzovat a porovnávat s ostatními. Dokonce ani framework Nette není třeba zahrnout do porovnání technologií, protože je v něm napsán téměř celý systém předchozí bakalářské práce a bude tedy použit i nadále.
+
+
+\subsubsection{Video.js} \label{subsubsec:analyza_reseni_videojs}
+Video.js je open-source knihovna pro práci s videem na webu (vizte \cite{videojs_web}). Tato knihovna je vlastně obalení pro nativní webový videopřehrávač v technologii HTML5, avšak s přidanými užitečnými funkcionalitami. Jelikož je tento software open-source a byl stavěný tak, aby byl dobře rozšiřitelný, tak se komunitě v průběhu času podařilo vyvinout nemalý počet užitečných pluginů (více zde \cite{videojs_plg}). Knihovna má výbornou dokumentaci (\cite{videojs_doc}), kde je mimo jiné i popsáno, jak lze napsat vlastní plugin, což je zvládnutelné i se základními znalostmi jazyku JavaScript. 
+	
+	Použití této knihovny je velice vhodné pro frontendovou část řešení této práce. Díky již zmíněným přednostem je lepší a snadněji rozšiřitelný než samotný přehrávač vestavěný v jazyku HTML5. Knihovnu je možné buď stáhnout a v případě potřeby i upravit před použitím nebo použít CDN Fastly (\cite{fastly_cdn}), která poskytuje hosting všem nezbytným souborům knihovny Videojs. Knihovna je kompatibilní s prohlížeči se zabudovaným HTML5 nebo případně i s technologií Flash. Podporovanými prohlížeči je většina dnes nejčastěji používaných jako například Firefox verze 3.5 a vyšší, Internet Explorer 6 a vyšší, Chrome verze 3 a vyšší, Opera a další (více na wiki projektu \cite{videojs_wiki}).
+
+\subsubsection{Afterglow} \label{subsubsec:analyza_reseni_afterglow}
+Afterglow je open-source HTML5 videopřehrávač pod MIT licencí. Dle (\cite{afterglow}) je jednoduše konfigurovatelný plně responzivní a je kompatibilní s širokou škálou webových prohlížečů a zařízení. Přehrávač má kvalitní dokumentaci (\cite{afterglow_doc}) s ukázkovými příklady. Přehrávač je schopen přehrát Youtube i Vimeo video. Je možné mu dodat více stejných videí avšak o jiném rozlišení i v jiném formátu a uživatel si poté může v přehrávači ze zadaných formátů a rozlišení vybírat.
+	
+	Tato nadstavba nativního HTML5 videopřehrávače má však několik nevýhod. Je to velice jednoduchá nadstavba a neumožňuje dostatek nových funkcionalit nad nativním HTML5 přehrávačem, než které by bylo možno dopsat ručně zanedlouho. Komunita u tohoto softwaru není zdaleka tak silná jako u zmíněného Video.js a tak ani počet pluginů není tak velký (není zde například možné jednoduše udělat playlist videí).
+
+\subsubsection{Kaltura} \label{subsubsec:analyza_reseni_kaltura}
+TODO
+
+TODO JESTE ASPON DVE
+
 \section{Výběr technologií} \label{sec:analyza_technologie}
 Technologie nashromážděné rešerší je nutné zredukovat, neboť čím menší počet jich použijeme a čím větší část požadavků pokryjí, tím lépe. Nejprve je uvedena porovnávací metodika, která obsahuje výčet funkcí a charakteristik pro výběr technologií a pomocí priorit těchto charakteristik jsou pak technologie porovnány formou tabulky (...TODO ref na tabuli).
 
 \subsection{Porovnávací metodika} \label{subsec:analyza_technologie_metodika}
-Aby výběr těch nejvhodnějších technologií proběhl kvalitně, je zapotřebí k tomu použít určitou metodiku, tedy souhrn postupů, které pokryjí proces výběru. Jednou z těchto metod je stanovení výčtu obecných vlastností a funkcionalit softwaru, jejichž úroveň a kvalita se změří na nalezených technologiích. Dalším postupem je shrnutí nashromážděných hodnocení, zde například formou tabulky (TODO REF TABLE) a následné vyhodnocení, jehož výstupem bude redukovaný výčet technologií, které ve výběru \uv{uspěly} a budou použity v implementační části této práce.
+Aby výběr těch nejvhodnějších technologií proběhl kvalitně, je zapotřebí k tomu použít určitou metodiku, tedy souhrn postupů, které pokryjí proces výběru. Jednou z těchto metod je stanovení výčtu obecných vlastností a funkcionalit softwaru, jejichž úroveň a kvalita se změří na nalezených technologiích. Dalším postupem je shrnutí nashromážděných hodnocení, zde například formou tabulek (TODO REF TABLE) a (TODO REF TABLE) a následné vyhodnocení, jehož výstupem bude redukovaný výčet technologií, které ve výběru \uv{uspěly} a budou použity v implementační části této práce pro frontend a pro backend.
 	
 	Nejprve je tedy výčtem uveden seznam obecných prioritních charakteristik softwaru, přičemž u každé z nich je definováno, co se pod ní, v kontextu této práce, myslí.
 
@@ -278,7 +294,7 @@ Je technická i uživatelská dokumentace dostatečně specifická? Souhlasí ve
 \item \textbf{Podpora\\}
 Je produkt stále ještě vyvíjen a alespoň některá z jeho verzí aktivně podporována? Existuje možnost snadné zpětné vazby od uživatele technologie k jejím udržovatelům?.
 \item \textbf{Integrace\\}
-Zda a jak je možné technologii integrovat do systému této práce.
+Zda a jak je možné technologii integrovat do systému této práce. Možnost integrace a kooperace technologie s infrastrukturou SAGE.
 \item \textbf{Komunita\\}
 Velikost uživatelské komunity vybrané technologie. Existence dalších zdrojů informací o produktu např. webové stránky obsahující informace jiné než v technické dokumentaci.
 \item \textbf{Multiplatformnost\\}
@@ -289,7 +305,8 @@ Je možné technologii snadno rozšiřovat a upravovat, pokud to licence umožň
 Má autor této práce nějaké zkušenosti s danou technologií, které by mu umožnily snadnější, rychlejší a efektivnější implementaci řešení?
 \end{description}
 
-Po porovnání všech nashromážděných technologií pomocí specifikovaných charakteristik bylo dosaženo výsledku, který je popsán tabulkou TODO NUM TABLE.
+Po porovnání všech nashromážděných technologií pomocí specifikovaných charakteristik bylo dosaženo výsledku, který je popsán tabulkou TODO NUM TABLE pro backendové technologie a tabulkou TODO NUM TABLE pro frontendové technologie.
+
 
 	Jak již bylo zmíněno na začátku sekce o existujících řešeních (\ref{sec:analyza_existujici_reseni}), tak z důvodu úspory místa byly zde v práci analyzovány pouze takové technologie, které měly již předem potenciál dobrého vyhodnocení v tomto porovnání. Ovšem, v tabulce jsou již zmíněna i jména technologií, které byly taktéž analyzovány, avšak postup analýzy již v rešeršní části práce zmíněn nebyl, neboť jejich hodnocení dopadlo hůře.
 	
