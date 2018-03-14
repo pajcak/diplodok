@@ -257,6 +257,8 @@ OBS neboli Open Broadcaster Software je dle (\cite{obs}) software pro nahráván
 
 	OBS má dobrou dokumentaci (vizte \cite{obs_doc}), ve které je mimo jiné zmíněno, že je možné software lehce přizpůsobit pomocí skriptovacích jazyků Lua či Python. Většina funkcionalit v OBS je přidána pomocí plugin modulů, které jsou reprezentovány typicky dynamickými knihovnami nebo skripty. Jelikož se jedná o open-source software, pak je možné moduly ve formě pluginů i libovolně vytvářet na což je v dokumentaci taktéž podrobný návod. Nevýhodou tohoto řešení je velice omezená manipulace s binární podobou programu z prostředí příkazové řádky, což je v případě potenciální automatizace nežádoucí.
 
+\subsubsection{Kaltura} \label{subsubsec:analyza_reseni_kaltura}
+TODO
 
 
 \subsection{Technologie pro frontend} \label{subsec:analyza_reseni_frontend}
@@ -269,11 +271,16 @@ Video.js je open-source knihovna pro práci s videem na webu (vizte \cite{videoj
 	Použití této knihovny je velice vhodné pro frontendovou část řešení této práce. Díky již zmíněným přednostem je lepší a snadněji rozšiřitelný než samotný přehrávač vestavěný v jazyku HTML5. Knihovnu je možné buď stáhnout a v případě potřeby i upravit před použitím nebo použít CDN Fastly (\cite{fastly_cdn}), která poskytuje hosting všem nezbytným souborům knihovny Videojs. Knihovna je kompatibilní s prohlížeči se zabudovaným HTML5 nebo případně i s technologií Flash. Podporovanými prohlížeči je většina dnes nejčastěji používaných jako například Firefox verze 3.5 a vyšší, Internet Explorer 6 a vyšší, Chrome verze 3 a vyšší, Opera a další (více na wiki projektu \cite{videojs_wiki}).
 
 \subsubsection{Afterglow} \label{subsubsec:analyza_reseni_afterglow}
-Afterglow je open-source HTML5 videopřehrávač pod MIT licencí. Dle (\cite{afterglow}) je jednoduše konfigurovatelný plně responzivní a je kompatibilní s širokou škálou webových prohlížečů a zařízení. Přehrávač má kvalitní dokumentaci (\cite{afterglow_doc}) s ukázkovými příklady. Přehrávač je schopen přehrát Youtube i Vimeo video. Je možné mu dodat více stejných videí avšak o jiném rozlišení i v jiném formátu a uživatel si poté může v přehrávači ze zadaných formátů a rozlišení vybírat.
+Afterglow je open-source HTML5 videopřehrávač pod MIT licencí. Dle (\cite{afterglow}) je jednoduše konfigurovatelný plně responzivní a je kompatibilní s širokou škálou webových prohlížečů a zařízení. Přehrávač má kvalitní dokumentaci (\cite{afterglow_doc}) s ukázkovými příklady. Přehrávač je schopen přehrát Youtube i Vimeo video. Je možné mu dodat více stejných videí avšak o jiném rozlišení i v jiném formátu a uživatel si poté může v přehrávači ze zadaných formátů a rozlišení vybírat. Afterglow je díky obalení prohlížečům nativní HTML5 technologie kompatibilni s většinou dnes používaných prohlížečů a je taktéž k dispozici pomocí CDN jsDelivr.
 	
 	Tato nadstavba nativního HTML5 videopřehrávače má však několik nevýhod. Je to velice jednoduchá nadstavba a neumožňuje dostatek nových funkcionalit nad nativním HTML5 přehrávačem, než které by bylo možno dopsat ručně zanedlouho. Komunita u tohoto softwaru není zdaleka tak silná jako u zmíněného Video.js a tak ani počet pluginů není tak velký (není zde například možné jednoduše udělat playlist videí).
 
-\subsubsection{Kaltura} \label{subsubsec:analyza_reseni_kaltura}
+\subsubsection{Movie Masher} \label{subsubsec:analyza_reseni_mm}
+Movie Masher (\cite{mm}), přesněji knihovna moviemasher.js (\cite{mm_js}) je knihovna jazyku JavaScript pro editaci videa a audia v prohlížeči v reálném čase. Knihovna je open-source s licencí Mozilla Public Licence v2. Tento editor pracuje s HTML5 videopřehrávačem. Editor umožňuje vizuální kompozici videoklipů s přechody, mix audia za použití API WebAudio, Undo a Redo příkazy pro vracení se zpět a vpřed v historii provedených úprav a další. Jednotlivé efekty jsou pak například vložení textu do videa, zkrácení videa (oříznutí pouze odzadu), změna barev, kontrastu a podobně. Movie Masher je možné buď stáhnout a nasadit na vlastním serveru nebo použít technologii Microsoft Azure (\cite{mm_azure}), která jej podporuje avšak její hosting je placený.
+	
+	Oproti požadovaným funkcionalitám tento video editor několik vymožeností postrádá (skládání videí vedle sebe do jednoho obrazu, ořez videa z obou stran, změna rozlišení, změna formátu a jiné). Editor také oficiálně nepodporuje pluginy (\cite{mm_azure}) a v dokumentaci nebyl nalezen návod nebo šablony pro jeho snadné rozšíření. 
+
+\subsubsection{} \label{subsubsec:analyza_reseni_}
 TODO
 
 TODO JESTE ASPON DVE
