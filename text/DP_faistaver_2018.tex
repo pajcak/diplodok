@@ -234,6 +234,7 @@ Při hledání pomocného softwaru, který by řešení značně ulehčil je tř
 
 	Pro úspor místa jsou zde uvedeny především ta nalezená řešení, která byla při rešerši velice dobře hodnocena a několik málo ostatních průměrných nebo podprůměrných adeptů je pak s těmito společně shrnuto v sekci o výběru technologií (\ref{sec:analyza_technologie}).
 
+
 \subsection{Technologie pro backend} \label{subsec:analyza_reseni_backend}
 V této části jsou uvedeny některé technologie, které byly rešerší nalezeny jako kandidátní technologie pro backendovou část aplikace. Je třeba nejprve zohlednit technologie, které byly zmíněny ve výčtu nefunkčních požadavků (\ref{subsec:analyza_np}), pokud nějaké. V nefunkčních požadavcích N8 a N10 jsou zadány technologie pro backendovou část a to jsou knihovna Libyuri pro správu videa a databázový systém PostgreSQL. V rešeršní části je ze zmíněných dvou analyzována pouze knihovna Libyuri, neboť databázový systém PostgreSQL byl již použit v předchozí bakalářské práci, je tedy zakomponován v existujícím systému a nevyskytl se závažný důvod to měnit.
 
@@ -252,18 +253,25 @@ FFmpeg (odkazem \cite{ffmpeg}) je jeden z nejlepších a nejznámějších open-
 
 	Díky známosti, spolehlivosti a komunitě tohoto frameworku by byla chyba jej nepoužít právě při zpracování videa. Naštěstí výše zmíněná softwarová řešení jako Libyuri a Ultragrid tento framework mají v sobě již zakomponován (pokud jsou ovšem zkompilovány s podporou pro FFmpeg).
 
+\subsubsection{GStreamer} \label{subsubsec:analyza_reseni_gstreamer}
+GStreamer (\cite{gstreamer}) je multimediální knihovna pro konstruování grafu z komponentů pro práci s multimediálním obsahu (podobně, jako Libyuri (\ref{subsubsec:analyza_reseni_yuri})). Knihovna je kompatibilní se všemi majoritními Linux, Windows, Max OS X, iOS, stejně tak jako většina systémů BSD, také komerční jako Unixy, Solaris, ale také Android i Symbian. GStreamer má rozsáhlou dokumentaci (\cite{gstreamer_doc}) a ještě rozsáhlejší komunitu, takže je velká pravděpodobnost, že potenciální problém je již někde na diskuzním fóru vyřešen. Knihovna je modulární a je velice snadné napsat plugin pomocí poskytovaného generického rozhraní.
+
+	GStreamer je open-source a je šířen pod LGPL licencí.
+
 \subsubsection{Open Broadcaster Software} \label{subsubsec:analyza_reseni_obs}
 OBS neboli Open Broadcaster Software je dle (\cite{obs}) software pro nahrávání a streamování videa vyvíjený dobrovolníky z celého světa. OBS je distribuovaný open-source software pod GPLv2 licencí. Tento software umožňuje spolehlivé nahrávání videa i audia v reálném čase a jeho následné zpracování. Je zde také možné nahrávat současně z více zdrojů, jako například monitoru, kamery, speciální tzv \uv{grabovací} grafické karty, webkamery a dalších.
 
 	OBS má dobrou dokumentaci (vizte \cite{obs_doc}), ve které je mimo jiné zmíněno, že je možné software lehce přizpůsobit pomocí skriptovacích jazyků Lua či Python. Většina funkcionalit v OBS je přidána pomocí plugin modulů, které jsou reprezentovány typicky dynamickými knihovnami nebo skripty. Jelikož se jedná o open-source software, pak je možné moduly ve formě pluginů i libovolně vytvářet na což je v dokumentaci taktéž podrobný návod. Nevýhodou tohoto řešení je velice omezená manipulace s binární podobou programu z prostředí příkazové řádky, což je v případě potenciální automatizace nežádoucí.
 
-\subsubsection{Kaltura} \label{subsubsec:analyza_reseni_kaltura}
-TODO
-
-
 \subsection{Technologie pro frontend} \label{subsec:analyza_reseni_frontend}
-Stejně jako v úvodu technologií pro backend (\ref{subsec:analyza_reseni_backend}) je při rešerši žádoucí respektovat frontendové technologie dohodnuté nefunkčními požadavky (\ref{subsec:analyza_np}). V tomto případě je nefunkčním požadavkem N7 specifikován výčet tří technologií, které jsou framework Nette jazyku PHP, dále značkovací jazyk HTML5 a skriptovací jazyk JavaScript. Technologie HTML5 i JavaScript jsou nativní technologie pro vývoj frontendu webových aplikací a v tomto kontextu se tedy nedají brát jako komplexní řešení pro nějakou podmnožinu specifikovaných úkolů a není tedy důvod je zde analyzovat a porovnávat s ostatními. Dokonce ani framework Nette není třeba zahrnout do porovnání technologií, protože je v něm napsán téměř celý systém předchozí bakalářské práce a bude tedy použit i nadále.
+Stejně jako v úvodu technologií pro backend (\ref{subsec:analyza_reseni_backend}) je při rešerši žádoucí respektovat frontendové technologie dohodnuté nefunkčními požadavky (\ref{subsec:analyza_np}). V tomto případě je nefunkčním požadavkem N7 specifikován výčet tří technologií, které jsou framework Nette jazyku PHP, dále značkovací jazyk HTML5 a skriptovací jazyk JavaScript. Framework Nette není třeba zahrnout do porovnání technologií, protože je v něm napsán téměř celý systém předchozí bakalářské práce a bude tedy použit i nadále.
 
+
+\subsubsection{HTML, Javascript} \label{subsubsec:analyza_reseni_videojs}
+Technologie HTML5 i JavaScript jsou nejběžněji používané technologie pro vývoj frontendu webových aplikací a v tomto kontextu se tedy nedají brát jako komplexní řešení pro nějakou podmnožinu specifikovaných úkolů a není tedy důvod je porovnávat s ostatními technologiemi pro frontend, které jsou ostatně na nich postaveny. 
+	
+	Všechny řešení analyzované níže se však snaží vyřešit jeden komplexní problém, což je webový video přehrávač/editor. Tento problém lze vyřešit nalezením komplexního řešení, tedy nějakého frameworku, nebo také napsat vlastní přehrávač od píky s pomocí těchto technologií. Nevýhodou tvoření od píky je, že se bude implementovat řešení, které již existuje, což ovšem může snadno vyvážit výhoda toho, že struktura řešení bude známá, a bude nejsnáze modifikovatelné i rozšiřitelné.
+	
 
 \subsubsection{Video.js} \label{subsubsec:analyza_reseni_videojs}
 Video.js je open-source knihovna pro práci s videem na webu (vizte \cite{videojs_web}). Tato knihovna je vlastně obalení pro nativní webový videopřehrávač v technologii HTML5, avšak s přidanými užitečnými funkcionalitami. Jelikož je tento software open-source a byl stavěný tak, aby byl dobře rozšiřitelný, tak se komunitě v průběhu času podařilo vyvinout nemalý počet užitečných pluginů (více zde \cite{videojs_plg}). Knihovna má výbornou dokumentaci (\cite{videojs_doc}), kde je mimo jiné i popsáno, jak lze napsat vlastní plugin, což je zvládnutelné i se základními znalostmi jazyku JavaScript. 
@@ -280,10 +288,7 @@ Movie Masher (\cite{mm}), přesněji knihovna moviemasher.js (\cite{mm_js}) je k
 	
 	Oproti požadovaným funkcionalitám tento video editor několik vymožeností postrádá (skládání videí vedle sebe do jednoho obrazu, ořez videa z obou stran, změna rozlišení, změna formátu a jiné). Editor také oficiálně nepodporuje pluginy (\cite{mm_azure}) a v dokumentaci nebyl nalezen návod nebo šablony pro jeho snadné rozšíření. 
 
-\subsubsection{} \label{subsubsec:analyza_reseni_}
-TODO
 
-TODO JESTE ASPON DVE
 
 \section{Výběr technologií} \label{sec:analyza_technologie}
 Technologie nashromážděné rešerší je nutné zredukovat, neboť čím menší počet jich použijeme a čím větší část požadavků pokryjí, tím lépe. Nejprve je uvedena porovnávací metodika, která obsahuje výčet funkcí a charakteristik pro výběr technologií a pomocí priorit těchto charakteristik jsou pak technologie porovnány formou tabulky (...TODO ref na tabuli).
@@ -300,23 +305,39 @@ Preferováno open-source řešení nad proprietárním. Prioritní licence jsou 
 Je technická i uživatelská dokumentace dostatečně specifická? Souhlasí verze dokumentace s verzí produktu a koresponduje s jejím aktuálním stavem?
 \item \textbf{Podpora\\}
 Je produkt stále ještě vyvíjen a alespoň některá z jeho verzí aktivně podporována? Existuje možnost snadné zpětné vazby od uživatele technologie k jejím udržovatelům?.
+\item \textbf{Portabilita\\}
+Je technologie multiplatformní? Je možné ji bez větších problémů zprovoznit na novějších verzích operačních systémů Windows i na několika různých distribucích systému Linux?
+\item \textbf{Rozšiřitelnost\\}
+Je možné technologii snadno rozšiřovat a upravovat, pokud to licence umožňuje? Je například možné jej rozšířit o moduly s požadovanou funkcionalitou, pokud je zatím technologie nepokrývá?
 \item \textbf{Integrace\\}
 Zda a jak je možné technologii integrovat do systému této práce. Možnost integrace a kooperace technologie s infrastrukturou SAGE.
 \item \textbf{Komunita\\}
 Velikost uživatelské komunity vybrané technologie. Existence dalších zdrojů informací o produktu např. webové stránky obsahující informace jiné než v technické dokumentaci.
-\item \textbf{Multiplatformnost\\}
-Je technologie multiplatformní? Je možné ji bez větších problémů zprovoznit na novějších verzích operačních systémů Windows i na několika různých distribucích systému Linux?
-\item \textbf{Rozšiřitelnost\\}
-Je možné technologii snadno rozšiřovat a upravovat, pokud to licence umožňuje? Je například možné jej rozšířit o moduly s požadovanou funkcionalitou, pokud je zatím technologie nepokrývá?
 \item \textbf{Zkušenosti\\}
 Má autor této práce nějaké zkušenosti s danou technologií, které by mu umožnily snadnější, rychlejší a efektivnější implementaci řešení?
 \end{description}
 
-Po porovnání všech nashromážděných technologií pomocí specifikovaných charakteristik bylo dosaženo výsledku, který je popsán tabulkou TODO NUM TABLE pro backendové technologie a tabulkou TODO NUM TABLE pro frontendové technologie.
+Po porovnání všech nashromážděných technologií pomocí specifikovaných charakteristik bylo dosaženo výsledku, který je popsán tabulkou \ref{table_backend} pro backendové technologie a tabulkou TODO NUM TABLE pro frontendové technologie.
 
+\begin{table}[]
+\catcode`\-=12 %kvuli pomlčce v řádce s cline{2-5} - jinak řvala ;)
+\centering
+\begin{tabular}{l|l|l|l|l|}
+\cline{2-5}
+\multicolumn{1}{c|}{}                & \multicolumn{1}{c|}{Libyuri} & \multicolumn{1}{c|}{Ultragrid} & \multicolumn{1}{c|}{FFmpeg} & \multicolumn{1}{c|}{GStreamer} \\ \hline
+\multicolumn{1}{|l|}{Licence}        &                              &                                &                             &                                \\ \hline
+\multicolumn{1}{|l|}{Dokumentace}    &                              &                                &                             &                                \\ \hline
+\multicolumn{1}{|l|}{Podpora}        &                              &                                &                             &                                \\ \hline
+\multicolumn{1}{|l|}{Portabilita}    &                              &                                &                             &                                \\ \hline
+\multicolumn{1}{|l|}{Rozšiřitelnost} &                              &                                &                             &                                \\ \hline
+\multicolumn{1}{|l|}{Integrace}      &                              &                                &                             &                                \\ \hline
+\multicolumn{1}{|l|}{Komunita}       &                              &                                &                             &                                \\ \hline
+\multicolumn{1}{|l|}{Zkušenosti}     &                              &                                &                             &                                \\ \hline
+\end{tabular}
+\caption{Porovnání technologií pro backend}
+\label{table_backend}
+\end{table}
 
-	Jak již bylo zmíněno na začátku sekce o existujících řešeních (\ref{sec:analyza_existujici_reseni}), tak z důvodu úspory místa byly zde v práci analyzovány pouze takové technologie, které měly již předem potenciál dobrého vyhodnocení v tomto porovnání. Ovšem, v tabulce jsou již zmíněna i jména technologií, které byly taktéž analyzovány, avšak postup analýzy již v rešeršní části práce zmíněn nebyl, neboť jejich hodnocení dopadlo hůře.
-	
 \subsection{Vybrané technologie} \label{subsec:analyza_technologie_vybrane}
 ...nette, html5, javascript, yuri,... ps Libyuri byla specifikovana v jednom z NefPoz nahore
 
