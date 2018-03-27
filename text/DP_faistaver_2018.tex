@@ -16,6 +16,9 @@
 
 \usepackage{dirtree} %directory tree visualisation
 
+\usepackage{scrextend}
+\input{latex_xml_style.tex} %syntax highlighting for XML
+
 % % list of acronyms
 % \usepackage[acronym,nonumberlist,toc,numberedsection=autolabel]{glossaries}
 % \iflanguage{czech}{\renewcommand*{\acronymname}{Seznam pou{\v z}it{\' y}ch zkratek}}{}
@@ -239,7 +242,7 @@ Při hledání pomocného softwaru, který by řešení značně ulehčil je tř
 V této části jsou uvedeny některé technologie, které byly rešerší nalezeny jako kandidátní technologie pro backendovou část aplikace. Je třeba nejprve zohlednit technologie, které byly zmíněny ve výčtu nefunkčních požadavků (\ref{subsec:analyza_np}), pokud nějaké. V nefunkčních požadavcích N8 a N10 jsou zadány technologie pro backendovou část a to jsou knihovna Libyuri pro správu videa a databázový systém PostgreSQL. V rešeršní části je ze zmíněných dvou analyzována pouze knihovna Libyuri, neboť databázový systém PostgreSQL byl již použit v předchozí bakalářské práci, je tedy zakomponován v existujícím systému a nevyskytl se závažný důvod to měnit.
 
 \subsubsection{Libyuri} \label{subsubsec:analyza_reseni_yuri}
-Knihovna libyuri (\cite{yuri}) je framework, poskytující prostředky pro vytváření vícevláknových aplikací zpracovávajících video a audio. Knihovna je modulární, což znamená, že jednotlivá úprava videa je zpracovávána jedním modulem (například ořez videa). Zpracování videa a audia v Libyuri je pak možné pomocí vytvoření orientovaného grafu, kde jednotlivé fáze zpracování (moduly) jsou reprezentovány jako uzly grafu a datová propojení mezi moduly jako orientované hrany grafu. Modulů v této knihovně je již nepřeberná spousta, počínaje moduly, které přebírají obrazová data z různých zdrojů (například kamery, V4L zařízení, Decklink zařízení, ...) přes moduly pro zpracování obrazových i zvukových rámců a podobně. Knihovna je také velice snadno rozšiřitelná a díky dobré dokumentaci a šablonám pro vytvoření modulů je opravdu snadné rozšířit tento mocný nástroj o téměř libovolnou funkcionalitu.
+Knihovna libyuri (\cite{yuri}) je framework, poskytující prostředky pro vytváření vícevláknových aplikací zpracovávajících video, audio i jiná média. Knihovna je modulární, což znamená, že jednotlivá úprava videa je zpracovávána jedním modulem (například ořez videa). Zpracování videa a audia v Libyuri je pak možné pomocí vytvoření orientovaného grafu, kde jednotlivé fáze zpracování (moduly) jsou reprezentovány jako uzly grafu a datová propojení mezi moduly jako orientované hrany grafu. Modulů v této knihovně je již nepřeberná spousta, počínaje moduly, které přebírají obrazová data z různých zdrojů (například kamery, V4L zařízení, Decklink zařízení, ...) přes moduly pro zpracování obrazových i zvukových rámců a podobně. Knihovna je také velice snadno rozšiřitelná a díky dobré dokumentaci a šablonám pro vytvoření modulů je opravdu snadné rozšířit tento mocný nástroj o téměř libovolnou funkcionalitu.
 
 	Licence libyuri je dle (\cite{yuri}) pod modifikovanou BSD licencí přičemž moduly používající technologie jiných autorů jsou pod licencemi dalšími, vesměs to však jsou open-source licence, což je další plus.
 
@@ -251,7 +254,7 @@ Ultragrid (odkazem \cite{ultragrid_web}) je software vyvíjený lidmi ze sdruže
 \subsubsection{FFmpeg} \label{subsubsec:analyza_reseni_ffmpeg}
 FFmpeg (odkazem \cite{ffmpeg}) je jeden z nejlepších a nejznámějších open-source multimediálních frameworků vůbec, který je schopný kódovat, dekódovat, konvertovat, streamovat, filtrovat i přehrávat nejen audio i video záznamy. Tento software podporuje téměř všechny známé formáty záznamů od zastaralých, po ty nejnovější. Je také velmi dobře portabilní, neboť se dá zkompilovat a spustit na distribucích operačních systémů typu Linux, Mac OS X, Microsoft Windows, BSD, Solaris, a tak podobně.
 
-	Díky známosti, spolehlivosti a komunitě tohoto frameworku by byla chyba jej nepoužít právě při zpracování videa. Naštěstí výše zmíněná softwarová řešení jako Libyuri a Ultragrid tento framework mají v sobě již zakomponován (pokud jsou ovšem zkompilovány s podporou pro FFmpeg).
+	Díky známosti, spolehlivosti a komunitě tohoto frameworku by byla chyba jej nepoužít právě při zpracování videa. Naštěstí předchozí zmíněná softwarová řešení jako Libyuri a Ultragrid tento framework mají v sobě již zakomponován (pokud jsou ovšem zkompilovány s podporou pro FFmpeg).
 
 \subsubsection{GStreamer} \label{subsubsec:analyza_reseni_gstreamer}
 GStreamer (\cite{gstreamer}) je multimediální knihovna pro konstruování grafu z komponentů pro práci s multimediálním obsahu (podobně, jako Libyuri (\ref{subsubsec:analyza_reseni_yuri})). Knihovna je kompatibilní se všemi majoritními Linux, Windows, Max OS X, iOS, stejně tak jako většina systémů BSD, také komerční jako Unixy, Solaris, ale také Android i Symbian. GStreamer má rozsáhlou dokumentaci (\cite{gstreamer_doc}) a ještě rozsáhlejší komunitu, takže je velká pravděpodobnost, že potenciální problém je již někde na diskuzním fóru vyřešen. Knihovna je modulární a je velice snadné napsat plugin pomocí poskytovaného generického rozhraní.
@@ -267,10 +270,10 @@ OBS neboli Open Broadcaster Software je dle (\cite{obs}) software pro nahráván
 Stejně jako v úvodu technologií pro backend (\ref{subsec:analyza_reseni_backend}) je při rešerši žádoucí respektovat frontendové technologie dohodnuté nefunkčními požadavky (\ref{subsec:analyza_np}). V tomto případě je nefunkčním požadavkem N7 specifikován výčet tří technologií, které jsou framework Nette jazyku PHP, dále značkovací jazyk HTML5 a skriptovací jazyk JavaScript. Framework Nette není třeba zahrnout do porovnání technologií, protože je v něm napsán téměř celý systém předchozí bakalářské práce a bude tedy použit i nadále.
 
 
-\subsubsection{HTML, Javascript} \label{subsubsec:analyza_reseni_videojs}
+\subsubsection{HTML, Javascript} \label{subsubsec:analyza_reseni_html}
 Technologie HTML5 i JavaScript jsou nejběžněji používané technologie pro vývoj frontendu webových aplikací a v tomto kontextu se tedy nedají brát jako komplexní řešení pro nějakou podmnožinu specifikovaných úkolů a není tedy důvod je porovnávat s ostatními technologiemi pro frontend, které jsou ostatně na nich postaveny. 
 	
-	Všechny řešení analyzované níže se však snaží vyřešit jeden komplexní problém, což je webový video přehrávač/editor. Tento problém lze vyřešit nalezením komplexního řešení, tedy nějakého frameworku, nebo také napsat vlastní přehrávač od píky s pomocí těchto technologií. Nevýhodou tvoření od píky je, že se bude implementovat řešení, které již existuje, což ovšem může snadno vyvážit výhoda toho, že struktura řešení bude známá, a bude nejsnáze modifikovatelné i rozšiřitelné.
+	Všechny řešení analyzované dále se však snaží vyřešit jeden komplexní problém, což je webový video přehrávač/editor. Tento problém lze vyřešit nalezením komplexního řešení, tedy nějakého frameworku, nebo také napsat vlastní přehrávač od píky s pomocí těchto technologií. Nevýhodou tvoření od píky je, že se bude implementovat řešení, které již existuje, což ovšem může snadno vyvážit výhoda toho, že struktura řešení bude známá, a bude nejsnáze modifikovatelné i rozšiřitelné.
 	
 
 \subsubsection{Video.js} \label{subsubsec:analyza_reseni_videojs}
@@ -361,7 +364,167 @@ Návrh je rozdělen do podkapitol pro backend, kde je uvedeno, jaká je struktur
 \chapter{Implementace} \label{chap:impl}
 \section{Prostředí a kompatibilita} \label{sec:impl_prostredi}
 \section{Použití knihovny Libyuri} \label{sec:impl_yuri}
-..TODO - doplnit z hotoveho dokumentu o yuri
+Jak již bylo zmíněno v analýze (\ref{subsubsec:analyza_reseni_yuri}), knihovna Libyuri (\cite{yuri}) je framework, poskytující prostředky pro vytváření vícevláknových aplikací zpracovávajících různá multimédia.
+
+Framework se skladá ze 4 hlavních komponent:
+\begin{itemize}
+\item Jádro frameworku
+  \begin{itemize}
+  	\item V aktuální verzi reprezentováno knihovnou \textit{libyuri2.8\_core.so}.
+    \item Poskytuje funkcionalitu pro vytváření/správu vláken.
+    \item Poskytuje základní datové typy pro přenos dat (audio, \textit{raw} video, komprimované video).
+    \item Poskytuje infrastrukturu pro přenos dat mezi uzly grafu.
+  \end{itemize}
+\item Pomocné knihovny
+  \begin{itemize}
+    \item Poskytují funkcionalitu, která může být využita více moduly, ale není vhodná do jádra.
+  	\item Například knihovna \textit{libyuri2.8\_helper\_gl.so}, obsahující společné funkce pro knihovnu OpenGL.
+  \end{itemize}
+\item Moduly realizující vlastní funkcionalitu
+  \begin{itemize}
+    \item Každý modul může poskytovat libovolné množství uzlů použitelných v grafu.
+  \end{itemize}
+\item Ukázkové programy pro práci s frameworkem
+  \begin{itemize}
+    \item Jedná se o programy pro dynamické vytváření aplikací podle konfigurací zapsaných v XML a na příkazové řádce a program pro testování modulů.
+  \end{itemize}
+\end{itemize}
+
+Zpracování dat v Libyuri je možné pomocí vytvoření orientovaného grafu, kde jednotlivé fáze zpracování jsou reprezentovány jako uzly grafu a datová propojení jako orientované hrany grafu. Ukázkou takovéhoto grafu je obrázek \ref{img:yuri_example}.
+Na tomto grafu je znázorněna jednoduchá konfigurace, kdy se berou data z kamery (\textit{Capture device}), komprimovaná do MJPEG  se streamují do sítě (\textit{Encode MJPEG} a \textit{Stream}) a zároveň se ukládají na disk v H264 (\textit{Encode H264} a \textit{Save to HDD}).
+\\
+\begin{figure}[h]\centering
+	\includegraphics[width=1\textwidth]{images/yuri_example.eps}
+	\caption{Libyuri -- příklad orientovaného grafu}\label{img:yuri_example}
+\end{figure}
+
+\subsection{Uzly jako fáze zpracování} \label{subsec:impl_yuri_uzly}
+Každý uzel grafu má žádný nebo více vstupů a stejně tak výstupů. Existují typy uzlů, které nemají žádný vstup ani výstup (pokud se nepodílí přímo na zpracování dat), stejně jako uzly s pevně definovaným nebo i neomezeným počtem vstupů/výstupů. Každý uzel je charakterizován svým libovolným jménem a především třídou, která reprezentuje modul, který plní funkcionalitu daného uzlu. Tedy například v ukázkovém grafu \ref{img:yuri_example} je jako první zleva uveden uzel se jménem \uv{Capture device} a může být realizován například modulem \uv{v4l2source}, který dokáže načítat video z kamery typu \textit{video4linux2}. Uzly mohou mít další množství parametrů, které jsou konkrétní každému modulu zvlášť (například zmíněný kamerový modul \textit{video4linux2} může mít další parametry typu šířka, výška, snímková frekvence a jiné).
+
+\subsection{Hrany jako datová propojení uzlů} \label{subsec:impl_yuri_hrany}
+Orientované hrany v grafu konceptuálně představují fronty (často označované jako \textit{pipe}). Tyto fronty, realizující datová propojení uzlů, se naplňují a vyprazdňují tzv. datovými rámci (co je to datový rámec je uvedeno v sekci \ref{subsec:impl_yuri_ramce}).
+
+V Libyuri je aktuálně 7 různých implementací hran s různými vlastnostmi:
+\begin{description}
+  \item \textbf{Single\\}
+Fronta o maximální délce 1 datový rámec. Má pouze 2 stavy -- prázdná a plná. Pokud dojde k zápisu nového rámce do plné fronty, starý rámec se z fronty vyhodí a zapíše se do ní nový.
+  \item \textbf{Single\_blocking\\}
+ Poskytuje stejné chování jako fronta \textit{Single} s tím rozdílem, že zápis do plné fronty selže (a zablokuje uzel do fronty zapisující, dokud se ve frontě neuvolní místo).
+  \item \textbf{Count\_limited, Size\_limited\\}
+ V těchto typech je velikost fronty omezena počtem rámců (předpona \textit{Count\_}), případně jejich celkovou velikostí (předpona \textit{size\_}).
+  \item \textbf{Count\_limited\_blocking, Size\_limited\_blocking\\}
+  Varianty téměř totožné s předešlými, fungující analogicky jako fronta \textit{Single\_blocking}, tedy zápis do plné fronty zablokuje zapisovací uzel do doby, než se ve frontě uvolní místo.
+  \item \textbf{Unlimited\\}
+Jedná se o nekonečnou frontu. Nemá žádné omezení, až na paměť počítače.
+\end{description}
+
+Uvedená množina front není omezená a je možné ji rozšiřovat.
+
+\subsection{Datové rámce} \label{subsec:impl_yuri_ramce}
+Mezi uzly, po hranách grafu putují datové rámce (neboli \textit{frames}). Ty představují základní jednotku dat. Libyuri obsahuje hierarchii typů datových rámců z nichž nejdůležitější typy rámců jsou:
+\begin{description}
+  \item \textbf{Frame\\}
+Obecný snímek - abstraktní třída reprezentující cokoliv, co může procházet po hranách.
+  \item \textbf{RawVideoFrame\\}
+Konkrétní třída reprezentující nekomprimovaný video snímek. 
+  \item \textbf{CompressedVideoFrame \\}
+Třída pro komprimovaný video snímek.
+  \item \textbf{RawAudioFrame\\}
+Třída obsahující několik vzorků nekomprimovaného audia.
+\end{description}
+
+Množina typů datových rámců se dá taktéž rozšiřovat pomocí specializace třídy \textit{Frame}.
+
+\subsection{Vytvoření grafu} \label{subsec:impl_yuri_vytvoreni}
+Pro vytvoření grafu je možné přímo využít funkcí z API knihovny Libyuri. Pro snadnější vytváření je nicméně vhodné použít takzvaný builder. To je koncept třídy, která vytváří graf na základě nějakého vstupu. 
+
+\subsubsection{GenericBuilder} \label{subsec:impl_yuri_vytvoreni_generic}
+Jádro obsahuje obecnou implementaci builderu pod názvem \uv{GenericBuilder}, usnadňující vytváření vlastních builderů, jako příklad je možné použít vytvořený builder \uv{SimpleBuilder} v aplikaci yuri\_simple (více o aplikaci yuri\_simple v sekci \ref{subsec:impl_yuri_aplikace}). GenericBuilder vytváří graf specifikovaný množinou uzlů a množinou hran.
+
+Konceptuálně představuje builder graf a zároveň je možné jej chápat jako samostatný uzel, který může být součástí většího grafu. Například předchozí ukázkový graf (\ref{img:yuri_example}) je možné rozdělit na 3 propojené podgrafy, každý vytvořený pomocí jednoho builderu, jak je patrné na grafu \ref{img:yuri_subgraph}.
+\\
+\begin{figure}[h]\centering
+	\includegraphics[width=1\textwidth]{images/yuri_subgraph.eps}
+	\caption{Libyuri -- příklad propojených podgrafů pomocí builderu}\label{img:yuri_subgraph}
+\end{figure}
+
+\subsubsection{XMLBuilder} \label{subsec:impl_yuri_vytvoreni_xml}
+V jádře Libyuri je také implementace builderu \uv{XMLBuilder}, který načítá XML soubory popisující graf a datové cesty a z nich pak výsledný graf vytvoří. Použití tohoto builderu je demonstrováno dále, kde je nejprve uvedena konfigurace grafu v jazyku XML a poté vygenerovaný graf.
+\\
+\lstset{language=XML}
+\begin{lstlisting}
+<?xml version="1.0" ?>
+<app name="webcam" xmlns="urn:library:yuri:xmlschema:2001"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+    <variable name="device">/dev/video0</variable>    
+
+    <node class="v4l2source" name="webcam">
+        <parameter name="path">@device</parameter>
+    </node>
+    <node class="sdl_window" name="sdl"/>
+
+    <link name="yuyv_image" class="single" source="webcam:0" target="sdl:0"/>
+</app>
+\end{lstlisting}
+
+V uvedené XML konfiguraci je uzel se jménem \uv{webcam} typu \uv{v4l2source}, který představuje zdroj z webkamery. Uzel nazvaný \uv{sdl} typu \uv{sdl\_window} je okno, které zobrazuje video. Mezi těmito uzly je orientovaná hrana (v Libyuri označovaná jako \textit{pipe} nebo také fronta), pojmenovaná \uv{yuyv\_image}, typu \uv{single}. Ukázková konfigurace zároveň obsahuje proměnnou (značka <variable>) obsahující systémovou cestu ke kameře. Tato proměnná je pak použita pro nastavení hodnoty parametru \uv{path} u uzlu \uv{v4l2source}. Výhody oproti přímému nastavení hodnoty (které je samozřejmě také možné) jsou dvě. Jednak je možné snadno zajistit stejnou hodnotu pro více parametrů (i v různých uzlech), ale také je možné tuto proměnnou nastavovat při spuštění yuri aplikace (více v sekci \ref{subsec:impl_yuri_aplikace}). 
+
+Zmíněná XML konfigurace vytvoří graf znázorněný obrázkem \ref{img:yuri_vytvoreni_xml}.
+\\
+\begin{figure}[h]\centering
+	\includegraphics[width=1\textwidth]{images/yuri_xml_graph.eps}
+	\caption{Libyuri -- graf vytvořený pomocí XMLBuilder}\label{img:yuri_vytvoreni_xml}
+\end{figure}
+
+XMLBuilder se chová jako každý jiný uzel a je možné ho použít v grafu. Podporuje i směrování rámců a událostí mezi vnějším a vnitřním grafem. Je tak možné napsat například složitý graf, kde vstup je reprezentován subgrafem, který je možné snadno přepnout na jiný, jak již bylo ukázáno na obrázku \ref{img:yuri_subgraph}. Stejně tak je možné takto vyměňovat libovolnou část grafu. Pokud mám například složité zapojení kamery a potřebuji výsledek někdy streamovat a někdy ukládat, tak stačí mít jednu konfiguraci pro kameru, která má finální zpracování specifikované jako subgraf. Ten pak mohu měnit (ukládání, streamování). 
+Název XML souboru se pro XMLBuilder uvádí jako parametr \uv{filename}. Ten je možné samozřejmě specifikovat pomocí proměnné, která se dá při spuštění nastavit na jinou hodnotu. 
+\\ \\
+Kompletní popis builderu XMLBuilder je v souboru \textit{doc/XMLBUILDER.txt} v distribuci Libyuri.
+
+\subsection{Události} \label{subsec:impl_yuri_udalosti}
+Propojení uzlů v grafu pomocí hran definuje datové cesty pro audio/video data. Kromě toho je ale také možné mezi uzly posílat události (tzv. \textit{events}). Každá událost má svůj typ a hodnotu (například \textit{bool} a \textit{false}, nebo \textit{double} a \textit{3.14}). V Libyuri existují následující typy událostí:
+
+\begin{labeling}{Dictionary }
+\item [\textbf{Bool}] Hodnota \textit{true} nebo \textit{false}.
+\item [\textbf{Int}] Celočíselná hodnota, omezená na 64 bitů. Volitelně může mít i specifikovaný rozsah do kterého patří.
+\item [\textbf{Double}] Hodnota s plovoucí desetinnou čárkou, omezená na 128 bitů. Volitelně může mít specifikovaný rozsah.
+\item [\textbf{String}] Textová hodnota.
+\item [\textbf{Time}] Časová známka.
+\item [\textbf{Vector}] Uspořádaná množina událostí (heterogenních typů)
+\item [\textbf{Dictionary}] Slovník mapující hodnoty typu \textit{String} na události (heterogenních typů)
+\item [\textbf{BANG}] Specialní typ, kerý nemá hodnotu.
+\end{labeling}
+
+Uzel, který implementuje koncept \uv{BasicEventProducer} může generovat (\textit{emit\_event}) dvojice jméno a událost. Uzel sám neřeší kam se událost posílá. Oproti tomu uzel, který implementuje koncept \uv{BasicEventConsumer} umí dvojice jméno a událost přijímat. Jaká událost se kam posílá se specifikuje zvlášť v konfiguraci.\\
+
+Dále je uveden jednoduchý příklad XML kódu demonstrující události.
+\\
+\lstset{language=XML}
+\begin{lstlisting}
+<event>
+  route(dump:sequence) -> info:progress;
+</event>
+\end{lstlisting}
+
+Pokud se zanese tento příklad do existující XML konfigurace grafu, tak ve chvíli, kdy uzel pojmenovaný \uv{dump} vygeneruje událost s názvem \uv{sequence}, tak se ta událost pošle do uzlu \uv{info} pod názvem \uv{progress}.
+
+Specifikace směrování podporuje i funkcionální jazyk pro modifikaci událostí nebo kombinující více událostí dohromady. Je tak možné vytvářet i složitější konstrukce jak v příkladu uvedeném dále.
+\\
+\lstset{language=XML}
+\begin{lstlisting}
+<event>
+  route(gt(dump:sequence, var:max_frames)) -> generate:stop;
+</event>
+\end{lstlisting}
+
+Tento trochu komplexnější příklad vezme hodnotu události \uv{sequence} z uzlu \uv{dump}, porovná ji (funkce \textit{gt}) s hodnotou události \uv{max\_frames} z uzlu \uv{var} a výsledek (hodnota \textit{true} nebo \textit{false}) se pošle na uzel \uv{generate} jako událost s názvem \uv{stop}.
+\\ \\
+Detailnější popis událostí je v souboru \textit{doc/EVENTS.txt} v distribuci Libyuri.
+
+\subsection{Aplikace používájící libyuri} \label{subsec:impl_yuri_aplikace}
+
+
 \section{Vybrané zajímavé funkce} \label{sec:impl_funkce}
 \section{Instalační a uživatelská příručka} \label{sec:impl_prirucka}
 
@@ -386,8 +549,10 @@ Návrh je rozdělen do podkapitol pro backend, kde je uvedeno, jaká je struktur
 \chapter{Seznam použitých zkratek}
 % \printglossaries
 \begin{description}
-	\item[GUI] Graphical user interface
-	\item[HTML] Hypertext markup language
+	\item[GUI] Graphical User Interface
+	\item[API] Application Programming Interface
+	\item[XML] eXtensible Markup Language
+	\item[HTML] Hypertext Markup Language
 \end{description}
 
 
