@@ -485,7 +485,7 @@ Kompletní popis builderu XMLBuilder je v souboru \textit{doc/XMLBUILDER.txt} v 
 \subsection{Události} \label{subsec:impl_yuri_udalosti}
 Propojení uzlů v grafu pomocí hran definuje datové cesty pro audio/video data. Kromě toho je ale také možné mezi uzly posílat události (tzv. \textit{events}). Každá událost má svůj typ a hodnotu (například \textit{bool} a \textit{false}, nebo \textit{double} a \textit{3.14}). V Libyuri existují následující typy událostí:
 
-\begin{labeling}{Dictionary }
+\begin{labeling}{Dictionary12}
 \item [\textbf{Bool}] Hodnota \textit{true} nebo \textit{false}.
 \item [\textbf{Int}] Celočíselná hodnota, omezená na 64 bitů. Volitelně může mít i specifikovaný rozsah do kterého patří.
 \item [\textbf{Double}] Hodnota s plovoucí desetinnou čárkou, omezená na 128 bitů. Volitelně může mít specifikovaný rozsah.
@@ -522,8 +522,58 @@ Tento trochu komplexnější příklad vezme hodnotu události \uv{sequence} z u
 \\ \\
 Detailnější popis událostí je v souboru \textit{doc/EVENTS.txt} v distribuci Libyuri.
 
-\subsection{Aplikace používájící libyuri} \label{subsec:impl_yuri_aplikace}
 
+	
+\subsection{Moduly} \label{subsec:impl_yuri_moduly}
+Jak již bylo zmíněno v sekci o uzlech grafu zpracování audia/videa (\ref{subsec:impl_yuri_uzly}), každý uzel je charakterizován třídou, která reprezentuje modul plnící funkcionalitu daného uzlu. Jako modul je označována dynamická knihovna (například \textit{yuri2.8\_module\_v4l2\_source.so}), která může obsahovat dodatečné funkce pro Libyuri. Typicky takový modul obsahuje jeden nebo více uzlů do grafu, může ale obsahovat i jiné funkce (například modul \textit{yuri2.8\_module\_yuri\_udp.so} obsahuje implementaci konceptu \textit{DatagramSocket} pomocí UDP soketu). 
+
+Moduly se kompilují samostatně, mohou být umístěny i mimo distribuci Libyuri. Pro kompilaci modulu je nutné pouze dostupné API Libyuri a knihovna \textit{yuri2.8\_core}, se kterou se linkují. Aplikace, které využívají Libyuri (vizte \ref{subsec:impl_yuri_aplikace}) se linkují pouze s jádrem knihovny. Po spuštění aplikace, jádro (pomocí builderu) vyhledá moduly v adresářích napevno uvedených v kódu a případně dalších, specifikovaných uživatelem a načte je.
+
+\subsection{Aplikace používájící libyuri} \label{subsec:impl_yuri_aplikace}
+Jako součást knihovny Libyuri je distribuováno několik aplikací, které tuto knihovnu používají. Dále jsou uvedeny 3 nejdůležitější pro implementaci řešení této práce.\\
+
+\begin{description}
+  \item \textbf{Yuri\_simple\\}
+  Program pro vytváření grafů bez konfiguračního XML souboru. Všechny potřebné informace k vytvoření grafu se předají argumenty při spuštění programu. Například následující příkaz spustí stejnou konfiguraci jako ukázkový příklad grafu ze sekce XMLBuilder (\ref{subsec:impl_yuri_vytvoreni_xml}).\\
+  
+\lstset{language=bash,morekeywords={yuri_simple,v4l2source, path, dev, video0, sdl_window},keywordstyle=\color{black}}
+\begin{lstlisting}
+./yuri_simple v4l2source[path=/dev/video0] sdl_window
+\end{lstlisting}
+
+  \item \textbf{Yuri\_test\_module\\}
+  Aplikace testující validitu modulů. Následující příkaz otestuje, jestli je modul \textit{yuri2.8\_module\_null.so} validní.
+\lstset{language=bash,alsoletter={.},morekeywords={yuri_test_module, yuri2.8_module_null.so},keywordstyle=\color{black}}
+\begin{lstlisting}
+./yuri_test_module yuri2.8_module_null.so
+\end{lstlisting}
+
+  \item \textbf{Yuri2\\}
+Tento program načítá konfigurační XML soubor (vizte popis XMLBuilderu \ref{subsec:impl_yuri_vytvoreni_xml}) a spouští aplikaci v něm popsanou. Následuje nejjednodušší příklad spuštění tohoto programu.\\
+
+\lstset{language=bash,morekeywords={yuri2,\$, config, xml},keywordstyle=\color{black}}
+\begin{lstlisting}
+./yuri2 config.xml
+\end{lstlisting}
+
+Pokud jsou v konfiguračním souboru uvedeny proměnné (značky <variable>, stejné, jako v příkladu \ref{subsec:impl_yuri_vytvoreni_xml}), je možné jim nastavit hodnotu na příkazové řádce tak, jako v následujícím příkladu, kde se nastaví proměnná \uv{device}.\\
+
+\lstset{language=bash,morekeywords={yuri2,\$, config, xml, device, video0, dev},keywordstyle=\color{black}}
+\begin{lstlisting}
+./yuri2 config.xml device=/dev/video0
+\end{lstlisting}
+
+Aplikace \textit{yuri2} má množství dalších parametrů, pro jejich seznam stačí spustit aplikaci bez parametrů a zobrazí se základní nápověda. Mezi důležité parametry patří:
+
+\begin{description}
+	\item[-a] Vypíše informace o zadaném konfiguračním souboru.
+	\item[-v] Detailnější výpisy, \textbf{-q} je méně detailní výpis.
+	\item[-L class] Vypíše informace o třídě \uv{class}.
+	\item[-l {[what]}] Bez uvedeného argumentu \textit{what} (nebo pokud je tento argument \uv{classes}) vypíše seznam registrovaných tříd. Pokud je argument \uv{pipes}, tak vypíše seznam tříd pro \textit{pipes} neboli fronty.
+	\item[-C format1:format2] Vypíše, pokud je možná automatická konverze z formátu \uv{format1} do \uv{format2} a vypíše, jaké uzly by tuto konverzi realizovaly.
+\end{description}
+
+\end{description}
 
 \section{Vybrané zajímavé funkce} \label{sec:impl_funkce}
 \section{Instalační a uživatelská příručka} \label{sec:impl_prirucka}
