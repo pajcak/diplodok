@@ -344,26 +344,7 @@ Po porovnání všech nashromážděných technologií pomocí specifikovaných 
 \subsection{Vybrané technologie} \label{subsec:analyza_technologie_vybrane}
 ...nette, html5, javascript, yuri,... 
 
-\chapter{Návrh} \label{chap:navrh}
-blablabla praktiky vzory, blabla pak frontend a bekend
-
-Návrh je rozdělen do podkapitol pro backend, kde je uvedeno, jaká je struktura té části aplikace, která je uživateli odstíněna, ale která také zajišťuje většinu funkcionalit.
-\section{Praktiky a vzory} \label{sec:navrh_praktiky}
-...SOLID, architektonicke vzory, navrhove vzory (GoF, GRASP), ...
-
-\section{Architektura systému} \label{sec:navrh_architektura}
-
-\section{Frontend} \label{sec:navrh_frontend}
-\subsection{Návaznost na současný systém}
-\subsection{Přehrávání a úprava záznamů}
-\subsection{UX a UI}
-
-\section{Backend} \label{sec:navrh_backend}
-
-
-\chapter{Implementace} \label{chap:impl}
-\section{Prostředí a kompatibilita} \label{sec:impl_prostredi}
-\section{Použití knihovny Libyuri} \label{sec:impl_yuri}
+\section{Seznámení s Libyuri} \label{sec:analyza_yuri}
 Jak již bylo zmíněno v analýze (\ref{subsubsec:analyza_reseni_yuri}), knihovna Libyuri (\cite{yuri}) je framework, poskytující prostředky pro vytváření vícevláknových aplikací zpracovávajících různá multimédia.
 
 Framework se skladá ze 4 hlavních komponent:
@@ -398,11 +379,11 @@ Na tomto grafu je znázorněna jednoduchá konfigurace, kdy se berou data z kame
 	\caption{Libyuri -- příklad orientovaného grafu}\label{img:yuri_example}
 \end{figure}
 
-\subsection{Uzly jako fáze zpracování} \label{subsec:impl_yuri_uzly}
+\subsection{Uzly jako fáze zpracování} \label{subsec:analyza_yuri_uzly}
 Každý uzel grafu má žádný nebo více vstupů a stejně tak výstupů. Existují typy uzlů, které nemají žádný vstup ani výstup (pokud se nepodílí přímo na zpracování dat), stejně jako uzly s pevně definovaným nebo i neomezeným počtem vstupů/výstupů. Každý uzel je charakterizován svým libovolným jménem a především třídou, která reprezentuje modul, který plní funkcionalitu daného uzlu. Tedy například v ukázkovém grafu \ref{img:yuri_example} je jako první zleva uveden uzel se jménem \uv{Capture device} a může být realizován například modulem \uv{v4l2source}, který dokáže načítat video z kamery typu \textit{video4linux2}. Uzly mohou mít další množství parametrů, které jsou konkrétní každému modulu zvlášť (například zmíněný kamerový modul \textit{video4linux2} může mít další parametry typu šířka, výška, snímková frekvence a jiné).
 
-\subsection{Hrany jako datová propojení uzlů} \label{subsec:impl_yuri_hrany}
-Orientované hrany v grafu konceptuálně představují fronty (často označované jako \textit{pipe}). Tyto fronty, realizující datová propojení uzlů, se naplňují a vyprazdňují tzv. datovými rámci (co je to datový rámec je uvedeno v sekci \ref{subsec:impl_yuri_ramce}).
+\subsection{Hrany jako datová propojení uzlů} \label{subsec:analyza_yuri_hrany}
+Orientované hrany v grafu konceptuálně představují fronty (často označované jako \textit{pipe}). Tyto fronty, realizující datová propojení uzlů, se naplňují a vyprazdňují tzv. datovými rámci (co je to datový rámec je uvedeno v sekci \ref{subsec:analyza_yuri_ramce}).
 
 V Libyuri je aktuálně 7 různých implementací hran s různými vlastnostmi:
 \begin{description}
@@ -420,7 +401,7 @@ Jedná se o nekonečnou frontu. Nemá žádné omezení, až na paměť počíta
 
 Uvedená množina front není omezená a je možné ji rozšiřovat.
 
-\subsection{Datové rámce} \label{subsec:impl_yuri_ramce}
+\subsection{Datové rámce} \label{subsec:analyza_yuri_ramce}
 Mezi uzly, po hranách grafu putují datové rámce (neboli \textit{frames}). Ty představují základní jednotku dat. Libyuri obsahuje hierarchii typů datových rámců z nichž nejdůležitější typy rámců jsou:
 \begin{description}
   \item \textbf{Frame\\}
@@ -435,11 +416,11 @@ Třída obsahující několik vzorků nekomprimovaného audia.
 
 Množina typů datových rámců se dá taktéž rozšiřovat pomocí specializace třídy \textit{Frame}.
 
-\subsection{Vytvoření grafu} \label{subsec:impl_yuri_vytvoreni}
+\subsection{Vytvoření grafu} \label{subsec:analyza_yuri_vytvoreni}
 Pro vytvoření grafu je možné přímo využít funkcí z API knihovny Libyuri. Pro snadnější vytváření je nicméně vhodné použít takzvaný builder. To je koncept třídy, která vytváří graf na základě nějakého vstupu. 
 
-\subsubsection{GenericBuilder} \label{subsec:impl_yuri_vytvoreni_generic}
-Jádro obsahuje obecnou implementaci builderu pod názvem \uv{GenericBuilder}, usnadňující vytváření vlastních builderů, jako příklad je možné použít vytvořený builder \uv{SimpleBuilder} v aplikaci yuri\_simple (více o aplikaci yuri\_simple v sekci \ref{subsec:impl_yuri_aplikace}). GenericBuilder vytváří graf specifikovaný množinou uzlů a množinou hran.
+\subsubsection{GenericBuilder} \label{subsec:analyza_yuri_vytvoreni_generic}
+Jádro obsahuje obecnou implementaci builderu pod názvem \uv{GenericBuilder}, usnadňující vytváření vlastních builderů, jako příklad je možné použít vytvořený builder \uv{SimpleBuilder} v aplikaci yuri\_simple (více o aplikaci yuri\_simple v sekci \ref{subsec:analyza_yuri_aplikace}). GenericBuilder vytváří graf specifikovaný množinou uzlů a množinou hran.
 
 Konceptuálně představuje builder graf a zároveň je možné jej chápat jako samostatný uzel, který může být součástí většího grafu. Například předchozí ukázkový graf (\ref{img:yuri_example}) je možné rozdělit na 3 propojené podgrafy, každý vytvořený pomocí jednoho builderu, jak je patrné na grafu \ref{img:yuri_subgraph}.
 \\
@@ -448,7 +429,7 @@ Konceptuálně představuje builder graf a zároveň je možné jej chápat jako
 	\caption{Libyuri -- příklad propojených podgrafů pomocí builderu}\label{img:yuri_subgraph}
 \end{figure}
 
-\subsubsection{XMLBuilder} \label{subsec:impl_yuri_vytvoreni_xml}
+\subsubsection{XMLBuilder} \label{subsec:analyza_yuri_vytvoreni_xml}
 V jádře Libyuri je také implementace builderu \uv{XMLBuilder}, který načítá XML soubory popisující graf a datové cesty a z nich pak výsledný graf vytvoří. Použití tohoto builderu je demonstrováno dále, kde je nejprve uvedena konfigurace grafu v jazyku XML a poté vygenerovaný graf.
 \\
 \lstset{language=XML}
@@ -468,7 +449,7 @@ V jádře Libyuri je také implementace builderu \uv{XMLBuilder}, který načít
 </app>
 \end{lstlisting}
 
-V uvedené XML konfiguraci je uzel se jménem \uv{webcam} typu \uv{v4l2source}, který představuje zdroj z webkamery. Uzel nazvaný \uv{sdl} typu \uv{sdl\_window} je okno, které zobrazuje video. Mezi těmito uzly je orientovaná hrana (v Libyuri označovaná jako \textit{pipe} nebo také fronta), pojmenovaná \uv{yuyv\_image}, typu \uv{single}. Ukázková konfigurace zároveň obsahuje proměnnou (značka <variable>) obsahující systémovou cestu ke kameře. Tato proměnná je pak použita pro nastavení hodnoty parametru \uv{path} u uzlu \uv{v4l2source}. Výhody oproti přímému nastavení hodnoty (které je samozřejmě také možné) jsou dvě. Jednak je možné snadno zajistit stejnou hodnotu pro více parametrů (i v různých uzlech), ale také je možné tuto proměnnou nastavovat při spuštění yuri aplikace (více v sekci \ref{subsec:impl_yuri_aplikace}). 
+V uvedené XML konfiguraci je uzel se jménem \uv{webcam} typu \uv{v4l2source}, který představuje zdroj z webkamery. Uzel nazvaný \uv{sdl} typu \uv{sdl\_window} je okno, které zobrazuje video. Mezi těmito uzly je orientovaná hrana (v Libyuri označovaná jako \textit{pipe} nebo také fronta), pojmenovaná \uv{yuyv\_image}, typu \uv{single}. Ukázková konfigurace zároveň obsahuje proměnnou (značka <variable>) obsahující systémovou cestu ke kameře. Tato proměnná je pak použita pro nastavení hodnoty parametru \uv{path} u uzlu \uv{v4l2source}. Výhody oproti přímému nastavení hodnoty (které je samozřejmě také možné) jsou dvě. Jednak je možné snadno zajistit stejnou hodnotu pro více parametrů (i v různých uzlech), ale také je možné tuto proměnnou nastavovat při spuštění yuri aplikace (více v sekci \ref{subsec:analyza_yuri_aplikace}). 
 
 Zmíněná XML konfigurace vytvoří graf znázorněný obrázkem \ref{img:yuri_vytvoreni_xml}.
 \\
@@ -482,7 +463,7 @@ Název XML souboru se pro XMLBuilder uvádí jako parametr \uv{filename}. Ten je
 \\ \\
 Kompletní popis builderu XMLBuilder je v souboru \textit{doc/XMLBUILDER.txt} v distribuci Libyuri.
 
-\subsection{Události} \label{subsec:impl_yuri_udalosti}
+\subsection{Události} \label{subsec:analyza_yuri_udalosti}
 Propojení uzlů v grafu pomocí hran definuje datové cesty pro audio/video data. Kromě toho je ale také možné mezi uzly posílat události (tzv. \textit{events}). Každá událost má svůj typ a hodnotu (například \textit{bool} a \textit{false}, nebo \textit{double} a \textit{3.14}). V Libyuri existují následující typy událostí:
 
 \begin{labeling}{Dictionary12}
@@ -524,17 +505,17 @@ Detailnější popis událostí je v souboru \textit{doc/EVENTS.txt} v distribuc
 
 
 	
-\subsection{Moduly} \label{subsec:impl_yuri_moduly}
-Jak již bylo zmíněno v sekci o uzlech grafu zpracování audia/videa (\ref{subsec:impl_yuri_uzly}), každý uzel je charakterizován třídou, která reprezentuje modul plnící funkcionalitu daného uzlu. Jako modul je označována dynamická knihovna (například \textit{yuri2.8\_module\_v4l2\_source.so}), která může obsahovat dodatečné funkce pro Libyuri. Typicky takový modul obsahuje jeden nebo více uzlů do grafu, může ale obsahovat i jiné funkce (například modul \textit{yuri2.8\_module\_yuri\_udp.so} obsahuje implementaci konceptu \textit{DatagramSocket} pomocí UDP soketu). 
+\subsection{Moduly} \label{subsec:analyza_yuri_moduly}
+Jak již bylo zmíněno v sekci o uzlech grafu zpracování audia/videa (\ref{subsec:analyza_yuri_uzly}), každý uzel je charakterizován třídou, která reprezentuje modul plnící funkcionalitu daného uzlu. Jako modul je označována dynamická knihovna (například \textit{yuri2.8\_module\_v4l2\_source.so}), která může obsahovat dodatečné funkce pro Libyuri. Typicky takový modul obsahuje jeden nebo více uzlů do grafu, může ale obsahovat i jiné funkce (například modul \textit{yuri2.8\_module\_yuri\_udp.so} obsahuje implementaci konceptu \textit{DatagramSocket} pomocí UDP soketu). 
 
-Moduly se kompilují samostatně, mohou být umístěny i mimo distribuci Libyuri. Pro kompilaci modulu je nutné pouze dostupné API Libyuri a knihovna \textit{yuri2.8\_core}, se kterou se linkují. Aplikace, které využívají Libyuri (vizte \ref{subsec:impl_yuri_aplikace}) se linkují pouze s jádrem knihovny. Po spuštění aplikace, jádro (pomocí builderu) vyhledá moduly v adresářích napevno uvedených v kódu a případně dalších, specifikovaných uživatelem a načte je.
+Moduly se kompilují samostatně, mohou být umístěny i mimo distribuci Libyuri. Pro kompilaci modulu je nutné pouze dostupné API Libyuri a knihovna \textit{yuri2.8\_core}, se kterou se linkují. Aplikace, které využívají Libyuri (vizte \ref{subsec:analyza_yuri_aplikace}) se linkují pouze s jádrem knihovny. Po spuštění aplikace, jádro (pomocí builderu) vyhledá moduly v adresářích napevno uvedených v kódu a případně dalších, specifikovaných uživatelem a načte je.
 
-\subsection{Aplikace používájící libyuri} \label{subsec:impl_yuri_aplikace}
+\subsection{Aplikace používájící libyuri} \label{subsec:analyza_yuri_aplikace}
 Jako součást knihovny Libyuri je distribuováno několik aplikací, které tuto knihovnu používají. Dále jsou uvedeny 3 nejdůležitější pro implementaci řešení této práce.\\
 
 \begin{description}
   \item \textbf{Yuri\_simple\\}
-  Program pro vytváření grafů bez konfiguračního XML souboru. Všechny potřebné informace k vytvoření grafu se předají argumenty při spuštění programu. Například následující příkaz spustí stejnou konfiguraci jako ukázkový příklad grafu ze sekce XMLBuilder (\ref{subsec:impl_yuri_vytvoreni_xml}).\\
+  Program pro vytváření grafů bez konfiguračního XML souboru. Všechny potřebné informace k vytvoření grafu se předají argumenty při spuštění programu. Například následující příkaz spustí stejnou konfiguraci jako ukázkový příklad grafu ze sekce XMLBuilder (\ref{subsec:analyza_yuri_vytvoreni_xml}).\\
   
 \lstset{language=bash,morekeywords={yuri_simple,v4l2source, path, dev, video0, sdl_window},keywordstyle=\color{black}}
 \begin{lstlisting}
@@ -549,14 +530,14 @@ Jako součást knihovny Libyuri je distribuováno několik aplikací, které tut
 \end{lstlisting}
 
   \item \textbf{Yuri2\\}
-Tento program načítá konfigurační XML soubor (vizte popis XMLBuilderu \ref{subsec:impl_yuri_vytvoreni_xml}) a spouští aplikaci v něm popsanou. Následuje nejjednodušší příklad spuštění tohoto programu.\\
+Tento program načítá konfigurační XML soubor (vizte popis XMLBuilderu \ref{subsec:analyza_yuri_vytvoreni_xml}) a spouští aplikaci v něm popsanou. Následuje nejjednodušší příklad spuštění tohoto programu.\\
 
 \lstset{language=bash,morekeywords={yuri2,\$, config, xml},keywordstyle=\color{black}}
 \begin{lstlisting}
 ./yuri2 config.xml
 \end{lstlisting}
 
-Pokud jsou v konfiguračním souboru uvedeny proměnné (značky <variable>, stejné, jako v příkladu \ref{subsec:impl_yuri_vytvoreni_xml}), je možné jim nastavit hodnotu na příkazové řádce tak, jako v následujícím příkladu, kde se nastaví proměnná \uv{device}.\\
+Pokud jsou v konfiguračním souboru uvedeny proměnné (značky <variable>, stejné, jako v příkladu \ref{subsec:analyza_yuri_vytvoreni_xml}), je možné jim nastavit hodnotu na příkazové řádce tak, jako v následujícím příkladu, kde se nastaví proměnná \uv{device}.\\
 
 \lstset{language=bash,morekeywords={yuri2,\$, config, xml, device, video0, dev},keywordstyle=\color{black}}
 \begin{lstlisting}
@@ -575,6 +556,42 @@ Aplikace \textit{yuri2} má množství dalších parametrů, pro jejich seznam s
 
 \end{description}
 
+
+
+
+\chapter{Návrh} \label{chap:navrh}
+blablabla praktiky vzory, blabla pak frontend a bekend
+
+Návrh je rozdělen do podkapitol pro backend, kde je uvedeno, jaká je struktura té části aplikace, která je uživateli odstíněna, ale která také zajišťuje většinu funkcionalit.
+\section{Praktiky a vzory} \label{sec:navrh_praktiky}
+...SOLID, architektonicke vzory, navrhove vzory (GoF, GRASP), ...
+
+\section{Architektura systému} \label{sec:navrh_architektura}
+
+\section{Frontend} \label{sec:navrh_frontend}
+\subsection{Návaznost na současný systém}
+\subsection{Přehrávání a úprava záznamů} % TOHLE MOZNA SMAZAT
+\subsection{UX a UI}
+Tato sekce se věnuje návrhu a tvrobě UX (User eXperience) a UI (User Interface) frontendové části řešení ...
+Se zužitkováním znalostí z (NUR pred) je využito ověřených postupů a je kladen důraz na principy dobrého UI jako jsou jednolitost, předpovídatelnost, zobrazování pouze užitečných informací, tolerance chyb a další. 
+
+Návrh uživatelského rozhraní rozdělen na několik fází. Prvním krokem je seznam požadavků a vlastností kladených na uživatelské rozhraní. Tyto požadavky jsou již stanoveny v analýze (\ref{sec:analyza_pozadavky}). Zmíněné požadavky a vlastnosti jsou poté transformovaný do takzvaného task listu, jehož finální podoba obsahuje uspořádaný seznam základních funkcionalit UI z uživatelova pohledu. Dalším krokem, dle uznávaných postupů, by byl výběr cílové skupiny uživatelů tohoto systému a uživatelský výzkum. Cílová skupina uživatelů je však již známa díky již existující webové aplikaci, jejíž koncepty budou pro první prototypy UI této práce postačující. Uživatelské testování je tak tedy provedeno až na prvních prototypech řešení a je částečně zmíněno v kapitole o testování (\ref{subsec:testovani_akceptacni_utest}). Pro zvýraznění struktury závislostí mezi funkcionalitami task listu bude vytvořen tzv. task graf (nebo také task model), který znázorní vztahy mezi jednotlivými funkcionalitami. Nakonec se vytvoří hi-fi prototyp, který bude reprezentovat grafickou a interaktivní podobu uživatelského rozhraní.
+
+\subsubsection{Task List} \label{subsubsec:navrh_frontend_ui_tasklist}
+list all possible tasks, even the minor "obvious" ones (add record, delete record, add item to cart, change item quantity)
+tasks can have various granularity and importance (at first, list all of them, then group them, sort importancy
+\subsubsection{Task Graf} \label{subsubsec:navrh_frontend_ui_taskgraf}
+\subsubsection{Prototypování} \label{subsubsec:navrh_frontend_ui_proto}
+hifi prototypes (interactive wireframes)
+
+
+\section{Backend} \label{sec:navrh_backend}
+
+
+\chapter{Implementace} \label{chap:impl}
+\section{Prostředí a kompatibilita} \label{sec:impl_prostredi}
+
+
 \section{Vybrané zajímavé funkce} \label{sec:impl_funkce}
 \section{Instalační a uživatelská příručka} \label{sec:impl_prirucka}
 
@@ -582,9 +599,10 @@ Aplikace \textit{yuri2} má množství dalších parametrů, pro jejich seznam s
 
 
 \chapter{Testování} \label{chap:testovani}
-\section{Integrační testování} \label{sec:testovani_integracni}
+\section{Integrační testování} \label{sec:testovani_integracni}	
 \section{Akceptační testování} \label{sec:testovani_akceptacni}
 \subsection{Probíhající usability testování} \label{subsec:testovani_akceptacni_utest}
+použít něco z NUR - usability testing (prvni prednaska)
 
 \begin{conclusion}
 	%sem napište závěr Vaší práce
