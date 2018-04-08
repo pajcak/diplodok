@@ -571,22 +571,41 @@ Návrh je rozdělen do podkapitol pro backend, kde je uvedeno, jaká je struktur
 \section{Frontend} \label{sec:navrh_frontend}
 \subsection{Návaznost na současný systém}
 \subsection{Přehrávání a úprava záznamů} % TOHLE MOZNA SMAZAT
-\subsection{UX a UI}
-Tato sekce se věnuje návrhu a tvrobě UX (User eXperience) a UI (User Interface) frontendové části řešení ...
-Se zužitkováním znalostí z (NUR pred) je využito ověřených postupů a je kladen důraz na principy dobrého UI jako jsou jednolitost, předpovídatelnost, zobrazování pouze užitečných informací, tolerance chyb a další. 
+\subsection{Uživatelské rozhraní}
+Tato sekce se věnuje návrhu a tvrobě UI (User Interface) frontendové části řešení. Se zužitkováním znalostí z \cite{nur} je využito ověřených postupů a je kladen důraz na principy dobrého UI jako jsou jednolitost, předpovídatelnost, zobrazování pouze užitečných informací, tolerance chyb a další. 
 
 Návrh uživatelského rozhraní rozdělen na několik fází. Prvním krokem je seznam požadavků a vlastností kladených na uživatelské rozhraní. Tyto požadavky jsou již stanoveny v analýze (\ref{sec:analyza_pozadavky}). Zmíněné požadavky a vlastnosti jsou poté transformovaný do takzvaného task listu, jehož finální podoba obsahuje uspořádaný seznam základních funkcionalit UI z uživatelova pohledu. Dalším krokem, dle uznávaných postupů, by byl výběr cílové skupiny uživatelů tohoto systému a uživatelský výzkum. Cílová skupina uživatelů je však již známa díky již existující webové aplikaci, jejíž koncepty budou pro první prototypy UI této práce postačující. Uživatelské testování je tak tedy provedeno až na prvních prototypech řešení a je částečně zmíněno v kapitole o testování (\ref{subsec:testovani_akceptacni_utest}). Pro zvýraznění struktury závislostí mezi funkcionalitami task listu bude vytvořen tzv. task graf (nebo také task model), který znázorní vztahy mezi jednotlivými funkcionalitami. Nakonec se vytvoří hi-fi prototyp, který bude reprezentovat grafickou a interaktivní podobu uživatelského rozhraní.
 
 \subsubsection{Task List} \label{subsubsec:navrh_frontend_ui_tasklist}
-list all possible tasks, even the minor "obvious" ones (add record, delete record, add item to cart, change item quantity)
-tasks can have various granularity and importance (at first, list all of them, then group them, sort importancy
+Zde je uveden seznam většiny úkolů, které by mělo uživatelské rozhraní splňovat, jakožto požadavky uživatelů. Pokud se ve vytvořeném seznamu nedopatřením neobjevily věci, které tam být mají, tak by se měly ukázat při testování použitelnosti uživatelského rozhraní.
+
+\begin{itemize}
+ \item polozka jedna
+ \item polozka dva
+\end{itemize}
+
+Dále je nutné tento neorganizovaný seznam funkcionalit seskupit tak, aby to co nejlépe pomohlo s návrhem UI. Tasky se seskupují například podle toho, zda-li se jedná o vstup od uživatele, oznámení chyb, jak velkou část obrazovky zaujímají a podobně. Některé položky v seznamu mohou být syntaxí skryté duplicity jiných. Zároveň je žádoucí seřadit položky dle jejich důležitosti (například chybové hlášky mají vysokou prioritu).
+
+\begin{itemize}
+ \item Skupina jedna
+   \begin{itemize}
+     \item polozka jedna
+     \item polozka dva
+   \end{itemize}
+   
+ \item skupina dva
+\end{itemize}
+
+Z již uspořádaného task listu je patrné .... "tlik elementů pro control (tlacitek), tolik main display elementu, tolik status lajn, tolik kamer ..... atd -> tim padem se tahle obrazovka rozdeli na tolik casti, ktere obsahujou to a to , atd"
+
 \subsubsection{Task Graf} \label{subsubsec:navrh_frontend_ui_taskgraf}
+
 \subsubsection{Prototypování} \label{subsubsec:navrh_frontend_ui_proto}
 hifi prototypes (interactive wireframes)
 
 
-\section{Backend} \label{sec:navrh_backend}
 
+\section{Backend} \label{sec:navrh_backend}
 
 \chapter{Implementace} \label{chap:impl}
 \section{Prostředí a kompatibilita} \label{sec:impl_prostredi}
