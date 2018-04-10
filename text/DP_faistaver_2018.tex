@@ -502,8 +502,6 @@ Specifikace směrování podporuje i funkcionální jazyk pro modifikaci událos
 Tento trochu komplexnější příklad vezme hodnotu události \uv{sequence} z uzlu \uv{dump}, porovná ji (funkce \textit{gt}) s hodnotou události \uv{max\_frames} z uzlu \uv{var} a výsledek (hodnota \textit{true} nebo \textit{false}) se pošle na uzel \uv{generate} jako událost s názvem \uv{stop}.
 \\ \\
 Detailnější popis událostí je v souboru \textit{doc/EVENTS.txt} v distribuci Libyuri.
-
-
 	
 \subsection{Moduly} \label{subsec:analyza_yuri_moduly}
 Jak již bylo zmíněno v sekci o uzlech grafu zpracování audia/videa (\ref{subsec:analyza_yuri_uzly}), každý uzel je charakterizován třídou, která reprezentuje modul plnící funkcionalitu daného uzlu. Jako modul je označována dynamická knihovna (například \textit{yuri2.8\_module\_v4l2\_source.so}), která může obsahovat dodatečné funkce pro Libyuri. Typicky takový modul obsahuje jeden nebo více uzlů do grafu, může ale obsahovat i jiné funkce (například modul \textit{yuri2.8\_module\_yuri\_udp.so} obsahuje implementaci konceptu \textit{DatagramSocket} pomocí UDP soketu). 
@@ -560,17 +558,16 @@ Aplikace \textit{yuri2} má množství dalších parametrů, pro jejich seznam s
 
 
 \chapter{Návrh} \label{chap:navrh}
-blablabla praktiky vzory, blabla pak frontend a bekend
-
-Návrh je rozdělen do podkapitol pro backend, kde je uvedeno, jaká je struktura té části aplikace, která je uživateli odstíněna, ale která také zajišťuje většinu funkcionalit.
-\section{Praktiky a vzory} \label{sec:navrh_praktiky}
-...SOLID, architektonicke vzory, navrhove vzory (GoF, GRASP), ...
+Návrh nejprve popisuje základní sftwarové principy, kterých je třeba se držet, dále se stručně rozebere architektura systému a pak ve dvou podkapitolách proběhne návrh frontendové (prezentační vrstva aplikace, která systému předkládá vstupy od uživatele a zároveň uživateli zobrazuje výstupy) a backendové (kde je uvedeno, jaká je struktura té části aplikace, která je uživateli odstíněna, ale která také zajišťuje většinu funkcionalit) části řešení.
 
 \section{Architektura systému} \label{sec:navrh_architektura}
+Řešení bude navrženo, jako typická třívrstvá architektura skládající se z prezentační aplikační a datové vrstvy. Prezentační vrstva zahrnuje frontend \ref{sec:navrh_frontend} a jeho zprostředkování pomocí webového serveru. Aplikační vrstva pojímá aplikační server (server v laboratoři CHUL) včetně nahrávacích zařízení a komunikace mezi nimi pomocí knihovny Libyuri. Datová vrstva se pak skládá z PostgreSQL databáze a úložiště veškerých nahrávek.
 
 \section{Frontend} \label{sec:navrh_frontend}
 \subsection{Návaznost na současný systém}
-\subsection{Přehrávání a úprava záznamů} % TOHLE MOZNA SMAZAT
+
+\subsection{Přehrávání a úprava záznamů} % TOHLE MOZNA SMAZAT nebo jen napsat jak to bude spojeny s bekhendem
+
 \subsection{Uživatelské rozhraní}
 Tato sekce se věnuje návrhu a tvrobě UI (User Interface) frontendové části řešení. Se zužitkováním znalostí z \cite{nur} je využito ověřených postupů a je kladen důraz na principy dobrého UI jako jsou jednolitost, předpovídatelnost, zobrazování pouze užitečných informací, tolerance chyb a další. 
 
@@ -687,6 +684,7 @@ použít něco z NUR - usability testing (prvni prednaska)
 \chapter{Seznam použitých zkratek}
 % \printglossaries
 \begin{description}
+	\item[UI] User Interface
 	\item[GUI] Graphical User Interface
 	\item[API] Application Programming Interface
 	\item[XML] eXtensible Markup Language
