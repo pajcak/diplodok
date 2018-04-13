@@ -556,9 +556,8 @@ Aplikace \textit{yuri2} má množství dalších parametrů, pro jejich seznam s
 
 
 
-
 \chapter{Návrh} \label{chap:navrh}
-Návrh nejprve popisuje základní sftwarové principy, kterých je třeba se držet, dále se stručně rozebere architektura systému a pak ve dvou podkapitolách proběhne návrh frontendové (prezentační vrstva aplikace, která systému předkládá vstupy od uživatele a zároveň uživateli zobrazuje výstupy) a backendové (kde je uvedeno, jaká je struktura té části aplikace, která je uživateli odstíněna, ale která také zajišťuje většinu funkcionalit) části řešení.
+Návrh nejprve popisuje základní softwarové principy, kterých je třeba se držet, dále se stručně rozebere architektura systému a pak ve dvou podkapitolách proběhne návrh frontendové (prezentační vrstva aplikace, která systému předkládá vstupy od uživatele a zároveň uživateli zobrazuje výstupy) a backendové (kde je uvedeno, jaká je struktura té části aplikace, která je uživateli odstíněna, ale která také zajišťuje většinu funkcionalit) části řešení.
 
 \section{Architektura systému} \label{sec:navrh_architektura}
 Řešení bude navrženo, jako typická třívrstvá architektura skládající se z prezentační aplikační a datové vrstvy. Prezentační vrstva zahrnuje frontend \ref{sec:navrh_frontend} a jeho zprostředkování pomocí webového serveru. Aplikační vrstva pojímá aplikační server (server v laboratoři CHUL) včetně nahrávacích zařízení a komunikace mezi nimi pomocí knihovny Libyuri. Datová vrstva se pak skládá z PostgreSQL databáze a úložiště veškerých nahrávek.
@@ -651,6 +650,7 @@ hifi prototypes (interactive wireframes)
 
 
 \section{Backend} \label{sec:navrh_backend}
+\subsubsection{Databázový model} \label{subsubsec:navrh_backend_databaze}
 
 
 
