@@ -708,7 +708,7 @@ Konfigurace na obrázku \ref{img:navrh_backend_libyuri_receiver} má podobnou st
 jsou reprezentovány první řádkou uzlů. Mezi těmito zařízeními jsou zleva: obrazovka počítače (screen), webkamera (webcam), dvě kamery připojené přes rozhraní HDMI (hdmi0 a hdmi1) a nakonec jeden mikrofon (audio_in). Z kamer putují datové rámce do modulů pro upravení FPS (uzly fps0 -- fps2), dále všechny rámce putují do modulu \textit{delay}, který upraví zpoždění jednotlivých streamů dle potřeby, obrazové streamy pak navštíví modul \textit{jpeg_encoder} pro kompresi do formátu JPEG čímž se zefektivní přenos dat po síti a nakonec je všech pět streamů modulem \textit{uv_rtp_sender} vysláno sítí směrem k cílové IP adrese a portu kde tyto data přebírá jiná instance knihovny Libyuri (například do multimediálního serveru nebo do infrastruktury SAGE). 
 
 
-TODO...a jsou 2 verze prace - xml  pro nahravani to je dany a pak xml generovany onthefly pro upravu videi
+TODO..a jsou 2 verze prace - xml  pro nahravani to je dany a pak xml generovany onthefly pro upravu videi
 
 
 \chapter{Implementace} \label{chap:impl}
