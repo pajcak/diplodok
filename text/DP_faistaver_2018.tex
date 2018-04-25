@@ -684,7 +684,31 @@ Backendový subsystém pro zpracovávání záznamů upravených ve webové apli
 
 \subsection{Libyuri} \label{subsec:navrh_backend_libyuri}
 V backendové části aplikace se na CHUL serveru nachází instance knihovny Libyuri. Tato knihovna zde bude sloužit jako prostředník mezi nahrávacími zařízeními v CHUL laboratoři a multimediálním úložištěm, případně webovou aplikací. Reference a návod pro pojmy a různé postupy je k nalezení v analýze v sekci \ref{sec:analyza_yuri}, kde je zevrubně popsáno, jak Libyuri, potažmo aplikace Yuri2 pracuje.
-...ukazku grafu jak to fungovalo, rict ze uzly jsou zachovany a jsou 2 verze prace - xml  pro nahravani to je dany a pak xml generovany onthefly pro upravu videi
+
+Nejprve je zde, na obrázku \ref{img:navrh_backend_libyuri_sender}, uveden příklad konfigurace Libyuri pro spuštění nahrávání z vybraných zařízení v CHUL laboratoři. Tato konfigurace slouží jednak pro ilustraci toho, které moduly a v jakém pořadí by se měly propojit, a zadruhé jako vzor pro to, jak budou vypadat konfigurace vytvářené za běhu, na základě uživatelova vstupu přes webovou aplikaci. Tato konfigurace se nachází na stroji CHUL server (vizte diagram nasazení \ref{img:navrh_architektura_nasazeni}) při tamní instanci knihovny Libyuri.
+\\
+\begin{figure}[h]\centering
+	\includegraphics[width=1\textwidth]{images/ulab_sender.eps}
+	\caption{Libyuri - konfigurace pro záznam v CHUL}\label{img:navrh_backend_libyuri_sender}
+\end{figure}
+
+Uvedený obrázek \ref{img:navrh_backend_libyuri_sender} obsahuje kolečka spojené šipkami, kde každé kolečko reprezentuje uzel a každá šipka reprezentuje orientovanou datovou hranu v grafu konfigurace Libyuri. Každý uzel uvnitř obsahuje svůj název, který je libovolný a pod ním je v závorce přesný název modulu knihovny Libyuri (více v sekci o zpracovávajících uzlech\ref{subsec:analyza_yuri_uzly}), která funkcionalitu tohoto uzlu realizuje, tedy například druhý uzel má název \uv{webcam} a je realizován modulem \uv{v4l2source} (\textit{v4l2} je linuxový ovladač pro práci se zařízeními typu webkamera). Každá orientovaná hrana je popsána obdobným způsobem. Nejprve je uvedeno libovolné jméno hrany a pod ním je v závorce typ datové fronty (více v sekci o datových hranách \ref{subsec:analyza_yuri_hrany}), která jej realizuje (například první hrana shora zleva má název \uv{screen_delay} a je typu \uv{single}).
+
+V takovéto konfiguraci prezentované obrázkem, který se interpretuje odshora dolů, je patrných pět nahrávacích zařízení, které jsou reprezentovány první řádkou uzlů. Mezi těmito zařízeními jsou zleva: obrazovka počítače (screen), webkamera (webcam), dvě kamery připojené přes rozhraní HDMI (hdmi0 a hdmi1) a nakonec jeden mikrofon (audio_in). Z kamer putují datové rámce do modulů pro upravení FPS (uzly fps0 -- fps2), dále všechny rámce putují do modulu \textit{delay}, který upraví zpoždění jednotlivých streamů dle potřeby, obrazové streamy pak navštíví modul \textit{jpeg_encoder} pro kompresi do formátu JPEG čímž se zefektivní přenos dat po síti a nakonec je všech pět streamů modulem \textit{uv_rtp_sender} vysláno sítí směrem k cílové IP adrese a portu kde tyto data přebírá jiná instance knihovny Libyuri (například do multimediálního serveru nebo do infrastruktury SAGE). 
+
+Nahrávaná data v laboratoři CHUL a odesílaná po síti pryč by měla být někde přijímána. K tomu slouží další instance knihovny Libyuri s pozměněnou konfigurací pro příjem dat a následné zpracování. Pro ukázku je zde na obrázku \ref{img:navrh_backend_libyuri_receiver} uvedena konfigurace, která se nachází na serveru infrastruktury SAGE, a která přijatá data souběžně ukládá na disk a zároveň streamuje do systému SAGE.
+\\
+\begin{figure}[h]\centering
+	\includegraphics[width=1\textwidth]{images/ulab_receiver.eps}
+	\caption{Libyuri - konfigurace zobrazení v SAGE a ukládání}\label{img:navrh_backend_libyuri_receiver}
+\end{figure}
+
+Konfigurace na obrázku \ref{img:navrh_backend_libyuri_receiver} má podobnou strukturu, jako předchozí konfigurace. Opět se interpretuje odshora dolů. V první řadě je patrných pět uzlů (uzly rtp_video0 -- rtp_video3 a rtp_audio_in), které se starají o síťový příjem dat, které byly předchozí konfigurací odesílány pomocí RTP streamů.
+
+jsou reprezentovány první řádkou uzlů. Mezi těmito zařízeními jsou zleva: obrazovka počítače (screen), webkamera (webcam), dvě kamery připojené přes rozhraní HDMI (hdmi0 a hdmi1) a nakonec jeden mikrofon (audio_in). Z kamer putují datové rámce do modulů pro upravení FPS (uzly fps0 -- fps2), dále všechny rámce putují do modulu \textit{delay}, který upraví zpoždění jednotlivých streamů dle potřeby, obrazové streamy pak navštíví modul \textit{jpeg_encoder} pro kompresi do formátu JPEG čímž se zefektivní přenos dat po síti a nakonec je všech pět streamů modulem \textit{uv_rtp_sender} vysláno sítí směrem k cílové IP adrese a portu kde tyto data přebírá jiná instance knihovny Libyuri (například do multimediálního serveru nebo do infrastruktury SAGE). 
+
+
+TODO...a jsou 2 verze prace - xml  pro nahravani to je dany a pak xml generovany onthefly pro upravu videi
 
 
 \chapter{Implementace} \label{chap:impl}

@@ -1,0 +1,59 @@
+digraph rtp_sender {
+screen [label="screen\n(screen)"];
+webcam [label="webcam\n(v4l2source)"];
+hdmi0 [label="hdmi0\n(decklink_input)"];
+hdmi1 [label="hdmi1\n(decklink_input)"];
+audio_in [label="audio_in\n(alsa_input)"];
+fps0 [label="fps0\n(fix_fps)"];
+fps1 [label="fps1\n(fix_fps)"];
+fps2 [label="fps2\n(fix_fps)"];
+jpeg0 [label="jpeg0\n(jpeg_encoder)"];
+jpeg1 [label="jpeg1\n(jpeg_encoder)"];
+jpeg2 [label="jpeg2\n(jpeg_encoder)"];
+delay0 [label="delay0\n(delay)"];
+delay1 [label="delay1\n(delay)"];
+delay2 [label="delay2\n(delay)"];
+delay3 [label="delay3\n(delay)"];
+rtp_video0 [label="rtp_video0\n(uv_rtp_sender)"];
+rtp_video1 [label="rtp_video1\n(uv_rtp_sender)"];
+rtp_video2 [label="rtp_video2\n(uv_rtp_sender)"];
+rtp_audio_out [label="rtp_audio_out\n(uv_rtp_sender)"];
+jpeg [label="jpeg\n(jpeg_encoder)"];
+delay [label="delay\n(delay)"];
+rtp_video [label="rtp_video\n(uv_rtp_sender)"];
+screen -> delay [label="screen_delay
+(single)"];
+delay -> jpeg [label="delay_jpeg
+(single)"];
+jpeg -> rtp_video [label="jpeg_rtp_video
+(single)"];
+webcam -> fps0 [label="cam_fix_0
+(single)"];
+hdmi0 -> fps1 [label="cam_fix_1
+(single)"];
+hdmi1 -> fps2 [label="cam_fix_2
+(single)"];
+fps0 -> delay0 [label="fix_delay_0
+(single)"];
+fps1 -> delay1 [label="fix_delay_1
+(single)"];
+fps2 -> delay2 [label="fix_delay_2
+(single)"];
+delay0 -> jpeg0 [label="delay_jpeg_0
+(single)"];
+delay1 -> jpeg1 [label="delay_jpeg_1
+(single)"];
+delay2 -> jpeg2 [label="delay_jpeg_2
+(single)"];
+jpeg0 -> rtp_video0 [label="jpeg_rtp_0
+(single)"];
+jpeg1 -> rtp_video1 [label="jpeg_rtp_1
+(single)"];
+jpeg2 -> rtp_video2 [label="jpeg_rtp_2
+(single)"];
+audio_in -> delay3 [label="audio_delay
+(single)"];
+delay3 -> rtp_audio_out [label="delay_rtp
+(unlimited)"];
+}
+
