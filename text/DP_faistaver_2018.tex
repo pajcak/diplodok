@@ -555,9 +555,8 @@ Aplikace \textit{yuri2} má množství dalších parametrů, pro jejich seznam s
 \end{description}
 
 
-
 \chapter{Návrh} \label{chap:navrh}
-Návrh nejprve popisuje základní softwarové principy, kterých je třeba se držet, dále se stručně rozebere architektura systému a pak ve dvou podkapitolách proběhne návrh frontendové (prezentační vrstva aplikace, která systému předkládá vstupy od uživatele a zároveň uživateli zobrazuje výstupy) a backendové (kde je uvedeno, jaká je struktura té části aplikace, která je uživateli odstíněna, ale která také zajišťuje většinu funkcionalit) části řešení.
+Návrh nejprve rozebere architekturu systému a pak ve dvou podkapitolách proběhne návrh frontendové (prezentační vrstva aplikace, která systému předkládá vstupy od uživatele a zároveň uživateli zobrazuje výstupy) a backendové (kde je uvedeno, jaká je struktura té části aplikace, která je uživateli odstíněna, ale která také zajišťuje většinu funkcionalit) části řešení.
 
 \section{Architektura systému} \label{sec:navrh_architektura}
 Řešení bude navrženo, jako typická třívrstvá architektura skládající se z prezentační aplikační a datové vrstvy. Prezentační vrstva zahrnuje frontend \ref{sec:navrh_frontend} a jeho zprostředkování pomocí webového serveru. Aplikační vrstva pojímá aplikační server (server v laboratoři CHUL) včetně nahrávacích zařízení a komunikace mezi nimi pomocí knihovny Libyuri. Datová vrstva se pak skládá z PostgreSQL databáze a úložiště veškerých nahrávek.
@@ -673,17 +672,28 @@ Horní část původního databázového modelu (\ref{img:navrh_backend_db_orig}
 	\caption{Původní databázový model}\label{img:navrh_backend_db}
 \end{figure}
 
-Z nového databázového modelu je patrné, že zmizela tabulka s videi a byla nahrazena tabulkou \textit{VideoRecords} a \textit{AudioRecords}. Krom videí bylo také třeba udržovat informace o audio souborech, aby bylo možné s nimi pracovat odděleně (například přidávat a odebírat audio stopy k videu). Z důvodu nemožnosti implementace dědičnosti v relačním databázovém modelu nebyla vytvořena třída \textit{Records}, která by zapouzdřovala možné nahrávky. Dále je z diagramu patrná tabulka \textit{Jobs},  do které se budou ukládat jednotlivé úlohy pro úpravu záznamů (více v sekci \ref{subsec:navrh_backend_ulohy}). Tato tabulka obsahuje vstupní záznamy (relace z tabulek \textit{VideoRecords} a \textit{AudioRecords}), které reprezentují záznamy připravené k nějaké úpravě a dále výstupní záznam realizovaný tabulkou \textit{OutputRecord}. Tabulka \textit{OutputRecord} obsahuje záznamy o médiích vzniklých úpravou jiných po dokončení některé ze zmíněných úloh.
+Z nového databázového modelu je patrné, že zmizela tabulka s videi a byla nahrazena tabulkou \textit{VideoRecords} a \textit{AudioRecords}. Krom videí bylo také třeba udržovat informace o audio souborech, aby bylo možné s nimi pracovat odděleně (například přidávat a odebírat audio stopy k videu). Z důvodu nemožnosti implementace dědičnosti v relačním databázovém modelu nebyla vytvořena třída \textit{Records}, která by zapouzdřovala možné nahrávky. Dále je z diagramu patrná tabulka \textit{Jobs},  do které se budou ukládat jednotlivé úlohy pro úpravu záznamů (více v sekci \ref{subsec:navrh_backend_ulohy}). Tato tabulka obsahuje vstupní záznamy (relace z tabulek \textit{VideoRecords} a \textit{AudioRecords}), které reprezentují záznamy připravené k nějaké úpravě a dále výstupní záznam realizovaný tabulkou \textit{OutputRecord}. Tabulka \textit{OutputRecord} obsahuje záznamy o médiích vzniklých úpravou jiných po dokončení některé ze zmíněných úloh. Jako poslední je také přidána samostatná tabulka \textit{LabConfiguration}, která obsahuje informace o nahrávacích zařízeních (které jsou připojené a podobně), IP adresy a informace o zařízení SAGE, webserveru, CHUL serveru, úložišti a další.
+
+V tabulkách \textit{VideoRecord}, \textit{AudioRecord}, respektive \textit{OutputRecord} jsou sloupce reprezentující požadované meta-informace nahraných, resp. upravených, záznamů. Veškeré nahrané záznamy se nebudou ukládat do databáze přímo, ale do souborového systému, a databázové tabulky pak budou obsahovat sloupec s lokací, kde se daný záznam v souborovém systému nachází.
 
 
 \subsection{Správa úloh} \label{subsec:navrh_backend_ulohy}
+Při popisování vytvořeného databázového modelu byla zmíněna tabulka \textit{Jobs}, která obsahuje informace o úlohových zpracování záznamů. Dále je popsáno, co za touto tabulkou stojí.
+
+Backendový subsystém pro zpracovávání záznamů upravených ve webové aplikaci je navržen jako dávkové zpracování úloh. V systému se nachází fronta úloh, obsahující úlohy připravené ke zpracování (například převod videa do jiného formátu). Dále je v systému démon, tedy proces běžící na pozadí, který tuto frontu obhospodařuje. Tento proces si hlídá existující zpracovávané úlohy knihovnou Libyuri a pokud se uvolní výpočetní prostředky, pak se z fronty úloh vezme ta s nejvyšší prioritou a začne se zpracovávat. Informace o těchto úlohách jsou uložený právě v tabulce \textit{Jobs}. Na této tabulce je také v PostgreSQL databázi nastaven tzv. trigger (pomocí příkazu CREATE TRIGGER), který, po zápisu nové úlohy do tabulky, probudí či notifikuje zmíněného démona pro správu úloh, který nově zapsanou úlohu zaregistruje.
+
+\subsection{Libyuri} \label{subsec:navrh_backend_libyuri}
+V backendové části aplikace se na CHUL serveru nachází instance knihovny Libyuri. Tato knihovna zde bude sloužit jako prostředník mezi nahrávacími zařízeními v CHUL laboratoři a multimediálním úložištěm, případně webovou aplikací. Reference a návod pro pojmy a různé postupy je k nalezení v analýze v sekci \ref{sec:analyza_yuri}, kde je zevrubně popsáno, jak Libyuri, potažmo aplikace Yuri2 pracuje.
+...ukazku grafu jak to fungovalo, rict ze uzly jsou zachovany a jsou 2 verze prace - xml  pro nahravani to je dany a pak xml generovany onthefly pro upravu videi
 
 
 \chapter{Implementace} \label{chap:impl}
 \section{Prostředí a kompatibilita} \label{sec:impl_prostredi}
 
+\section{Gitlab a CI} \label{sec:impl_gitlab}
 
 \section{Vybrané zajímavé funkce} \label{sec:impl_funkce}
+
 \section{Instalační a uživatelská příručka} \label{sec:impl_prirucka}
 
 
@@ -691,9 +701,10 @@ Z nového databázového modelu je patrné, že zmizela tabulka s videi a byla n
 
 \chapter{Testování} \label{chap:testovani}
 \section{Integrační testování} \label{sec:testovani_integracni}	
+TODO ... sem dat asi kapku zminku o tetovacim skriptu v CI
 \section{Akceptační testování} \label{sec:testovani_akceptacni}
 \subsection{Probíhající usability testování} \label{subsec:testovani_akceptacni_utest}
-použít něco z NUR - usability testing (prvni prednaska)
+TODO ... použít něco z NUR - usability testing (prvni prednaska)
 
 \begin{conclusion}
 	%sem napište závěr Vaší práce
