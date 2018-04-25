@@ -562,10 +562,18 @@ Návrh nejprve popisuje základní softwarové principy, kterých je třeba se d
 \section{Architektura systému} \label{sec:navrh_architektura}
 Řešení bude navrženo, jako typická třívrstvá architektura skládající se z prezentační aplikační a datové vrstvy. Prezentační vrstva zahrnuje frontend \ref{sec:navrh_frontend} a jeho zprostředkování pomocí webového serveru. Aplikační vrstva pojímá aplikační server (server v laboratoři CHUL) včetně nahrávacích zařízení a komunikace mezi nimi pomocí knihovny Libyuri. Datová vrstva se pak skládá z PostgreSQL databáze a úložiště veškerých nahrávek.
 
+\subsubsection{Diagram nasazení} \label{subsubsec:navrh_architektura_nasazeni}
+Schéma na obrázku \ref{img:navrh_architektura_nasazeni} uvedeném dále představuje přibližný model nasazení v provozu. Tento model se skládá ze čtyř hlavních částí (zařízení), z nichž první představuje klienta a jeho webový prohlížeč. Ten komunikuje
+s aplikací Nginx, která představuje webový server. Samotná komunikace mezi klientem a webovým serverem probíhá pomocí protokolů HTTPS a SFTP pro procházení webové aplikace a případný download videí. Aplikace Nginx hostuje samotnou webovou aplikaci, jejíž podstatná část je tvořena PHP frameworkem Nette a dále Javascriptovou knihovnu Video.js (\ref{subsubsec:analyza_reseni_videojs}), která je odpovědná za práci s videem na webu. Další částí diagramu je CHUL server, neboli server, nacházející se v CHUL laboratoři, na kterým běží instance knihovny Libyuri (\ref{subsubsec:analyza_reseni_yuri}).  Komunikace mezi Libyuri a webovou Nette aplikací je zajištěno technologií websocketů, pomocí kterých se například z webové aplikace pošle příkaz na spuštění nahrávání z různých zařízení v laboratoři. K operačnímu systému CHUL serveru je pomocí techologie SSHFS připojen souborový systém dalšího a posledního zařízení v diagramu -- databázového a multimediálního serveru (Dále jen \uv{DM server}). Tento DM server obsahuje zmíněnou databázi PostgreSQL a také úložiště pro nahrané záznamy. Databázový systém PostgreSQL na DM serveru obsahuje především data potřebné webovou aplikací (jako jsou data o uživatelích, experimentech, scénářích a jiné) a tudíž je se samotnou webovou aplikací spojena komunikačním protokolem TCP/IP. 
+\\
+\begin{figure}[h]\centering
+	\includegraphics[width=1\textwidth]{images/nasazeni.png}
+	\caption{Diagram nasazení}\label{img:navrh_architektura_nasazeni}
+\end{figure}
+
+
 \section{Frontend} \label{sec:navrh_frontend}
 \subsection{Návaznost na současný systém}
-
-\subsection{Přehrávání a úprava záznamů} % TOHLE MOZNA SMAZAT nebo jen napsat jak to bude spojeny s bekhendem
 
 \subsection{Uživatelské rozhraní}
 Tato sekce se věnuje návrhu a tvrobě UI (User Interface) frontendové části řešení. Se zužitkováním znalostí z \cite{nur} je využito ověřených postupů a je kladen důraz na principy dobrého UI jako jsou jednolitost, předpovídatelnost, zobrazování pouze užitečných informací, tolerance chyb a další. 
@@ -650,9 +658,25 @@ hifi prototypes (interactive wireframes)
 
 
 \section{Backend} \label{sec:navrh_backend}
-\subsubsection{Databázový model} \label{subsubsec:navrh_backend_databaze}
+\subsection{Databázový model} \label{subsec:navrh_backend_databaze}
+Při návrhu relačního databázového modelu se vycházelo z již existujícího modelu. Předchozí práce (\cite{solankar}) totiž již se systémem pro správu videa a streamů částečně počítala ve specifických požadavcích, ale i během vytváření tehdejšího databázového modelu, který již obsahoval tabulku pro videa. Jak bylo zmíněno, tak rozšíření pro správu videí a streamů se v předchozí práci neimplementovalo a tedy i tato funkcionalita byla v databázovém modelu pouze jakýmsi základním prototypem, který bylo nutné řádně poupravit. Na obrázku \ref{img:navrh_backend_db_orig}, který znázorňuje právě databázový model při konci předchozí závěrečné práce, je patrná zmíněná tabulka s videi (\textit{Videos}), která však zdaleka neobsahuje všechny potřebné sloupce.
+\\
+\begin{figure}[h]\centering
+	\includegraphics[width=1\textwidth]{images/db_orig.png}
+	\caption{Původní databázový model}\label{img:navrh_backend_db_orig}
+\end{figure}
+
+Horní část původního databázového modelu (\ref{img:navrh_backend_db_orig}) obsahuje tabulky (např. \textit{Users}, \textit{Logs}, \textit{Plans},...), které se správou videí a streamů příliš nesouvisí, jsou však implementované v původní webové aplikaci a proto jsou zachovány v nezměněné formě novém modelu. Bylo tedy třeba přidat část pro správu videí a informací o nich. Na obrázku \ref{img:navrh_backend_db} je uveden nově vytvořený databázový model, který je pak dále popsán.
+\\
+\begin{figure}[h]\centering
+	\includegraphics[width=1\textwidth]{images/db.png}
+	\caption{Původní databázový model}\label{img:navrh_backend_db}
+\end{figure}
+
+Z nového databázového modelu je patrné, že zmizela tabulka s videi a byla nahrazena tabulkou \textit{VideoRecords} a \textit{AudioRecords}. Krom videí bylo také třeba udržovat informace o audio souborech, aby bylo možné s nimi pracovat odděleně (například přidávat a odebírat audio stopy k videu). Z důvodu nemožnosti implementace dědičnosti v relačním databázovém modelu nebyla vytvořena třída \textit{Records}, která by zapouzdřovala možné nahrávky. Dále je z diagramu patrná tabulka \textit{Jobs},  do které se budou ukládat jednotlivé úlohy pro úpravu záznamů (více v sekci \ref{subsec:navrh_backend_ulohy}). Tato tabulka obsahuje vstupní záznamy (relace z tabulek \textit{VideoRecords} a \textit{AudioRecords}), které reprezentují záznamy připravené k nějaké úpravě a dále výstupní záznam realizovaný tabulkou \textit{OutputRecord}. Tabulka \textit{OutputRecord} obsahuje záznamy o médiích vzniklých úpravou jiných po dokončení některé ze zmíněných úloh.
 
 
+\subsection{Správa úloh} \label{subsec:navrh_backend_ulohy}
 
 
 \chapter{Implementace} \label{chap:impl}
