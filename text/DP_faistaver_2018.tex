@@ -600,7 +600,6 @@ s aplikací Nginx, která představuje webový server. Samotná komunikace mezi 
 
 
 \section{Frontend} \label{sec:navrh_frontend}
-\subsection{Návaznost na současný systém}
 
 \subsection{Uživatelské rozhraní}
 Tato sekce se věnuje návrhu a tvrobě UI (User Interface) frontendové části řešení. Se zužitkováním znalostí z \cite{nur} je využito ověřených postupů a je kladen důraz na principy dobrého UI jako jsou jednolitost, předpovídatelnost, zobrazování pouze užitečných informací, tolerance chyb a další. 
@@ -615,6 +614,7 @@ Zde je uveden seznam většiny úkolů, které by mělo uživatelské rozhraní 
  \item Označení skupiny zařízení pro nahrávání
  \item Volba streamu do systému SAGE
  \item Spuštění nahrávání (streamování)
+ \item Přidávání komentáře ke streamu
  \item Zastavení nahrávání (streamování)
  \item Zobrazení streamovaného obrazu
  \item Spuštění editoru/přehrávače nahrávek
@@ -624,13 +624,13 @@ Zde je uveden seznam většiny úkolů, které by mělo uživatelské rozhraní 
  \item Změna rychlosti přehrávání
  \item Změna rozlišení přehrávání
  \item Spuštění přehrávání na celou obrazovku
+ \item Zobrazení komentářů videa
  \item Sloučení nahrávek paralelně do mřížky
  \item Volba časového ořezu videa 
  \item Rotace obrazu videa
  \item Změna kontrastu obrazu videa
  \item Volba rozlišení pro export
  \item Volba formátu pro export
- \item Volba komprese pro export
  \item Volba uploadu záznamu na server Youtube
  \item Zobrazení editovatelných meta-informací
  \item Návrat z editoru do streamování
@@ -646,10 +646,14 @@ Dále je nutné tento neorganizovaný seznam funkcionalit seskupit tak, aby to c
 	 \item Označení skupiny zařízení pro nahrávání
 	 \item Volba streamu do systému SAGE
 	 \item Sloučení streamů paralelně do mřížky
+	 \item Rotace obrazu streamu
 	 \item Spuštění nahrávání (streamování)
-	 \item Zastavení nahrávání (streamování)
    \end{itemize}
  \item Zobrazení streamovaného obrazu
+   \begin{itemize}
+	 \item Zastavení nahrávání (streamování)
+ 	 \item Přidávání komentáře ke streamu
+   \end{itemize}
  \item Spuštění editoru/přehrávače nahrávek
  \item Zobrazení existujících nahrávek
  \item Přehrání vybrané nahrávky
@@ -658,6 +662,7 @@ Dále je nutné tento neorganizovaný seznam funkcionalit seskupit tak, aby to c
 	 \item Změna rychlosti přehrávání
 	 \item Změna rozlišení přehrávání
  	 \item Spuštění přehrávání na celou obrazovku
+ 	 \item Zobrazení komentářů videa
    \end{itemize}
  \item Úprava videa pro export
    \begin{itemize}
@@ -665,8 +670,6 @@ Dále je nutné tento neorganizovaný seznam funkcionalit seskupit tak, aby to c
      \item Změna kontrastu obrazu videa
   	 \item Volba rozlišení pro export
   	 \item Volba formátu pro export
-	 \item Volba komprese pro export
-	 \item Rotace obrazu videa
 	 \item Zobrazení editovatelných meta-informací
 	 \item Volba uploadu záznamu na server Youtube
    \end{itemize}
@@ -674,13 +677,22 @@ Dále je nutné tento neorganizovaný seznam funkcionalit seskupit tak, aby to c
  \item Návrat z editoru do nastavení streamování
 \end{itemize}
 
-Z již uspořádaného task listu je patrné, že pro realizaci UI budou potřeba 2 až 3 webové stránky (jedna pro přehrávání a úpravu záznamů, další pro nastavení a spuštění nahrávání/streamování a případná třetí pro sledování průběhu nahrávání/streamování).
- .... "tolik elementů pro control (tlacitek), tolik main display elementu, tolik status lajn, tolik kamer ..... atd -> tim padem se tahle obrazovka rozdeli na tolik casti, ktere obsahujou to a to , atd"
-
 \subsubsection{Task Graf} \label{subsubsec:navrh_frontend_ui_taskgraf}
 
 \subsubsection{Prototypování} \label{subsubsec:navrh_frontend_ui_proto}
-hifi prototypes (interactive wireframes)
+Z již uspořádaného task listu a z něj vytvořeného task grafu je patrné, že pro realizaci UI jsou potřeba dvě až tři webové stránky (jedna pro přehrávání a úpravu záznamů, další pro nastavení a spuštění nahrávání/streamování a případná třetí pro sledování průběhu nahrávání/streamování). Byly tedy vytvořeny prototypy stránek pomocí wireframů. Nejprve se prototypy načrtly na papír ke zjištění základních nedostatků a později se z těchto náčrtů vytvořily interaktivní wireframy.
+
+	Při tvorbě wireframů se dá postupovat metodou \uv{od shora} (nejprve návrh hlavního rozvržení stránky a poté zaměření na jednotlivé komponenty) či \uv{od zdola} (opak k předchozí metodě). Zde se však postupovalo kombinovaně, tedy nejprve se promyslely komponenty a s vědomím potřebného místa pro ně se navrhovalo rozvržení stránky.
+
+ .... "tolik elementů pro control (tlacitek), tolik main display elementu, tolik status lajn, tolik kamer ..... atd -> tim padem se tahle obrazovka rozdeli na tolik casti, ktere obsahujou to a to , atd"
+
+screenshoty z hifi prototypes (interactive wireframes)
+
+%\\
+%\begin{figure}[h]\centering
+%	\includegraphics[width=1\textwidth]{images/ui_.eps}
+%	\caption{Diagram nasazení}\label{img:navrh_frontend_}
+%\end{figure}
 
 
 
