@@ -235,7 +235,7 @@ Uživatel bude moci nahrát zvuk k libovolnému videu ze vstupního zařízení.
 \section{Existující komplexní řešení} \label{sec:analyza_existujici_reseni}
 Při hledání pomocného softwaru, který by řešení značně ulehčil je třeba postupovat od komplexních řešení, které jsou již funkční a otestované komunitou a které by se vypořádaly s velkým počtem funkcionalit. Pokud se nepodaří najít řešení o vhodné úrovni komplexnosti, pak se musí úroveň rozsáhlosti snižovat a poohlížet se tak po technologiích řešící pouze jednotlivé funkcionality. Přednost mají open-source řešení, které je možné libovolně použít a rozšířit.
 
-	Pro úspor místa jsou zde uvedeny především ta nalezená řešení, která byla při rešerši velice dobře hodnocena a několik málo ostatních průměrných nebo podprůměrných adeptů je pak s těmito společně shrnuto v sekci o výběru technologií (\ref{sec:analyza_technologie}).
+	Pro úspor místa jsou zde uvedeny především ta nalezená řešení, která byla při rešerši velice dobře hodnocena a měli největší šanci na to stát se kandidáty pro integraci do implementace.
 
 
 \subsection{Technologie pro backend} \label{subsec:analyza_reseni_backend}
@@ -294,33 +294,33 @@ Movie Masher (\cite{mm}), přesněji knihovna moviemasher.js (\cite{mm_js}) je k
 
 
 \section{Výběr technologií} \label{sec:analyza_technologie}
-Technologie nashromážděné rešerší je nutné zredukovat, neboť čím menší počet jich použijeme a čím větší část požadavků pokryjí, tím lépe. Nejprve je uvedena porovnávací metodika, která obsahuje výčet funkcí a charakteristik pro výběr technologií a pomocí priorit těchto charakteristik jsou pak technologie porovnány formou tabulky (...TODO ref na tabuli).
+Technologie nashromážděné rešerší je nutné zredukovat, neboť čím menší počet jich použijeme a čím větší část požadavků pokryjí, tím lépe. Nejprve je uvedena porovnávací metodika, která obsahuje výčet funkcí a charakteristik pro výběr technologií a pomocí priorit těchto charakteristik jsou pak technologie porovnány formou tabulek zvlášť pro backend \ref{tbl:table_backend}) a pro frontend (\ref{tbl:table_frontend}).
 
 \subsection{Porovnávací metodika} \label{subsec:analyza_technologie_metodika}
-Aby výběr těch nejvhodnějších technologií proběhl kvalitně, je zapotřebí k tomu použít určitou metodiku, tedy souhrn postupů, které pokryjí proces výběru. Jednou z těchto metod je stanovení výčtu obecných vlastností a funkcionalit softwaru, jejichž úroveň a kvalita se změří na nalezených technologiích. Dalším postupem je shrnutí nashromážděných hodnocení, zde například formou tabulek \ref{table_backend} a \ref{table_frontend} a následné vyhodnocení, jehož výstupem bude redukovaný výčet technologií, které ve výběru \uv{uspěly} a budou použity v implementační části této práce pro frontend a pro backend.
+Aby výběr těch nejvhodnějších technologií proběhl kvalitně, je zapotřebí k tomu použít určitou metodiku, tedy souhrn postupů, které pokryjí proces výběru. Jednou z těchto metod je stanovení výčtu obecných vlastností a funkcionalit softwaru, jejichž úroveň a kvalita se změří na nalezených technologiích. Dalším postupem je shrnutí nashromážděných hodnocení, zde formou tabulek \ref{tbl:table_backend} a \ref{tbl:table_frontend} a následné vyhodnocení (vizte \ref{subsec:analyza_technologie_vybrane}), jehož výstupem bude redukovaný výčet technologií, které ve výběru uspěly a budou použity v implementační části této práce.
 	
 	Nejprve je tedy výčtem uveden seznam obecných prioritních charakteristik softwaru, přičemž u každé z nich je definováno, co se pod ní, v kontextu této práce, myslí.
 
 \begin{description}
 \item \textbf{Licence\\}
-Preferováno open-source řešení nad proprietárním. Prioritní licence jsou například GPLv2, MIT, Apache či WTFPL.
+Preferováno open-source řešení nad proprietárním. Prioritní licence jsou například GPLv2, LGPLv2, BSD, MIT, Apache či dokonce WTFPL.
 \item \textbf{Dokumentace\\}
 Je technická i uživatelská dokumentace dostatečně specifická? Souhlasí verze dokumentace s verzí produktu a koresponduje s jejím aktuálním stavem?
 \item \textbf{Podpora\\}
-Je produkt stále ještě vyvíjen a alespoň některá z jeho verzí aktivně podporována? Existuje možnost snadné zpětné vazby od uživatele technologie k jejím udržovatelům?.
+Je produkt stále ještě vyvíjen a alespoň některá z jeho verzí aktivně podporována? Existuje možnost snadné zpětné vazby od uživatele technologie k jejím udržovatelům?
 \item \textbf{Portabilita\\}
 Je technologie multiplatformní? Je možné ji bez větších problémů zprovoznit na novějších verzích operačních systémů Windows i na několika různých distribucích systému Linux?
 \item \textbf{Rozšiřitelnost\\}
 Je možné technologii snadno rozšiřovat a upravovat, pokud to licence umožňuje? Je například možné jej rozšířit o moduly s požadovanou funkcionalitou, pokud je zatím technologie nepokrývá?
 \item \textbf{Integrace\\}
-Zda a jak je možné technologii integrovat do systému této práce. Možnost integrace a kooperace technologie s infrastrukturou SAGE.
+Zda a jak je možné technologii integrovat do systému této práce. Možnost integrace a kooperace technologie se stávající aplikací a s infrastrukturou SAGE.
 \item \textbf{Komunita\\}
 Velikost uživatelské komunity vybrané technologie. Existence dalších zdrojů informací o produktu např. webové stránky obsahující informace jiné než v technické dokumentaci.
 \item \textbf{Zkušenosti\\}
 Má autor této práce nějaké zkušenosti s danou technologií, které by mu umožnily snadnější, rychlejší a efektivnější implementaci řešení?
 \end{description}
 
-Po porovnání všech nashromážděných technologií pomocí specifikovaných charakteristik bylo dosaženo výsledku, který je popsán tabulkou \ref{table_backend} pro backendové technologie a tabulkou \ref{table_frontend} pro frontendové technologie.
+Po porovnání všech nashromážděných technologií pomocí specifikovaných charakteristik bylo dosaženo výsledku, který je popsán tabulkou \ref{tbl:table_backend} pro backendové technologie a tabulkou \ref{tbl:table_frontend} pro frontendové technologie. V buňkách těchto tabulek jsou buď znaky \uv{+} reprezentující výhodu či užitečnost a \uv{-} reprezentující nevýhodu či neužitečnost daného kritéria. Čím více znaků v buňce, tím větší intenzita užitečnosti respektive neužitečnosti daného kritéria.
 
 \begin{table}[]
 \catcode`\-=12 %kvuli pomlčce v řádce s cline{2-5} - jinak řvala ;)
@@ -328,21 +328,49 @@ Po porovnání všech nashromážděných technologií pomocí specifikovaných 
 \begin{tabular}{l|l|l|l|l|}
 \cline{2-5}
 \multicolumn{1}{c|}{}                & \multicolumn{1}{c|}{Libyuri} & \multicolumn{1}{c|}{Ultragrid} & \multicolumn{1}{c|}{FFmpeg} & \multicolumn{1}{c|}{GStreamer} \\ \hline
-\multicolumn{1}{|l|}{Licence}        &                              &                                &                             &                                \\ \hline
-\multicolumn{1}{|l|}{Dokumentace}    &                              &                                &                             &                                \\ \hline
-\multicolumn{1}{|l|}{Podpora}        &                              &                                &                             &                                \\ \hline
-\multicolumn{1}{|l|}{Portabilita}    &                              &                                &                             &                                \\ \hline
-\multicolumn{1}{|l|}{Rozšiřitelnost} &                              &                                &                             &                                \\ \hline
-\multicolumn{1}{|l|}{Integrace}      &                              &                                &                             &                                \\ \hline
-\multicolumn{1}{|l|}{Komunita}       &                              &                                &                             &                                \\ \hline
-\multicolumn{1}{|l|}{Zkušenosti}     &                              &                                &                             &                                \\ \hline
+\multicolumn{1}{|l|}{Licence}        & \multicolumn{1}{c|}{++}      & \multicolumn{1}{c|}{+}         & \multicolumn{1}{c|}{++}                                     & \multicolumn{1}{c|}{++}        \\ \hline
+\multicolumn{1}{|l|}{Dokumentace}    & \multicolumn{1}{c|}{+}       & \multicolumn{1}{c|}{+}         & \multicolumn{1}{c|}{++}                                      & \multicolumn{1}{c|}{++}        \\ \hline
+\multicolumn{1}{|l|}{Podpora}        & \multicolumn{1}{c|}{+}       & \multicolumn{1}{c|}{++}        & \multicolumn{1}{c|}{++}                                      & \multicolumn{1}{c|}{++}        \\ \hline
+\multicolumn{1}{|l|}{Portabilita}    & \multicolumn{1}{c|}{+++}     & \multicolumn{1}{c|}{+++}       & \multicolumn{1}{c|}{+++}                                    & \multicolumn{1}{c|}{+++}       \\ \hline
+\multicolumn{1}{|l|}{Rozšiřitelnost} & \multicolumn{1}{c|}{+++}     & \multicolumn{1}{c|}{-}         & \multicolumn{1}{c|}{+}                                      & \multicolumn{1}{c|}{++}        \\ \hline
+\multicolumn{1}{|l|}{Integrace}      & \multicolumn{1}{c|}{+++}     & \multicolumn{1}{c|}{++}        & \multicolumn{1}{c|}{++}                                     & \multicolumn{1}{c|}{++}        \\ \hline
+\multicolumn{1}{|l|}{Komunita}       & \multicolumn{1}{c|}{-}       & \multicolumn{1}{c|}{+}         & \multicolumn{1}{c|}{++}                                     & \multicolumn{1}{c|}{++}        \\ \hline
+\multicolumn{1}{|l|}{Zkušenosti}     & \multicolumn{1}{c|}{+++}     & \multicolumn{1}{c|}{+}         & \multicolumn{1}{c|}{++}                                     & \multicolumn{1}{c|}{-}         \\ \hline
 \end{tabular}
 \caption{Porovnání technologií pro backend}
-\label{table_backend}
+
+\label{tbl:table_backend}
 \end{table}
 
+\begin{table}[]
+\catcode`\-=12 %kvuli pomlčce v řádce s cline{2-5} - jinak řvala ;)
+\centering
+\begin{tabular}{l|l|l|l|}
+\cline{2-4}
+\multicolumn{1}{c|}{}                 & \multicolumn{1}{c|}{Video.js} & \multicolumn{1}{c|}{Afterglow} & \multicolumn{1}{c|}{Movie Masher} \\ \hline
+\multicolumn{1}{|l|}{Licence}        & \multicolumn{1}{c|}{++}      & \multicolumn{1}{c|}{++}        & \multicolumn{1}{c|}{++}         \\ \hline
+\multicolumn{1}{|l|}{Dokumentace}    & \multicolumn{1}{c|}{++}      & \multicolumn{1}{c|}{+}         & \multicolumn{1}{c|}{-}                                      \\ \hline
+\multicolumn{1}{|l|}{Podpora}        & \multicolumn{1}{c|}{+}       & \multicolumn{1}{c|}{+}         & \multicolumn{1}{c|}{+}                                      \\ \hline
+\multicolumn{1}{|l|}{Portabilita}    & \multicolumn{1}{c|}{+++}     & \multicolumn{1}{c|}{+++}       & \multicolumn{1}{c|}{+++}                                    \\ \hline
+\multicolumn{1}{|l|}{Rozšiřitelnost} & \multicolumn{1}{c|}{++}      & \multicolumn{1}{c|}{+}         & \multicolumn{1}{c|}{-}                                      \\ \hline
+\multicolumn{1}{|l|}{Integrace}      & \multicolumn{1}{c|}{++}      & \multicolumn{1}{c|}{++}        & \multicolumn{1}{c|}{++}                                      \\ \hline
+\multicolumn{1}{|l|}{Komunita}       & \multicolumn{1}{c|}{+++}     & \multicolumn{1}{c|}{+}         & \multicolumn{1}{c|}{-}                                      \\ \hline
+\multicolumn{1}{|l|}{Zkušenosti}     & \multicolumn{1}{c|}{++}      & \multicolumn{1}{c|}{-}         & \multicolumn{1}{c|}{+}                                      \\ \hline
+\end{tabular}
+\caption{Porovnání technologií pro frontend}
+\label{tbl:table_frontend}
+\end{table}
+
+
 \subsection{Vybrané technologie} \label{subsec:analyza_technologie_vybrane}
-...nette, html5, javascript, yuri,... 
+
+Výběr technologií je proveden na základě zmíněných hodnotících kritérií, které byly předem stanoveny a následně naměřeny na technologiích, které prošly rešerší. Provedené hodnocení je zaznamenáno v patřičných tabulkách pro technologie backendu (\ref{tbl:table_backend}) a frontendu (\ref{tbl:table_frontend}). Zde jsou pak pak již uvedeny takové technologie, které se určitou mírou budou podílet na implementaci systému této práce. To jsou takové technologie, které byly buď již stanoveny zadáním práce, nefunkčními požadavky nebo ty, které nejvíce uspěly v provedeném hodnocení.
+	
+\subsection{Backend} \label{subsec:analyza_technologie_vybrane_backend}
+Výběr technologií pro backend nejprve zohlednil zadání práce a nefunkční požadavky. V nefunkčních požadavcích (\ref{subsec:analyza_np}, požadavek N10) je uvedena databázová technologie PostgreSQL, s jejímž použitím se již předem počítalo, neboť databáze stávající aplikace je již v této technologii dobře navržena. Dále je v těchto požadavcích zmíněna (požadavek N8) i multimediální knihovna Libyuri. Přestože tato knihovna byla podrobena porovnání s ostatními technologiemi nalezenými v rešerši (vizte tabulka \ref{tbl:table_backend}) tak její hodnocení stejně dopadlo velice úspěšně a bude tedy taktéž použita. Z porovnávací metodiky však zbyly další tři technologie: Ultragrid, FFmpeg a GStreamer. Ultragrid nebude použit z toho důvodu, že v hodnocení dopadl o něco hůře než zmíněná knihovna Libyuri a většina funkčnosti, kterou by Ultragrid při implementaci poskytl dokáže Libyuri pokrýt. FFmpeg dopadl v hodnocení obdobně jako Libyuri a jeho použití se velmi dlouho zvažovalo, nicméně pro prototyp první verze systému této práce bude potřeba obstarat pouze funkcionality, jako je ořez videa a nanejvýš změna kontrastu a jasu, přičemž i tyto funkcionality Libyuri umí. Do budoucích verzí systému je však FFmpeg vhodnou kompenzací pro takovou práci s médii, kde Libyuri nebude tak efektivní nebo ji nebude neumět. GStreamer je velice dobrou alternativou Libyuri a tak nejvěrnějšími důvody pro upřednostnění Libyuri nad GStreamerem jsou autorovy slabé zkušenosti s touto technologií a navíc to, že Libyuri pokryje taktéž většinu funkcionalit, které by GStreamer poskytl. GStreamer je také velice snadno rozšiřitelný, avšak Libyuri obsahuje spoustu modulů, které implementaci této práce usnadní a urychlí.
+
+\subsection{Frontend} \label{subsec:analyza_technologie_vybrane_frontend}
+Frontendové technologie jsou taktéž částečně stanoveny v nefunkčních požadavcích (\ref{subsec:analyza_np}). Konkrétně je to požadavek N7, který specifikuje PHP framework Nette, značkovací jazyk HTML a skriptovací jazyk JavaScript. Začněme s frameworkem Nette jazyku PHP. Jak již bylo v úvodu sekce \ref{subsec:analyza_reseni_frontend} stanoveno, tak s použitím frameworku Nette byla napsána téměř celá aplikace z předchozí bakalářské práce a jelikož je zde návaznost řešení této práce na systém práce předchozí, pak samozřejmostí použití této technologie byla vyňata z porovnání s ostatními. Dnes již nativní technologie prohlížečů, HTML a JavaScript budou použity pro tu část této práce, která uživateli předkládá možnost práce s médii a zároveň transformuje uživatelský vstup do řeči backendu. Ostatní zbylé frontendové technologie nashromážděné rešerší jsou na těchto technologiích postaveny a bylo by tudíž nesmyslné je dávat spolu do porovnání. Mezi nejlepšími kandidáty byly vybrány a porovnány technologie Video.js, Afterglow a Movie Masher. Výhody technologie Video.js jsou již popsány v její rešerši. Mezi ně patří především to, že obaluje nativní HTML5 videopřehrávač užitečnými funkcionalitami, a pro vývojáře i tak zachovává rozsáhlý prostor pro rozšiřování. Existuje také bezkonkurenční počet již vyvinutých pluginů. Afterglow nepokrývá zdaleka tolik funkcionalit jako Video.js a vylepšení, které má navíc, jako například přehrávání Youtube či Vimeo videí, není výhodou hodnou upřednostnění. Nakonec Movie Masher, jako nadějný webový video editor, by byl býval poskytl pokrytí téměř veškeré práce s videem na webu. Naneštěstí postrádá nemalé množství funkcionalit pravého video editoru a pro budoucí rozšíření by bylo obtížné jej modifikovat formou pluginů. Po porovnání technologií Video.js, Afterglow a Movie Masher je tedy vybrána pouze technologie Video.js.
 
 \section{Seznámení s Libyuri} \label{sec:analyza_yuri}
 Jak již bylo zmíněno v analýze (\ref{subsubsec:analyza_reseni_yuri}), knihovna Libyuri (\cite{yuri}) je framework, poskytující prostředky pro vytváření vícevláknových aplikací zpracovávajících různá multimédia.
@@ -710,14 +738,12 @@ TODO..a jsou 2 verze prace - xml  pro nahravani to je dany a pak xml generovany 
 
 
 \chapter{Implementace} \label{chap:impl}
-\section{Prostředí a kompatibilita} \label{sec:impl_prostredi}
-
 \section{Gitlab a CI} \label{sec:impl_gitlab}
 
 \section{Vybrané zajímavé funkce} \label{sec:impl_funkce}
 
 \section{Instalační a uživatelská příručka} \label{sec:impl_prirucka}
-
+TODO .. mozna rozdelit na instalaci a uziv. prirucku
 
 
 
@@ -725,7 +751,7 @@ TODO..a jsou 2 verze prace - xml  pro nahravani to je dany a pak xml generovany 
 \section{Integrační testování} \label{sec:testovani_integracni}	
 TODO ... sem dat asi kapku zminku o tetovacim skriptu v CI
 \section{Akceptační testování} \label{sec:testovani_akceptacni}
-\subsection{Probíhající usability testování} \label{subsec:testovani_akceptacni_utest}
+\subsection{Probíhající usability testování} \label{subsec:testovani_akceptacni_utest} % mozna smazat
 TODO ... použít něco z NUR - usability testing (prvni prednaska)
 
 \begin{conclusion}
