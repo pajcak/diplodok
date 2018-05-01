@@ -1,0 +1,127 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="2249 -718 1920 1080">
+  <defs>
+    <style>
+      .cls-1, .cls-7 {
+        fill: none;
+      }
+
+      .cls-2 {
+        clip-path: url(#clip-ulab_editor);
+      }
+
+      .cls-11, .cls-13, .cls-3 {
+        fill: #fff;
+      }
+
+      .cls-3, .cls-7 {
+        stroke: #2699fb;
+      }
+
+      .cls-4, .cls-5, .cls-8 {
+        font-size: 30px;
+      }
+
+      .cls-4, .cls-5, .cls-9 {
+        font-family: SegoeUI-Semibold, Segoe UI;
+        font-weight: 600;
+      }
+
+      .cls-10, .cls-5, .cls-8, .cls-9 {
+        fill: #2699fb;
+      }
+
+      .cls-6 {
+        clip-path: url(#clip-path);
+      }
+
+      .cls-7 {
+        stroke-width: 2px;
+      }
+
+      .cls-8 {
+        font-family: Arial-BoldMT, Arial;
+        font-weight: 700;
+      }
+
+      .cls-9 {
+        font-size: 40px;
+      }
+
+      .cls-11 {
+        font-size: 15px;
+        font-family: ArialMT, Arial;
+      }
+
+      .cls-12 {
+        stroke: none;
+      }
+    </style>
+    <clipPath id="clip-path">
+      <rect class="cls-1" width="703" height="524"/>
+    </clipPath>
+    <clipPath id="clip-ulab_editor">
+      <rect x="2249" y="-718" width="1920" height="1080"/>
+    </clipPath>
+  </defs>
+  <g id="ulab_editor" data-name="ulab/editor" class="cls-2">
+    <rect class="cls-13" x="2249" y="-718" width="1920" height="1080"/>
+    <g id="file_manager_window" data-name="file manager window" transform="translate(2249 -718)">
+      <g id="src" class="cls-3" transform="translate(211 108)">
+        <rect class="cls-12" width="449" height="934.857"/>
+        <rect class="cls-1" x="0.5" y="0.5" width="448" height="933.857"/>
+      </g>
+      <text id="seznam_projektu_ke_kterym_ma_prihlaseny_pristup" data-name="seznam projektu ke kterym ma prihlaseny pristup" class="cls-4" transform="translate(262 403.404)"><tspan x="0" y="0">seznam projektu ke </tspan><tspan x="0" y="40">kterym ma </tspan><tspan x="0" y="80">prihlaseny pristup</tspan></text>
+    </g>
+    <g id="Rectangle_1094" data-name="Rectangle 1094" class="cls-3" transform="translate(2984 -553)">
+      <rect class="cls-12" width="1083" height="598"/>
+      <rect class="cls-1" x="0.5" y="0.5" width="1082" height="597"/>
+    </g>
+    <text id="Project_Name" data-name="Project Name" class="cls-5" transform="translate(2984 -578)"><tspan x="0" y="0">Project Name</tspan></text>
+    <g id="Repeat_Grid_6" data-name="Repeat Grid 6" class="cls-6" transform="translate(3013 -516)">
+      <g transform="translate(-735 -165)">
+        <g id="Rectangle_1095" data-name="Rectangle 1095" class="cls-3" transform="translate(735 165)">
+          <rect class="cls-12" width="333" height="249"/>
+          <rect class="cls-1" x="0.5" y="0.5" width="332" height="248"/>
+        </g>
+      </g>
+      <g transform="translate(-382 -165)">
+        <g id="Rectangle_1095-2" data-name="Rectangle 1095" class="cls-3" transform="translate(735 165)">
+          <rect class="cls-12" width="333" height="249"/>
+          <rect class="cls-1" x="0.5" y="0.5" width="332" height="248"/>
+        </g>
+      </g>
+      <g transform="translate(-735 104)">
+        <g id="Rectangle_1095-3" data-name="Rectangle 1095" class="cls-3" transform="translate(735 165)">
+          <rect class="cls-12" width="333" height="249"/>
+          <rect class="cls-1" x="0.5" y="0.5" width="332" height="248"/>
+        </g>
+      </g>
+      <g transform="translate(-382 104)">
+        <g id="Rectangle_1095-4" data-name="Rectangle 1095" class="cls-3" transform="translate(735 165)">
+          <rect class="cls-12" width="333" height="249"/>
+          <rect class="cls-1" x="0.5" y="0.5" width="332" height="248"/>
+        </g>
+      </g>
+    </g>
+    <text id="Vlastnik" class="cls-5" transform="translate(3745 -461)"><tspan x="0" y="0">Vlastnik</tspan></text>
+    <text id="Datum_pořízení" data-name="Datum pořízení" class="cls-5" transform="translate(3745 -372)"><tspan x="0" y="0">Datum pořízení</tspan></text>
+    <text id="Popis_....._....." data-name="Popis.....
+....." class="cls-5" transform="translate(3745 -301)"><tspan x="0" y="0">Popis</tspan><tspan x="0" y="40">.....</tspan><tspan x="0" y="80">.....</tspan></text>
+    <g id="edit" transform="translate(2261.038 -506)">
+      <g id="Rectangle_1091" data-name="Rectangle 1091" class="cls-7" transform="translate(1472.962 449)">
+        <rect class="cls-12" width="300" height="65" rx="4"/>
+        <rect class="cls-1" x="1" y="1" width="298" height="63" rx="3"/>
+      </g>
+      <text id="EDIT-2" data-name="EDIT" class="cls-8" transform="translate(1622.962 492)"><tspan x="-34.167" y="0">EDIT</tspan></text>
+    </g>
+    <text id="Project_list" data-name="Project list" class="cls-9" transform="translate(2460 -639)"><tspan x="0" y="0">Project list</tspan></text>
+    <g id="Side_bar_2" data-name="Side bar 2" transform="translate(2249 -718)">
+      <rect id="Base" class="cls-10" width="160" height="1080"/>
+      <text id="CONTROL" class="cls-11" transform="translate(40 102)"><tspan x="0" y="0">CONTROL</tspan></text>
+      <text id="EDITOR" class="cls-11" transform="translate(41 168.144)"><tspan x="0" y="0">EDITOR</tspan></text>
+      <text id="FORMS" class="cls-11" transform="translate(40 234.287)"><tspan x="0" y="0">FORMS</tspan></text>
+      <text id="BLOG" class="cls-11" transform="translate(40 300.431)"><tspan x="0" y="0">BLOG</tspan></text>
+      <text id="CONTACT" class="cls-11" transform="translate(40 366.575)"><tspan x="0" y="0">CONTACT</tspan></text>
+    </g>
+  </g>
+</svg>
