@@ -114,7 +114,7 @@
 				</x:List>
 			</data>
 			<data key="d2">
-				<y:RectD X="-118.125" Y="-50.5" Width="129.625" Height="72.75"/>
+				<y:RectD X="-112.5" Y="-50.5" Width="124" Height="72.75"/>
 			</data>
 			<data key="d4">
 				<demostyle:FlowchartNodeStyle type="start1" stroke="#FFDBCB36" fill="#FFDBCB36"/>
@@ -126,7 +126,7 @@
 			<data key="d1">
 				<x:List>
 					<y:Label LayoutParameter="{x:Static y:InteriorStretchLabelModel.Center}">
-						<y:Label.Text><![CDATA[Aranžování streamů]]></y:Label.Text>
+						<y:Label.Text><![CDATA[Nastavení pozice obrazu streamů]]></y:Label.Text>
 						<y:Label.Style>
 							<yjs:DefaultLabelStyle verticalTextAlignment="CENTER" horizontalTextAlignment="CENTER" wrapping="WORD" clipText="false" textFill="BLACK" textSize="13">
 								<yjs:DefaultLabelStyle.font>
@@ -217,7 +217,7 @@
 				</x:List>
 			</data>
 			<data key="d2">
-				<y:RectD X="-29.875" Y="336" Width="129.625" Height="72.75"/>
+				<y:RectD X="-15.5" Y="336" Width="115.25" Height="72.75"/>
 			</data>
 			<data key="d4">
 				<demostyle:FlowchartNodeStyle type="start1" stroke="#FFDBCB36" fill="#FFDBCB36"/>
@@ -228,7 +228,7 @@
 			<data key="d1">
 				<x:List>
 					<y:Label LayoutParameter="{x:Static y:InteriorStretchLabelModel.Center}">
-						<y:Label.Text><![CDATA[Zastavení nahrávání a streamování]]></y:Label.Text>
+						<y:Label.Text><![CDATA[Zastavení streamování]]></y:Label.Text>
 						<y:Label.Style>
 							<yjs:DefaultLabelStyle verticalTextAlignment="CENTER" horizontalTextAlignment="CENTER" wrapping="WORD" clipText="false" textFill="BLACK" textSize="13">
 								<yjs:DefaultLabelStyle.font>
@@ -240,7 +240,7 @@
 				</x:List>
 			</data>
 			<data key="d2">
-				<y:RectD X="155.25" Y="336" Width="129.625" Height="72.75"/>
+				<y:RectD X="155.25" Y="336" Width="115.25" Height="72.75"/>
 			</data>
 			<data key="d4">
 				<demostyle:FlowchartNodeStyle type="start1" stroke="#FFDBCB36" fill="#FFDBCB36"/>

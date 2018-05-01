@@ -1,6 +1,52 @@
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="108 -718 1920 1080">
-  <defs>
-    <style>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   viewBox="108 -718 1920 1080"
+   version="1.1"
+   id="svg338"
+   sodipodi:docname="ulab-config.svg"
+   inkscape:version="0.92.3 (2405546, 2018-03-11)">
+  <metadata
+     id="metadata342">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1366"
+     inkscape:window-height="706"
+     id="namedview340"
+     showgrid="false"
+     inkscape:zoom="0.475"
+     inkscape:cx="960"
+     inkscape:cy="579.98797"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg338" />
+  <defs
+     id="defs188">
+    <style
+       id="style177">
       .cls-1, .cls-11 {
         fill: none;
       }
@@ -67,133 +113,570 @@
         stroke: none;
       }
     </style>
-    <clipPath id="clip-path">
-      <rect class="cls-1" width="2476" height="240"/>
+    <clipPath
+       id="clip-path">
+      <rect
+         class="cls-1"
+         width="2476"
+         height="240"
+         id="rect179" />
     </clipPath>
-    <clipPath id="clip-path-2">
-      <rect class="cls-1" width="1060" height="720"/>
+    <clipPath
+       id="clip-path-2">
+      <rect
+         class="cls-1"
+         width="1060"
+         height="720"
+         id="rect182" />
     </clipPath>
-    <clipPath id="clip-ulab_config">
-      <rect x="108" y="-718" width="1920" height="1080"/>
+    <clipPath
+       id="clip-ulab_config">
+      <rect
+         x="108"
+         y="-718"
+         width="1920"
+         height="1080"
+         id="rect185" />
     </clipPath>
   </defs>
-  <g id="ulab_config" data-name="ulab/config" class="cls-2">
-    <rect class="cls-10" x="108" y="-718" width="1920" height="1080"/>
-    <g id="Repeat_Grid_3" data-name="Repeat Grid 3" class="cls-3" transform="translate(268 -638)">
-      <g transform="translate(-160 -680)">
-        <g id="src_cam" data-name="src cam" class="cls-4" transform="translate(170 680)">
-          <rect class="cls-15" width="350" height="233.333"/>
-          <rect class="cls-1" x="0.5" y="0.5" width="349" height="232.333"/>
+  <g
+     id="ulab_config"
+     data-name="ulab/config"
+     class="cls-2"
+     clip-path="url(#clip-ulab_config)">
+    <rect
+       class="cls-10"
+       x="108"
+       y="-718"
+       width="1920"
+       height="1080"
+       id="rect190" />
+    <g
+       id="Repeat_Grid_3"
+       data-name="Repeat Grid 3"
+       class="cls-3"
+       transform="translate(268 -638)"
+       clip-path="url(#clip-path)">
+      <g
+         transform="translate(-160 -680)"
+         id="g197">
+        <g
+           id="src_cam"
+           data-name="src cam"
+           class="cls-4"
+           transform="translate(170 680)">
+          <rect
+             class="cls-15"
+             width="350"
+             height="233.333"
+             id="rect192" />
+          <rect
+             class="cls-1"
+             x="0.5"
+             y="0.5"
+             width="349"
+             height="232.333"
+             id="rect194" />
         </g>
       </g>
-      <g transform="translate(216 -680)">
-        <g id="src_cam-2" data-name="src cam" class="cls-4" transform="translate(170 680)">
-          <rect class="cls-15" width="350" height="233.333"/>
-          <rect class="cls-1" x="0.5" y="0.5" width="349" height="232.333"/>
+      <g
+         transform="translate(216 -680)"
+         id="g204">
+        <g
+           id="src_cam-2"
+           data-name="src cam"
+           class="cls-4"
+           transform="translate(170 680)">
+          <rect
+             class="cls-15"
+             width="350"
+             height="233.333"
+             id="rect199" />
+          <rect
+             class="cls-1"
+             x="0.5"
+             y="0.5"
+             width="349"
+             height="232.333"
+             id="rect201" />
         </g>
       </g>
-      <g transform="translate(592 -680)">
-        <g id="src_cam-3" data-name="src cam" class="cls-4" transform="translate(170 680)">
-          <rect class="cls-15" width="350" height="233.333"/>
-          <rect class="cls-1" x="0.5" y="0.5" width="349" height="232.333"/>
+      <g
+         transform="translate(592 -680)"
+         id="g211">
+        <g
+           id="src_cam-3"
+           data-name="src cam"
+           class="cls-4"
+           transform="translate(170 680)">
+          <rect
+             class="cls-15"
+             width="350"
+             height="233.333"
+             id="rect206" />
+          <rect
+             class="cls-1"
+             x="0.5"
+             y="0.5"
+             width="349"
+             height="232.333"
+             id="rect208" />
         </g>
       </g>
-      <g transform="translate(968 -680)">
-        <g id="src_cam-4" data-name="src cam" class="cls-4" transform="translate(170 680)">
-          <rect class="cls-15" width="350" height="233.333"/>
-          <rect class="cls-1" x="0.5" y="0.5" width="349" height="232.333"/>
+      <g
+         transform="translate(968 -680)"
+         id="g218">
+        <g
+           id="src_cam-4"
+           data-name="src cam"
+           class="cls-4"
+           transform="translate(170 680)">
+          <rect
+             class="cls-15"
+             width="350"
+             height="233.333"
+             id="rect213" />
+          <rect
+             class="cls-1"
+             x="0.5"
+             y="0.5"
+             width="349"
+             height="232.333"
+             id="rect215" />
         </g>
       </g>
-      <g transform="translate(1344 -680)">
-        <g id="src_cam-5" data-name="src cam" class="cls-4" transform="translate(170 680)">
-          <rect class="cls-15" width="350" height="233.333"/>
-          <rect class="cls-1" x="0.5" y="0.5" width="349" height="232.333"/>
+      <g
+         transform="translate(1344 -680)"
+         id="g225">
+        <g
+           id="src_cam-5"
+           data-name="src cam"
+           class="cls-4"
+           transform="translate(170 680)">
+          <rect
+             class="cls-15"
+             width="350"
+             height="233.333"
+             id="rect220" />
+          <rect
+             class="cls-1"
+             x="0.5"
+             y="0.5"
+             width="349"
+             height="232.333"
+             id="rect222" />
         </g>
       </g>
-      <g transform="translate(1720 -680)">
-        <g id="src_cam-6" data-name="src cam" class="cls-4" transform="translate(170 680)">
-          <rect class="cls-15" width="350" height="233.333"/>
-          <rect class="cls-1" x="0.5" y="0.5" width="349" height="232.333"/>
+      <g
+         transform="translate(1720 -680)"
+         id="g232">
+        <g
+           id="src_cam-6"
+           data-name="src cam"
+           class="cls-4"
+           transform="translate(170 680)">
+          <rect
+             class="cls-15"
+             width="350"
+             height="233.333"
+             id="rect227" />
+          <rect
+             class="cls-1"
+             x="0.5"
+             y="0.5"
+             width="349"
+             height="232.333"
+             id="rect229" />
         </g>
       </g>
-      <g transform="translate(2096 -680)">
-        <g id="src_cam-7" data-name="src cam" class="cls-4" transform="translate(170 680)">
-          <rect class="cls-15" width="350" height="233.333"/>
-          <rect class="cls-1" x="0.5" y="0.5" width="349" height="232.333"/>
+      <g
+         transform="translate(2096 -680)"
+         id="g239">
+        <g
+           id="src_cam-7"
+           data-name="src cam"
+           class="cls-4"
+           transform="translate(170 680)">
+          <rect
+             class="cls-15"
+             width="350"
+             height="233.333"
+             id="rect234" />
+          <rect
+             class="cls-1"
+             x="0.5"
+             y="0.5"
+             width="349"
+             height="232.333"
+             id="rect236" />
         </g>
       </g>
     </g>
-    <g id="Side_bar_2" data-name="Side bar 2" transform="translate(108 -718)">
-      <rect id="Base" class="cls-5" width="160" height="1080"/>
-      <text id="CONTROL" class="cls-6" transform="translate(40 102)"><tspan x="0" y="0">CONTROL</tspan></text>
-      <text id="EDITOR" class="cls-6" transform="translate(41 168.144)"><tspan x="0" y="0">EDITOR</tspan></text>
-      <text id="FORMS" class="cls-6" transform="translate(40 234.287)"><tspan x="0" y="0">FORMS</tspan></text>
-      <text id="BLOG" class="cls-6" transform="translate(40 300.431)"><tspan x="0" y="0">BLOG</tspan></text>
-      <text id="CONTACT" class="cls-6" transform="translate(40 366.575)"><tspan x="0" y="0">CONTACT</tspan></text>
+    <g
+       id="Side_bar_2"
+       data-name="Side bar 2"
+       transform="translate(108 -718)">
+      <rect
+         id="Base"
+         class="cls-5"
+         width="160"
+         height="1080" />
+      <text
+         id="CONTROL"
+         class="cls-6"
+         transform="translate(40 102)">
+        <tspan
+           x="0"
+           y="0"
+           id="tspan243">CONTROL</tspan>
+      </text>
+      <text
+         id="EDITOR"
+         class="cls-6"
+         transform="translate(41 168.144)">
+        <tspan
+           x="0"
+           y="0"
+           id="tspan246">EDITOR</tspan>
+      </text>
+      <text
+         id="FORMS"
+         class="cls-6"
+         transform="translate(40 234.287)">
+        <tspan
+           x="0"
+           y="0"
+           id="tspan249">FORMS</tspan>
+      </text>
+      <text
+         id="BLOG"
+         class="cls-6"
+         transform="translate(40 300.431)">
+        <tspan
+           x="0"
+           y="0"
+           id="tspan252">BLOG</tspan>
+      </text>
+      <text
+         id="CONTACT"
+         class="cls-6"
+         transform="translate(40 366.575)">
+        <tspan
+           x="0"
+           y="0"
+           id="tspan255">CONTACT</tspan>
+      </text>
     </g>
-    <g id="Group_11" data-name="Group 11" transform="translate(330 -727)">
-      <g id="Name" transform="translate(960 170)">
-        <g id="Rectangle_598" data-name="Rectangle 598" class="cls-7" transform="translate(220 220)">
-          <rect class="cls-15" width="360" height="50" rx="10"/>
-          <rect class="cls-1" x="1" y="1" width="358" height="48" rx="9"/>
+    <g
+       id="Group_11"
+       data-name="Group 11"
+       transform="translate(330 -727)">
+      <g
+         id="Name"
+         transform="translate(960 170)">
+        <g
+           id="Rectangle_598"
+           data-name="Rectangle 598"
+           class="cls-7"
+           transform="translate(220 220)">
+          <rect
+             class="cls-15"
+             width="360"
+             height="50"
+             rx="10"
+             id="rect259" />
+          <rect
+             class="cls-1"
+             x="1"
+             y="1"
+             width="358"
+             height="48"
+             rx="9"
+             id="rect261" />
         </g>
-        <text id="Demo_ULAB" data-name="Demo ULAB" class="cls-8" transform="translate(240 250)"><tspan x="0" y="0">Demo ULAB</tspan></text>
-        <text id="Project_Name" data-name="Project Name" class="cls-9" transform="translate(220 209)"><tspan x="0" y="0">Project Name</tspan></text>
+        <text
+           id="Demo_ULAB"
+           data-name="Demo ULAB"
+           class="cls-8"
+           transform="translate(240 250)">
+          <tspan
+             x="0"
+             y="0"
+             id="tspan264">Demo ULAB</tspan>
+        </text>
+        <text
+           id="Project_Name"
+           data-name="Project Name"
+           class="cls-9"
+           transform="translate(220 209)">
+          <tspan
+             x="0"
+             y="0"
+             id="tspan267">Project Name</tspan>
+        </text>
       </g>
-      <g id="Dropdown_2" data-name="Dropdown 2" transform="translate(323 180)">
-        <g id="Rectangle_613" data-name="Rectangle 613" class="cls-7" transform="translate(857 330)">
-          <rect class="cls-15" width="360" height="50" rx="10"/>
-          <rect class="cls-1" x="1" y="1" width="358" height="48" rx="9"/>
+      <g
+         id="Dropdown_2"
+         data-name="Dropdown 2"
+         transform="translate(323 180)">
+        <g
+           id="Rectangle_613"
+           data-name="Rectangle 613"
+           class="cls-7"
+           transform="translate(857 330)">
+          <rect
+             class="cls-15"
+             width="360"
+             height="50"
+             rx="10"
+             id="rect271" />
+          <rect
+             class="cls-1"
+             x="1"
+             y="1"
+             width="358"
+             height="48"
+             rx="9"
+             id="rect273" />
         </g>
-        <text id="Sapp" class="cls-8" transform="translate(877 360)"><tspan x="0" y="0">Sapp</tspan></text>
-        <text id="Stream_target" data-name="Stream target" class="cls-9" transform="translate(857 319)"><tspan x="0" y="0">Stream target</tspan></text>
-        <g id="Symbol_6_1" data-name="Symbol 6 – 1" transform="translate(504.35 -350)">
-          <path id="Path_36" data-name="Path 36" class="cls-10" d="M6.7,8.1,2,3.4,3.4,2,6.7,5.3,10,2l1.4,1.4Z" transform="translate(681 700)"/>
+        <text
+           id="Sapp"
+           class="cls-8"
+           transform="translate(877 360)">
+          <tspan
+             x="0"
+             y="0"
+             id="tspan276">Sapp</tspan>
+        </text>
+        <text
+           id="Stream_target"
+           data-name="Stream target"
+           class="cls-9"
+           transform="translate(857 319)">
+          <tspan
+             x="0"
+             y="0"
+             id="tspan279">Stream target</tspan>
+        </text>
+        <g
+           id="Symbol_6_1"
+           data-name="Symbol 6 – 1"
+           transform="translate(504.35 -350)">
+          <path
+             id="Path_36"
+             data-name="Path 36"
+             class="cls-10"
+             d="M6.7,8.1,2,3.4,3.4,2,6.7,5.3,10,2l1.4,1.4Z"
+             transform="translate(681 700)" />
         </g>
       </g>
-      <g id="Name-2" data-name="Name" transform="translate(960 410)">
-        <g id="Rectangle_598-2" data-name="Rectangle 598" class="cls-7" transform="translate(220 220)">
-          <rect class="cls-15" width="360" height="50" rx="10"/>
-          <rect class="cls-1" x="1" y="1" width="358" height="48" rx="9"/>
+      <g
+         id="Name-2"
+         data-name="Name"
+         transform="translate(960 410)">
+        <g
+           id="Rectangle_598-2"
+           data-name="Rectangle 598"
+           class="cls-7"
+           transform="translate(220 220)">
+          <rect
+             class="cls-15"
+             width="360"
+             height="50"
+             rx="10"
+             id="rect285" />
+          <rect
+             class="cls-1"
+             x="1"
+             y="1"
+             width="358"
+             height="48"
+             rx="9"
+             id="rect287" />
         </g>
-        <text id="Demo_ULAB-2" data-name="Demo ULAB" class="cls-8" transform="translate(240 250)"><tspan x="0" y="0">Demo ULAB</tspan></text>
-        <text id="Project_owner" data-name="Project owner" class="cls-9" transform="translate(220 209)"><tspan x="0" y="0">Project owner</tspan></text>
+        <text
+           id="Demo_ULAB-2"
+           data-name="Demo ULAB"
+           class="cls-8"
+           transform="translate(240 250)">
+          <tspan
+             x="0"
+             y="0"
+             id="tspan290">Demo ULAB</tspan>
+        </text>
+        <text
+           id="Project_owner"
+           data-name="Project owner"
+           class="cls-9"
+           transform="translate(220 209)">
+          <tspan
+             x="0"
+             y="0"
+             id="tspan293">Project owner</tspan>
+        </text>
       </g>
-      <g id="Group_12" data-name="Group 12" transform="translate(0 163)">
-        <g id="Button_Primary" data-name="Button Primary" transform="translate(1058 548.622)">
-          <g id="Rectangle_1091" data-name="Rectangle 1091" class="cls-11" transform="translate(120 217.378)">
-            <rect class="cls-15" width="360" height="79" rx="4"/>
-            <rect class="cls-1" x="1" y="1" width="358" height="77" rx="3"/>
+      <g
+         id="Group_12"
+         data-name="Group 12"
+         transform="translate(0 163)">
+        <g
+           id="Button_Primary"
+           data-name="Button Primary"
+           transform="translate(1058 548.622)">
+          <g
+             id="Rectangle_1091"
+             data-name="Rectangle 1091"
+             class="cls-11"
+             transform="translate(120 217.378)">
+            <rect
+               class="cls-15"
+               width="360"
+               height="79"
+               rx="4"
+               id="rect297" />
+            <rect
+               class="cls-1"
+               x="1"
+               y="1"
+               width="358"
+               height="77"
+               rx="3"
+               id="rect299" />
           </g>
-          <text id="START_STREAM" data-name="START STREAM" class="cls-12" transform="translate(300 267.378)"><tspan x="-116.382" y="0">START STREAM</tspan></text>
+          <text
+             id="START_STREAM"
+             data-name="START STREAM"
+             class="cls-12"
+             transform="translate(300 267.378)">
+            <tspan
+               x="-116.382"
+               y="0"
+               id="tspan302">START STREAM</tspan>
+          </text>
         </g>
       </g>
     </g>
-    <g id="Repeat_Grid_8" data-name="Repeat Grid 8" class="cls-13" transform="translate(328 -378)">
-      <g transform="translate(-280 -80)">
-        <g id="Rectangle_1092" data-name="Rectangle 1092" class="cls-14" transform="translate(280 80)">
-          <rect class="cls-15" width="520" height="340"/>
-          <rect class="cls-1" x="0.5" y="0.5" width="519" height="339"/>
+    <g
+       id="Repeat_Grid_8"
+       data-name="Repeat Grid 8"
+       class="cls-13"
+       transform="translate(328 -378)"
+       clip-path="url(#clip-path-2)">
+      <g
+         transform="translate(-280 -80)"
+         id="g313">
+        <g
+           id="Rectangle_1092"
+           data-name="Rectangle 1092"
+           class="cls-14"
+           transform="translate(280 80)">
+          <rect
+             class="cls-15"
+             width="520"
+             height="340"
+             id="rect308" />
+          <rect
+             class="cls-1"
+             x="0.5"
+             y="0.5"
+             width="519"
+             height="339"
+             id="rect310" />
         </g>
       </g>
-      <g transform="translate(257 -80)">
-        <g id="Rectangle_1092-2" data-name="Rectangle 1092" class="cls-14" transform="translate(280 80)">
-          <rect class="cls-15" width="520" height="340"/>
-          <rect class="cls-1" x="0.5" y="0.5" width="519" height="339"/>
+      <g
+         transform="translate(257 -80)"
+         id="g320">
+        <g
+           id="Rectangle_1092-2"
+           data-name="Rectangle 1092"
+           class="cls-14"
+           transform="translate(280 80)">
+          <rect
+             class="cls-15"
+             width="520"
+             height="340"
+             id="rect315" />
+          <rect
+             class="cls-1"
+             x="0.5"
+             y="0.5"
+             width="519"
+             height="339"
+             id="rect317" />
         </g>
       </g>
-      <g transform="translate(-280 289)">
-        <g id="Rectangle_1092-3" data-name="Rectangle 1092" class="cls-14" transform="translate(280 80)">
-          <rect class="cls-15" width="520" height="340"/>
-          <rect class="cls-1" x="0.5" y="0.5" width="519" height="339"/>
+      <g
+         transform="translate(-280 289)"
+         id="g327">
+        <g
+           id="Rectangle_1092-3"
+           data-name="Rectangle 1092"
+           class="cls-14"
+           transform="translate(280 80)">
+          <rect
+             class="cls-15"
+             width="520"
+             height="340"
+             id="rect322" />
+          <rect
+             class="cls-1"
+             x="0.5"
+             y="0.5"
+             width="519"
+             height="339"
+             id="rect324" />
         </g>
       </g>
-      <g transform="translate(257 289)">
-        <g id="Rectangle_1092-4" data-name="Rectangle 1092" class="cls-14" transform="translate(280 80)">
-          <rect class="cls-15" width="520" height="340"/>
-          <rect class="cls-1" x="0.5" y="0.5" width="519" height="339"/>
+      <g
+         transform="translate(257 289)"
+         id="g334">
+        <g
+           id="Rectangle_1092-4"
+           data-name="Rectangle 1092"
+           class="cls-14"
+           transform="translate(280 80)">
+          <rect
+             class="cls-15"
+             width="520"
+             height="340"
+             id="rect329" />
+          <rect
+             class="cls-1"
+             x="0.5"
+             y="0.5"
+             width="519"
+             height="339"
+             id="rect331" />
         </g>
       </g>
     </g>
   </g>
+  <text
+     xml:space="preserve"
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:33.33333333px;line-height:1.25;font-family:SegoeUI, 'Segoe UI';-inkscape-font-specification:'SegoeUI, Segoe UI';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;"
+     x="443.38547"
+     y="-528.52637"
+     id="text720"><tspan
+       sodipodi:role="line"
+       x="448.85422"
+       y="-528.52637"
+       style="font-size:33.33333333px;line-height:0;text-align:center;text-anchor:middle;fill:#666666;"
+       id="tspan800">Camera </tspan><tspan
+       sodipodi:role="line"
+       x="443.38547"
+       y="-478.52637"
+       style="font-size:33.33333333px;line-height:0;text-align:center;text-anchor:middle;fill:#666666;"
+       id="tspan794">preview</tspan></text>
+  <text
+     xml:space="preserve"
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:1.25;font-family:SegoeUI, 'Segoe UI';-inkscape-font-specification:'SegoeUI, Segoe UI';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+     x="584.66425"
+     y="-190.20345"
+     id="text720-2"><tspan
+       sodipodi:role="line"
+       x="584.66425"
+       y="-190.20345"
+       style="font-size:33.33333333px;line-height:0;text-align:center;text-anchor:middle;fill:#666666"
+       id="tspan827">Selected camera</tspan></text>
 </svg>

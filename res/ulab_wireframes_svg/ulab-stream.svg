@@ -1,6 +1,52 @@
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="108 1730 1920 1080">
-  <defs>
-    <style>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   viewBox="108 1730 1920 1080"
+   version="1.1"
+   id="svg1083"
+   sodipodi:docname="ulab-stream.svg"
+   inkscape:version="0.92.3 (2405546, 2018-03-11)">
+  <metadata
+     id="metadata1087">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1366"
+     inkscape:window-height="706"
+     id="namedview1085"
+     showgrid="false"
+     inkscape:zoom="0.59791667"
+     inkscape:cx="1189.4475"
+     inkscape:cy="441.59517"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg1083" />
+  <defs
+     id="defs971">
+    <style
+       id="style960">
       .cls-1, .cls-7 {
         fill: none;
       }
@@ -79,91 +125,462 @@
         stroke: none;
       }
     </style>
-    <clipPath id="clip-path">
-      <rect class="cls-1" width="1060" height="720"/>
+    <clipPath
+       id="clip-path">
+      <rect
+         class="cls-1"
+         width="1060"
+         height="720"
+         id="rect962" />
     </clipPath>
-    <clipPath id="clip-path-2">
-      <rect class="cls-1" width="580" height="460"/>
+    <clipPath
+       id="clip-path-2">
+      <rect
+         class="cls-1"
+         width="580"
+         height="460"
+         id="rect965" />
     </clipPath>
-    <clipPath id="clip-ulab_stream">
-      <rect x="108" y="1730" width="1920" height="1080"/>
+    <clipPath
+       id="clip-ulab_stream">
+      <rect
+         x="108"
+         y="1730"
+         width="1920"
+         height="1080"
+         id="rect968" />
     </clipPath>
   </defs>
-  <g id="ulab_stream" data-name="ulab/stream" class="cls-2">
-    <rect class="cls-16" x="108" y="1730" width="1920" height="1080"/>
-    <g id="Side_bar_2" data-name="Side bar 2" transform="translate(108 1730)">
-      <rect id="Base" class="cls-3" width="160" height="1080"/>
-      <text id="CONTROL" class="cls-4" transform="translate(40 102)"><tspan x="0" y="0">CONTROL</tspan></text>
-      <text id="EDITOR" class="cls-4" transform="translate(41 168.144)"><tspan x="0" y="0">EDITOR</tspan></text>
-      <text id="FORMS" class="cls-4" transform="translate(40 234.287)"><tspan x="0" y="0">FORMS</tspan></text>
-      <text id="BLOG" class="cls-4" transform="translate(40 300.431)"><tspan x="0" y="0">BLOG</tspan></text>
-      <text id="CONTACT" class="cls-4" transform="translate(40 366.575)"><tspan x="0" y="0">CONTACT</tspan></text>
+  <g
+     id="ulab_stream"
+     data-name="ulab/stream"
+     class="cls-2"
+     clip-path="url(#clip-ulab_stream)">
+    <rect
+       class="cls-16"
+       x="108"
+       y="1730"
+       width="1920"
+       height="1080"
+       id="rect973" />
+    <g
+       id="Side_bar_2"
+       data-name="Side bar 2"
+       transform="translate(108 1730)">
+      <rect
+         id="Base"
+         class="cls-3"
+         width="160"
+         height="1080" />
+      <text
+         id="CONTROL"
+         class="cls-4"
+         transform="translate(40 102)">
+        <tspan
+           x="0"
+           y="0"
+           id="tspan976">CONTROL</tspan>
+      </text>
+      <text
+         id="EDITOR"
+         class="cls-4"
+         transform="translate(41 168.144)">
+        <tspan
+           x="0"
+           y="0"
+           id="tspan979">EDITOR</tspan>
+      </text>
+      <text
+         id="FORMS"
+         class="cls-4"
+         transform="translate(40 234.287)">
+        <tspan
+           x="0"
+           y="0"
+           id="tspan982">FORMS</tspan>
+      </text>
+      <text
+         id="BLOG"
+         class="cls-4"
+         transform="translate(40 300.431)">
+        <tspan
+           x="0"
+           y="0"
+           id="tspan985">BLOG</tspan>
+      </text>
+      <text
+         id="CONTACT"
+         class="cls-4"
+         transform="translate(40 366.575)">
+        <tspan
+           x="0"
+           y="0"
+           id="tspan988">CONTACT</tspan>
+      </text>
     </g>
-    <g id="Repeat_Grid_5" data-name="Repeat Grid 5" class="cls-5" transform="translate(308 1860)">
-      <g transform="translate(-280 -80)">
-        <g id="Rectangle_1092" data-name="Rectangle 1092" class="cls-6" transform="translate(280 80)">
-          <rect class="cls-15" width="520" height="340"/>
-          <rect class="cls-1" x="0.5" y="0.5" width="519" height="339"/>
+    <g
+       id="Repeat_Grid_5"
+       data-name="Repeat Grid 5"
+       class="cls-5"
+       transform="translate(308 1860)"
+       clip-path="url(#clip-path)">
+      <g
+         transform="translate(-280 -80)"
+         id="g997">
+        <g
+           id="Rectangle_1092"
+           data-name="Rectangle 1092"
+           class="cls-6"
+           transform="translate(280 80)">
+          <rect
+             class="cls-15"
+             width="520"
+             height="340"
+             id="rect992" />
+          <rect
+             class="cls-1"
+             x="0.5"
+             y="0.5"
+             width="519"
+             height="339"
+             id="rect994" />
         </g>
       </g>
-      <g transform="translate(257 -80)">
-        <g id="Rectangle_1092-2" data-name="Rectangle 1092" class="cls-6" transform="translate(280 80)">
-          <rect class="cls-15" width="520" height="340"/>
-          <rect class="cls-1" x="0.5" y="0.5" width="519" height="339"/>
+      <g
+         transform="translate(257 -80)"
+         id="g1004">
+        <g
+           id="Rectangle_1092-2"
+           data-name="Rectangle 1092"
+           class="cls-6"
+           transform="translate(280 80)">
+          <rect
+             class="cls-15"
+             width="520"
+             height="340"
+             id="rect999" />
+          <rect
+             class="cls-1"
+             x="0.5"
+             y="0.5"
+             width="519"
+             height="339"
+             id="rect1001" />
         </g>
       </g>
-      <g transform="translate(-280 289)">
-        <g id="Rectangle_1092-3" data-name="Rectangle 1092" class="cls-6" transform="translate(280 80)">
-          <rect class="cls-15" width="520" height="340"/>
-          <rect class="cls-1" x="0.5" y="0.5" width="519" height="339"/>
+      <g
+         transform="translate(-280 289)"
+         id="g1011">
+        <g
+           id="Rectangle_1092-3"
+           data-name="Rectangle 1092"
+           class="cls-6"
+           transform="translate(280 80)">
+          <rect
+             class="cls-15"
+             width="520"
+             height="340"
+             id="rect1006" />
+          <rect
+             class="cls-1"
+             x="0.5"
+             y="0.5"
+             width="519"
+             height="339"
+             id="rect1008" />
         </g>
       </g>
-      <g transform="translate(257 289)">
-        <g id="Rectangle_1092-4" data-name="Rectangle 1092" class="cls-6" transform="translate(280 80)">
-          <rect class="cls-15" width="520" height="340"/>
-          <rect class="cls-1" x="0.5" y="0.5" width="519" height="339"/>
+      <g
+         transform="translate(257 289)"
+         id="g1018">
+        <g
+           id="Rectangle_1092-4"
+           data-name="Rectangle 1092"
+           class="cls-6"
+           transform="translate(280 80)">
+          <rect
+             class="cls-15"
+             width="520"
+             height="340"
+             id="rect1013" />
+          <rect
+             class="cls-1"
+             x="0.5"
+             y="0.5"
+             width="519"
+             height="339"
+             id="rect1015" />
         </g>
       </g>
     </g>
-    <g id="Button_Primary" data-name="Button Primary" transform="translate(888 2405)">
-      <g id="Rectangle_1091" data-name="Rectangle 1091" class="cls-7" transform="translate(120 201)">
-        <rect class="cls-15" width="360" height="74" rx="4"/>
-        <rect class="cls-1" x="1" y="1" width="358" height="72" rx="3"/>
+    <g
+       id="Button_Primary"
+       data-name="Button Primary"
+       transform="translate(888 2405)">
+      <g
+         id="Rectangle_1091"
+         data-name="Rectangle 1091"
+         class="cls-7"
+         transform="translate(120 201)">
+        <rect
+           class="cls-15"
+           width="360"
+           height="74"
+           rx="4"
+           id="rect1021" />
+        <rect
+           class="cls-1"
+           x="1"
+           y="1"
+           width="358"
+           height="72"
+           rx="3"
+           id="rect1023" />
       </g>
-      <text id="STOP_STREAM" data-name="STOP STREAM" class="cls-8" transform="translate(300 249)"><tspan x="-107.798" y="0">STOP STREAM</tspan></text>
+      <text
+         id="STOP_STREAM"
+         data-name="STOP STREAM"
+         class="cls-8"
+         transform="translate(300 249)">
+        <tspan
+           x="-107.798"
+           y="0"
+           id="tspan1026">STOP STREAM</tspan>
+      </text>
     </g>
-    <g id="Textbox_Filled" data-name="Textbox Filled" class="cls-9" transform="translate(1408 1790)">
-      <g id="Textbox_Filled-2" data-name="Textbox Filled" transform="translate(-810 -520)">
-        <g id="Rectangle_681" data-name="Rectangle 681" class="cls-10" transform="translate(810 520)">
-          <rect class="cls-15" width="580" height="140" rx="4"/>
-          <rect class="cls-1" x="1.5" y="1.5" width="577" height="137" rx="2.5"/>
+    <g
+       id="Textbox_Filled"
+       data-name="Textbox Filled"
+       class="cls-9"
+       transform="translate(1408 1790)"
+       clip-path="url(#clip-path-2)">
+      <g
+         id="Textbox_Filled-2"
+         data-name="Textbox Filled"
+         transform="translate(-810 -520)">
+        <g
+           id="Rectangle_681"
+           data-name="Rectangle 681"
+           class="cls-10"
+           transform="translate(810 520)">
+          <rect
+             class="cls-15"
+             width="580"
+             height="140"
+             rx="4"
+             id="rect1030" />
+          <rect
+             class="cls-1"
+             x="1.5"
+             y="1.5"
+             width="577"
+             height="137"
+             rx="2.5"
+             id="rect1032" />
         </g>
-        <text id="Lorem_ipsum_dolor_sit_amet_consectetur_adipisicing_elit_sed_do_eiusmod_tempor_incididunt_ut_ero_labore_et_dolore" data-name="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut ero labore et dolore" class="cls-11" transform="translate(847.419 540)"><tspan x="0" y="13">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor </tspan><tspan x="0" y="37">incididunt ut ero labore et dolore</tspan></text>
-        <text id="_00:10:12" data-name="00:10:12" class="cls-12" transform="translate(1344 640)"><tspan x="-20.015" y="0">00:10:12</tspan></text>
+        <text
+           id="Lorem_ipsum_dolor_sit_amet_consectetur_adipisicing_elit_sed_do_eiusmod_tempor_incididunt_ut_ero_labore_et_dolore"
+           data-name="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut ero labore et dolore"
+           class="cls-11"
+           transform="translate(847.419 540)">
+          <tspan
+             x="0"
+             y="13"
+             id="tspan1035">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor </tspan>
+          <tspan
+             x="0"
+             y="37"
+             id="tspan1037">incididunt ut ero labore et dolore</tspan>
+        </text>
+        <text
+           id="_00:10:12"
+           data-name="00:10:12"
+           class="cls-12"
+           transform="translate(1344 640)">
+          <tspan
+             x="-20.015"
+             y="0"
+             id="tspan1040">00:10:12</tspan>
+        </text>
       </g>
-      <g id="Textbox_Filled-3" data-name="Textbox Filled" transform="translate(-810 -360)">
-        <g id="Rectangle_681-2" data-name="Rectangle 681" class="cls-10" transform="translate(810 520)">
-          <rect class="cls-15" width="580" height="140" rx="4"/>
-          <rect class="cls-1" x="1.5" y="1.5" width="577" height="137" rx="2.5"/>
+      <g
+         id="Textbox_Filled-3"
+         data-name="Textbox Filled"
+         transform="translate(-810 -360)">
+        <g
+           id="Rectangle_681-2"
+           data-name="Rectangle 681"
+           class="cls-10"
+           transform="translate(810 520)">
+          <rect
+             class="cls-15"
+             width="580"
+             height="140"
+             rx="4"
+             id="rect1044" />
+          <rect
+             class="cls-1"
+             x="1.5"
+             y="1.5"
+             width="577"
+             height="137"
+             rx="2.5"
+             id="rect1046" />
         </g>
-        <text id="Lorem_ipsum_dolor_sit_amet_consectetur_adipisicing_elit_sed_do_eiusmod_tempor_incididunt_ut_ero_labore_et_dolore-2" data-name="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut ero labore et dolore" class="cls-11" transform="translate(847.419 540)"><tspan x="0" y="13">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor </tspan><tspan x="0" y="37">incididunt ut ero labore et dolore</tspan></text>
-        <text id="_00:12:02" data-name="00:12:02" class="cls-12" transform="translate(1344 640)"><tspan x="-20.015" y="0">00:12:02</tspan></text>
+        <text
+           id="Lorem_ipsum_dolor_sit_amet_consectetur_adipisicing_elit_sed_do_eiusmod_tempor_incididunt_ut_ero_labore_et_dolore-2"
+           data-name="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut ero labore et dolore"
+           class="cls-11"
+           transform="translate(847.419 540)">
+          <tspan
+             x="0"
+             y="13"
+             id="tspan1049">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor </tspan>
+          <tspan
+             x="0"
+             y="37"
+             id="tspan1051">incididunt ut ero labore et dolore</tspan>
+        </text>
+        <text
+           id="_00:12:02"
+           data-name="00:12:02"
+           class="cls-12"
+           transform="translate(1344 640)">
+          <tspan
+             x="-20.015"
+             y="0"
+             id="tspan1054">00:12:02</tspan>
+        </text>
       </g>
-      <g id="Textbox_Filled-4" data-name="Textbox Filled" transform="translate(-810 -200)">
-        <g id="Rectangle_681-3" data-name="Rectangle 681" class="cls-10" transform="translate(810 520)">
-          <rect class="cls-15" width="580" height="140" rx="4"/>
-          <rect class="cls-1" x="1.5" y="1.5" width="577" height="137" rx="2.5"/>
+      <g
+         id="Textbox_Filled-4"
+         data-name="Textbox Filled"
+         transform="translate(-810 -200)">
+        <g
+           id="Rectangle_681-3"
+           data-name="Rectangle 681"
+           class="cls-10"
+           transform="translate(810 520)">
+          <rect
+             class="cls-15"
+             width="580"
+             height="140"
+             rx="4"
+             id="rect1058" />
+          <rect
+             class="cls-1"
+             x="1.5"
+             y="1.5"
+             width="577"
+             height="137"
+             rx="2.5"
+             id="rect1060" />
         </g>
-        <text id="Lorem_ipsum_dolor_sit_amet_consectetur_adipisicing_elit_sed_do_eiusmod_tempor_incididunt_ut_ero_labore_et_dolore-3" data-name="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut ero labore et dolore" class="cls-11" transform="translate(847.419 540)"><tspan x="0" y="13">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor </tspan><tspan x="0" y="37">incididunt ut ero labore et dolore</tspan></text>
-        <text id="_00:13:12" data-name="00:13:12" class="cls-12" transform="translate(1344 640)"><tspan x="-20.015" y="0">00:13:12</tspan></text>
+        <text
+           id="Lorem_ipsum_dolor_sit_amet_consectetur_adipisicing_elit_sed_do_eiusmod_tempor_incididunt_ut_ero_labore_et_dolore-3"
+           data-name="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut ero labore et dolore"
+           class="cls-11"
+           transform="translate(847.419 540)">
+          <tspan
+             x="0"
+             y="13"
+             id="tspan1063">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor </tspan>
+          <tspan
+             x="0"
+             y="37"
+             id="tspan1065">incididunt ut ero labore et dolore</tspan>
+        </text>
+        <text
+           id="_00:13:12"
+           data-name="00:13:12"
+           class="cls-12"
+           transform="translate(1344 640)">
+          <tspan
+             x="-20.015"
+             y="0"
+             id="tspan1068">00:13:12</tspan>
+        </text>
       </g>
     </g>
-    <g id="Textbox_Empty" data-name="Textbox Empty" transform="translate(598 1910)">
-      <g id="Rectangle_683" data-name="Rectangle 683" class="cls-13" transform="translate(810 360)">
-        <rect class="cls-15" width="580" height="140" rx="4"/>
-        <rect class="cls-1" x="1.5" y="1.5" width="577" height="137" rx="2.5"/>
+    <g
+       id="Textbox_Empty"
+       data-name="Textbox Empty"
+       transform="translate(598 1910)">
+      <g
+         id="Rectangle_683"
+         data-name="Rectangle 683"
+         class="cls-13"
+         transform="translate(810 360)">
+        <rect
+           class="cls-15"
+           width="580"
+           height="140"
+           rx="4"
+           id="rect1073" />
+        <rect
+           class="cls-1"
+           x="1.5"
+           y="1.5"
+           width="577"
+           height="137"
+           rx="2.5"
+           id="rect1075" />
       </g>
-      <text id="New_note..." data-name="New note..." class="cls-14" transform="translate(847.419 393)"><tspan x="0" y="0">New note...</tspan></text>
+      <text
+         id="New_note..."
+         data-name="New note..."
+         class="cls-14"
+         transform="translate(847.419 393)">
+        <tspan
+           x="0"
+           y="0"
+           id="tspan1078">New note...</tspan>
+      </text>
     </g>
   </g>
+  <text
+     xml:space="preserve"
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:1.25;font-family:SegoeUI, 'Segoe UI';-inkscape-font-specification:'SegoeUI, Segoe UI';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+     x="420.21103"
+     y="2048.3943"
+     id="text1091"><tspan
+       sodipodi:role="line"
+       id="tspan1089"
+       x="420.21103"
+       y="2048.3943"
+       style="fill:#666666">Camera preview</tspan><tspan
+       sodipodi:role="line"
+       x="420.21103"
+       y="2098.3943"
+       style="fill:#666666"
+       id="tspan1093" /></text>
+  <rect
+     class="cls-1"
+     x="1146.561"
+     y="2648.5645"
+     width="358"
+     height="72"
+     rx="3"
+     id="rect1023-2"
+     style="fill:none" />
+  <text
+     y="2457.2119"
+     x="1974.3479"
+     id="STOP_STREAM-6"
+     data-name="STOP STREAM"
+     class="cls-8"
+     style="font-weight:700;font-size:30px;font-family:Arial-BoldMT, Arial;fill:#2699fb">
+    <tspan
+       x="1866.5499"
+       y="2457.2119"
+       id="tspan1026-6"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:24px;font-family:Arial-BoldMT, Arial;-inkscape-font-specification:'Arial-BoldMT, Arial'">Add note</tspan>
+  </text>
+  <rect
+     style="fill:none;stroke-width:1;stroke-miterlimit:4;stroke-dasharray:none;stroke:#2699fb;stroke-opacity:1"
+     id="rect1143"
+     width="138.81534"
+     height="36.794426"
+     x="1845.7003"
+     y="2430.3484" />
 </svg>

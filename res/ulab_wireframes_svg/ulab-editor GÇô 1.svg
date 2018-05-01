@@ -36,9 +36,9 @@
      inkscape:window-height="706"
      id="namedview234"
      showgrid="false"
-     inkscape:zoom="0.475"
-     inkscape:cx="966.71183"
-     inkscape:cy="533.33534"
+     inkscape:zoom="0.33587572"
+     inkscape:cx="943.45907"
+     inkscape:cy="524.71536"
      inkscape:window-x="-8"
      inkscape:window-y="-8"
      inkscape:window-maximized="1"
@@ -335,12 +335,14 @@
          id="src_files_of_the_videos_and_subtitles_with_some_sort_of_tree_structure"
          data-name="src files of the videos and subtitles with some sort of tree structure"
          class="cls-8"
-         transform="translate(262,298.039)"
-         style="font-weight:600;font-size:28px;font-family:SegoeUI-Semibold, 'Segoe UI'">
+         style="font-weight:600;font-size:28px;font-family:SegoeUI-Semibold, 'Segoe UI'"
+         x="337.78949"
+         y="394.8811">
         <tspan
-           x="0"
-           y="0"
-           id="tspan189">Source files</tspan>
+           x="337.78949"
+           y="394.8811"
+           id="tspan189"
+           style="font-size:37.33333206px;fill:#666666;-inkscape-font-specification:'SegoeUI-Semibold, Segoe UI';font-family:SegoeUI-Semibold, 'Segoe UI';font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal">Source files</tspan>
       </text>
     </g>
     <path
@@ -382,7 +384,8 @@
           <tspan
              x="0"
              y="0"
-             id="tspan205">subtitles</tspan>
+             id="tspan205"
+             style="fill:#666666;font-size:29.33333333px;-inkscape-font-specification:'SegoeUI-Semibold, Segoe UI';font-family:SegoeUI-Semibold, 'Segoe UI';font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal">subtitles</tspan>
         </text>
       </g>
     </g>
@@ -481,4 +484,22 @@
       </g>
     </g>
   </g>
+  <text
+     y="832.61194"
+     x="3510.5144"
+     id="video_timeline-2-1"
+     data-name="video timeline"
+     class="cls-5"
+     style="font-size:30px;font-family:SegoeUI, 'Segoe UI';fill:#707070">
+    <tspan
+       x="3417.0425"
+       y="832.61194"
+       id="tspan171-7"
+       style="font-size:40px">Video preview</tspan>
+  </text>
+  <path
+     id="path5689"
+     d="m 4094.7187,1233.8739 -5.7657,-0.9444 c -0.3376,-1.1595 -0.7991,-2.274 -1.3767,-3.3288 l 3.3659,-4.807 c 0.2721,-0.3881 0.2253,-0.917 -0.1094,-1.2533 l -3.794,-3.8001 c -0.3385,-0.3382 -0.8712,-0.3822 -1.2595,-0.1017 l -4.7249,3.4032 c -1.0624,-0.5885 -2.1844,-1.0558 -3.3482,-1.3951 l -1.006,-5.7543 c -0.081,-0.4672 -0.4867,-0.8094 -0.9608,-0.8094 h -5.3659 c -0.478,0 -0.8858,0.347 -0.9629,0.8202 l -0.9326,5.723 c -1.1708,0.3373 -2.2948,0.7997 -3.3533,1.3804 l -4.7121,-3.3728 c -0.3892,-0.2786 -0.919,-0.2336 -1.2576,0.1036 l -3.7921,3.8001 c -0.3346,0.3353 -0.3815,0.8632 -0.1092,1.2513 l 3.3161,4.7542 c -0.5903,1.0706 -1.0605,2.2036 -1.4031,3.3827 l -5.6886,0.9491 c -0.4703,0.079 -0.8156,0.487 -0.8156,0.964 v 5.377 c 0,0.4741 0.3394,0.8798 0.8048,0.963 l 5.6887,1.0108 c 0.3405,1.1761 0.8108,2.3092 1.4029,3.3826 l -3.357,4.7054 c -0.2771,0.388 -0.2332,0.9208 0.1034,1.26 l 3.7933,3.804 c 0.3344,0.3353 0.8622,0.3823 1.2495,0.1095 l 4.7513,-3.3347 c 1.0664,0.5876 2.1931,1.0539 3.3611,1.3922 l 0.9521,5.7299 c 0.077,0.4701 0.4838,0.8153 0.9609,0.8153 h 5.3659 c 0.4731,0 0.878,-0.3402 0.9599,-0.8066 l 1.0196,-5.7581 c 1.1698,-0.3452 2.2907,-0.8145 3.3463,-1.4029 l 4.7852,3.3639 c 0.3884,0.2747 0.9151,0.2268 1.2509,-0.1085 l 3.7931,-3.804 c 0.3375,-0.3392 0.3814,-0.8739 0.1015,-1.2629 l -3.4127,-4.7484 c 0.5786,-1.0559 1.0381,-2.1724 1.3727,-3.3318 l 5.7736,-1.0157 c 0.4673,-0.082 0.8068,-0.4889 0.8068,-0.963 v -5.377 c 0,-0.479 -0.3453,-0.8876 -0.8176,-0.9649 z m -21.6193,10.5378 c -3.7716,0 -6.8293,-3.0638 -6.8293,-6.8434 0,-3.7794 3.0577,-6.8432 6.8293,-6.8432 3.7716,0 6.8291,3.0638 6.8291,6.8432 0,3.7796 -3.0575,6.8434 -6.8291,6.8434 z"
+     inkscape:connector-curvature="0"
+     style="fill:#2699fb;fill-opacity:1;stroke-width:0.97661495" />
 </svg>

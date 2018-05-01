@@ -678,23 +678,48 @@ Dále je nutné tento neorganizovaný seznam funkcionalit seskupit tak, aby to c
 \end{itemize}
 
 \subsubsection{Task Graf} \label{subsubsec:navrh_frontend_ui_taskgraf}
+Zde jsou zobrazeny task grafy vytvořené ze zmíněného task listu. Byly vytvořeny grafy dva, přičemž jeden se týká oblasti nastavování streamování a náhledu probíhajícího streamování (obrázek \ref{img:navrh_frontend_ui_taskgraf_1}) a druhý se týká webového videopřehrávače a editoru (obrázek \ref{img:navrh_frontend_ui_taskgraf_2}). V grafech jsou znázorněny závislosti mezi uživatelskými akcemi reprezentované řádkami v task listu. Je v nich náčrt rozvržení webových stránek (modrý obdélník) a jednotlivých akcí (žlutý obdélník) na každé z těchto stran.
+\\
+\begin{figure}[h]\centering
+	\includegraphics[width=0.7\textwidth]{images/ui_task_flow_1.eps}
+	\caption{Task graf pro nastavení a náhled streamování}\label{img:navrh_frontend_ui_taskgraf_2}
+\end{figure}
+\\
+\begin{figure}[h]\centering
+	\includegraphics[width=1\textwidth]{images/ui_task_flow_2.eps}
+	\caption{Task graf pro video přehrávač a editor}\label{img:navrh_frontend_ui_taskgraf_1}
+\end{figure}
 
 \subsubsection{Prototypování} \label{subsubsec:navrh_frontend_ui_proto}
-Z již uspořádaného task listu a z něj vytvořeného task grafu je patrné, že pro realizaci UI jsou potřeba dvě až tři webové stránky (jedna pro přehrávání a úpravu záznamů, další pro nastavení a spuštění nahrávání/streamování a případná třetí pro sledování průběhu nahrávání/streamování). Byly tedy vytvořeny prototypy stránek pomocí wireframů. Nejprve se prototypy načrtly na papír ke zjištění základních nedostatků a později se z těchto náčrtů vytvořily interaktivní wireframy.
+Z již uspořádaného task listu a z něj vytvořených task grafů je patrné, že pro realizaci UI jsou potřeba tři webové stránky (jedna pro přehrávání a úpravu záznamů, další pro nastavení a spuštění nahrávání/streamování a třetí pro sledování průběhu nahrávání/streamování) a jedno modální okno pro nastavení exportu videí ve video editoru. Byly tedy vytvořeny prototypy stránek jako wireframe. Nejprve se prototypy načrtly na papír ke zjištění základních nedostatků a později se z těchto náčrtů vytvořil interaktivní wireframe. Při tvorbě wireframu se dá postupovat metodou \uv{od shora} (nejprve návrh hlavního rozvržení stránky a poté zaměření na jednotlivé komponenty) či \uv{od zdola} (opak k předchozí metodě). Zde se však postupovalo kombinovaně, tedy nejprve se promyslely komponenty a s vědomím potřebného místa pro ně se navrhovalo rozvržení stránky. 
 
-	Při tvorbě wireframů se dá postupovat metodou \uv{od shora} (nejprve návrh hlavního rozvržení stránky a poté zaměření na jednotlivé komponenty) či \uv{od zdola} (opak k předchozí metodě). Zde se však postupovalo kombinovaně, tedy nejprve se promyslely komponenty a s vědomím potřebného místa pro ně se navrhovalo rozvržení stránky.
+	Prototyp UI je zde zobrazen jako screenshoty stránek interaktivních wireframu a to čtyřmi obrázky. Obrázek \ref{img:navrh_frontend_ui_wf_config} představuje webovou stránku s nastavením nahrávání a streamování. V sekci o nastavení streamování v task listu (vizte \ref{subsubsec:navrh_frontend_ui_tasklist}) se první dva body týkají zobrazení zařízení schopných nahrávání a jejich následného výběru. Pro tyto funkcionality se alokovala horní část stránky, která obsahuje horizontální seznam zařízení spolu s jejich náhledy. Dále byla zabrána střední část webové stránky, tedy hlavní část obsahu, ve které si bude uživatel moci stanovit pozice jednotlivých kamer. Dále je do pravé spodní části obrazovky přidáno tlačítko pro spuštění nahrávání a streamování. V poslední řadě jsou nad tímto tlačítkem oblast věnována nastavení cíle streamu a podobně.
 
- .... "tolik elementů pro control (tlacitek), tolik main display elementu, tolik status lajn, tolik kamer ..... atd -> tim padem se tahle obrazovka rozdeli na tolik casti, ktere obsahujou to a to , atd"
+Na obrázku \ref{img:navrh_frontend_ui_wf_preview} je stránka wireframu pro sledování průběhu streamování. V task listu jsou v sekci o náhledu streamování pouze tři hlavní tasky -- zobrazení streamovaného obsahu, možnost přidání komentáře ke streamu a zastavení streamování. Zastavení streamování je tlačítko podobné funkcionality jako spuštění streamování v obrazovce na obrázku  \ref{img:navrh_frontend_ui_wf_config} a tak je žádoucí pro něj alokovat prostor na stejném místě v obrazovce. Stejně tak zobrazení streamovaného obsahu, které bude mít stejný tvar a obdobnou velikost jako prostor s vybranými kamerami z obrázku\ref{img:navrh_frontend_ui_wf_config}, zaujme stejné místo v prostoru obrazovky. Zbylé místo v pravé části nad tlačítkem pro zastavení streamování pak zabere funkcionalita pro přidání komentářů a případně zobrazení nedávno přidaných. 
 
-screenshoty z hifi prototypes (interactive wireframes)
+Třetí a nejzajímavější obrazovka z wireframu v řadě, na obrázku \ref{img:navrh_frontend_ui_wf_editor}, se týká přehrávače a editoru videí. Této obrazovky se týka ta část task listu od bodu \uv{Spuštění editoru/přehrávače nahrávek} až do konce, přičemž pro část s úpravou videa pro export je věnováno modální okno vyjádřené obrázkem \ref{img:navrh_frontend_ui_wf_export}. Obrazovka pro videopřehrávač a editor nejprve v levé horní části obsahuje název projektu a ikonku pro export, která zobrazí zmíněné a dále popsané modální okno. Pod těmito prvky je rozvedený seznam různých nahrávek daného projektu. V pravé části obrazovky je pak samotný videopřehrávač, který přehrává media sestavená ve spodní části obrazovky na časové ose. Tato časová osa je rozdělena na tři části, jedna obsahuje videa, další audio stopy a poslední titulky, které byly generovány jako komentáře během streamování. Časová osa zobrazuje upravovaná media rozprostřená v čase zleva doprava. Zmíněné titulky/komentáře jsou pak ještě zobrazovány pod videopřehrávačem během přehrávání. Poslední a zároveň jedna z nejdůležitějších částí obrazovky je oblast mezi časovou osou a horní částí webové stránky. Nachází se zde pásová oblast, která obsahuje většinu kontrolních prvků pro práci s videem. Zleva jsou zde ikony pro střih videa, kopírování a mazání elementů časové osy, práci se zvukem přehrávaného videa, přidání médií na časovou osu, v další části pak spouštění, pozastavování a přetáčení přehrávaného obsahu a nakonec ikona pro nastavení obsahující například změnu rozlišení přehrávání či přepnutí do celoobrazovkového režimu.
 
-%\\
-%\begin{figure}[h]\centering
-%	\includegraphics[width=1\textwidth]{images/ui_.eps}
-%	\caption{Diagram nasazení}\label{img:navrh_frontend_}
-%\end{figure}
-
-
+	Po kliknutí na ikonu exportu vedle názvu projektu, na stránce s videopřehrávačem a editorem, se otevře modální okno s nastavením pro export. Toto okno je sestaveno na obrázku poslední obrazovky wireframu (\ref{img:navrh_frontend_ui_wf_export}).
+\\
+\begin{figure}[h]\centering
+	\includegraphics[width=1\textwidth]{images/ui_wf_ulab-config.eps}
+	\caption{Wireframe pro nastavení streamování}\label{img:navrh_frontend_ui_wf_config}
+\end{figure}
+\\
+\begin{figure}[h]\centering
+	\includegraphics[width=1\textwidth]{images/ui_wf_ulab-stream.eps}
+	\caption{Wireframe pro sledování průběhu streamování}\label{img:navrh_frontend_ui_wf_preview}
+\end{figure}
+\\
+\begin{figure}[h]\centering
+	\includegraphics[width=1\textwidth]{images/ui_wf_ulab-editor-1.eps}
+	\caption{Wireframe pro videopřehrávač a editor}\label{img:navrh_frontend_ui_wf_editor}
+\end{figure}
+\\
+\begin{figure}[h]\centering
+	\includegraphics[width=1\textwidth]{images/ui_wf_ulab-editor-export.eps}
+	\caption{Wireframe modálního okna pro export}\label{img:navrh_frontend_ui_wf_export}
+\end{figure}
 
 \section{Backend} \label{sec:navrh_backend}
 \subsection{Databázový model} \label{subsec:navrh_backend_databaze}

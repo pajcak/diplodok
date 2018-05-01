@@ -1,0 +1,932 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:i="http://ns.adobe.com/AdobeIllustrator/10.0/"
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   viewBox="4239 508 1920 1080"
+   version="1.1"
+   id="svg1231"
+   sodipodi:docname="ulab-editor-export.svg"
+   inkscape:version="0.92.3 (2405546, 2018-03-11)">
+  <metadata
+     id="metadata1235">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1366"
+     inkscape:window-height="706"
+     id="namedview1233"
+     showgrid="false"
+     inkscape:snap-bbox="true"
+     inkscape:zoom="0.32630031"
+     inkscape:cx="281.05452"
+     inkscape:cy="479.79947"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg1231" />
+  <defs
+     id="defs1031">
+    <linearGradient
+       inkscape:collect="always"
+       id="linearGradient1285">
+      <stop
+         style="stop-color:#2699fb;stop-opacity:1;"
+         offset="0"
+         id="stop1281" />
+      <stop
+         style="stop-color:#2699fb;stop-opacity:0;"
+         offset="1"
+         id="stop1283" />
+    </linearGradient>
+    <style
+       id="style1026">
+      .cls-1 {
+        clip-path: url(#clip-ulab_editor_4);
+      }
+
+      .cls-12, .cls-13, .cls-16, .cls-17, .cls-18, .cls-2, .cls-7 {
+        fill: #2699fb;
+      }
+
+      .cls-10, .cls-11, .cls-14, .cls-3, .cls-4 {
+        fill: #fff;
+      }
+
+      .cls-18, .cls-3 {
+        font-size: 15px;
+      }
+
+      .cls-12, .cls-18, .cls-3 {
+        font-family: ArialMT, Arial;
+      }
+
+      .cls-15, .cls-4 {
+        stroke: #2699fb;
+      }
+
+      .cls-21, .cls-5 {
+        fill: #707070;
+      }
+
+      .cls-16, .cls-5, .cls-7 {
+        font-size: 30px;
+      }
+
+      .cls-5 {
+        font-family: SegoeUI, Segoe UI;
+      }
+
+      .cls-6 {
+        fill: #f1f9ff;
+        stroke: #bce0fd;
+      }
+
+      .cls-15, .cls-6 {
+        stroke-width: 2px;
+      }
+
+      .cls-17, .cls-7, .cls-8, .cls-9 {
+        font-family: SegoeUI-Semibold, Segoe UI;
+        font-weight: 600;
+      }
+
+      .cls-8 {
+        font-size: 28px;
+      }
+
+      .cls-9 {
+        font-size: 26px;
+      }
+
+      .cls-11 {
+        stroke: #707070;
+      }
+
+      .cls-12 {
+        font-size: 14px;
+      }
+
+      .cls-13 {
+        font-size: 20px;
+      }
+
+      .cls-13, .cls-16 {
+        font-family: Arial-BoldMT, Arial;
+        font-weight: 700;
+      }
+
+      .cls-15, .cls-20 {
+        fill: none;
+      }
+
+      .cls-17 {
+        font-size: 40px;
+      }
+
+      .cls-19, .cls-21 {
+        stroke: none;
+      }
+    </style>
+    <clipPath
+       id="clip-ulab_editor_4">
+      <rect
+         x="4239"
+         y="508"
+         width="1920"
+         height="1080"
+         id="rect1028" />
+    </clipPath>
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient1285"
+       id="linearGradient1287"
+       x1="4779.1465"
+       y1="1096.3134"
+       x2="4786.2334"
+       y2="1095.1642"
+       gradientUnits="userSpaceOnUse" />
+  </defs>
+  <g
+     id="ulab_editor_4"
+     data-name="ulab/editor – 4"
+     class="cls-1"
+     clip-path="url(#clip-ulab_editor_4)">
+    <rect
+       class="cls-14"
+       x="4239"
+       y="508"
+       width="1920"
+       height="1080"
+       id="rect1033" />
+    <g
+       id="Side_bar_2"
+       data-name="Side bar 2"
+       transform="translate(4239 508)">
+      <rect
+         id="Base"
+         class="cls-2"
+         width="160"
+         height="1080" />
+      <text
+         id="CONTROL"
+         class="cls-3"
+         transform="translate(40 102)">
+        <tspan
+           x="0"
+           y="0"
+           id="tspan1036">CONTROL</tspan>
+      </text>
+      <text
+         id="EDITOR"
+         class="cls-3"
+         transform="translate(41 168.144)">
+        <tspan
+           x="0"
+           y="0"
+           id="tspan1039">EDITOR</tspan>
+      </text>
+      <text
+         id="FORMS"
+         class="cls-3"
+         transform="translate(40 234.287)">
+        <tspan
+           x="0"
+           y="0"
+           id="tspan1042">FORMS</tspan>
+      </text>
+      <text
+         id="BLOG"
+         class="cls-3"
+         transform="translate(40 300.431)">
+        <tspan
+           x="0"
+           y="0"
+           id="tspan1045">BLOG</tspan>
+      </text>
+      <text
+         id="CONTACT"
+         class="cls-3"
+         transform="translate(40 366.575)">
+        <tspan
+           x="0"
+           y="0"
+           id="tspan1048">CONTACT</tspan>
+      </text>
+    </g>
+    <g
+       id="timeline"
+       transform="translate(4239 508)">
+      <g
+         id="audio_waveform"
+         data-name="audio waveform"
+         class="cls-4"
+         transform="translate(160 882.908)">
+        <rect
+           class="cls-19"
+           width="1760"
+           height="103.092"
+           id="rect1052" />
+        <rect
+           class="cls-20"
+           x="0.5"
+           y="0.5"
+           width="1759"
+           height="102.092"
+           id="rect1054" />
+      </g>
+      <g
+         id="video_timeline"
+         data-name="video timeline"
+         class="cls-4"
+         transform="translate(160 779.815)">
+        <rect
+           class="cls-19"
+           width="1760"
+           height="103.092"
+           id="rect1057" />
+        <rect
+           class="cls-20"
+           x="0.5"
+           y="0.5"
+           width="1759"
+           height="102.092"
+           id="rect1059" />
+      </g>
+      <g
+         id="time"
+         class="cls-4"
+         transform="translate(160 985.908)">
+        <rect
+           class="cls-19"
+           width="1760"
+           height="73.092"
+           id="rect1062" />
+        <rect
+           class="cls-20"
+           x="0.5"
+           y="0.5"
+           width="1759"
+           height="72.092"
+           id="rect1064" />
+      </g>
+      <text
+         id="audio_waveform_aby_bylo_vizualne_videt_kde_konci_a_zacina_mluveni_"
+         data-name="audio waveform (aby bylo vizualne videt kde konci a zacina mluveni)"
+         class="cls-5"
+         transform="translate(1040 946)">
+        <tspan
+           x="-451.458"
+           y="0"
+           id="tspan1067">audio waveform (aby bylo vizualne videt kde konci a zacina mluveni)</tspan>
+      </text>
+      <text
+         id="titulkovací_timeline_generovano_z_tech_poznamek_co_jsou_v_tom_control_"
+         data-name="titulkovací timeline (generovano z tech poznamek co jsou v tom control)"
+         class="cls-5"
+         transform="translate(1040 1034)">
+        <tspan
+           x="-477.627"
+           y="0"
+           id="tspan1070">titulkovací timeline (generovano z tech poznamek co jsou v tom control)</tspan>
+      </text>
+      <text
+         id="video_timeline-2"
+         data-name="video timeline"
+         class="cls-5"
+         transform="translate(1040 843)">
+        <tspan
+           x="-93.472"
+           y="0"
+           id="tspan1073">video timeline</tspan>
+      </text>
+    </g>
+    <g
+       id="project_picker"
+       data-name="project picker"
+       transform="translate(4239 509)">
+      <g
+         id="Rectangle_1093"
+         data-name="Rectangle 1093"
+         class="cls-6"
+         transform="translate(211 29)">
+        <rect
+           class="cls-19"
+           width="360"
+           height="50"
+           rx="10"
+           id="rect1077" />
+        <rect
+           class="cls-20"
+           x="1"
+           y="1"
+           width="358"
+           height="48"
+           rx="9"
+           id="rect1079" />
+      </g>
+      <text
+         id="Project_Name"
+         data-name="Project Name"
+         class="cls-7"
+         transform="translate(221 66)">
+        <tspan
+           x="0"
+           y="0"
+           id="tspan1082">Project Name</tspan>
+      </text>
+    </g>
+    <g
+       id="file_manager_window"
+       data-name="file manager window"
+       transform="translate(4239 508)">
+      <g
+         id="src"
+         class="cls-4"
+         transform="translate(211 108)">
+        <rect
+           class="cls-19"
+           width="449"
+           height="568"
+           id="rect1086" />
+        <rect
+           class="cls-20"
+           x="0.5"
+           y="0.5"
+           width="448"
+           height="567"
+           id="rect1088" />
+      </g>
+      <text
+         id="src_files_of_the_videos_and_subtitles_with_some_sort_of_tree_structure"
+         data-name="src files of the videos and subtitles with some sort of tree structure"
+         class="cls-8"
+         transform="translate(262 298.039)">
+        <tspan
+           x="0"
+           y="0"
+           id="tspan1091">src files of the videos and </tspan>
+        <tspan
+           x="0"
+           y="37"
+           id="tspan1093">subtitles</tspan>
+        <tspan
+           x="0"
+           y="74"
+           xml:space="preserve"
+           id="tspan1095"> with some sort</tspan>        <tspan
+           x="0"
+           y="111"
+           xml:space="preserve"
+           id="tspan1097"> of tree structure</tspan>      </text>
+    </g>
+    <path
+       id="ic_save_24px"
+       class="cls-2"
+       d="M41.889,3H8.556A5.554,5.554,0,0,0,3,8.556V47.444A5.554,5.554,0,0,0,8.556,53H47.444A5.572,5.572,0,0,0,53,47.444V14.111ZM28,47.444a8.333,8.333,0,1,1,8.333-8.333A8.322,8.322,0,0,1,28,47.444Zm8.333-27.778H8.556V8.556H36.333Z"
+       transform="translate(4833 535)" />
+    <g
+       id="Group_18"
+       data-name="Group 18"
+       transform="translate(4238.544 532)">
+      <g
+         id="titulky"
+         transform="translate(-193.544 -65)">
+        <g
+           id="titulky-2"
+           data-name="titulky"
+           class="cls-4"
+           transform="translate(924 637)">
+          <rect
+             class="cls-19"
+             width="1118.097"
+             height="80"
+             id="rect1102" />
+          <rect
+             class="cls-20"
+             x="0.5"
+             y="0.5"
+             width="1117.097"
+             height="79"
+             id="rect1104" />
+        </g>
+        <text
+           id="titulky-3"
+           data-name="titulky"
+           class="cls-9"
+           transform="translate(1407.698 688)">
+          <tspan
+             x="0"
+             y="0"
+             id="tspan1107">titulky</tspan>
+        </text>
+      </g>
+    </g>
+    <g
+       id="playback_tools"
+       data-name="playback tools"
+       transform="translate(967.637 455)">
+      <path
+         id="ic_fast_rewind_24px"
+         class="cls-2"
+         d="M34.375,51V6L2.5,28.5ZM36.25,28.5,68.125,51V6Z"
+         transform="translate(4380.563 754)" />
+      <path
+         id="ic_fast_forward_24px"
+         class="cls-2"
+         d="M4,51,35.875,28.5,4,6ZM37.75,6V51L69.625,28.5Z"
+         transform="translate(4668.862 754)" />
+      <path
+         id="ic_skip_previous_24px"
+         class="cls-2"
+         d="M6,6h7.5V51H6ZM19.125,28.5,51,51V6Z"
+         transform="translate(4284.363 754)" />
+      <path
+         id="ic_stop_24px"
+         class="cls-2"
+         d="M6,6H51V51H6Z"
+         transform="translate(4490.462 754)" />
+      <path
+         id="ic_skip_next_24px"
+         class="cls-2"
+         d="M6,51,37.875,28.5,6,6ZM43.5,6V51H51V6Z"
+         transform="translate(4780.262 754)" />
+      <path
+         id="ic_play_arrow_24px"
+         class="cls-2"
+         d="M8,5V50L43.357,27.5Z"
+         transform="translate(4581.163 755)" />
+    </g>
+    <g
+       id="edit_tools"
+       data-name="edit tools"
+       transform="translate(4239 509)">
+      <path
+         id="ic_content_copy_24px"
+         class="cls-2"
+         d="M33.818,1H6.545A4.559,4.559,0,0,0,2,5.545V37.364H6.545V5.545H33.818Zm6.818,9.091h-25a4.559,4.559,0,0,0-4.545,4.545V46.455A4.559,4.559,0,0,0,15.636,51h25a4.559,4.559,0,0,0,4.545-4.545V14.636A4.559,4.559,0,0,0,40.636,10.091Zm0,36.364h-25V14.636h25Z"
+         transform="translate(306 702)" />
+      <path
+         id="ic_volume_down_24px"
+         class="cls-2"
+         d="M47.188,29a14.064,14.064,0,0,0-7.812-12.594V41.563A13.981,13.981,0,0,0,47.188,29ZM5,19.625v18.75H17.5L33.125,54V4L17.5,19.625Z"
+         transform="translate(462 699)" />
+      <path
+         id="ic_volume_up_24px"
+         class="cls-2"
+         d="M3,19.678v17.1H14.4L28.656,51.035V5.425L14.4,19.678ZM41.483,28.23a12.829,12.829,0,0,0-7.127-11.488V39.69A12.754,12.754,0,0,0,41.483,28.23Zm-7.127-25V9.1a19.961,19.961,0,0,1,0,38.255V53.23a25.638,25.638,0,0,0,0-50Z"
+         transform="translate(545 699.77)" />
+      <path
+         id="ic_volume_off_24px"
+         class="cls-2"
+         d="M40.5,28a12.5,12.5,0,0,0-6.944-11.194v6.139l6.806,6.806A11.756,11.756,0,0,0,40.5,28Zm6.944,0a19.008,19.008,0,0,1-1.5,7.333l4.194,4.194A24.434,24.434,0,0,0,53,28,24.991,24.991,0,0,0,33.556,3.639V9.361A19.459,19.459,0,0,1,47.444,28ZM6.528,3,3,6.528,16.139,19.667H3V36.333H14.111L28,50.222V31.528L39.806,43.333a19.232,19.232,0,0,1-6.25,3.278v5.722a24.971,24.971,0,0,0,10.25-5.028L49.472,53,53,49.472l-25-25ZM28,5.778l-5.806,5.806L28,17.389Z"
+         transform="translate(635 700)" />
+      <path
+         id="ic_delete_24px"
+         class="cls-2"
+         d="M7.778,47.444A5.572,5.572,0,0,0,13.333,53H35.556a5.572,5.572,0,0,0,5.556-5.556V14.111H7.778ZM43.889,5.778H34.167L31.389,3H17.5L14.722,5.778H5v5.556H43.889Z"
+         transform="translate(385 700)" />
+      <path
+         id="ic_content_cut_24px"
+         class="cls-2"
+         d="M21.1,16.1A9.742,9.742,0,0,0,22,12,10,10,0,1,0,12,22a9.742,9.742,0,0,0,4.1-.9L22,27l-5.9,5.9A9.742,9.742,0,0,0,12,32,10,10,0,1,0,22,42a9.742,9.742,0,0,0-.9-4.1L27,32,44.5,49.5H52V47ZM12,17a5,5,0,1,1,5-5A5,5,0,0,1,12,17Zm0,30a5,5,0,1,1,5-5A5,5,0,0,1,12,47ZM27,28.25A1.25,1.25,0,1,1,28.25,27,1.238,1.238,0,0,1,27,28.25ZM44.5,4.5l-15,15,5,5L52,7V4.5Z"
+         transform="translate(217 701)" />
+      <path
+         id="ic_video_call_24px"
+         class="cls-2"
+         d="M61.333,24.75V10.167A4.179,4.179,0,0,0,57.167,6h-50A4.179,4.179,0,0,0,3,10.167V51.833A4.179,4.179,0,0,0,7.167,56h50a4.179,4.179,0,0,0,4.167-4.167V37.25L78,53.917V8.083Zm-12.5,10.417h-12.5v12.5H28v-12.5H15.5V26.833H28v-12.5h8.333v12.5h12.5Z"
+         transform="translate(724 695)" />
+    </g>
+    <g
+       id="Group_19"
+       data-name="Group 19"
+       transform="translate(4353 512)">
+      <g
+         id="Path_198"
+         data-name="Path 198"
+         class="cls-10"
+         transform="translate(860 64.593)">
+        <path
+           class="cls-19"
+           d="M 629.8507690429688 471.9073791503906 L 0.4999999105930328 471.9073791503906 L 0.4999999105930328 0.4999819993972778 L 629.8507690429688 0.4999819993972778 L 629.8507690429688 471.9073791503906 Z"
+           id="path1127" />
+        <path
+           class="cls-21"
+           d="M 629.3507690429688 471.4073791503906 L 629.3507690429688 0.9999819993972778 L 0.9999998807907104 0.9999819993972778 L 0.9999998807907104 471.4073791503906 L 629.3507690429688 471.4073791503906 M 630.3507690429688 472.4073791503906 L -9.390026889377623e-08 472.4073791503906 L -9.390026889377623e-08 -1.799128585844301e-05 L 630.3507690429688 -1.799128585844301e-05 L 630.3507690429688 472.4073791503906 Z"
+           id="path1129" />
+      </g>
+    </g>
+    <g
+       id="Rectangle_1098"
+       data-name="Rectangle 1098"
+       class="cls-11"
+       transform="translate(4399 508)">
+      <rect
+         class="cls-19"
+         width="1760"
+         height="1080"
+         id="rect1133" />
+      <rect
+         class="cls-20"
+         x="0.5"
+         y="0.5"
+         width="1759"
+         height="1079"
+         id="rect1135" />
+    </g>
+    <g
+       id="Rectangle_1099"
+       data-name="Rectangle 1099"
+       class="cls-11"
+       transform="translate(4483 573)">
+      <rect
+         class="cls-19"
+         width="1592"
+         height="950"
+         id="rect1138" />
+      <rect
+         class="cls-20"
+         x="0.5"
+         y="0.5"
+         width="1591"
+         height="949"
+         id="rect1140" />
+    </g>
+    <g
+       id="Name"
+       transform="translate(4552 739)">
+      <g
+         id="Rectangle_598"
+         data-name="Rectangle 598"
+         class="cls-6"
+         transform="translate(0 25.614)">
+        <rect
+           class="cls-19"
+           width="384.215"
+           height="53.363"
+           rx="10"
+           id="rect1143" />
+        <rect
+           class="cls-20"
+           x="1"
+           y="1"
+           width="382.215"
+           height="51.363"
+           rx="9"
+           id="rect1145" />
+      </g>
+      <text
+         id="_1920x1080"
+         data-name="1920x1080"
+         class="cls-12"
+         transform="translate(21.345 56.758)">
+        <tspan
+           x="0"
+           y="0"
+           id="tspan1148">1920x1080</tspan>
+      </text>
+      <text
+         id="Resolution"
+         class="cls-13"
+         transform="translate(0 13)">
+        <tspan
+           x="0"
+           y="0"
+           id="tspan1151">Resolution</tspan>
+      </text>
+    </g>
+    <g
+       id="Dropdown_2"
+       data-name="Dropdown 2"
+       transform="translate(4997.049 739)">
+      <g
+         id="Rectangle_613"
+         data-name="Rectangle 613"
+         class="cls-6"
+         transform="translate(0 25.614)">
+        <rect
+           class="cls-19"
+           width="384.215"
+           height="53.363"
+           rx="10"
+           id="rect1155" />
+        <rect
+           class="cls-20"
+           x="1"
+           y="1"
+           width="382.215"
+           height="51.363"
+           rx="9"
+           id="rect1157" />
+      </g>
+      <text
+         id="_30_fps"
+         data-name="30 fps"
+         class="cls-12"
+         transform="translate(21.345 56.758)">
+        <tspan
+           x="0"
+           y="0"
+           id="tspan1160">30 fps</tspan>
+      </text>
+      <text
+         id="Frame_rate"
+         data-name="Frame rate"
+         class="cls-13"
+         transform="translate(0 13)">
+        <tspan
+           x="0"
+           y="0"
+           id="tspan1163">Frame rate</tspan>
+      </text>
+      <g
+         id="Symbol_6_3"
+         data-name="Symbol 6 – 3"
+         transform="translate(-330.429 -652.906)">
+        <path
+           id="Path_36"
+           data-name="Path 36"
+           class="cls-14"
+           d="M6.7,8.1,2,3.4,3.4,2,6.7,5.3,10,2l1.4,1.4Z"
+           transform="translate(681 700)" />
+      </g>
+    </g>
+    <g
+       id="Name-2"
+       data-name="Name"
+       transform="translate(5442.098 739)">
+      <g
+         id="Rectangle_598-2"
+         data-name="Rectangle 598"
+         class="cls-6"
+         transform="translate(0 25.614)">
+        <rect
+           class="cls-19"
+           width="384.215"
+           height="53.363"
+           rx="10"
+           id="rect1169" />
+        <rect
+           class="cls-20"
+           x="1"
+           y="1"
+           width="382.215"
+           height="51.363"
+           rx="9"
+           id="rect1171" />
+      </g>
+      <text
+         id="mp4"
+         class="cls-12"
+         transform="translate(21.345 56.758)">
+        <tspan
+           x="0"
+           y="0"
+           id="tspan1174">mp4</tspan>
+      </text>
+      <text
+         id="Format"
+         class="cls-13"
+         transform="translate(0 13)">
+        <tspan
+           x="0"
+           y="0"
+           id="tspan1177">Format</tspan>
+      </text>
+    </g>
+    <g
+       id="Group_12"
+       data-name="Group 12"
+       transform="translate(4441 622)">
+      <g
+         id="Button_Primary"
+         data-name="Button Primary"
+         transform="translate(1058 548.622)">
+        <g
+           id="Rectangle_1091"
+           data-name="Rectangle 1091"
+           class="cls-15"
+           transform="translate(120 217.378)">
+          <rect
+             class="cls-19"
+             width="360"
+             height="79"
+             rx="4"
+             id="rect1181" />
+          <rect
+             class="cls-20"
+             x="1"
+             y="1"
+             width="358"
+             height="77"
+             rx="3"
+             id="rect1183" />
+        </g>
+        <text
+           id="Export"
+           class="cls-16"
+           transform="translate(300 267.378)">
+          <tspan
+             x="-47.505"
+             y="0"
+             id="tspan1186">Export</tspan>
+        </text>
+      </g>
+    </g>
+    <text
+       id="Project_Name-2"
+       data-name="Project Name"
+       class="cls-17"
+       transform="translate(4552 672)">
+      <tspan
+         x="0"
+         y="0"
+         id="tspan1191">Project Name</tspan>
+    </text>
+    <g
+       id="Name-3"
+       data-name="Name"
+       transform="translate(4552 911)">
+      <g
+         id="Rectangle_598-3"
+         data-name="Rectangle 598"
+         class="cls-6"
+         transform="translate(0 25.614)">
+        <rect
+           class="cls-19"
+           width="384.215"
+           height="53.363"
+           rx="10"
+           id="rect1194" />
+        <rect
+           class="cls-20"
+           x="1"
+           y="1"
+           width="382.215"
+           height="51.363"
+           rx="9"
+           id="rect1196" />
+      </g>
+      <text
+         id="Sapp_180_GB_free_"
+         data-name="Sapp [180 GB free]"
+         class="cls-18"
+         transform="translate(21.345 57.758)">
+        <tspan
+           x="0"
+           y="0"
+           id="tspan1199">Sapp [180 GB free]</tspan>
+      </text>
+      <text
+         id="Save_to"
+         data-name="Save to"
+         class="cls-13"
+         transform="translate(0 14)">
+        <tspan
+           x="0"
+           y="0"
+           id="tspan1202">Save to</tspan>
+      </text>
+    </g>
+    <g
+       id="Name-4"
+       data-name="Name"
+       transform="translate(4552 1083)">
+      <g
+         id="Rectangle_598-4"
+         data-name="Rectangle 598"
+         class="cls-6"
+         transform="translate(0 25.614)">
+        <rect
+           class="cls-19"
+           width="384.215"
+           height="53.363"
+           rx="10"
+           id="rect1206" />
+        <rect
+           class="cls-20"
+           x="1"
+           y="1"
+           width="382.215"
+           height="51.363"
+           rx="9"
+           id="rect1208" />
+      </g>
+      <text
+         id="name-5"
+         data-name="name"
+         class="cls-18"
+         transform="translate(21.345 57.758)">
+        <tspan
+           x="0"
+           y="0"
+           id="tspan1211">name</tspan>
+      </text>
+      <text
+         id="YouTube_upload"
+         data-name="YouTube upload"
+         class="cls-13"
+         transform="translate(0 14)">
+        <tspan
+           x="0"
+           y="0"
+           id="tspan1214">YouTube upload</tspan>
+      </text>
+    </g>
+    <g
+       id="Name-6"
+       data-name="Name"
+       transform="translate(4552 1255)">
+      <g
+         id="Rectangle_598-5"
+         data-name="Rectangle 598"
+         class="cls-6"
+         transform="translate(0 25.614)">
+        <rect
+           class="cls-19"
+           width="384.215"
+           height="53.363"
+           rx="10"
+           id="rect1218" />
+        <rect
+           class="cls-20"
+           x="1"
+           y="1"
+           width="382.215"
+           height="51.363"
+           rx="9"
+           id="rect1220" />
+      </g>
+      <text
+         id="example_example.com"
+         data-name="example@example.com"
+         class="cls-18"
+         transform="translate(21.345 57.758)">
+        <tspan
+           x="0"
+           y="0"
+           id="tspan1223">example@example.com</tspan>
+      </text>
+      <text
+         id="Notify_when_finished"
+         data-name="Notify when finished"
+         class="cls-13"
+         transform="translate(0 14)">
+        <tspan
+           x="0"
+           y="0"
+           id="tspan1226">Notify when finished</tspan>
+      </text>
+    </g>
+  </g>
+  <g
+     id="g1335"
+     transform="matrix(-0.80653001,0,0,-0.80653001,4770.426,1103.0061)"
+     style="fill:#2699fb;fill-opacity:1">
+    <switch
+       id="switch1315"
+       style="fill:#2699fb;fill-opacity:1">
+      <foreignObject
+         height="1"
+         width="1"
+         y="0"
+         x="0"
+         requiredExtensions="http://ns.adobe.com/AdobeIllustrator/10.0/" />
+      <g
+         id="g1313"
+         i:extraneous="self"
+         style="fill:#2699fb;fill-opacity:1">
+        <g
+           id="g1311"
+           style="fill:#2699fb;fill-opacity:1">
+          <path
+             id="path1309"
+             d="m 60.001,15.84 c 0,8.72 -7.12,15.841 -15.841,15.841 H 16 c -0.08,0 -0.16,0 -0.24,0 C 7.04,31.681 0,24.56 0,15.84 0,7.12 7.04,0 15.76,0 15.84,0 15.92,0 16,0 h 28.16 c 8.721,0 15.841,7.121 15.841,15.84 z m -32.72,0 c 0,-3.04 -1.2,-5.921 -3.36,-8.16 -2.16,-2.16 -5.12,-3.36 -8.16,-3.36 -3.04,0 -5.92,1.2 -8.08,3.36 -2.24,2.239 -3.36,5.12 -3.36,8.16 0,3.04 1.119,5.92 3.359,8.16 2.16,2.16 5.04,3.36 8.08,3.36 3.04,0 6,-1.2 8.16,-3.36 2.161,-2.24 3.361,-5.12 3.361,-8.16 z"
+             inkscape:connector-curvature="0"
+             style="fill:#2699fb;fill-opacity:1" />
+        </g>
+      </g>
+    </switch>
+  </g>
+</svg>

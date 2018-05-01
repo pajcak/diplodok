@@ -219,4 +219,4 @@ TSWLatexianTemp*
 # expex forward references with \gathertags
 *-tags.tex
 
-src/UTE_fork/*
+res/UTE_fork/**
