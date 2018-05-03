@@ -777,7 +777,7 @@ Konfigurace na obrázku \ref{img:navrh_backend_libyuri_receiver} má podobnou st
 
 
 \chapter{Implementace} \label{chap:impl}
-Tato kapitola se zabývá implementaci analýzou a návrhem opěvovaného rozšíření stávající aplikace. Nejprve je uvedena sekce o použití systému Gitlab pro verzování aplikace a také pro takzvanou \textit{continuous integration} neboli průběžnou integraci. Dále jsou detailněji popsány některé vybrané implementační zajímavosti. Poté již následuje instalační příručka, ve které je popsáno, jak lze z poskytnutých zdrojových souboru aplikaci nainstalovat do cílového prostředí. V závěru je stručná uživatelská příručka, která prozradí, jak aplikaci používat.
+Tato kapitola se zabývá implementací rozšíření stávající aplikace, opěvovaného analýzou a návrhem. Nejprve je uvedena sekce o použití systému Gitlab pro verzování aplikace a také pro takzvanou \textit{continuous integration} neboli průběžnou integraci. Dále jsou detailněji popsány některé vybrané implementační zajímavosti. Poté již následuje instalační příručka, ve které je popsáno, jak lze z poskytnutých zdrojových souboru aplikaci nainstalovat do cílového prostředí. V závěru je stručná uživatelská příručka, která prozradí, jak aplikaci používat.
 
 \section{Verzování a continuous integration} \label{sec:impl_gitlab}
 Verzování zdrojového kódu je dnes samozřejmostí a tak i řešení této práce využilo tohoto procesu. Jako verzovací systém byl použitý systém Gitlab, který je fakultou zdarma poskytován studentům. Je zde možné mít zdarma i privátní repozitáře, což je pro vývoj aplikací značnou výhodou. Ve vzniklém repozitáři byli přidáni i další spolupracovníci, jako vedoucí práce či správce laboratoře CHUL, aby mohli kontrolovat stav vývoje a věcně podpořit své případné připomínky. Díky této správě verzí bylo možné evidovat kdo, kdy a jak měnil zdrojový kód aplikace. Lze se tak přesouvat časem ve vývoji produktu, obnovovat staré funkcionality, vracet se z kritických chyb a mít jej tak stále pod kontrolou.
@@ -795,7 +795,7 @@ stages:
   - test
 \end{lstlisting}
 
-Do jednotlivých etap lze zařadit spoustu drobných fází, neboli Jobů, ve kterých je již specifikováno, jaké příkazy se mají vykonat. V kontinuální integraci systému této diplomové práce stačilo vytvořit pouze jeden job pro každou etapu. Následující část kódu obsahuje definici jobu \uv{deploy job}, který, jako jediný, patří do etapy \uv{deploy}. 
+Do jednotlivých etap lze zařadit spoustu drobných fází, neboli Jobů, ve kterých je již specifikováno, jaké příkazy se mají vykonat. V kontinuální integraci systému této diplomové práce stačilo vytvořit pouze jeden job pro každou etapu. Následující část kódu obsahuje definici jobu \uv{deploy job}, který jako jediný, patří do etapy \uv{deploy}. 
 \\
 \lstset{identifierstyle=\color{black},morestring=[b]"}
 \begin{lstlisting}
@@ -825,7 +825,7 @@ Do jednotlivých etap lze zařadit spoustu drobných fází, neboli Jobů, ve kt
     expire_in: 30d
 \end{lstlisting}
 
-Prvních pár řádek konfigurace \uv{deploy job} se týká nastavení nutného pro výběr obrazu systému, zařazení jobu do správné etapy a podobně. Sekce \uv{before\_script} nastavuje vzdálené připojení (pomocí asymetrické kryptografie) na privátní virtuální server pro nasazení aplikace. V sekci \uv{script} jsou již uvedeny pouze čtyři příkazové řádky, které provedou nasazení softwaru na vzdáleném serveru. Nasazení proběhne tak, že se pomocí programu \textit{fpm} vytvoří balíček určený pro distribuce operačních systému rodiny Debian. Tento balíček se následně přesune na požadovaný server a za pomocí poslední řádky v sekci \uv{script} a skriptů obsažených v balíčku se nasadí. Nakonec je uvedena sekce \uv{artifacts}, která na serveru kontinuální integrace uchová vytvořené balíčky pro různou potřebu, po dobu třiceti dní.
+Prvních pár řádků konfigurace \uv{deploy job} se týká nastavení nutného pro výběr obrazu systému, zařazení jobu do správné etapy a podobně. Sekce \uv{before\_script} nastavuje vzdálené připojení (pomocí asymetrické kryptografie) na privátní virtuální server pro nasazení aplikace. V sekci \uv{script} jsou již uvedeny pouze čtyři příkazové řádky, které provedou nasazení softwaru na vzdáleném serveru. Nasazení proběhne tak, že se pomocí programu \textit{fpm} vytvoří balíček určený pro distribuce operačních systému rodiny Debian. Tento balíček se následně přesune na požadovaný server a za pomocí poslední řádky v sekci \uv{script} a skriptů obsažených v balíčku se nasadí. Nakonec je uvedena sekce \uv{artifacts}, která na serveru kontinuální integrace uchová vytvořené balíčky pro různou potřebu, po dobu třiceti dnů.
 
 Jako druhý a poslední job je uvedený \uv{test job}, který patří do etapy \uv{test}. Tento job zajišťuje to, že po každém upravení zdrojového kódu v repozitáři, spustí základní sadu integračních a dalších testů.
 \\
@@ -872,7 +872,7 @@ Přestože je konfigurační soubor relativně jednoduchý, je příliš dlouhý
 </node>
 \end{lstlisting}
 
-Při navedení datové hrany z tohoto uzlu budeme mít zajištěno, že se ze zařízení s umístěním v \textit{/dev/video0} bude získávat pět snímků za sekundu o rozlišení 320x240 pixelů, ve formátu MJPEG. Obdobným způsobem pak funguje získávání obrazu ze složitějších kamer. Tyto kamery jsou k počítači připojeny HDMI rozhraním přes tzv. grabovací grafickou kartu značky DeckLink, a tudíž je konfigurace uzlů o trochu jiná jak je patrné z dalšího úseku kódu.
+Při navedení datové hrany z tohoto uzlu budeme mít zajištěno, že se ze zařízení s umístěním v \textit{/dev/video0} bude získávat pět snímků za sekundu o rozlišení 320x240 pixelů, ve formátu MJPEG. Obdobným způsobem pak funguje získávání obrazu ze složitějších kamer. Tyto kamery jsou k počítači připojeny HDMI rozhraním přes tzv. grabovací grafickou kartu značky DeckLink, a tudíž je konfigurace uzlů o trochu jiná, jak je patrné z dalšího úseku kódu.
 \\
 \lstset{language=XML}
 \begin{lstlisting}
@@ -930,7 +930,7 @@ Díky zmíněnému mechanizmu je pak možné z webové aplikace na snímky tohot
 V kódu této webové stránky jsou patrné čtyři elementy \uv{img} reprezentující obrazové náhledy nahrávacích zařízení. Dále je pak vidět jednoduchá funkce jazyka JavaScript, která každé dvě sekundy přepíše zdrojový atribut obrazového elementu. Zdroj je přepsán na stejnou adresu se stejným jménem obrázku na Libyuri webserveru, avšak s přidaným náhodným řetězcem, jako parametr za znakem otazníku, který přinutí prohlížeč, aby si obrázek nenahrál z cache paměti, ale aby jej stáhl z webového serveru. Výsledkem pak jsou náhledové obrazy z kamer v CHUL laboratoři, aktualizující se každé dvě sekundy.
 
 
-+ jeden dalsi
++ jeden dalsi (neco s yuri konfigurakem a pripadne webem [html] kdyz mam tak peknej styl)
 \subsection{TODO} \label{subsec:impl_funkce_TODO}
 
 \section{Instalační příručka} \label{sec:impl_prirucka}
@@ -977,9 +977,13 @@ Jednou z chyb nalezených při integračním testování bylo při komunikaci ap
 	Řešením vzniklé chyby pak bylo upravení konfigurace PostgreSQL na onom vzdáleném databázovém serveru. Konfigurační soubory PostreSQL se  obvykle nacházejí v adresářích, jako je \textit{/etc/postgresql/<verze>/main/} nebo případně \textit{/var/lib/postgres/data}. Zde pak bylo nutné upravit konfigurační soubory \textit{pg\_hba.conf} a \textit{postgresql.conf}. V souboru \textit{postgresql.conf} stačilo odkomentovat či přidat řádku \uv{listen\_addresses = '*'} pro povolení naslouchání pro přípojení ze všech adres. Dále pak v souboru \textit{pg\_hba.conf} limitovat připojení z konkrétní IP adresy, případně podsítě, přidáním řádky \uv{host all all 185.88.73.30/23 trust}. Tato řádka má pět sloupců, které zleva znamenají: typ připojení (\uv{host} pro vzdálené a \uv{local} pro lokální), jméno databáze (případně všechny pomocí \uv{all}), jméno uživatele (případně všechny pomocí \uv{all}), IP adresu počítače nebo sítě a nakonec autentizační metodu (například \uv{trust} pro žádné ověření, \uv{md5} pro heslo zahešované funkcí md5 a podobně).
 
 \section{Akceptační testování} \label{sec:testovani_akceptacni}
-%\subsection{Probíhající usability testování} \label{subsec:testovani_akceptacni_utest} % mozna smazat
-TODO ... použít něco z NUR - usability testing (prvni prednaska)
+Akceptační testy jsou testy, které by měly být realizované na straně zákazníka. Cílová skupina lidí, kteří budou tento systém využívat, je úzká, neboť v případě tohoto systému jsou zákazníkem myšleni lidé, kteří vedou laboratoř CHUL. Mezi tyto lidi patří například vedoucí této práce Ing. Jiří Chludil, správce laboratoře Bc. Ondřej Brém, ale také technici ze sousední laboratoře SAGElab. Při tomto akceptačním testování nejsou potřeba uživatelé provádějící testování použitelnosti, neboť v testovacích scénářích není kladen důraz na obsah streamovaného obrazového materiálu. 
 
+	Vytvořený systém se nepodařilo včas podrobit kompletnímu akceptačnímu testování. Správce CHUL laboratoře Ondřej Brém, který byl hlavním akceptačním testerem, byl časově zatížen spoluprací na jiných závěrečných pracích týkající se laboratoře, v době mezi vytvořením první testovací verze aplikace a odevzdáním práce. Před odevzdáním se Ondřejovi podařilo otestovat alespoň některé komponenty webové aplikace, jako je například webová stránka s nastavením streamování (zde zejména živý náhled obrazových dat z kamer v laboratoři) nebo videopřehrávač. Testování komponent však nesplňuje definici akceptačního testování a proto byla tato fáze pozastavena a aplikace tak bude s přislíbenými termíny akceptačně otestována do obhajoby této práce.
+	
+%	Akceptační testování aktuální aplikace by se dalo rozdělit do jednoho hlavního testovacího scénáře pro otestování celého procesu streamování, a mnoha vedlejších pro práci s videem a podobně.
+	
+	
 \begin{conclusion}
 V této diplomové práci bylo navázáno na existující systém pro správu laboratoře Children Usability Lab. Systém, vyvinutý bakalářskou prací Karolíny Solanské, byl neuspokojivý v oblasti správy video streamů a zpracování jiných multimediálních dat. Tento problém byl řešen návrhem a realizací rozšíření stávající aplikace. Po zevrubné analýze zmíněné bakalářské práce a specifikace nutných požadavků se provedl důkladný výběr vhodných technologií pro tvorbu řešení. Během návrhu se podařilo vytvořit systém pro efektivní práci s multimediálními daty napříč CHUL laboratoří a to především díky knihovně Libyuri. Implementační částí této práce byl vytvořen základní prototyp požadované aplikace, který splňuje většinu smluvených specifických požadavků. Práce je neustále podrobována integračním testům, které jsou aktuálně součástí systému pro kontinuální integraci.
 
