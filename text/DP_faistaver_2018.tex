@@ -981,7 +981,11 @@ Jednou z chyb nalezených při integračním testování bylo při komunikaci ap
 TODO ... použít něco z NUR - usability testing (prvni prednaska)
 
 \begin{conclusion}
-	%sem napište závěr Vaší práce
+V této diplomové práci bylo navázáno na existující systém pro správu laboratoře Children Usability Lab. Systém, vyvinutý bakalářskou prací Karolíny Solanské, byl neuspokojivý v oblasti správy video streamů a zpracování jiných multimediálních dat. Tento problém byl řešen návrhem a realizací rozšíření stávající aplikace. Po zevrubné analýze zmíněné bakalářské práce a specifikace nutných požadavků se provedl důkladný výběr vhodných technologií pro tvorbu řešení. Během návrhu se podařilo vytvořit systém pro efektivní práci s multimediálními daty napříč CHUL laboratoří a to především díky knihovně Libyuri. Implementační částí této práce byl vytvořen základní prototyp požadované aplikace, který splňuje většinu smluvených specifických požadavků. Práce je neustále podrobována integračním testům, které jsou aktuálně součástí systému pro kontinuální integraci.
+
+	Jelikož se jedná o první verzi rozšíření stávající aplikace, je zde mnoho míst pro další vývoj. Jedním z dalších kroků pro vývoj je například automatická detekce nově přidaných nahrávacích zařízení, což by odstranilo závislost změny kódu po přidání nových kamer a jiných zařízení do laboratoře. Dalším krokem by bylo vylepšení problematiky zapínání a vypínání kamer, pořízením IoT přepínače do laboratoře, který by dokázal zapínat a vypínat složitější nahrávací zařízení a zároveň byl bezpečně propojený s webovou aplikací.
+	
+	Vytvořená aplikace se nyní úspěšně rozvijí v privátním repozitáři verzovacího systému Gitlab, ve kterém je nastaven systém kontinuální integrace pro automatizované sestavení, nasazení, ale i testování celého softwaru.
 \end{conclusion}
 
 \nocite{*}
