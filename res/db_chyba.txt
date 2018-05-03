@@ -1,0 +1,27 @@
+/etc/postgresql/9.3/main/postgresql.conf
+# - Connection Settings -
+
+listen_addresses = '*'          # what IP address(es) to listen on;
+                                        # comma-separated list of addresses;
+                                        # defaults to 'localhost'; use '*' for all
+                                        # (change requires restart)
+port = 5432                             # (change requires restart)
+
+
+
+
+
+
+
+/etc/postgresql/9.3/main/pg_hba.conf
+# TYPE  DATABASE        USER            ADDRESS                 METHOD
+host    all     all     185.88.73.30/23         trust
+
+
+app/config/config[].neon
+
+database:
+    dsn: 'pgsql:host=185.88.73.49;dbname=emma'
+    user: emma
+    password: superSilne789Heslo321
+

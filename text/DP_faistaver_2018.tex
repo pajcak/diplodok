@@ -18,6 +18,7 @@
 
 \usepackage{scrextend}
 \input{latex_xml_style.tex} %syntax highlighting for XML
+\input{latex_html_style.tex} %syntax highlighting for XML
 
 % % list of acronyms
 % \usepackage[acronym,nonumberlist,toc,numberedsection=autolabel]{glossaries}
@@ -266,7 +267,7 @@ GStreamer (\cite{gstreamer}) je multimediální knihovna pro konstruování graf
 	GStreamer je open-source a je šířen pod LGPL licencí.
 
 \subsubsection{Open Broadcaster Software} \label{subsubsec:analyza_reseni_obs}
-OBS neboli Open Broadcaster Software je dle (\cite{obs}) software pro nahrávání a streamování videa vyvíjený dobrovolníky z celého světa. OBS je distribuovaný open-source software pod GPLv2 licencí. Tento software umožňuje spolehlivé nahrávání videa i audia v reálném čase a jeho následné zpracování. Je zde také možné nahrávat současně z více zdrojů, jako například monitoru, kamery, speciální tzv. \uv{grabovací} grafické karty, webkamery a dalších.
+OBS neboli Open Broadcaster Software je dle (\cite{obs}) software pro nahrávání a streamování videa vyvíjený dobrovolníky z celého světa. OBS je distribuovaný open-source software pod GPLv2 licencí. Tento software umožňuje spolehlivé nahrávání videa i audia v reálném čase a jeho následné zpracování. Je zde také možné nahrávat současně z více zdrojů, jako například monitoru, kamery, speciální tzv. grabovací grafické karty, webkamery a dalších.
 
 	OBS má dobrou dokumentaci (vizte \cite{obs_doc}), ve které je mimo jiné zmíněno, že je možné software lehce přizpůsobit pomocí skriptovacích jazyků Lua či Python. Většina funkcionalit v OBS je přidána pomocí plugin modulů, které jsou reprezentovány typicky dynamickými knihovnami nebo skripty. Jelikož se jedná o open-source software, pak je možné moduly ve formě pluginů i libovolně vytvářet, na což je v dokumentaci taktéž podrobný návod. Nevýhodou tohoto řešení je velice omezená manipulace s binární podobou programu z prostředí příkazové řádky, což je v případě potenciální automatizace nežádoucí.
 
@@ -856,22 +857,77 @@ Již na začátku tohoto jobu je patrné, že používá jiný obraz systému, k
 V této části implementační kapitoly jsou uvedeny vybrané zajímavé funkce, které stávající aplikaci obohatily. Tyto funkce jsou ucelenými částmi systému, které pokrývají jeden či více zadaných funkčních požadavků.
 
 \subsection{Náhled z nahrávacích zařízení} \label{subsec:impl_funkce_preview}
-Jednou z potřebných funkcí aplikace bylo zobrazit náhledy nahrávacích zařízení ve webové části. Přímo na webové stránce s nastavením streamování bylo třeba zobrazit seznam zařízení schopných nahrávání, jak je zmíněno ve frontendové části návrhu (vizte \ref{subsubsec:navrh_frontend_ui_proto}). Tato zařízení mohla být zobrazena jen jako pouhý text obsahující identifikátor daného zařízení. Jelikož se však jedná o nahrávací zařízení, nejčastěji kamery, webkamery, obrazovky a jiné, pak je uživatelsky velice přívětivé zobrazit přímé náhledy z těchto zařízení. Pro tuto funkcionalitu byla využita instance knihovny Libyuri s relativně jednoduchým konfiguračním souborem. Libyuri tak zajišťovala odběr snímků obrazu z nahrávacích zařízení, jejich korekci a následné předání frontendové části webové aplikace. Dále je pomocí zdrojových kódů a diagramu vysvětleno, jak se tato funkcionalita implementovala. Jako první je uveden konfigurační soubor pro Libyuri.
+Jednou z potřebných funkcí aplikace bylo zobrazit náhledy nahrávacích zařízení ve webové části. Přímo na webové stránce s nastavením streamování bylo třeba zobrazit seznam zařízení schopných nahrávání, jak je zmíněno ve frontendové části návrhu (vizte \ref{subsubsec:navrh_frontend_ui_proto}). Tato zařízení mohla být zobrazena jen jako pouhý text obsahující identifikátor daného zařízení. Jelikož se však jedná o nahrávací zařízení, nejčastěji kamery, webkamery, obrazovky a jiné, pak je uživatelsky velice přívětivé zobrazit přímé náhledy z těchto zařízení. Pro tuto funkcionalitu byla využita instance knihovny Libyuri s relativně jednoduchým konfiguračním souborem. Libyuri tak zajišťovala odběr snímků obrazu z nahrávacích zařízení, jejich korekci a následné předání frontendové části webové aplikace. Dále je vysvětleno, jak se tato funkcionalita implementovala. 
+
+Přestože je konfigurační soubor relativně jednoduchý, je příliš dlouhý, než aby zde zaplňoval pár stran. Na následujících několika úryvcích konfigurace v jazyku XML je uvedeno několik příkladových uzlů konfiguračního grafu. Na prvním je ukázáno, jak v takové konfiguraci vypadá uzel reprezentující zařízení webkamery.
 \\
 \lstset{language=XML}
 \begin{lstlisting}
-	TODO
+<node class="v4l2source" name="webcam0">
+  <parameter name="path">/dev/video0</parameter>
+  <parameter name="resolution">320x240</parameter>
+  <parameter name="fps">5</parameter>
+  <parameter name="format">MJPEG</parameter>
+  <parameter name="fps_stats">100</parameter>
+</node>
 \end{lstlisting}
 
-Tento konfigurační soubor, pro představu, reprezentuje graf uvedený na obrázku ...
+Při navedení datové hrany z tohoto uzlu budeme mít zajištěno, že se ze zařízení s umístěním v \textit{/dev/video0} bude získávat pět snímků za sekundu o rozlišení 320x240 pixelů, ve formátu MJPEG. Obdobným způsobem pak funguje získávání obrazu ze složitějších kamer. Tyto kamery jsou k počítači připojeny HDMI rozhraním přes tzv. grabovací grafickou kartu značky DeckLink, a tudíž je konfigurace uzlů o trochu jiná jak je patrné z dalšího úseku kódu.
+\\
+\lstset{language=XML}
+\begin{lstlisting}
+<node class="decklink_input" name="hdmi0">
+  <parameter name="device">0</parameter>
+  <parameter name="format">PAL</parameter>
+  <parameter name="pixel_format">YUV</parameter>
+  <parameter name="fps_stats">100</parameter>
+  <parameter name="audio">0</parameter>
+  <parameter name="force_detection">1</parameter>
+  <parameter name="connection">HDMI</parameter>
+</node>
+\end{lstlisting}
+
+Požadavek na data tohoto uzlu vyprodukuje obrazové rámce ve formátu PAL, s kódováním barev YUV a dalšími nastaveními. Knihovna Libyuri neumožňuje v modulu \uv{decklink\_input} stanovit snímkovou frekvenci jinak, než pomocí rozlišení, kde často není taková frekvence, jaká je vyžadována. Z tohoto důvodu je nutné přidat další uzel reprezentovaný modulem \uv{fix\_fps} pro požadovanou úpravu snímkové frekvence. Spolu s přidáním dalších potřebných uzlů pak sestavený graf z konfiguračního souboru vypadá tak, jako na obrázku \ref{img:impl_funkce_preview_conf}.
 \\
 \begin{figure}[h]\centering
-	\includegraphics[width=1\textwidth]{images/ulab_receiver.eps}
+	\includegraphics[width=1\textwidth]{images/ulab_cam_preview.eps}
 	\caption{Libyuri - konfigurace pro náhled nahrávacích zařízení}\label{img:impl_funkce_preview_conf}
 \end{figure}
 
+Graf konfigurace na obrázku \ref{img:impl_funkce_preview_conf} je z velké části podobný těm v návrhové kapitole, v psaní o funkci Libyuri na backendu (\ref{subsec:navrh_backend_libyuri}). Liší se však především uzly v nejnižší vrstvě reprezentované modulem \uv{web\_image}. Tyto uzly zajišťují, spolu s modulem pro webserver, malý webserver běžící v instanci Libyuri. Tento webserver pak hostuje příchozí obrazové rámce z kamery, jako JPEG obrázky se statickou adresou na webserveru. Pro každé nahrávací zařízení je na webserveru jedna adresa vedoucí na obrázek, který se stále obnovuje (dle snímkové frekvence definované v uzlu \uv{fix\_fps}).
 
+Díky zmíněnému mechanizmu je pak možné z webové aplikace na snímky tohoto webserveru odkazovat a načítat znovu a znovu v libovolných časových intervalech respektujících snímkovou frekvenci uzlů v Libyuri. Ukázková webová stránka zobrazující náhledy z nahrávacích zařízení pak může vypadat následovně.
+\\
+\lstset{style=htmlcssjs}
+\begin{lstlisting}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Cam preview test</title>
+  </head>
+  <body>
+    <div id="image_container">
+      <img src="/loading.gif" id="image0"/>
+      <img src="/loading.gif" id="image1"/>
+      <img src="/loading.gif" id="image2"/>
+      <img src="/loading.gif" id="image3"/>
+      <img src="/loading.gif" id="image4"/>
+    </div>
+    <script>
+      setInterval(function () {
+        d = new Date();
+        for (var i = 0; i <= 4; i++) {
+          document.getElementById("image" + i).src = 'http://ulab.cesnet.cz:8880/image' + i + '.jpg?random='
+                + d.valueOf().toString() + Math.random().toString();
+        }
+      }, 2000);
+    </script>
+  </body>
+</html>
+\end{lstlisting}
 
+V kódu této webové stránky jsou patrné čtyři elementy \uv{img} reprezentující obrazové náhledy nahrávacích zařízení. Dále je pak vidět jednoduchá funkce jazyka JavaScript, která každé dvě sekundy přepíše zdrojový atribut obrazového elementu. Zdroj je přepsán na stejnou adresu se stejným jménem obrázku na Libyuri webserveru, avšak s přidaným náhodným řetězcem, jako parametr za znakem otazníku, který přinutí prohlížeč, aby si obrázek nenahrál z cache paměti, ale aby jej stáhl z webového serveru. Výsledkem pak jsou náhledové obrazy z kamer v CHUL laboratoři, aktualizující se každé dvě sekundy.
 
 
 + jeden dalsi

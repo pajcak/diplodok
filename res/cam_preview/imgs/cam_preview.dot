@@ -1,0 +1,52 @@
+digraph cam_preview {
+screen [label="screen\n(screen)"];
+webcam0 [label="webcam0\n(v4l2source)"];
+webcam1 [label="webcam1\n(v4l2source)"];
+hdmi0 [label="hdmi0\n(decklink_input)"];
+fps0 [label="fps0\n(fix_fps)"];
+fps1 [label="fps1\n(fix_fps)"];
+fps2 [label="fps2\n(fix_fps)"];
+scale [label="scale\n(scale)"];
+scale0 [label="scale0\n(scale)"];
+scale1 [label="scale1\n(scale)"];
+scale2 [label="scale2\n(scale)"];
+jpeg [label="jpeg\n(jpeg_encoder)"];
+jpeg0 [label="jpeg0\n(jpeg_encoder)"];
+jpeg1 [label="jpeg1\n(jpeg_encoder)"];
+jpeg2 [label="jpeg2\n(jpeg_encoder)"];
+img0 [label="img0\n(web_image)"];
+img1 [label="img1\n(web_image)"];
+img2 [label="img2\n(web_image)"];
+img3 [label="img3\n(web_image)"];
+screen -> jpeg [label="screen_jpeg
+(single)"];
+webcam0 -> fps0 [label="cam_fix_0
+(single)"];
+webcam1 -> fps1 [label="cam_fix_1
+(single)"];
+hdmi0 -> fps2 [label="cam_fix_2
+(single)"];
+fps2 -> jpeg2 [label="fps2_jpeg_2
+(single)"];
+jpeg -> scale [label="jpeg_scale
+(single)"];
+scale -> img0 [label="scale_img0
+(single)"];
+fps0 -> jpeg0 [label="fps0_jpeg0
+(single)"];
+jpeg0 -> scale0 [label="jpeg0_scale0
+(single)"];
+scale0 -> img1 [label="scale0_img1
+(single)"];
+fps1 -> jpeg1 [label="fps1_jpeg1
+(single)"];
+jpeg1 -> scale1 [label="jpeg1_scale1
+(single)"];
+scale1 -> img2 [label="scale1_img2
+(single)"];
+jpeg2 -> scale2 [label="jpeg2_scale2
+(single)"];
+scale2 -> img3 [label="scale2_img3
+(single)"];
+}
+

@@ -1,0 +1,170 @@
+<app name="cam_preview">
+
+<variable name="dev0">/dev/video0</variable>
+<variable name="dev0_res" description="Display resolution">320x240</variable>
+<variable name="dev1">/dev/video1</variable>
+<variable name="dev1_res" description="Display resolution">320x240</variable>
+<variable name="dev2">0</variable>
+<variable name="dev3">1</variable>
+
+<variable name="port">8880</variable>
+<variable name="hdmi_format">pal</variable>
+<variable name="pixel_format">yuv</variable>
+<variable name="fps">2</variable>
+<variable name="stats">100</variable>
+<variable name="format">MJPEG</variable>
+<variable name="resolution">240x180</variable>
+
+<description>
+        Providing camera preview on local webserver.
+</description>
+
+<!-- Display source -->
+<node class="screen" name="screen">
+  <parameter name="display">:0.0</parameter>
+  <parameter name="fps">@fps</parameter>
+  <parameter name="cursor">true</parameter>
+</node>
+
+<!-- Video4Linux2 device source -->
+<node class="v4l2source" name="webcam0">
+  <parameter name="path">@dev0</parameter>
+  <parameter name="resolution">@dev0_res</parameter>
+  <parameter name="fps">@fps</parameter>
+  <parameter name="format">@format</parameter>
+  <parameter name="fps_stats">@stats</parameter>
+</node>
+<node class="v4l2source" name="webcam1">
+  <parameter name="path">@dev1</parameter>
+  <parameter name="resolution">@dev1_res</parameter>
+  <parameter name="fps">@fps</parameter>
+  <parameter name="format">@format</parameter>
+  <parameter name="fps_stats">@stats</parameter>
+</node>
+<node class="decklink_input" name="hdmi0">
+  <parameter name="device">@dev2</parameter>
+  <parameter name="format">@hdmi_format</parameter>
+  <parameter name="pixel_format">@pixel_format</parameter>
+  <parameter name="fps_stats">@stats</parameter>
+  <parameter name="audio">0</parameter>
+  <parameter name="force_detection">1</parameter>
+  <parameter name="connection">HDMI</parameter>
+</node>
+<node class="decklink_input" name="hdmi1">
+  <parameter name="device">@dev3</parameter>
+  <parameter name="format">@hdmi_format</parameter>
+  <parameter name="pixel_format">@pixel_format</parameter>
+  <parameter name="fps_stats">@stats</parameter>
+  <parameter name="audio">0</parameter>
+  <parameter name="force_detection">1</parameter>
+  <parameter name="connection">HDMI</parameter>
+</node>
+
+<node class="fix_fps" name="fps0">
+  <parameter name="fps">@fps</parameter>
+</node>
+<node class="fix_fps" name="fps1">
+  <parameter name="fps">@fps</parameter>
+</node>
+<node class="fix_fps" name="fps2">
+  <parameter name="fps">@fps</parameter>
+</node>
+<node class="fix_fps" name="fps3">
+  <parameter name="fps">@fps</parameter>
+</node>
+
+<node class="scale" name="scale">
+  <parameter name="resolution">@resolution</parameter>
+</node>
+<node class="scale" name="scale0">
+  <parameter name="resolution">@resolution</parameter>
+</node>
+<node class="scale" name="scale1">
+  <parameter name="resolution">@resolution</parameter>
+</node>
+<node class="scale" name="scale2">
+  <parameter name="resolution">@resolution</parameter>
+</node>
+<node class="scale" name="scale3">
+  <parameter name="resolution">@resolution</parameter>
+</node>
+
+
+<!-- Screen to MJPEG converter -->
+<node class="jpeg_encoder" name="jpeg">
+  <parameter name="quality">90</parameter>
+  <parameter name="fps_stats">@stats</parameter>
+  <parameter name="force_mjpeg">1</parameter>
+</node>
+<!-- Webcam to MJPEG converter -->
+<node class="jpeg_encoder" name="jpeg0">
+  <parameter name="quality">90</parameter>
+  <parameter name="fps_stats">@stats</parameter>
+  <parameter name="force_mjpeg">1</parameter>
+</node>
+<node class="jpeg_encoder" name="jpeg1">
+  <parameter name="quality">90</parameter>
+  <parameter name="fps_stats">@stats</parameter>
+  <parameter name="force_mjpeg">1</parameter>
+</node>
+<!-- Decklink to MJPEG converter -->
+<node class="jpeg_encoder" name="jpeg2">
+  <parameter name="quality">90</parameter>
+  <parameter name="fps_stats">@stats</parameter>
+  <parameter name="force_mjpeg">1</parameter>
+</node>
+<node class="jpeg_encoder" name="jpeg3">
+  <parameter name="quality">90</parameter>
+  <parameter name="fps_stats">@stats</parameter>
+  <parameter name="force_mjpeg">1</parameter>
+</node>
+
+
+<!-- WEBSERVER COFIGURATION -->
+<node class="webserver" name="web">
+    <parameter name="port">@port</parameter>
+</node>
+<node class="web_image" name="img0">
+    <parameter name="path">/image0.jpg</parameter>
+</node>
+<node class="web_image" name="img1">
+    <parameter name="path">/image1.jpg</parameter>
+</node>
+<node class="web_image" name="img2">
+    <parameter name="path">/image2.jpg</parameter>
+</node>
+<node class="web_image" name="img3">
+    <parameter name="path">/image3.jpg</parameter>
+</node>
+<node class="web_image" name="img4">
+    <parameter name="path">/image4.jpg</parameter>
+</node>
+
+<!-- Link specifications -->
+<link name="screen_jpeg" class="single" source="screen:0" target="jpeg:0"/>
+<link name="cam_fix_0" class="single" source="webcam0:0" target="fps0:0"/>
+<link name="cam_fix_1" class="single" source="webcam1:0" target="fps1:0"/>
+
+<link name="cam_fix_2" class="single" source="hdmi0:0" target="fps2:0"/>
+<link name="cam_fix_3" class="single" source="hdmi1:0" target="fps3:0"/>
+<link name="fps2_jpeg_2" class="single" source="fps2:0" target="jpeg2:0"/>
+<link name="fps3_jpeg_3" class="single" source="fps3:0" target="jpeg3:0"/>
+
+<link class="single" name="jpeg_scale" source="jpeg:0" target="scale:0"/>
+<link class="single" name="scale_img0" source="scale:0" target="img0:0"/>
+
+<link class="single" name="fps0_jpeg0" source="fps0:0" target="jpeg0:0"/>
+<link class="single" name="jpeg0_scale0" source="jpeg0:0" target="scale0:0"/>
+<link class="single" name="scale0_img1" source="scale0:0" target="img1:0"/>
+
+<link class="single" name="fps1_jpeg1" source="fps1:0" target="jpeg1:0"/>
+<link class="single" name="jpeg1_scale1" source="jpeg1:0" target="scale1:0"/>
+<link class="single" name="scale1_img2" source="scale1:0" target="img2:0"/>
+
+<link class="single" name="jpeg2_scale2" source="jpeg2:0" target="scale2:0"/>
+<link class="single" name="scale2_img3" source="scale2:0" target="img3:0"/>
+
+<link class="single" name="jpeg3_scale3" source="jpeg3:1" target="scale3:0"/>
+<link class="single" name="scale3_img4" source="scale3:1" target="img4:0"/>
+
+</app>
