@@ -851,7 +851,7 @@ Jako druhý a poslední job je uvedený \uv{test job}, který patří do etapy \
     - php vendor/nette/tester/src/tester.php --colors 0 tests/*Test.phpt
 \end{lstlisting}
 
-Již na začátku tohoto jobu je patrné, že používá jiný obraz systému, konkrétně obraz s nainstalovaným PHP, verze 7.1.3. V sekci \uv{before\_script} jsou postupně nainstalovány všechny závislosti potřebné ke spuštění testů, včetně těch, které potřebuje samotná aplikace -- ty jsou nainstalované pomocí programu Composer. Dále pak v sekci \uv{script} je už jen jedna řádka, která spouští veškeré soubory s testy, končící na \uv{Test.phpt}, ve složce \uv{tests} v kořenovém adresáři aplikace.
+Již na začátku tohoto jobu je patrné, že používá jiný obraz systému, konkrétně obraz s nainstalovaným PHP, verze 7.1.3. V sekci \uv{before\_script} jsou postupně nainstalovány všechny závislosti potřebné ke spuštění testů, včetně těch, které potřebuje samotná aplikace -- ty jsou nainstalované pomocí programu Composer. Dále pak v sekci \uv{script} je už jen jedna řádka, která spouští veškeré soubory s testy, končící na \uv{Test.phpt}, ve složce \textit{tests} v kořenovém adresáři aplikace.
 
 \section{Vybrané zajímavé funkce} \label{sec:impl_funkce}
 V této části implementační kapitoly jsou uvedeny vybrané zajímavé funkce, které stávající aplikaci obohatily. Tyto funkce jsou ucelenými částmi systému, které pokrývají jeden či více zadaných funkčních požadavků.
@@ -933,22 +933,51 @@ V kódu této webové stránky jsou patrné čtyři elementy \uv{img} reprezentu
 + jeden dalsi
 \subsection{TODO} \label{subsec:impl_funkce_TODO}
 
-\section{Instalační a uživatelská příručka} \label{sec:impl_prirucka}
-TODO .. mozna rozdelit na instalaci a uziv. prirucku
+\section{Instalační příručka} \label{sec:impl_prirucka}
+Aplikaci je možné nalézt v kořenovém adresáři přiloženého CD. Sestavení a nasazení aplikace podle tohoto návodu bylo odzkoušeno na operačních systémech \textit{Ubuntu 14.04 LTS x64} a \textit{Ubuntu 18.04 LTS x64}. Pro instalaci aplikace je využito již připraveného skriptu pro vytváření balíčků, který byl zmíněn v implementační kapitole o kontinuální integraci (vizte \ref{sec:impl_gitlab}). Tento skript již v sobě nese specifikaci většiny závislostí a příkazy pro přípravu prostředí. Proto je zbytečné psát zevrubný návod skládající se z jednotlivých příkazů. Pro použití skriptu na vytvoření balíčku je nejprve nutné nainstalovat program \textit{FPM}, který se k tomu používá. Pro nainstalování programu \textit{FPM} je nutné mít funkční prostředí jazyku Ruby. Na systémech Debian nebo Ubuntu se Ruby prostředí nainstaluje následujícím příkazem.
+\\
+\lstset{language=bash}
+\begin{lstlisting}
+sudo apt install ruby ruby-dev rubygems build-essential -y
+\end{lstlisting}
 
+Program pro tvorbu balíčků se pak pomocí příkazu \textit{gem} nainstaluje následovně.
+\\
+\lstset{language=bash}
+\begin{lstlisting}
+sudo gem install --no-ri --no-rdoc fpm
+\end{lstlisting}
 
+Po úspěšné instalaci programu \textit{FPM} se již může spustit skript pro vytvoření balíčku aplikace, pomocí skriptu \textit{makedeb.sh} v adresáři \textit{scripts}, v kořenovém adresáři aplikace. Poté co skript skončí by se měl vytvořit soubor s příponou \uv{.deb}, který reprezentuje zmiňovaný balíček.
+
+Poslední závislostí, kterou je nutné vyřešit ručně před instalací balíčku, je instalace prostředí PHP, verze 7.1 či vyšší. Samotnou instalaci PHP nám však již provede závislost, vytvořená v samotném balíčku a stačí tedy pouze přidat repozitář pro stažení, který se ve výchozích nastaveních operačních systémů nevyskytuje. Přidání tohoto repozitáře se provede jednoduše následujícím příkazem.
+\\
+\lstset{language=bash}
+\begin{lstlisting}
+sudo add-apt-repository ppa:ondrej/php -y && sudo apt-get update
+\end{lstlisting}
+
+Po přidání zmíněného repozitáře již stačí aplikaci z balíčku nainstalovat. Instalace se provede následujícím příkazem v kořenovém adresáři aplikace.
+\\
+\lstset{language=bash}
+\begin{lstlisting}
+sudo apt-get install ./nazev_balicku.deb -y
+\end{lstlisting}
+
+Tento polední příkaz stáhne všechny zbylé závislosti, včetně prostředí PHP, webserveru Apache2 a další. Dále se postará o přesunutí souborů aplikace na potřebné místo, přidání konfiguračního souboru do seznamu dostupných webových stránek webserveru a následné znovu načtení konfigurace webserveru. Poté by již aplikace měla být dostupná na kořenové adrese lokálního stroje.
 
 \chapter{Testování} \label{chap:testovani}
-Jeden z bodů zadání této práce specifikuje podrobení vytvořené aplikace integračním a akceptačním testům. Aplikaci bylo samozřejmě nutné podrobit i ostatním testům, včetně jednotkových, avšak v textu jsou uvedeny pouze zmíněné dva druhy. Zbylé testy je možné nalézt v kořenovém adresáři aplikace, ve složce \uv{tests}. Integrační a zejména akceptační testy běžně nedělají pouze programátoři, ale také tým testerů a případně samotný zákazník. Z tohoto důvodu byl průběh testů pravidelně koordinován se správcem CHUL laboratoře, Ondřejem Brémem.
+Jeden z bodů zadání této práce specifikuje podrobení vytvořené aplikace integračním a akceptačním testům. Aplikaci bylo samozřejmě nutné podrobit i ostatním testům, včetně jednotkových, avšak v textu jsou uvedeny pouze zmíněné dva druhy. Zbylé testy je možné nalézt v kořenovém adresáři aplikace, ve složce \textit{tests}. Integrační a zejména akceptační testy běžně nedělají pouze programátoři, ale také tým testerů a případně samotný zákazník. Z tohoto důvodu byl průběh testů pravidelně koordinován se správcem CHUL laboratoře, Ondřejem Brémem.
  
 \section{Integrační testování} \label{sec:testovani_integracni}
 Integrační testy by měly ověřit správnost komunikace mezi jednotlivými komponenty aplikace. V prvním prototypu aplikace jsou vytvořeny pouze základní integrační testy. Tyto testy mají za úkol zkontrolovat nejprve komunikaci mezi dvěmi komponentami a postupně i mezi dalšími. Komponentami zde rozumíme například videopřehrávač, úložiště médií, databázi, instance knihovny Libyuri a další. Integračními testy pak znamenají například ověření navázání spojení webové aplikace s databází, správné posílání dat z Libyuri při malých změnách její konfigurace, zabezpečený přístup z webového videopřehrávače do úložiště médií a podobné. Spouštění integračních testů již bylo popsáno v implementační kapitole, v sekci o verzování a kontinuální integraci (\ref{sec:impl_gitlab}). Tam je také popsané, kde se testy nachází a jak se spouští.
 
-Jednou z chyb nalezených při integračním testování bylo při komunikaci aplikace s databází v případě, že se databáze nacházela na jiném stroji než aplikace k ní přistupující. Pokud bylo prostředí takto nastaveno, tak při sestavení a spuštění aplikace docházelo k chybám při pokusech o přihlášení, kde dochází k první komunikaci s databází. Problém byl v tom, že databázový systém byl špatně nakonfigurován v oblasti vzdálených připojení k databázi. 
+Jednou z chyb nalezených při integračním testování bylo při komunikaci aplikace s databází v případě, že se databáze nacházela na jiném stroji než aplikace k ní přistupující. Pokud bylo prostředí takto nastaveno, tak při sestavení a spuštění aplikace docházelo k chybám při pokusech o přihlášení, kde dochází k první komunikaci s databází. Problém byl v tom, že databázový systém byl špatně nakonfigurován v oblasti vzdálených připojení k databázi. Vstupní podmínkou pro tuto situaci byl upravený NEON konfigurační soubor aplikace tak, aby se k databázi připojovala na specifikovaný vzdálený server. 
 
-TODO ... sem dat asi kapku zminku o tetovacim skriptu v CI
+	Řešením vzniklé chyby pak bylo upravení konfigurace PostgreSQL na onom vzdáleném databázovém serveru. Konfigurační soubory PostreSQL se  obvykle nacházejí v adresářích, jako je \textit{/etc/postgresql/<verze>/main/} nebo případně \textit{/var/lib/postgres/data}. Zde pak bylo nutné upravit konfigurační soubory \textit{pg\_hba.conf} a \textit{postgresql.conf}. V souboru \textit{postgresql.conf} stačilo odkomentovat či přidat řádku \uv{listen\_addresses = '*'} pro povolení naslouchání pro přípojení ze všech adres. Dále pak v souboru \textit{pg\_hba.conf} limitovat připojení z konkrétní IP adresy, případně podsítě, přidáním řádky \uv{host all all 185.88.73.30/23 trust}. Tato řádka má pět sloupců, které zleva znamenají: typ připojení (\uv{host} pro vzdálené a \uv{local} pro lokální), jméno databáze (případně všechny pomocí \uv{all}), jméno uživatele (případně všechny pomocí \uv{all}), IP adresu počítače nebo sítě a nakonec autentizační metodu (například \uv{trust} pro žádné ověření, \uv{md5} pro heslo zahešované funkcí md5 a podobně).
+
 \section{Akceptační testování} \label{sec:testovani_akceptacni}
-\subsection{Probíhající usability testování} \label{subsec:testovani_akceptacni_utest} % mozna smazat
+%\subsection{Probíhající usability testování} \label{subsec:testovani_akceptacni_utest} % mozna smazat
 TODO ... použít něco z NUR - usability testing (prvni prednaska)
 
 \begin{conclusion}
