@@ -126,7 +126,7 @@
 			<data key="d1">
 				<x:List>
 					<y:Label LayoutParameter="{x:Static y:InteriorStretchLabelModel.Center}">
-						<y:Label.Text><![CDATA[Nastavení pozice obrazu streamů]]></y:Label.Text>
+						<y:Label.Text><![CDATA[Nastavení pozic pro obrazy streamu]]></y:Label.Text>
 						<y:Label.Style>
 							<yjs:DefaultLabelStyle verticalTextAlignment="CENTER" horizontalTextAlignment="CENTER" wrapping="WORD" clipText="false" textFill="BLACK" textSize="13">
 								<yjs:DefaultLabelStyle.font>
@@ -205,7 +205,7 @@
 			<data key="d1">
 				<x:List>
 					<y:Label LayoutParameter="{x:Static y:InteriorStretchLabelModel.Center}">
-						<y:Label.Text><![CDATA[Přidání komentářů ke streamu]]></y:Label.Text>
+						<y:Label.Text><![CDATA[Přidání komentáře ke streamu]]></y:Label.Text>
 						<y:Label.Style>
 							<yjs:DefaultLabelStyle verticalTextAlignment="CENTER" horizontalTextAlignment="CENTER" wrapping="WORD" clipText="false" textFill="BLACK" textSize="13">
 								<yjs:DefaultLabelStyle.font>
