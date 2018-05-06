@@ -941,7 +941,7 @@ Tato sekce popisuje příjem konfigurace na websocketové straně Libyuri a jej�
 }
 \end{lstlisting}
 
-Jak je patrné, objekt obsahuje název projektu, zdrojový soubor určený k úpravě a cílový soubor, do kterého se upravený soubor uloží. Krom možných dalších parametrů obsahuje ještě část \uv{actions}, která obsahuje seznam úprav, které Libyuri na zdrojovém souboru provede. V dalším úryvku kódu je ukázáno, jak probíhá zpracování přijatého konfiguračního objektu.
+Jak je patrné, objekt obsahuje název projektu, zdrojový soubor určený k úpravě a cílový soubor, do kterého se upravený soubor uloží. Krom možných dalších parametrů obsahuje ještě část \uv{actions}, která obsahuje seznam úprav, které Libyuri na zdrojovém souboru provede. V dalším úryvku kódu je ukázáno, jak probíhá zpracování přijatého konfiguračního objektu na přijímací straně websocketů.
 \\
 \lstset{style=htmlcssjs}
 \begin{lstlisting}
@@ -971,6 +971,48 @@ ioIn.on('connection', function (socketIn) {
 	...
 });
 \end{lstlisting}
+
+V kódu je patrné, že po přijetí nastavení pro export média (proměnná \textit{data}) je toto nastavení předáno instanci třídy \textit{Exporter} pro zpracování. Tato třída dynamicky generuje XML konfiguraci pro Libyuri. Třída nejprve načte jméno projektu, zdrojový a cílový soubor, z nich vytvoří hlavičku XML konfigurace a základní uzly pro tyto soubory (moduly \uv{rawavsource} pro načtení souboru a \uv{filedump} pro zapsání do souboru). Dále pak funkce \textit{applyAction} přidává do XML konfigurace další uzly na základě předaných akcí pro úpravu. Nakonec v metodě \textit{run} třídy \textit{Exporter} se dovytvoří všechna spojení mezi vytvořenými uzly (v pořadí volání funkce \textit{applyAction}), vygeneruje se XML soubor z vytvořené konfigurace a s ním se spustí instance knihovny Libyuri pomocí nového procesu. Standardní vstup, výstup, ale i chybový výstup z Libyuri jsou kontrolovány a případná chyba vyhodí výjimku, která je odchycena a případně odeslána zpět na webserver. Dále je uveden příklad finální konfigurace pro Libyuri, která byla vygenerována z výše uvedeného JSON objektu.
+\\
+\lstset{language=XML}
+\begin{lstlisting}
+<?xml version="1.0" ?>
+<app name="MyProject">
+
+  <node class="rawavsource" name="source">
+	<parameter name="decode">1</parameter>
+	<parameter name="filename">/foo/srcFile</parameter>
+  </node>
+
+  <node class="filedump" name="dumper">
+	<parameter name="filename">/bar/dstFile</parameter>
+  </node>
+
+  <node class="jpeg_encoder" name="jpeg_out">
+    <parameter name="quality">90</parameter>
+    <parameter name="force_mjpeg">1</parameter>
+  </node>
+
+  <node class="contrast" name="contrast39">
+	<parameter name="contrast">20</parameter>
+  </node>
+
+  <node class="scale" name="scale93">
+	<parameter name="resolution">200x200</parameter>
+  </node>
+
+  <node class="fix_fps" name="fps31">
+	<parameter name="fps">25</parameter>
+  </node>
+
+  <link name="link74" class="single" source="source:0" target="contrast39:0"/>
+  <link name="link63" class="single" source="contrast39:0" target="scale93:0"/>
+  <link name="link25" class="single" source="scale93:0" target="fps31:0"/>
+  <link name="link30" class="single" source="fps31:0" target="jpeg_out:0"/>
+  <link name="jpeg_dumper" class="single" source="jpeg_out:0" target="dumper:0"/>
+</app>
+\end{lstlisting}
+
 \section{Instalační příručka} \label{sec:impl_prirucka}
 Aplikaci je možné nalézt v kořenovém adresáři přiloženého CD. Sestavení a nasazení aplikace podle tohoto návodu bylo odzkoušeno na operačních systémech \textit{Ubuntu 14.04 LTS x64} a \textit{Ubuntu 18.04 LTS x64}. Pro instalaci aplikace je využito již připraveného skriptu pro vytváření balíčků, který byl zmíněn v implementační kapitole o kontinuální integraci (vizte \ref{sec:impl_gitlab}). Tento skript již v sobě nese specifikaci většiny závislostí a příkazy pro přípravu prostředí. Proto je zbytečné psát zevrubný návod skládající se z jednotlivých příkazů. Pro použití skriptu na vytvoření balíčku je nejprve nutné nainstalovat program \textit{FPM}, který se k tomu používá. Pro nainstalování programu \textit{FPM} je nutné mít funkční prostředí jazyku Ruby. Na systémech Debian nebo Ubuntu se Ruby prostředí nainstaluje následujícím příkazem.
 \\
