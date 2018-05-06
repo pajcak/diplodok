@@ -735,7 +735,7 @@ V tabulkách \textit{VideoRecord}, \textit{AudioRecord}, respektive \textit{Outp
 \subsection{Správa úloh} \label{subsec:navrh_backend_ulohy}
 Při popisování vytvořeného databázového modelu byla zmíněna tabulka \textit{Jobs}, která obsahuje informace o úlohových zpracování záznamů. Dále je popsáno, co za touto tabulkou stojí.
 
-Backendový subsystém pro zpracovávání záznamů upravených ve webové aplikaci je navržen jako dávkové zpracování úloh. V systému se nachází fronta úloh obsahující úlohy připravené ke zpracování (například převod videa do jiného formátu). Dále je v systému démon, tedy proces běžící na pozadí, který tuto frontu obhospodařuje. Tento proces si hlídá existující zpracovávané úlohy knihovnou Libyuri a pokud se uvolní výpočetní prostředky, pak se z fronty úloh vezme ta s nejvyšší prioritou a začne se zpracovávat. Informace o těchto úlohách jsou uloženy právě v tabulce \textit{Jobs}. Na této tabulce je také v PostgreSQL databázi nastavena parametrická notifikace, přesněji příkaz NOTIFY, který po zápisu nové úlohy do tabulky notifikuje zmíněného démona pro správu úloh. Tento démon má již na databázi, pomocí příkazu LISTEN, spuštěné naslouchání na kanálu tohoto typu notifikací a za využití PHP funkce \textit{pgsqlGetNotify} pak může vyvolané notifikace zachytávat ve stanovených časových intervalech. Díky tomu dokáže démon vzniklou úlohu zaregistrovat a případně přejít k jejímu zpracování.
+Backendový subsystém pro zpracovávání záznamů upravených ve webové aplikaci je navržen jako dávkové zpracování úloh. V systému se nachází fronta úloh obsahující úlohy připravené ke zpracování (například převod videa do jiného formátu). Dále je v systému démon, tedy PHP proces běžící na pozadí, který tuto frontu obhospodařuje. Tento proces si hlídá existující zpracovávané úlohy knihovnou Libyuri a pokud se uvolní výpočetní prostředky, pak se z fronty úloh vezme ta s nejvyšší prioritou a začne se zpracovávat. Informace o těchto úlohách jsou uloženy právě v tabulce \textit{Jobs}. Na této tabulce je také v PostgreSQL databázi nastavena parametrická notifikace, přesněji příkaz NOTIFY, který po zápisu nové úlohy do tabulky notifikuje zmíněného démona pro správu úloh. Tento démon má již na databázi, pomocí příkazu LISTEN, spuštěné naslouchání na kanálu tohoto typu notifikací a za využití PHP funkce \textit{pgsqlGetNotify} pak může vyvolané notifikace zachytávat ve stanovených časových intervalech. Díky tomu dokáže démon vzniklou úlohu zaregistrovat a případně přejít k jejímu zpracování.
 
 \subsection{Libyuri} \label{subsec:navrh_backend_libyuri}
 V backendové části aplikace se na CHUL serveru nachází instance knihovny Libyuri. Tato knihovna zde bude sloužit jako prostředník mezi nahrávacími zařízeními v CHUL laboratoři a multimediálním úložištěm, případně webovou aplikací. Reference a návod pro pojmy a různé postupy je k nalezení v analýze v sekci \ref{sec:analyza_yuri}, kde je zevrubně popsáno, jak Libyuri, potažmo aplikace Yuri2 pracuje.	Libyuri na backendu vykonává dva druhy práce, jedním je předchozími příkladovými konfiguracemi popsaný proces spouštění nahrávání a streamování a jeho průběh spolu s ukládáním. Další oblastí, při které Libyuri pomůže, bude zpracování videa upraveného ve webovém video editoru. Dále je uveden příklad prvního druhu zmíněné práce Libyri na backendu.
@@ -893,11 +893,11 @@ Díky zmíněnému mechanizmu je pak možné z webové aplikace na snímky tohot
   </head>
   <body>
     <div id="image_container">
-      <img src="/loading.gif" id="image0"/>
-      <img src="/loading.gif" id="image1"/>
-      <img src="/loading.gif" id="image2"/>
-      <img src="/loading.gif" id="image3"/>
-      <img src="/loading.gif" id="image4"/>
+      <img src="/loading.gif" id="image0" onerror="this.src='image_error.png';"/>
+      <img src="/loading.gif" id="image1" onerror="this.src='image_error.png';"/>
+      <img src="/loading.gif" id="image2" onerror="this.src='image_error.png';"/>
+      <img src="/loading.gif" id="image3" onerror="this.src='image_error.png';"/>
+      <img src="/loading.gif" id="image4" onerror="this.src='image_error.png';"/>
     </div>
     <script>
       setInterval(function () {
@@ -915,8 +915,8 @@ Díky zmíněnému mechanizmu je pak možné z webové aplikace na snímky tohot
 V kódu této webové stránky jsou patrné čtyři elementy \uv{img} reprezentující obrazové náhledy nahrávacích zařízení. Dále je pak vidět jednoduchá funkce jazyka JavaScript, která každé dvě sekundy přepíše zdrojový atribut obrazového elementu. Zdroj je přepsán na stejnou adresu se stejným jménem obrázku na Libyuri webserveru, avšak s přidaným náhodným řetězcem, jako parametr za znakem otazníku, který přinutí prohlížeč, aby si obrázek nenahrál z cache paměti, ale aby jej stáhl z webového serveru. Výsledkem pak jsou náhledové obrazy z kamer v CHUL laboratoři, aktualizující se každé dvě sekundy.
 
 
-+ jeden dalsi (neco s yuri konfigurakem a pripadne webem [html] kdyz mam tak peknej styl)
-\subsection{TODO} \label{subsec:impl_funkce_TODO}
+\subsection{Generování konfigurací pro Libyuri} \label{subsec:impl_funkce_generate}
+TODO
 
 \section{Instalační příručka} \label{sec:impl_prirucka}
 Aplikaci je možné nalézt v kořenovém adresáři přiloženého CD. Sestavení a nasazení aplikace podle tohoto návodu bylo odzkoušeno na operačních systémech \textit{Ubuntu 14.04 LTS x64} a \textit{Ubuntu 18.04 LTS x64}. Pro instalaci aplikace je využito již připraveného skriptu pro vytváření balíčků, který byl zmíněn v implementační kapitole o kontinuální integraci (vizte \ref{sec:impl_gitlab}). Tento skript již v sobě nese specifikaci většiny závislostí a příkazy pro přípravu prostředí. Proto je zbytečné psát zevrubný návod skládající se z jednotlivých příkazů. Pro použití skriptu na vytvoření balíčku je nejprve nutné nainstalovat program \textit{FPM}, který se k tomu používá. Pro nainstalování programu \textit{FPM} je nutné mít funkční prostředí jazyku Ruby. Na systémech Debian nebo Ubuntu se Ruby prostředí nainstaluje následujícím příkazem.
@@ -950,6 +950,8 @@ sudo apt-get install ./nazev_balicku.deb -y
 \end{lstlisting}
 
 Tento polední příkaz stáhne všechny zbylé závislosti, včetně prostředí PHP, webserveru Apache2 a další. Dále se postará o přesunutí souborů aplikace na potřebné místo, přidání konfiguračního souboru do seznamu dostupných webových stránek webserveru a následné znovu načtení konfigurace webserveru. Poté by již aplikace měla být dostupná na kořenové adrese lokálního stroje.
+
+
 
 \chapter{Testování} \label{chap:testovani}
 Jeden z bodů zadání této práce specifikuje podrobení vytvořené aplikace integračním a akceptačním testům. Aplikaci bylo samozřejmě nutné podrobit i ostatním testům, včetně jednotkových, avšak v textu jsou uvedeny pouze zmíněné dva druhy. Zbylé testy je možné nalézt v kořenovém adresáři aplikace, ve složce \textit{tests}. Integrační a zejména akceptační testy běžně nedělají pouze programátoři, ale také tým testerů a případně samotný zákazník. Z tohoto důvodu byl průběh testů pravidelně koordinován se správcem CHUL laboratoře, Ondřejem Brémem.

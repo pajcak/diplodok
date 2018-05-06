@@ -17,17 +17,18 @@
     </head>
     <body>
         <div id="image_container">
-            <img src="/loading.gif" id="image0"/>
-            <img src="/loading.gif" id="image1"/>
-            <img src="/loading.gif" id="image2"/>
-            <img src="/loading.gif" id="image3"/>
-            <img src="/loading.gif" id="image4"/>
+            <img src="/loading.gif" id="image0" onerror="this.src='image_error.png';"/>
+            <img src="/loading.gif" id="image1" onerror="this.src='image_error.png';"/>
+            <img src="/loading.gif" id="image2" onerror="this.src='image_error.png';"/>
+            <img src="/loading.gif" id="image3" onerror="this.src='image_error.png';"/>
+            <img src="/loading.gif" id="image4" onerror="this.src='image_error.png';"/>
         </div>
         <script>
             setInterval(function () {
                 d = new Date();
                 for (var i = 0; i <= 4; i++) {
-                    document.getElementById("image" + i).src = 'http://ulab.cesnet.cz:8880/image'
+                    let elem = document.getElementById("image" + i);
+                    elem.src = 'http://ulab.cesnet.cz:8880/image'
                             + i + '.jpg?random=' + d.valueOf().toString() + Math.random().toString();
                 }
             }, 2000);
