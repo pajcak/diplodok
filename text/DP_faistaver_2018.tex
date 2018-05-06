@@ -468,8 +468,7 @@ Konceptuálně představuje builder graf a zároveň je možné jej chápat jako
 \subsubsection{XMLBuilder} \label{subsec:analyza_yuri_vytvoreni_xml}
 V jádře Libyuri je také implementace builderu \uv{XMLBuilder}, který načítá XML soubory popisující graf a datové cesty a z nich pak výsledný graf vytvoří. Použití tohoto builderu je demonstrováno dále, kde je nejprve uvedena konfigurace grafu v jazyku XML a poté vygenerovaný graf.
 \\
-\lstset{language=XML}
-\begin{lstlisting}
+\begin{lstlisting}[language=XML]
 <?xml version="1.0" ?>
 <app name="webcam" xmlns="urn:library:yuri:xmlschema:2001"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
@@ -517,8 +516,7 @@ Uzel, který implementuje koncept \uv{BasicEventProducer} může generovat (\tex
 
 Dále je uveden jednoduchý příklad XML kódu demonstrující události.
 \\
-\lstset{language=XML}
-\begin{lstlisting}
+\begin{lstlisting}[language=XML]
 <event>
   route(dump:sequence) -> info:progress;
 </event>
@@ -528,8 +526,7 @@ Pokud se zanese tento příklad do existující XML konfigurace grafu, tak ve ch
 
 Specifikace směrování podporuje i funkcionální jazyk pro modifikaci událostí nebo kombinující více událostí dohromady. Je tak možné vytvářet i složitější konstrukce jak v příkladu uvedeném dále.
 \\
-\lstset{language=XML}
-\begin{lstlisting}
+\begin{lstlisting}[language=XML]
 <event>
   route(gt(dump:sequence, var:max_frames)) -> generate:stop;
 </event>
@@ -550,31 +547,28 @@ Jako součást knihovny Libyuri je distribuováno několik aplikací, které tut
 \begin{description}
   \item \textbf{Yuri\_simple\\}
   Program pro vytváření grafů bez konfiguračního XML souboru. Všechny potřebné informace k vytvoření grafu se předají argumenty při spuštění programu. Například následující příkaz spustí stejnou konfiguraci jako ukázkový příklad grafu ze sekce XMLBuilder (\ref{subsec:analyza_yuri_vytvoreni_xml}).\\
-  
-\lstset{language=bash,morekeywords={yuri_simple,v4l2source, path, dev, video0, sdl_window},keywordstyle=\color{black}}
-\begin{lstlisting}
+
+\begin{lstlisting}[language=bash,identifierstyle=\color{black}]
 ./yuri_simple v4l2source[path=/dev/video0] sdl_window
 \end{lstlisting}
 
   \item \textbf{Yuri\_test\_module\\}
-  Aplikace testující validitu modulů. Následující příkaz otestuje, jestli je modul \textit{yuri2.8\_module\_null.so} validní.
-\lstset{language=bash,alsoletter={.},morekeywords={yuri_test_module, yuri2.8_module_null.so},keywordstyle=\color{black}}
-\begin{lstlisting}
+  Aplikace testující validitu modulů. Následující příkaz otestuje, jestli je modul \textit{yuri2.8\_module\_null.so} validní.\\
+
+\begin{lstlisting}[language=bash,identifierstyle=\color{black}]
 ./yuri_test_module yuri2.8_module_null.so
 \end{lstlisting}
 
   \item \textbf{Yuri2\\}
 Tento program načítá konfigurační XML soubor (vizte popis XMLBuilderu \ref{subsec:analyza_yuri_vytvoreni_xml}) a spouští aplikaci v něm popsanou. Následuje nejjednodušší příklad spuštění tohoto programu.\\
 
-\lstset{language=bash,morekeywords={yuri2,\$, config, xml},keywordstyle=\color{black}}
-\begin{lstlisting}
+\begin{lstlisting}[language=bash,identifierstyle=\color{black}]
 ./yuri2 config.xml
 \end{lstlisting}
 
 Pokud jsou v konfiguračním souboru uvedeny proměnné (značky <variable>, stejné, jako v příkladu \ref{subsec:analyza_yuri_vytvoreni_xml}), je možné jim nastavit hodnotu na příkazové řádce tak, jako v následujícím příkladu, kde se nastaví proměnná \uv{device}.\\
 
-\lstset{language=bash,morekeywords={yuri2,\$, config, xml, device, video0, dev},keywordstyle=\color{black}}
-\begin{lstlisting}
+\begin{lstlisting}[language=bash,identifierstyle=\color{black}]
 ./yuri2 config.xml device=/dev/video0
 \end{lstlisting}
 
@@ -780,19 +774,17 @@ Gitlab patří mezi pokročilejší systémy pro kontrolu verzí a v jeho souča
 
 Při implementaci řešení této práce bylo tedy kontinuální integrace naplno využito. Celý proces od automatizovaného sestavení, testů, až po nasazení bylo možné vyřešit jedním konfiguračním souborem se syntaxí jazyku YAML. Tento soubor, s názvem \textit{.gitlab-ci.yml}, se nachází na přiloženém CD. Z tohoto souboru jsou vyjmuty části kódu pro ukázku toho, jak je kontinuální integrace nastavena.
 
-První hlavní částí konfiguračního souboru je stanovení tzv. \textit{stages}, což reprezentuje etapy samotné kontinuální integrace. Níže v části kódu je vidět, že integrace má dvě etapy -- etapa \uv{deploy}, která provede nasazení, a etapa \uv{test}, která spustí integrační i jiné testy.
-\\
-\lstset{identifierstyle=\color{black}}
-\begin{lstlisting}
+První hlavní částí konfiguračního souboru je stanovení tzv. \textit{stages}, což reprezentuje etapy samotné kontinuální integrace. Níže v části kódu je vidět, že integrace má dvě etapy -- etapa \uv{deploy}, která provede nasazení, a etapa \uv{test}, která spustí integrační i jiné testy.\\
+
+\begin{lstlisting}[identifierstyle=\color{black}]
 stages:
   - deploy
   - test
 \end{lstlisting}
 
-Do jednotlivých etap lze zařadit spoustu drobných fází, neboli Jobů, ve kterých je již specifikováno, jaké příkazy se mají vykonat. V kontinuální integraci systému této diplomové práce stačilo vytvořit pouze jeden job pro každou etapu. Následující část kódu obsahuje definici jobu \uv{deploy job}, který jako jediný, patří do etapy \uv{deploy}. 
-\\
-\lstset{identifierstyle=\color{black},morestring=[b]"}
-\begin{lstlisting}
+Do jednotlivých etap lze zařadit spoustu drobných fází, neboli Jobů, ve kterých je již specifikováno, jaké příkazy se mají vykonat. V kontinuální integraci systému této diplomové práce stačilo vytvořit pouze jeden job pro každou etapu. Následující část kódu obsahuje definici jobu \uv{deploy job}, který jako jediný, patří do etapy \uv{deploy}.\\
+
+\begin{lstlisting}[identifierstyle=\color{black}]
 'deploy job':
   image: bigcloudcz/fpm
   stage: deploy
@@ -821,10 +813,9 @@ Do jednotlivých etap lze zařadit spoustu drobných fází, neboli Jobů, ve kt
 
 Prvních pár řádků konfigurace \uv{deploy job} se týká nastavení nutného pro výběr obrazu systému, zařazení jobu do správné etapy a podobně. Sekce \uv{before\_script} nastavuje vzdálené připojení (pomocí asymetrické kryptografie) na privátní virtuální server pro nasazení aplikace. V sekci \uv{script} jsou již uvedeny pouze čtyři příkazové řádky, které provedou nasazení softwaru na vzdáleném serveru. Nasazení proběhne tak, že se pomocí programu \textit{fpm} vytvoří balíček určený pro distribuce operačních systému rodiny Debian. Tento balíček se následně přesune na požadovaný server a za pomocí poslední řádky v sekci \uv{script} a skriptů obsažených v balíčku se nasadí. Nakonec je uvedena sekce \uv{artifacts}, která na serveru kontinuální integrace uchová vytvořené balíčky pro různou potřebu, po dobu třiceti dnů.
 
-Jako druhý a poslední job je uvedený \uv{test job}, který patří do etapy \uv{test}. Tento job zajišťuje to, že po každém upravení zdrojového kódu v repozitáři, spustí základní sadu integračních a dalších testů.
-\\
-\lstset{identifierstyle=\color{black}}
-\begin{lstlisting}
+Jako druhý a poslední job je uvedený \uv{test job}, který patří do etapy \uv{test}. Tento job zajišťuje to, že po každém upravení zdrojového kódu v repozitáři, spustí základní sadu integračních a dalších testů.\\
+
+\begin{lstlisting}[identifierstyle=\color{black}]
 'test job':
   image: php:7.1.3
   stage: test
@@ -853,10 +844,9 @@ V této části implementační kapitoly jsou uvedeny vybrané zajímavé funkce
 \subsection{Náhled z nahrávacích zařízení} \label{subsec:impl_funkce_preview}
 Jednou z potřebných funkcí aplikace bylo zobrazit náhledy nahrávacích zařízení ve webové části. Přímo na webové stránce s nastavením streamování bylo třeba zobrazit seznam zařízení schopných nahrávání, jak je zmíněno ve frontendové části návrhu (vizte \ref{subsubsec:navrh_frontend_ui_proto}). Tato zařízení mohla být zobrazena jen jako pouhý text obsahující identifikátor daného zařízení. Jelikož se však jedná o nahrávací zařízení, nejčastěji kamery, webkamery, obrazovky a jiné, pak je uživatelsky velice přívětivé zobrazit přímé náhledy z těchto zařízení. Pro tuto funkcionalitu byla využita instance knihovny Libyuri s relativně jednoduchým konfiguračním souborem. Libyuri tak zajišťovala odběr snímků obrazu z nahrávacích zařízení, jejich korekci a následné předání frontendové části webové aplikace. Dále je vysvětleno, jak se tato funkcionalita implementovala. 
 
-Přestože je konfigurační soubor relativně jednoduchý, je příliš dlouhý, než aby zde zaplňoval pár stran. Na následujících několika úryvcích konfigurace v jazyku XML je uvedeno několik příkladových uzlů konfiguračního grafu. Na prvním je ukázáno, jak v takové konfiguraci vypadá uzel reprezentující zařízení webkamery.
-\\
-\lstset{language=XML}
-\begin{lstlisting}
+Přestože je konfigurační soubor relativně jednoduchý, je příliš dlouhý, než aby zde zaplňoval pár stran. Na následujících několika úryvcích konfigurace v jazyku XML je uvedeno několik příkladových uzlů konfiguračního grafu. Na prvním je ukázáno, jak v takové konfiguraci vypadá uzel reprezentující zařízení webkamery.\\
+
+\begin{lstlisting}[language=XML]
 <node class="v4l2source" name="webcam0">
   <parameter name="path">/dev/video0</parameter>
   <parameter name="resolution">320x240</parameter>
@@ -866,10 +856,9 @@ Přestože je konfigurační soubor relativně jednoduchý, je příliš dlouhý
 </node>
 \end{lstlisting}
 
-Při navedení datové hrany z tohoto uzlu budeme mít zajištěno, že se ze zařízení s umístěním v \textit{/dev/video0} bude získávat pět snímků za sekundu o rozlišení 320x240 pixelů, ve formátu MJPEG. Obdobným způsobem pak funguje získávání obrazu ze složitějších kamer. Tyto kamery jsou k počítači připojeny HDMI rozhraním přes tzv. grabovací grafickou kartu značky DeckLink, a tudíž je konfigurace uzlů o trochu jiná, jak je patrné z dalšího úseku kódu.
-\\
-\lstset{language=XML}
-\begin{lstlisting}
+Při navedení datové hrany z tohoto uzlu budeme mít zajištěno, že se ze zařízení s umístěním v \textit{/dev/video0} bude získávat pět snímků za sekundu o rozlišení 320x240 pixelů, ve formátu MJPEG. Obdobným způsobem pak funguje získávání obrazu ze složitějších kamer. Tyto kamery jsou k počítači připojeny HDMI rozhraním přes tzv. grabovací grafickou kartu značky DeckLink, a tudíž je konfigurace uzlů o trochu jiná, jak je patrné z dalšího úseku kódu.\\
+
+\begin{lstlisting}[language=XML]
 <node class="decklink_input" name="hdmi0">
   <parameter name="device">0</parameter>
   <parameter name="format">PAL</parameter>
@@ -890,10 +879,9 @@ Požadavek na data tohoto uzlu vyprodukuje obrazové rámce ve formátu PAL, s k
 
 Graf konfigurace na obrázku \ref{img:impl_funkce_preview_conf} je z velké části podobný těm v návrhové kapitole, v psaní o funkci Libyuri na backendu (\ref{subsec:navrh_backend_libyuri}). Liší se však především uzly v nejnižší vrstvě reprezentované modulem \uv{web\_image}. Tyto uzly zajišťují, spolu s modulem pro webserver, malý webserver běžící v instanci Libyuri. Tento webserver pak hostuje příchozí obrazové rámce z kamery, jako JPEG obrázky se statickou adresou na webserveru. Pro každé nahrávací zařízení je na webserveru jedna adresa vedoucí na obrázek, který se stále obnovuje (dle snímkové frekvence definované v uzlu \uv{fix\_fps}).
 
-Díky zmíněnému mechanizmu je pak možné z webové aplikace na snímky tohoto webserveru odkazovat a načítat znovu a znovu v libovolných časových intervalech respektujících snímkovou frekvenci uzlů v Libyuri. Ukázková webová stránka zobrazující náhledy z nahrávacích zařízení pak může vypadat následovně.
-\\
-\lstset{style=htmlcssjs}
-\begin{lstlisting}
+Díky zmíněnému mechanizmu je pak možné z webové aplikace na snímky tohoto webserveru odkazovat a načítat znovu a znovu v libovolných časových intervalech respektujících snímkovou frekvenci uzlů v Libyuri. Ukázková webová stránka zobrazující náhledy z nahrávacích zařízení pak může vypadat následovně.\\
+
+\begin{lstlisting}[style=htmlcssjs]
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -902,17 +890,18 @@ Díky zmíněnému mechanizmu je pak možné z webové aplikace na snímky tohot
   </head>
   <body>
     <div id="image_container">
-      <img src="/loading.gif" id="image0" onerror="this.src='image_error.png';"/>
-      <img src="/loading.gif" id="image1" onerror="this.src='image_error.png';"/>
-      <img src="/loading.gif" id="image2" onerror="this.src='image_error.png';"/>
-      <img src="/loading.gif" id="image3" onerror="this.src='image_error.png';"/>
-      <img src="/loading.gif" id="image4" onerror="this.src='image_error.png';"/>
+      <img src="/loading.gif" id="image0" onerror="this.src='img_err.png';"/>
+      <img src="/loading.gif" id="image1" onerror="this.src='img_err.png';"/>
+      <img src="/loading.gif" id="image2" onerror="this.src='img_err.png';"/>
+      <img src="/loading.gif" id="image3" onerror="this.src='img_err.png';"/>
+      <img src="/loading.gif" id="image4" onerror="this.src='img_err.png';"/>
     </div>
     <script>
       setInterval(function () {
         d = new Date();
         for (var i = 0; i <= 4; i++) {
-          document.getElementById("image" + i).src = 'http://ulab.cesnet.cz:8880/image' + i + '.jpg?random='
+          document.getElementById("image" + i).src = 
+             'http://ulab.cesnet.cz:8880/image' + i + '.jpg?random='
                 + d.valueOf().toString() + Math.random().toString();
         }
       }, 2000);
@@ -925,10 +914,9 @@ V kódu této webové stránky jsou patrné čtyři elementy \uv{img} reprezentu
 
 
 \subsection{Generování konfigurací pro Libyuri} \label{subsec:impl_funkce_generate}
-Tato sekce popisuje příjem konfigurace na websocketové straně Libyuri a její převod z formátu JSON do XML. Vše začne příjmem konfiguračního objektu syntaxe JSON od webserveru. Následuje příkladová ukázka struktury tohoto objektu.
-\\
-\lstset{language=json}
-\begin{lstlisting}
+Tato sekce popisuje příjem konfigurace na websocketové straně Libyuri a její převod z formátu JSON do XML. Vše začne příjmem konfiguračního objektu syntaxe JSON od webserveru. Následuje příkladová ukázka struktury tohoto objektu.\\
+
+\begin{lstlisting}[language=json]
 {
   "projectName":"MyProject",
   "srcFile":"/foo/srcFile",
@@ -941,10 +929,9 @@ Tato sekce popisuje příjem konfigurace na websocketové straně Libyuri a jej�
 }
 \end{lstlisting}
 
-Jak je patrné, objekt obsahuje název projektu, zdrojový soubor určený k úpravě a cílový soubor, do kterého se upravený soubor uloží. Krom možných dalších parametrů obsahuje ještě část \uv{actions}, která obsahuje seznam úprav, které Libyuri na zdrojovém souboru provede. V dalším úryvku kódu je ukázáno, jak probíhá zpracování přijatého konfiguračního objektu na přijímací straně websocketů.
-\\
-\lstset{style=htmlcssjs}
-\begin{lstlisting}
+Jak je patrné, objekt obsahuje název projektu, zdrojový soubor určený k úpravě a cílový soubor, do kterého se upravený soubor uloží. Krom možných dalších parametrů obsahuje ještě část \uv{actions}, která obsahuje seznam úprav, které Libyuri na zdrojovém souboru provede. V dalším úryvku kódu je ukázáno, jak probíhá zpracování přijatého konfiguračního objektu na přijímací straně websocketů.\\
+
+\begin{lstlisting}[style=htmlcssjs]
 var Exporter = require('./Exporter.js').Exporter;
 var ioIn = require('socket.io').listen(8090);
 var ioOut = require('socket.io-client');
@@ -972,11 +959,9 @@ ioIn.on('connection', function (socketIn) {
 });
 \end{lstlisting}
 
-V kódu je patrné, že po přijetí nastavení pro export média (proměnná \textit{data}) je toto nastavení předáno instanci třídy \textit{Exporter} pro zpracování. Tato třída dynamicky generuje XML konfiguraci pro Libyuri. Třída nejprve načte jméno projektu, zdrojový a cílový soubor, z nich vytvoří hlavičku XML konfigurace a základní uzly pro tyto soubory (moduly \uv{rawavsource} pro načtení souboru a \uv{filedump} pro zapsání do souboru). Dále pak funkce \textit{applyAction} přidává do XML konfigurace další uzly na základě předaných akcí pro úpravu. Nakonec v metodě \textit{run} třídy \textit{Exporter} se dovytvoří všechna spojení mezi vytvořenými uzly (v pořadí volání funkce \textit{applyAction}), vygeneruje se XML soubor z vytvořené konfigurace a s ním se spustí instance knihovny Libyuri pomocí nového procesu. Standardní vstup, výstup, ale i chybový výstup z Libyuri jsou kontrolovány a případná chyba vyhodí výjimku, která je odchycena a případně odeslána zpět na webserver. Dále je uveden příklad finální konfigurace pro Libyuri, která byla vygenerována z výše uvedeného JSON objektu.
-\\
-\lstset{language=XML}
-\begin{lstlisting}
-<?xml version="1.0" ?>
+V kódu je patrné, že po přijetí nastavení pro export média (proměnná \textit{data}) je toto nastavení předáno instanci třídy \textit{Exporter} pro zpracování. Tato třída dynamicky generuje XML konfiguraci pro Libyuri. Třída nejprve načte jméno projektu, zdrojový a cílový soubor a z nich pak vytvoří hlavičku XML konfigurace a základní uzly pro tyto soubory (moduly \uv{rawavsource} pro načtení souboru a \uv{filedump} pro zapsání do souboru). Dále pak funkce \textit{applyAction} přidává do XML konfigurace další uzly na základě předaných akcí pro úpravu. Nakonec se v metodě \textit{run} třídy \textit{Exporter} dovytvoří všechna spojení mezi vytvořenými uzly (v pořadí volání funkce \textit{applyAction}), vygeneruje se XML soubor z vytvořené konfigurace a s ním se spustí instance knihovny Libyuri pomocí nového procesu. Standardní vstup, výstup, ale i chybový výstup z Libyuri jsou kontrolovány a případná chyba vyhodí výjimku, která je odchycena a případně odeslána zpět na webserver. Dále je uveden příklad finální konfigurace pro Libyuri, která byla vygenerována z výše uvedeného JSON objektu pomocí třídy \textit{Exporter}.\\
+
+\begin{lstlisting}[language=XML]
 <app name="MyProject">
 
   <node class="rawavsource" name="source">
@@ -993,60 +978,56 @@ V kódu je patrné, že po přijetí nastavení pro export média (proměnná \t
     <parameter name="force_mjpeg">1</parameter>
   </node>
 
-  <node class="contrast" name="contrast39">
+  <node class="contrast" name="contrast">
 	<parameter name="contrast">20</parameter>
   </node>
 
-  <node class="scale" name="scale93">
+  <node class="scale" name="scale">
 	<parameter name="resolution">200x200</parameter>
   </node>
 
-  <node class="fix_fps" name="fps31">
+  <node class="fix_fps" name="fps">
 	<parameter name="fps">25</parameter>
   </node>
 
-  <link name="link74" class="single" source="source:0" target="contrast39:0"/>
-  <link name="link63" class="single" source="contrast39:0" target="scale93:0"/>
-  <link name="link25" class="single" source="scale93:0" target="fps31:0"/>
-  <link name="link30" class="single" source="fps31:0" target="jpeg_out:0"/>
+  <link name="link1" class="single" source="source:0" target="contrast:0"/>
+  <link name="link2" class="single" source="contrast:0" target="scale:0"/>
+  <link name="link3" class="single" source="scale:0" target="fps:0"/>
+  <link name="link4" class="single" source="fps:0" target="jpeg_out:0"/>
   <link name="jpeg_dumper" class="single" source="jpeg_out:0" target="dumper:0"/>
 </app>
 \end{lstlisting}
 
 \section{Instalační příručka} \label{sec:impl_prirucka}
-Aplikaci je možné nalézt v kořenovém adresáři přiloženého CD. Sestavení a nasazení aplikace podle tohoto návodu bylo odzkoušeno na operačních systémech \textit{Ubuntu 14.04 LTS x64} a \textit{Ubuntu 18.04 LTS x64}. Pro instalaci aplikace je využito již připraveného skriptu pro vytváření balíčků, který byl zmíněn v implementační kapitole o kontinuální integraci (vizte \ref{sec:impl_gitlab}). Tento skript již v sobě nese specifikaci většiny závislostí a příkazy pro přípravu prostředí. Proto je zbytečné psát zevrubný návod skládající se z jednotlivých příkazů. Pro použití skriptu na vytvoření balíčku je nejprve nutné nainstalovat program \textit{FPM}, který se k tomu používá. Pro nainstalování programu \textit{FPM} je nutné mít funkční prostředí jazyku Ruby. Na systémech Debian nebo Ubuntu se Ruby prostředí nainstaluje následujícím příkazem.
-\\
-\lstset{language=bash}
-\begin{lstlisting}
+Aplikaci je možné nalézt v kořenovém adresáři přiloženého CD. Sestavení a nasazení aplikace podle tohoto návodu bylo odzkoušeno na operačních systémech \textit{Ubuntu 14.04 LTS x64} a \textit{Ubuntu 18.04 LTS x64}. Pro instalaci aplikace je využito již připraveného skriptu pro vytváření balíčků, který byl zmíněn v implementační kapitole o kontinuální integraci (vizte \ref{sec:impl_gitlab}). Tento skript již v sobě nese specifikaci většiny závislostí a příkazy pro přípravu prostředí. Proto je zbytečné psát zevrubný návod skládající se z jednotlivých příkazů. Pro použití skriptu na vytvoření balíčku je nejprve nutné nainstalovat program \textit{FPM}, který se k tomu používá. Pro nainstalování programu \textit{FPM} je nutné mít funkční prostředí jazyku Ruby. Na systémech Debian nebo Ubuntu se Ruby prostředí nainstaluje následujícím příkazem.\\
+
+\begin{lstlisting}[language=bash,identifierstyle=\color{black}]
 sudo apt install ruby ruby-dev rubygems build-essential -y
 \end{lstlisting}
 
-Program pro tvorbu balíčků se pak pomocí příkazu \textit{gem} nainstaluje následovně.
-\\
-\lstset{language=bash}
-\begin{lstlisting}
+Program pro tvorbu balíčků se pak pomocí příkazu \textit{gem} nainstaluje následovně.\\
+
+\begin{lstlisting}[language=bash,identifierstyle=\color{black}]
 sudo gem install --no-ri --no-rdoc fpm
 \end{lstlisting}
 
 Po úspěšné instalaci programu \textit{FPM} se již může spustit skript pro vytvoření balíčku aplikace, pomocí skriptu \textit{makedeb.sh} v adresáři \textit{scripts}, v kořenovém adresáři aplikace. Poté co skript skončí by se měl vytvořit soubor s příponou \uv{.deb}, který reprezentuje zmiňovaný balíček.
 
-Poslední závislostí, kterou je nutné vyřešit ručně před instalací balíčku, je instalace prostředí PHP, verze 7.1 či vyšší. Samotnou instalaci PHP nám však již provede závislost, vytvořená v samotném balíčku a stačí tedy pouze přidat repozitář pro stažení, který se ve výchozích nastaveních operačních systémů nevyskytuje. Přidání tohoto repozitáře se provede jednoduše následujícím příkazem.
-\\
-\lstset{language=bash}
-\begin{lstlisting}
+Poslední závislostí, kterou je nutné vyřešit ručně před instalací balíčku, je instalace prostředí PHP, verze 7.1 či vyšší. Samotnou instalaci PHP nám však již provede závislost, vytvořená v samotném balíčku a stačí tedy pouze přidat repozitář pro stažení, který se ve výchozích nastaveních operačních systémů nevyskytuje. Přidání tohoto repozitáře se provede jednoduše následujícím příkazem.\\
+
+\begin{lstlisting}[language=bash,identifierstyle=\color{black}]
 sudo add-apt-repository ppa:ondrej/php -y && sudo apt-get update
 \end{lstlisting}
 
-Po přidání zmíněného repozitáře již stačí aplikaci z balíčku nainstalovat. Instalace se provede následujícím příkazem v kořenovém adresáři aplikace.
-\\
-\lstset{language=bash}
-\begin{lstlisting}
+Po přidání zmíněného repozitáře již stačí aplikaci z balíčku nainstalovat. Instalace se provede následujícím příkazem v kořenovém adresáři aplikace.\\
+
+\begin{lstlisting}[language=bash,identifierstyle=\color{black}]
 sudo apt-get install ./nazev_balicku.deb -y
 \end{lstlisting}
 
 Tento polední příkaz stáhne všechny zbylé závislosti, včetně prostředí PHP, webserveru Apache2 a další. Dále se postará o přesunutí souborů aplikace na potřebné místo, přidání konfiguračního souboru do seznamu dostupných webových stránek webserveru a následné znovu načtení konfigurace webserveru. Poté by již aplikace měla být dostupná na kořenové adrese lokálního stroje.
 
-
+Pro zprovoznění streamování je nutné nainstalovat na příslušné servery knihovnu Libyuri. Přehledný a funkční návod pro instalaci Libyuri je k dispozici v odkazu \cite{yuri}.
 
 \chapter{Testování} \label{chap:testovani}
 Jeden z bodů zadání této práce specifikuje podrobení vytvořené aplikace integračním a akceptačním testům. Aplikaci bylo samozřejmě nutné podrobit i ostatním testům, včetně jednotkových, avšak v textu jsou uvedeny pouze zmíněné dva druhy. Zbylé testy je možné nalézt v kořenovém adresáři aplikace, ve složce \textit{tests}. Integrační a zejména akceptační testy běžně nedělají pouze programátoři, ale také tým testerů a případně samotný zákazník. Z tohoto důvodu byl průběh testů pravidelně koordinován se správcem CHUL laboratoře, Ondřejem Brémem.
