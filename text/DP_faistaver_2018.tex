@@ -18,7 +18,8 @@
 
 \usepackage{scrextend}
 \input{latex_xml_style.tex} %syntax highlighting for XML
-\input{latex_html_style.tex} %syntax highlighting for XML
+\input{latex_html_style.tex} %syntax highlighting for HTML
+\input{latex_json_style.tex} %syntax highlighting for JSON
 
 % % list of acronyms
 % \usepackage[acronym,nonumberlist,toc,numberedsection=autolabel]{glossaries}
@@ -88,6 +89,8 @@ Pronájem úložného prostoru uživateli na proprietárních serverech.\\ \\
 Jedná se o softwarovou strukturu fungující jako knihovna funkcí a podpůrných nástrojů, která usnadňuje vývoj jiných softwarových projektů.\\ \\
 \textbf{Streaming}\\
  Jedná se o technologii přenosu audiovizuálního materiálu mezi zdrojem a koncovým uživatelem.
+\textbf{WebSocket}\\
+Jedná se o komunikační protokol, standardizován komisí IETF a poskytující plně duplexní kanál přes TCP spojení. \\ \\
 % \textbf{}\\
 % TODO.\\ \\
 
@@ -761,10 +764,12 @@ Nahrávaná data v laboratoři CHUL a odesílaná po síti pryč by měla být n
 Konfigurace na obrázku \ref{img:navrh_backend_libyuri_receiver} má podobnou strukturu, jako předchozí konfigurace. Opět se interpretuje odshora dolů. V první řadě je patrných pět uzlů (uzly rtp\_video0 -- rtp\_video3 a rtp\_audio\_in), které se starají o síťový příjem dat, které byly předchozí konfigurací odesílány pomocí RTP streamů. Obrazová data se ze síťových přijímačů posílají do modulů \textit{convert}, které provedou konverzi obrazů do shodného prostoru barev, dále se pomocí modulu \textit{scale} zmenší či zvětší na požadované rozlišení a všechny se poté spojí vedle sebe do obrazové mřížky v jediném modulu \textit{combine}. Z tohoto modulu dále postupuje pouze jeden stream (který je kombinací všech čtyř obrazových dat) do modulu \textit{render\_text}, který na každý obrazový rámec přidá libovolný text (v tomto případě časovou značku) a nakonec jdou data do modulu \textit{dup}, který stream zduplikuje a jeden z nich pošle do zařízení SAGE (modul \textit{sage\_output}) a druhý po konverzi do formátu JPEG a upravení FPS uloží do souborového systému pomocí modulu \textit{filedump}. Nezmíněná pravá část obrázku \ref{img:navrh_backend_libyuri_receiver}, která zajišťuje zvuková data začíná taktéž uzlem pro příjem RTP streamu. Z něho pak audio data postupují do již zmíněného modulu \textit{dup} a po duplikaci se jeden stream posílá na výstup zvukového zařízení (v tomto případě pomocí modulu \textit{jack\_output}) a druhý se ukládá do souboru modulem \textit{wav\_dump}.
 
 \section{Komunikace webserveru s Libyuri} \label{sec:navrh_communication}
-Jak již bylo zmíněno v sekci \ref{subsec:navrh_backend_ulohy} o správě úloh, tak úlohy, zapsané do databáze a vyzvednuté démonem pro tyto účely, jsou předány knihovně Libyuri pro zpracování. V případě nasazení řešení této práce se knihovna Libyuri nachází na jiném stroji než webserver a je nutné zajistit tuto vzdálenou komunikaci. Bylo však taktéž zmíněno, že komunikace tohoto druhu je řešena pomocí technologie websocketů. Dále je vysvětleno, jak je tato problematika vyřešena.
+Jak již bylo zmíněno v sekci \ref{subsec:navrh_backend_ulohy} o správě úloh, tak úlohy, zapsané do databáze a vyzvednuté démonem pro tyto účely, jsou předány knihovně Libyuri pro zpracování. V případě nasazení řešení této práce se knihovna Libyuri nachází na jiném stroji než webserver a bylo nutné zajistit tuto vzdálenou komunikaci. Bylo však taktéž zmíněno, že komunikace tohoto druhu je řešena pomocí technologie websocketů. Spojení mezi webserverem a knihovnou Libyuri se dělí na dvě hlavní části. První částí je komunikace pro nastavení, spuštění a zastavení streamování. Druhou částí je komunikace pro úpravu a export jednotlivých médií. Na obou komunikačních koncích tohoto spojení je instance technologie websocketů, které posílají požadovaná data a zároveň reagují na příchozí, spolu s jednoduchou logikou pro převod konfigurací mezi JSON a XML formáty. 
 
-	Spojení mezi webserverem a knihovnou Libyuri se dělí na dvě hlavní části. První částí je komunikace pro nastavení, spuštění a zastavení streamování. Druhou částí je komunikace pro úpravu a export jednotlivých médií.
-
+	Komunikace pro spuštění streamování začíná na straně weberveru, který od klientské strany obdrží veškerá nastavení pro streamování (poté co uživatel nastaví a spustí streamování). Tato nastavení, jako například identifikátory nahrávacích zařízení, cíl streamu a podobně jsou ověřeny na klientské, stejně tak jako na serverové straně. Dále jsou nastavení převedena do JSON objektu a odeslána na druhou stranu kanálu. Na druhé straně spojení je také instance websocketů, které obalují knihovnu Libyuri a předávají ji úlohy pro zpracování. Poté, co přijde pro zpráva o spuštění streamování, převedou se její data o nastavení z JSON formátu do XML konfigurace. S touto konfigurací se nakonec spustí Libyuri a streamování začne. Streamování bude ukončeno, pokud websockety obdrží zprávu o zastavení streamování. Libyuri zároveň během celého procesu zasílá zpět webserveru zprávy o stavu spuštění, průběhu i zastavení streamování.
+	
+	Komunikace pro úpravu a export jednotlivých médií funguje na podobném principu. Na straně webserveru vše začíná démonem, který vyzvedne z databáze čerstvě zapsanou úlohu pro zpracování. Pokud je priorita této úlohy vysoká a zároveň jsou volné výpočetní prostředky knihovny Libyuri, tak se tato úloha, po vyzvednutí z databáze, předá komunikačnímu konci websoketů. Před odesláním se úloha převede na objekt syntaxe JSON a odešle se. Na přijímacím konci je z tohoto JSON objektu vygenerován XML konfigurační soubor pro knihovnu Libyuri, se kterým se poté spustí. Více o přijetí konfigurace a jejím převodu z JSON do XML je k nalezení v implementační kapitole (vizte \ref{subsec:impl_funkce_generate}).
+	
 \chapter{Implementace} \label{chap:impl}
 Tato kapitola se zabývá implementací rozšíření stávající aplikace, opěvovaného analýzou a návrhem. Nejprve je uvedena sekce o použití systému Gitlab pro verzování aplikace a také pro takzvanou \textit{continuous integration} neboli průběžnou integraci. Dále jsou detailněji popsány některé vybrané implementační zajímavosti. Poté již následuje instalační příručka, ve které je popsáno, jak lze z poskytnutých zdrojových souboru aplikaci nainstalovat do cílového prostředí. V závěru je stručná uživatelská příručka, která prozradí, jak aplikaci používat.
 
@@ -920,8 +925,52 @@ V kódu této webové stránky jsou patrné čtyři elementy \uv{img} reprezentu
 
 
 \subsection{Generování konfigurací pro Libyuri} \label{subsec:impl_funkce_generate}
-TODO
+Tato sekce popisuje příjem konfigurace na websocketové straně Libyuri a její převod z formátu JSON do XML. Vše začne příjmem konfiguračního objektu syntaxe JSON od webserveru. Následuje příkladová ukázka struktury tohoto objektu.
+\\
+\lstset{language=json}
+\begin{lstlisting}
+{
+  "projectName":"MyProject",
+  "srcFile":"/foo/srcFile",
+  "dstFile":"/bar/dstFile",
+  "actions": {
+    "contrast":20,
+    "scale":"200x200",
+    "fps":25
+  }
+}
+\end{lstlisting}
 
+Jak je patrné, objekt obsahuje název projektu, zdrojový soubor určený k úpravě a cílový soubor, do kterého se upravený soubor uloží. Krom možných dalších parametrů obsahuje ještě část \uv{actions}, která obsahuje seznam úprav, které Libyuri na zdrojovém souboru provede. V dalším úryvku kódu je ukázáno, jak probíhá zpracování přijatého konfiguračního objektu.
+\\
+\lstset{style=htmlcssjs}
+\begin{lstlisting}
+var Exporter = require('./Exporter.js').Exporter;
+var ioIn = require('socket.io').listen(8090);
+var ioOut = require('socket.io-client');
+var socketOut = ioOut.connect('http://webserver:8090');
+
+...
+
+ioIn.on('connection', function (socketIn) {
+  socketIn.on('export', function (data) {
+
+    try {
+      let ex = new Exporter(data.projectName, data.srcFile, data.dstFile);
+      for (let action in data.actions) {
+        ex.applyAction(action, data.actions[action]);
+      }
+      ex.run();
+    } catch (errorData) {
+      socketOut.emit('export-error', errorData);
+      return;
+    }
+    socketOut.emit('export-success', data.projectName);
+  });
+  
+	...
+});
+\end{lstlisting}
 \section{Instalační příručka} \label{sec:impl_prirucka}
 Aplikaci je možné nalézt v kořenovém adresáři přiloženého CD. Sestavení a nasazení aplikace podle tohoto návodu bylo odzkoušeno na operačních systémech \textit{Ubuntu 14.04 LTS x64} a \textit{Ubuntu 18.04 LTS x64}. Pro instalaci aplikace je využito již připraveného skriptu pro vytváření balíčků, který byl zmíněn v implementační kapitole o kontinuální integraci (vizte \ref{sec:impl_gitlab}). Tento skript již v sobě nese specifikaci většiny závislostí a příkazy pro přípravu prostředí. Proto je zbytečné psát zevrubný návod skládající se z jednotlivých příkazů. Pro použití skriptu na vytvoření balíčku je nejprve nutné nainstalovat program \textit{FPM}, který se k tomu používá. Pro nainstalování programu \textit{FPM} je nutné mít funkční prostředí jazyku Ruby. Na systémech Debian nebo Ubuntu se Ruby prostředí nainstaluje následujícím příkazem.
 \\
