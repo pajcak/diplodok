@@ -114,14 +114,14 @@ CHUL).\\}
 \end{enumerate}
 
 \section{Předchozí práce a aktuální stav} \label{sec:analyza_predchozi_prace}
-Jak bylo řečeno v úvodu, bakalářská práce Karolíny Solanské vyvinula systém, který slouží jako webová aplikace zajišťující plánování a organizaci testů použitelnosti. Tento systém byl vytvořen jako plně funkční vůči zadaným požadavkům a je nasazen v laboratoři CHUL. 
-	Systém je celý implementován v jazyku PHP s použitím frameworku Nette. Systém je nasazený na externím serveru s přístupem přes protokoly HTTP a HTTPS. Technologie pro použitou databázi je PostgreSQL.
-	Aktuální stav správy videa je příliš nepohodlný a zdlouhavý. Webová aplikace nijak nekomunikuje s jakýmkoliv zařízením v laboratoři CHUL. Vše okolo videí se tedy musí dělat víceméně ručně. V tomto kontextu se pracuje s úžasnou knihovnou \textit{libyuri}(vizte \cite{yuri}), která za pomocí dvou konfiguračních souborů spustí nahrávání, sloučí obrazy a zvuk, uloží a případně zobrazí v systému SAGE. Naneštěstí existují pouze tyto 2 konfigurace, které se ještě ke všemu musí ručně pouštět z příkazové řádky. Nyní neexistuje žádná jednoduchá možnost, jak pohodlně pracovat se záznamy (například ořezávat, přidávat titulek apod.) a tím se tedy bude zabývat tato práce.
+Jak bylo řečeno v úvodu, bakalářská práce Karolíny Solanské vyvinula systém, který slouží jako webová aplikace zajišťující plánování a organizaci testů použitelnosti. Tento systém byl vytvořen jako plně funkční vůči zadaným požadavkům a je nasazen v laboratoři CHUL. Systém je celý implementován v jazyku PHP s použitím frameworku Nette. Systém je nasazený na externím serveru s přístupem přes protokoly HTTP a HTTPS. Technologie pro použitou databázi je PostgreSQL.
+	
+	Aktuální stav správy videa je příliš nepohodlný a zdlouhavý. Webová aplikace nijak nekomunikuje s jakýmkoliv zařízením v laboratoři CHUL. Vše okolo videí se tedy musí dělat víceméně ručně. V tomto kontextu se pracuje s úžasnou knihovnou \textit{Libyuri}(vizte \cite{yuri}), která za pomocí dvou konfiguračních souborů spustí nahrávání, sloučí obrazy a zvuk, uloží a případně zobrazí v systému SAGE. Naneštěstí existují pouze tyto 2 konfigurace, které se ještě ke všemu musí ručně pouštět z příkazové řádky. Nyní neexistuje žádná jednoduchá možnost, jak pohodlně pracovat se záznamy (například ořezávat, přidávat titulek apod.) a tím se tedy bude zabývat tato práce.
 	
 \subsection{Požadavky předchozí práce} \label{subsec:analyza_predchozi_prace_pozadavky}
 Zde jsou uvedeny všechny funkční požadavky z předchozí práce, zaměřené na správu videa a které podpořily důvod vzniku této práce.
 \begin{enumerate}
-	\item \textbf{Systém ke každému scénáři po proběhlém testu připojí video/videa.\\}
+	\item \textbf{Systém ke každému scénáři po proběhlém testu připojí video.\\}
 Před začátkem testu si moderátor zvolí scénář a testera, který test provádí. Následně zvolí spuštění testu a test začne. Po dokončení scénáře pak moderátor zvolí ukončení testu. Systém si zaznamená čas a dle toho připojí k jednotlivými experimentům výsek videa, odpovídající časovým značkám začátku a konce experimentu.
 
 	\item \textbf{Moderátor a zadavatel mohou video přehrávat, zastavit a převíjet.\\}
@@ -228,7 +228,7 @@ Uživatel bude moci nahrát zvuk k libovolnému videu ze vstupního zařízení.
     \item \textbf{N6 -- Prohlížeče a jejich verze.\\}
 	Implementované rozšíření bude fungovat nejméně na prohlížečích Firefox, Chrome a Internet Explorer, na jejich stabilních a stále podporovaných verzích.
     \item \textbf{N7 -- Technologie použité pro frontend.\\}
-	Frontend webové aplikace používá framework Nette, značkovací jazyk HTML(verze 5) a JavaScript.
+	Frontend webové aplikace používá framework Nette, značkovací jazyk HTML (verze 5) a JavaScript.
     \item \textbf{N8 -- Technologie pro backend.\\}
 	Jako pomocný software pro úpravu záznamů i přenos po síti bude použita knihovna Libyuri.
     \item \textbf{N9 -- Provázání frontendu s backendovými moduly.\\}
@@ -244,7 +244,6 @@ Uživatel bude moci nahrát zvuk k libovolnému videu ze vstupního zařízení.
 Při hledání pomocného softwaru, který by řešení značně ulehčil, je třeba postupovat od komplexních řešení, které jsou již funkční a otestované komunitou a které by se vypořádaly s velkým počtem funkcionalit. Pokud se nepodaří najít řešení o vhodné úrovni komplexnosti, pak se musí úroveň rozsáhlosti snižovat a poohlížet se tak po technologiích řešící pouze jednotlivé funkcionality. Přednost mají open-source řešení, které je možné libovolně použít a rozšířit.
 
 	Pro úsporu místa jsou zde uvedeny především ta nalezená řešení, která byla při rešerši velice dobře hodnocena a měla největší šanci na to, stát se kandidáty pro integraci do implementace.
-
 
 \subsection{Technologie pro backend} \label{subsec:analyza_reseni_backend}
 V této části jsou uvedeny některé technologie, které byly rešerší nalezeny jako kandidátní technologie pro backendovou část aplikace. Je třeba nejprve zohlednit technologie, které byly zmíněny ve výčtu nefunkčních požadavků (\ref{subsec:analyza_np}). V nefunkčních požadavcích N8 a N10 jsou zadány technologie pro backendovou část a to jsou knihovna Libyuri pro správu videa a databázový systém PostgreSQL. V rešeršní části je ze zmíněných dvou analyzována pouze knihovna Libyuri, neboť databázový systém PostgreSQL byl již použit v předchozí bakalářské práci, je tedy zakomponován v existujícím systému a nevyskytl se závažný důvod to měnit.
@@ -375,10 +374,14 @@ Po porovnání všech nashromážděných technologií pomocí specifikovaných 
 Výběr technologií je proveden na základě zmíněných hodnotících kritérií, které byly předem stanoveny a následně naměřeny na technologiích, které prošly rešerší. Provedené hodnocení je zaznamenáno v patřičných tabulkách pro technologie backendu (\ref{tbl:table_backend}) a frontendu (\ref{tbl:table_frontend}). Zde jsou pak pak již uvedeny takové technologie, které se určitou mírou budou podílet na implementaci systému této práce. To jsou takové technologie, které byly buď již stanoveny zadáním práce, nefunkčními požadavky nebo ty, které nejvíce uspěly v provedeném hodnocení.
 	
 \subsection{Backend} \label{subsec:analyza_technologie_vybrane_backend}
-Výběr technologií pro backend nejprve zohlednil zadání práce a nefunkční požadavky. V nefunkčních požadavcích (\ref{subsec:analyza_np}, požadavek N10) je uvedena databázová technologie PostgreSQL, s jejímž použitím se již předem počítalo, neboť databáze stávající aplikace je již v této technologii dobře navržena. Dále je v těchto požadavcích zmíněna (požadavek N8) i multimediální knihovna Libyuri. Přestože tato knihovna byla podrobena porovnání s ostatními technologiemi nalezenými v rešerši (vizte tabulka \ref{tbl:table_backend}), tak její hodnocení stejně dopadlo velice úspěšně a bude tedy taktéž použita. Z porovnávací metodiky však zbyly další tři technologie: Ultragrid, FFmpeg a GStreamer. Ultragrid nebude použit z toho důvodu, že v hodnocení dopadl o něco hůře než zmíněná knihovna Libyuri a většina funkčnosti, kterou by Ultragrid při implementaci poskytl, dokáže Libyuri pokrýt. FFmpeg dopadl v hodnocení obdobně jako Libyuri a jeho použití se velmi dlouho zvažovalo, nicméně pro prototyp první verze systému této práce bude potřeba obstarat pouze funkcionality, jako je ořez videa a nanejvýš změna kontrastu a jasu, přičemž i tyto funkcionality Libyuri umí. Do budoucích verzí systému je však FFmpeg vhodnou kompenzací pro takovou práci s médii, kde Libyuri nebude tak efektivní nebo ji nebude neumět. GStreamer je velice dobrou alternativou Libyuri a tak nejvěrnějšími důvody pro upřednostnění Libyuri nad GStreamerem jsou autorovy slabé zkušenosti s touto technologií a navíc to, že Libyuri pokryje taktéž většinu funkcionalit, které by GStreamer poskytl. GStreamer je také velice snadno rozšiřitelný, avšak Libyuri obsahuje spoustu modulů, které implementaci této práce usnadní a urychlí.
+Výběr technologií pro backend nejprve zohlednil zadání práce a nefunkční požadavky. V nefunkčních požadavcích (\ref{subsec:analyza_np}, požadavek N10) je uvedena databázová technologie PostgreSQL, s jejímž použitím se již předem počítalo, neboť databáze stávající aplikace je již v této technologii dobře navržena. Dále je v těchto požadavcích zmíněna (požadavek N8) i multimediální knihovna Libyuri. Přestože tato knihovna byla podrobena porovnání s ostatními technologiemi nalezenými v rešerši (vizte tabulka \ref{tbl:table_backend}), tak její hodnocení stejně dopadlo velice úspěšně a bude tedy taktéž použita. 
+
+Z porovnávací metodiky však zbyly další tři technologie: Ultragrid, FFmpeg a GStreamer. Ultragrid nebude použit z toho důvodu, že v hodnocení dopadl o něco hůře než zmíněná knihovna Libyuri a většina funkčnosti, kterou by Ultragrid při implementaci poskytl, dokáže Libyuri pokrýt. FFmpeg dopadl v hodnocení obdobně jako Libyuri a jeho použití se velmi dlouho zvažovalo, nicméně pro prototyp první verze systému této práce bude potřeba obstarat pouze funkcionality, jako je ořez videa a nanejvýš změna kontrastu a jasu, přičemž i tyto funkcionality Libyuri umí. Do budoucích verzí systému je však FFmpeg vhodnou kompenzací pro takovou práci s médii, kde Libyuri nebude tak efektivní nebo ji nebude neumět. GStreamer je velice dobrou alternativou Libyuri a tak nejvěrnějšími důvody pro upřednostnění Libyuri nad GStreamerem jsou autorovy slabé zkušenosti s touto technologií a navíc to, že Libyuri pokryje taktéž většinu funkcionalit, které by GStreamer poskytl. GStreamer je také velice snadno rozšiřitelný, avšak Libyuri obsahuje spoustu modulů, které implementaci této práce usnadní a urychlí.
 
 \subsection{Frontend} \label{subsec:analyza_technologie_vybrane_frontend}
-Frontendové technologie jsou taktéž částečně stanoveny v nefunkčních požadavcích (\ref{subsec:analyza_np}). Konkrétně je to požadavek N7, který specifikuje PHP framework Nette, značkovací jazyk HTML a skriptovací jazyk JavaScript. Začněme s frameworkem Nette jazyku PHP. Jak již bylo v úvodu sekce \ref{subsec:analyza_reseni_frontend} stanoveno, tak s použitím frameworku Nette byla napsána téměř celá aplikace z předchozí bakalářské práce a jelikož je zde návaznost řešení této práce na systém práce předchozí, pak samozřejmostí použití této technologie byla vyňata z porovnání s ostatními. Dnes již nativní technologie prohlížečů, HTML a JavaScript budou použity pro tu část této práce, která uživateli předkládá možnost práce s médii a zároveň transformuje uživatelský vstup do řeči backendu. Ostatní zbylé frontendové technologie nashromážděné rešerší jsou na těchto technologiích postaveny a bylo by tudíž nesmyslné je dávat spolu do porovnání. Mezi nejlepšími kandidáty byly vybrány a porovnány technologie Video.js, Afterglow a Movie Masher. Výhody technologie Video.js jsou již popsány v její rešerši. Mezi ně patří především to, že obaluje nativní HTML5 videopřehrávač užitečnými funkcionalitami, a pro vývojáře i tak zachovává rozsáhlý prostor pro rozšiřování. Existuje také bezkonkurenční počet již vyvinutých pluginů. Afterglow nepokrývá zdaleka tolik funkcionalit jako Video.js a vylepšení, které má navíc, jako například přehrávání YouTube či Vimeo videí, není výhodou hodnou upřednostnění. Nakonec Movie Masher, jako nadějný webový video editor, by byl býval poskytl pokrytí téměř veškeré práce s videem na webu. Naneštěstí postrádá nemalé množství funkcionalit pravého video editoru a pro budoucí rozšíření by bylo obtížné jej modifikovat formou pluginů. Po porovnání technologií Video.js, Afterglow a Movie Masher je tedy vybrána pouze technologie Video.js.
+Frontendové technologie jsou taktéž částečně stanoveny v nefunkčních požadavcích (\ref{subsec:analyza_np}). Konkrétně je to požadavek N7, který specifikuje PHP framework Nette, značkovací jazyk HTML a skriptovací jazyk JavaScript. Začněme s frameworkem Nette jazyku PHP. Jak již bylo v úvodu sekce \ref{subsec:analyza_reseni_frontend} stanoveno, tak s použitím frameworku Nette byla napsána téměř celá aplikace z předchozí bakalářské práce a jelikož je zde návaznost řešení této práce na systém práce předchozí, pak samozřejmostí použití této technologie byla vyňata z porovnání s ostatními. Dnes již nativní technologie prohlížečů, HTML a JavaScript budou použity pro tu část této práce, která uživateli předkládá možnost práce s médii a zároveň transformuje uživatelský vstup do řeči backendu. Ostatní zbylé frontendové technologie nashromážděné rešerší jsou na těchto technologiích postaveny a bylo by tudíž nesmyslné je dávat spolu do porovnání. 
+
+Mezi nejlepšími kandidáty byly vybrány a porovnány technologie Video.js, Afterglow a Movie Masher. Výhody technologie Video.js jsou již popsány v její rešerši. Mezi ně patří především to, že obaluje nativní HTML5 videopřehrávač užitečnými funkcionalitami, a pro vývojáře i tak zachovává rozsáhlý prostor pro rozšiřování. Existuje také bezkonkurenční počet již vyvinutých pluginů. Afterglow nepokrývá zdaleka tolik funkcionalit jako Video.js a vylepšení, které má navíc, jako například přehrávání YouTube či Vimeo videí, není výhodou hodnou upřednostnění. Nakonec Movie Masher, jako nadějný webový video editor, by byl býval poskytl pokrytí téměř veškeré práce s videem na webu. Naneštěstí postrádá nemalé množství funkcionalit pravého video editoru a pro budoucí rozšíření by bylo obtížné jej modifikovat formou pluginů. Po porovnání technologií Video.js, Afterglow a Movie Masher je tedy vybrána pouze technologie Video.js.
 
 \section{Seznámení s Libyuri} \label{sec:analyza_yuri}
 Jak již bylo zmíněno v analýze (\ref{subsubsec:analyza_reseni_yuri}), knihovna Libyuri (\cite{yuri}) je framework, poskytující prostředky pro vytváření vícevláknových aplikací zpracovávajících různá multimédia.
@@ -495,7 +498,7 @@ Zmíněná XML konfigurace vytvoří graf znázorněný obrázkem \ref{img:yuri_
 
 XMLBuilder se chová jako každý jiný uzel a je možné ho použít v grafu. Podporuje i směrování rámců a událostí mezi vnějším a vnitřním grafem. Je tak možné napsat například složitý graf, kde vstup je reprezentován subgrafem, který je možné snadno přepnout na jiný, jak již bylo ukázáno na obrázku \ref{img:yuri_subgraph}. Stejně tak je možné takto vyměňovat libovolnou část grafu. Pokud mám například složité zapojení kamery a potřebuji výsledek někdy streamovat a někdy ukládat, tak stačí mít jednu konfiguraci pro kameru, která má finální zpracování specifikované jako subgraf. Ten pak mohu měnit (ukládání, streamování). 
 Název XML souboru se pro XMLBuilder uvádí jako parametr \uv{filename}. Ten je možné samozřejmě specifikovat pomocí proměnné, která se dá při spuštění nastavit na jinou hodnotu. 
-\\ \\
+
 Kompletní popis builderu XMLBuilder je v souboru \textit{doc/XMLBUILDER.txt} v distribuci Libyuri.
 
 \subsection{Události} \label{subsec:analyza_yuri_udalosti}
@@ -512,10 +515,10 @@ Propojení uzlů v grafu pomocí hran definuje datové cesty pro audio/video dat
 \item [\textbf{BANG}] Speciální typ, který nemá hodnotu.
 \end{labeling}
 
-Uzel, který implementuje koncept \uv{BasicEventProducer} může generovat (\textit{emit\_event}) dvojice jméno a událost. Uzel sám neřeší, kam se událost posílá. Oproti tomu uzel, který implementuje koncept \uv{BasicEventConsumer} umí dvojice jméno a událost přijímat. Jaká událost se kam posílá se specifikuje zvlášť v konfiguraci.\\
+Uzel, který implementuje koncept \uv{BasicEventProducer} může generovat (\textit{emit\_event}) dvojice jméno a událost. Uzel sám neřeší, kam se událost posílá. Oproti tomu uzel, který implementuje koncept \uv{BasicEventConsumer} umí dvojice jméno a událost přijímat. Jaká událost se kam posílá se specifikuje zvlášť v konfiguraci.
 
-Dále je uveden jednoduchý příklad XML kódu demonstrující události.
-\\
+Dále je uveden jednoduchý příklad XML kódu demonstrující události.\\
+
 \begin{lstlisting}[language=XML]
 <event>
   route(dump:sequence) -> info:progress;
@@ -524,8 +527,8 @@ Dále je uveden jednoduchý příklad XML kódu demonstrující události.
 
 Pokud se zanese tento příklad do existující XML konfigurace grafu, tak ve chvíli, kdy uzel pojmenovaný \uv{dump} vygeneruje událost s názvem \uv{sequence}, tak se ta událost pošle do uzlu \uv{info} pod názvem \uv{progress}.
 
-Specifikace směrování podporuje i funkcionální jazyk pro modifikaci událostí nebo kombinující více událostí dohromady. Je tak možné vytvářet i složitější konstrukce jak v příkladu uvedeném dále.
-\\
+Specifikace směrování podporuje i funkcionální jazyk pro modifikaci událostí nebo kombinující více událostí dohromady. Je tak možné vytvářet i složitější konstrukce jak v příkladu uvedeném dále.\\
+
 \begin{lstlisting}[language=XML]
 <event>
   route(gt(dump:sequence, var:max_frames)) -> generate:stop;
@@ -533,7 +536,7 @@ Specifikace směrování podporuje i funkcionální jazyk pro modifikaci událos
 \end{lstlisting}
 
 Tento trochu komplexnější příklad vezme hodnotu události \uv{sequence} z uzlu \uv{dump}, porovná ji (funkce \textit{gt}) s hodnotou události \uv{max\_frames} z uzlu \uv{var} a výsledek (hodnota \textit{true} nebo \textit{false}) se pošle na uzel \uv{generate} jako událost s názvem \uv{stop}.
-\\ \\
+
 Detailnější popis událostí je v souboru \textit{doc/EVENTS.txt} v distribuci Libyuri.
 	
 \subsection{Moduly} \label{subsec:analyza_yuri_moduly}
@@ -593,7 +596,9 @@ Návrh nejprve rozebere architekturu systému a pak ve dvou podkapitolách prob�
 
 \subsubsection{Diagram nasazení} \label{subsubsec:navrh_architektura_nasazeni}
 Schéma na obrázku \ref{img:navrh_architektura_nasazeni} uvedeném dále, představuje přibližný model nasazení v provozu. Tento model se skládá z pěti hlavních částí (zařízení), z nichž první představuje klienta a jeho webový prohlížeč. Ten komunikuje
-s aplikací Nginx, která představuje webový server. Samotná komunikace mezi klientem a webovým serverem probíhá pomocí protokolů HTTPS a SFTP pro procházení webové aplikace a případný download videí. Aplikace Nginx hostuje samotnou webovou aplikaci, jejíž podstatná část je tvořena PHP frameworkem Nette a dále JavaScriptovou knihovnu Video.js (\ref{subsubsec:analyza_reseni_videojs}), která je odpovědná za práci s videem na webu. Další částí diagramu je CHUL server, neboli server, nacházející se v CHUL laboratoři, na kterým běží instance knihovny Libyuri (\ref{subsubsec:analyza_reseni_yuri}).  Komunikace mezi Libyuri a webovou Nette aplikací je zajištěno technologií websocketů, pomocí kterých se například z webové aplikace pošle příkaz na spuštění nahrávání z různých zařízení v laboratoři (více v podkapitole \ref{sec:navrh_communication}). Streamování do infrastruktury SAGE je věnováno další zařízení -- SAGE server, který se v případě této práce nachází v laboratoři SAGElab. Posílání streamů dat mezi CHUL serverem a SAGE serverem probíhá mezi dvěma instancemi knihovny Libyuri, pomocí protokolu RTP. K operačnímu systému CHUL serveru je pomocí technologie SSHFS připojen souborový systém dalšího a posledního zařízení v diagramu -- databázového a multimediálního serveru (Dále jen \uv{DM server}). Tento DM server obsahuje zmíněnou databázi PostgreSQL a také úložiště pro nahrané záznamy. Databázový systém PostgreSQL na DM serveru obsahuje především data potřebné webovou aplikací (jako jsou data o uživatelích, experimentech, scénářích a jiné) a tudíž je se samotnou webovou aplikací spojena komunikačním protokolem TCP/IP. 
+s aplikací Nginx, která představuje webový server. Samotná komunikace mezi klientem a webovým serverem probíhá pomocí protokolů HTTPS a SFTP pro procházení webové aplikace a případný download videí. Aplikace Nginx hostuje samotnou webovou aplikaci, jejíž podstatná část je tvořena PHP frameworkem Nette a dále JavaScriptovou knihovnu Video.js (\ref{subsubsec:analyza_reseni_videojs}), která je odpovědná za práci s videem na webu. Další částí diagramu je CHUL server, neboli server, nacházející se v CHUL laboratoři, na kterým běží instance knihovny Libyuri (\ref{subsubsec:analyza_reseni_yuri}).  
+
+Komunikace mezi Libyuri a webovou Nette aplikací je zajištěno technologií websocketů, pomocí kterých se například z webové aplikace pošle příkaz na spuštění nahrávání z různých zařízení v laboratoři (více v podkapitole \ref{sec:navrh_communication}). Streamování do infrastruktury SAGE je věnováno další zařízení -- SAGE server, který se v případě této práce nachází v laboratoři SAGElab. Posílání streamů dat mezi CHUL serverem a SAGE serverem probíhá mezi dvěma instancemi knihovny Libyuri, pomocí protokolu RTP. K operačnímu systému CHUL serveru je pomocí technologie SSHFS připojen souborový systém dalšího a posledního zařízení v diagramu -- databázového a multimediálního serveru (Dále jen \uv{DM server}). Tento DM server obsahuje zmíněnou databázi PostgreSQL a také úložiště pro nahrané záznamy. Databázový systém PostgreSQL na DM serveru obsahuje především data potřebné webovou aplikací (jako jsou data o uživatelích, experimentech, scénářích a jiné) a tudíž je se samotnou webovou aplikací spojena komunikačním protokolem TCP/IP. 
 \\
 \begin{figure}[h]\centering
 	\includegraphics[width=1\textwidth]{images/nasazeni_sage.eps}
@@ -1065,9 +1070,7 @@ class DBConnectionTest extends Tester\TestCase {
 Akceptační testy jsou testy, které by měly být realizované na straně zákazníka. Cílová skupina lidí, kteří budou tento systém využívat, je úzká, neboť v případě tohoto systému jsou zákazníkem myšleni lidé, kteří vedou laboratoř CHUL. Mezi tyto lidi patří například vedoucí této práce Ing. Jiří Chludil, správce laboratoře Bc. Ondřej Brém, ale také technici ze sousední laboratoře SAGElab. Při tomto akceptačním testování nejsou potřeba uživatelé provádějící testování použitelnosti, neboť v testovacích scénářích není kladen důraz na obsah streamovaného obrazového materiálu. 
 
 	Vytvořený systém se nepodařilo včas podrobit kompletnímu akceptačnímu testování. Správce CHUL laboratoře Ondřej Brém, který byl hlavním akceptačním testerem, byl časově zatížen spoluprací na jiných závěrečných pracích týkající se laboratoře, v době mezi vytvořením první testovací verze aplikace a odevzdáním práce. Před odevzdáním se Ondřejovi podařilo otestovat alespoň některé komponenty webové aplikace, jako je například webová stránka s nastavením streamování (zde zejména živý náhled obrazových dat z kamer v laboratoři) nebo videopřehrávač. Testování komponent však nesplňuje definici akceptačního testování a proto byla tato fáze pozastavena a aplikace tak bude s přislíbenými termíny akceptačně otestována do obhajoby této práce.
-	
-%	Akceptační testování aktuální aplikace by se dalo rozdělit do jednoho hlavního testovacího scénáře pro otestování celého procesu streamování, a mnoha vedlejších pro práci s videem a podobně.
-	
+		
 	
 \begin{conclusion}
 V této diplomové práci bylo navázáno na existující systém pro správu laboratoře Children Usability Lab. Systém, vyvinutý bakalářskou prací Karolíny Solanské, byl neuspokojivý v oblasti správy video streamů a zpracování jiných multimediálních dat. Tento problém byl řešen návrhem a realizací rozšíření stávající aplikace. Po zevrubné analýze zmíněné bakalářské práce a specifikace nutných požadavků se provedl důkladný výběr vhodných technologií pro tvorbu řešení. Během návrhu se podařilo vytvořit systém pro efektivní práci s multimediálními daty napříč CHUL laboratoří a to především díky knihovně Libyuri. Implementační částí této práce byl vytvořen základní prototyp požadované aplikace, který splňuje většinu smluvených specifických požadavků. Práce je neustále podrobována integračním testům, které jsou aktuálně součástí systému pro kontinuální integraci.
@@ -1092,6 +1095,9 @@ V této diplomové práci bylo navázáno na existující systém pro správu la
 	\item[XML] eXtensible Markup Language
 	\item[HTML] Hypertext Markup Language
 	\item[YAML] YAML Ain't Markup Language
+	\item[RTP] Real-time Transport Protocol
+	\item[HTTP] Hypertext Transfer Protocol
+	\item[HTTPS] Hypertext Transfer Protocol Secure
 \end{description}
 
 
@@ -1111,123 +1117,18 @@ V této diplomové práci bylo navázáno na existující systém pro správu la
 	\includegraphics[width=1\paperwidth, angle=90]{images/ui_wf_ulab-editor-export.eps}
 	\caption{Wireframe modálního okna pro export}\label{img:navrh_frontend_ui_wf_export}
 \end{figure}
-% % % % % % % % % % % % % % % % % % % % % % % % % % % % 
-% % Tuto kapitolu z výsledné práce ODSTRAŇTE.
-% % % % % % % % % % % % % % % % % % % % % % % % % % % % 
-% 
-% \chapter{Návod k~použití této šablony}
-% 
-% Tento dokument slouží jako základ pro napsání závěrečné práce na Fakultě informačních technologií ČVUT v~Praze.
-% 
-% \section{Výběr základu}
-% 
-% Vyberte si šablonu podle druhu práce (bakalářská, diplomová), jazyka (čeština, angličtina) a kódování (ASCII, \mbox{UTF-8}, \mbox{ISO-8859-2} neboli latin2 a nebo \mbox{Windows-1250}). 
-% 
-% V~české variantě naleznete šablony v~souborech pojmenovaných ve formátu práce\_kódování.tex. Typ může být:
-% \begin{description}
-% 	\item[BP] bakalářská práce,
-% 	\item[DP] diplomová (magisterská) práce.
-% \end{description}
-% Kódování, ve kterém chcete psát, může být:
-% \begin{description}
-% 	\item[UTF-8] kódování Unicode,
-% 	\item[ISO-8859-2] latin2,
-% 	\item[Windows-1250] znaková sada 1250 Windows.
-% \end{description}
-% V~případě nejistoty ohledně kódování doporučujeme následující postup:
-% \begin{enumerate}
-% 	\item Otevřete šablony pro kódování UTF-8 v~editoru prostého textu, který chcete pro psaní práce použít -- pokud můžete texty s~diakritikou normálně přečíst, použijte tuto šablonu.
-% 	\item V~opačném případě postupujte dále podle toho, jaký operační systém používáte:
-% 	\begin{itemize}
-% 		\item v~případě Windows použijte šablonu pro kódování \mbox{Windows-1250},
-% 		\item jinak zkuste použít šablonu pro kódování \mbox{ISO-8859-2}.
-% 	\end{itemize}
-% \end{enumerate}
-% 
-% 
-% V~anglické variantě jsou šablony pojmenované podle typu práce, možnosti jsou:
-% \begin{description}
-% 	\item[bachelors] bakalářská práce,
-% 	\item[masters] diplomová (magisterská) práce.
-% \end{description}
-% 
-% \section{Použití šablony}
-% 
-% Šablona je určena pro zpracování systémem \LaTeXe{}. Text je možné psát v~textovém editoru jako prostý text, lze však také využít specializovaný editor pro \LaTeX{}, např. Kile.
-% 
-% Pro získání tisknutelného výstupu z~takto vytvořeného souboru použijte příkaz \verb|pdflatex|, kterému předáte cestu k~souboru jako parametr. Vhodný editor pro \LaTeX{} toto udělá za Vás. \verb|pdfcslatex| ani \verb|cslatex| \emph{nebudou} s~těmito šablonami fungovat.
-% 
-% Více informací o~použití systému \LaTeX{} najdete např. v~\cite{wikilatex}.
-% 
-% \subsection{Typografie}
-% 
-% Při psaní dodržujte typografické konvence zvoleného jazyka. České \uv{uvozovky} zapisujte použitím příkazu \verb|\uv|, kterému v~parametru předáte text, jenž má být v~uvozovkách. Anglické otevírací uvozovky se v~\LaTeX{}u zadávají jako dva zpětné apostrofy, uzavírací uvozovky jako dva apostrofy. Často chybně uváděný symbol "{} (palce) nemá s~uvozovkami nic společného.
-% 
-% Dále je třeba zabránit zalomení řádky mezi některými slovy, v~češtině např. za jednopísmennými předložkami a spojkami (vyjma \uv{a}). To docílíte vložením pružné nezalomitelné mezery -- znakem \texttt{\textasciitilde}. V~tomto případě to není třeba dělat ručně, lze použít program \verb|vlna|.
-% 
-% Více o~typografii viz \cite{kobltypo}.
-% 
-% \subsection{Obrázky}
-% 
-% Pro umožnění vkládání obrázků je vhodné použít balíček \verb|graphicx|, samotné vložení se provede příkazem \verb|\includegraphics|. Takto je možné vkládat obrázky ve formátu PDF, PNG a JPEG jestliže používáte pdf\LaTeX{} nebo ve formátu EPS jestliže používáte \LaTeX{}. Doporučujeme preferovat vektorové obrázky před rastrovými (vyjma fotografií).
-% 
-% \subsubsection{Získání vhodného formátu}
-% 
-% Pro získání vektorových formátů PDF nebo EPS z~jiných lze použít některý z~vektorových grafických editorů. Pro převod rastrového obrázku na vektorový lze použít rasterizaci, kterou mnohé editory zvládají (např. Inkscape). Pro konverze lze použít též nástroje pro dávkové zpracování běžně dodávané s~\LaTeX{}em, např. \verb|epstopdf|.
-% 
-% \subsubsection{Plovoucí prostředí}
-% 
-% Příkazem \verb|\includegraphics| lze obrázky vkládat přímo, doporučujeme však použít plovoucí prostředí, konkrétně \verb|figure|. Například obrázek \ref{fig:float} byl vložen tímto způsobem. Vůbec přitom nevadí, když je obrázek umístěn jinde, než bylo původně zamýšleno -- je tomu tak hlavně kvůli dodržení typografických konvencí. Namísto vynucování konkrétní pozice obrázku doporučujeme používat odkazování z~textu (dvojice příkazů \verb|\label| a \verb|\ref|).
-% 
-% \begin{figure}\centering
-% 	\includegraphics[width=0.5\textwidth, angle=30]{cvut-logo-bw}
-% 	\caption[Příklad obrázku]{Ukázkový obrázek v~plovoucím prostředí}\label{fig:float}
-% \end{figure}
-% 
-% \subsubsection{Verze obrázků}
-% 
-% % Gnuplot BW i barevně
-% Může se hodit mít více verzí stejného obrázku, např. pro barevný či černobílý tisk a nebo pro prezentaci. S~pomocí některých nástrojů na generování grafiky je to snadné.
-% 
-% Máte-li například graf vytvořený v programu Gnuplot, můžete jeho černobílou variantu (viz obr. \ref{fig:gnuplot-bw}) vytvořit parametrem \verb|monochrome dashed| příkazu \verb|set term|. Barevnou variantu (viz obr. \ref{fig:gnuplot-col}) vhodnou na prezentace lze vytvořit parametrem \verb|colour solid|.
-% 
-% \begin{figure}\centering
-% 	\includegraphics{gnuplot-bw}
-% 	\caption{Černobílá varianta obrázku generovaného programem Gnuplot}\label{fig:gnuplot-bw}
-% \end{figure}
-% 
-% \begin{figure}\centering
-% 	\includegraphics{gnuplot-col}
-% 	\caption{Barevná varianta obrázku generovaného programem Gnuplot}\label{fig:gnuplot-col}
-% \end{figure}
-% 
-% 
-% \subsection{Tabulky}
-% 
-% Tabulky lze zadávat různě, např. v~prostředí \verb|tabular|, avšak pro jejich vkládání platí to samé, co pro obrázky -- použijte plovoucí prostředí, v~tomto případě \verb|table|. Například tabulka \ref{tab:matematika} byla vložena tímto způsobem.
-% 
-% \begin{table}\centering
-% 	\caption[Příklad tabulky]{Zadávání matematiky}\label{tab:matematika}
-% 	\begin{tabular}{|l|l|c|c|}\hline
-% 		Typ		& Prostředí		& \LaTeX{}ovská zkratka	& \TeX{}ovská zkratka	\tabularnewline \hline \hline
-% 		Text		& \verb|math|		& \verb|\(...\)|	& \verb|$...$|		\tabularnewline \hline
-% 		Displayed	& \verb|displaymath|	& \verb|\[...\]|	& \verb|$$...$$|	\tabularnewline \hline
-% 	\end{tabular}
-% \end{table}
-% 
-% % % % % % % % % % % % % % % % % % % % % % % % % % % % 
 
 \chapter{Obsah přiloženého CD}
-
-%upravte podle skutecnosti
-
 \begin{figure}
 	\dirtree{%
 		.1 readme.txt\DTcomment{stručný popis obsahu CD}.
-		.1 exe\DTcomment{adresář se spustitelnou formou implementace}.
 		.1 src.
 		.2 impl\DTcomment{zdrojové kódy implementace}.
+		.3 web\DTcomment{zdrojové kódy webové aplikace}.
+		.3 yuri\_wrapper\DTcomment{zdrojové kódy aplikace obalující Libyuri v CHUL}.
 		.2 thesis\DTcomment{zdrojová forma práce ve formátu \LaTeX{}}.
+		.3 images\_wrapper\DTcomment{obrazové soubory použité v textu práce}.
+		.3 resources\_wrapper\DTcomment{zdrojové soubory obrazových souborů}.
 		.1 text\DTcomment{text práce}.
 		.2 thesis.pdf\DTcomment{text práce ve formátu PDF}.
 		.2 thesis.ps\DTcomment{text práce ve formátu PS}.
