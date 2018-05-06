@@ -1035,7 +1035,29 @@ Jeden z bodů zadání této práce specifikuje podrobení vytvořené aplikace 
 \section{Integrační testování} \label{sec:testovani_integracni}
 Integrační testy by měly ověřit správnost komunikace mezi jednotlivými komponenty aplikace. V prvním prototypu aplikace jsou vytvořeny pouze základní integrační testy. Tyto testy mají za úkol zkontrolovat nejprve komunikaci mezi dvěmi komponentami a postupně i mezi dalšími. Komponentami zde rozumíme například videopřehrávač, úložiště médií, databázi, instance knihovny Libyuri a další. Integračními testy pak znamenají například ověření navázání spojení webové aplikace s databází, správné posílání dat z Libyuri při malých změnách její konfigurace, zabezpečený přístup z webového videopřehrávače do úložiště médií a podobné. Spouštění integračních testů již bylo popsáno v implementační kapitole, v sekci o verzování a kontinuální integraci (\ref{sec:impl_gitlab}). Tam je také popsané, kde se testy nachází a jak se spouští.
 
-Jednou z chyb nalezených při integračním testování bylo při komunikaci aplikace s databází v případě, že se databáze nacházela na jiném stroji než aplikace k ní přistupující. Pokud bylo prostředí takto nastaveno, tak při sestavení a spuštění aplikace docházelo k chybám při pokusech o přihlášení, kde dochází k první komunikaci s databází. Problém byl v tom, že databázový systém byl špatně nakonfigurován v oblasti vzdálených připojení k databázi. Vstupní podmínkou pro tuto situaci byl upravený NEON konfigurační soubor aplikace tak, aby se k databázi připojovala na specifikovaný vzdálený server. 
+Jednou z chyb nalezených při integračním testování bylo při komunikaci aplikace s databází v případě, že se databáze nacházela na jiném stroji než aplikace k ní přistupující. Pokud bylo prostředí takto nastaveno, tak při sestavení a spuštění aplikace docházelo k chybám při pokusech o přihlášení, kde dochází k první komunikaci s databází. Problém byl v tom, že databázový systém byl špatně nakonfigurován v oblasti vzdálených připojení k databázi. Vstupní podmínkou pro tuto situaci byl upravený NEON konfigurační soubor aplikace tak, aby se k databázi připojovala na specifikovaný vzdálený server. V samotném testu se z dependency injection kontejneru načetly informace pro připojení ke vzdálené databázi, testovací systém se pokusil připojit k databázi a následně ověřit úspěšné připojení. Níže je uvedena část PHP kódu ze souboru pro test připojení k databázi, který chybu odhalil.\\
+
+\begin{lstlisting}[style=htmlcssjs,literate={>}{{{\bfseries\color{black}{>}}}}{1},morekeywords={private,extends}]
+class DBConnectionTest extends Tester\TestCase {
+
+  private $container;
+  private $database;
+
+  function __construct(Nette\DI\Container $container) {
+    $this->container = $container;
+  }
+  
+  function setUp() {
+    $this->database = $this->container->getService('nette.database.default');
+  }
+
+  function testConnection() {
+    Assert::match('%a?%Connection OK%a?%', $this->database->getPdo()->getAttribute(PDO::ATTR_CONNECTION_STATUS));
+  }
+  
+  ...
+}
+\end{lstlisting}
 
 	Řešením vzniklé chyby pak bylo upravení konfigurace PostgreSQL na onom vzdáleném databázovém serveru. Konfigurační soubory PostreSQL se  obvykle nacházejí v adresářích, jako je \textit{/etc/postgresql/<verze>/main/} nebo případně \textit{/var/lib/postgres/data}. Zde pak bylo nutné upravit konfigurační soubory \textit{pg\_hba.conf} a \textit{postgresql.conf}. V souboru \textit{postgresql.conf} stačilo odkomentovat či přidat řádku \uv{listen\_addresses = '*'} pro povolení naslouchání pro přípojení ze všech adres. Dále pak v souboru \textit{pg\_hba.conf} limitovat připojení z konkrétní IP adresy, případně podsítě, přidáním řádky \uv{host all all 185.88.73.30/23 trust}. Tato řádka má pět sloupců, které zleva znamenají: typ připojení (\uv{host} pro vzdálené a \uv{local} pro lokální), jméno databáze (případně všechny pomocí \uv{all}), jméno uživatele (případně všechny pomocí \uv{all}), IP adresu počítače nebo sítě a nakonec autentizační metodu (například \uv{trust} pro žádné ověření, \uv{md5} pro heslo zahešované funkcí md5 a podobně).
 
