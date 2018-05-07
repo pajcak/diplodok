@@ -40,13 +40,9 @@
 \authorWithDegrees{Bc. Patrik Faistaver} %jméno autora včetně současných akademických titulů
 \supervisor{Ing. Jiří Chludil}
 \acknowledgements{Rád bych poděkoval vedoucímu mé diplomové práce Ing. Jiřímu Chludilovi i oponentovi Ing. Jiřímu Melnikovovi za užitečné připomínky a mnoho cenných rad. Dále chci poděkovat své rodině a blízkým přátelům za podporu a motivaci při tvorbě této práce i během celého studia.}
-\abstractCS{Tato diplomová práce navazuje na bakalářskou práci Karolíny Solanské s názvem Children Usability Lab -- aplikace pro správu laboratoře. Její bakalářská práce je zde rozšířena o návrh a implementaci subsystému pro management veškerých záznamů nahrávaných v laboratoři Children Usability Lab. Součástí této práce je také analýza současného systému i existujících řešení pro požadovanou správu záznamů, dále pak návrh, realizace a její následné testování. Implementované rozšíření stávajícího systému plně pokrývá dohodnuté zadání i specifikované požadavky.
-\par
-Závěrem této diplomové práce je podrobení subsystému integračním i akceptačním testům. Subsystém se podařilo úspěšně nasadit do počítačového prostředí laboratoře Children Usability Lab, kde usnadňuje a zefektivňuje tamní testování použitelnosti.}
+\abstractCS{Tato diplomová práce navazuje na bakalářskou práci Karolíny Solanské s názvem \uv{Children Usability Lab -- aplikace pro správu laboratoře}. Její bakalářská práce je zde rozšířena o návrh a implementaci subsystému pro management veškerých záznamů nahrávaných v laboratoři Children Usability Lab. Tento subsystém se skládá z webového rozšíření umožňující správu multimediálních streamů v laboratoři a backendové části, která tato multimediální data zpracovává. Součástí této práce je analýza současného systému i existujících řešení pro požadovanou správu záznamů, dále pak návrh, realizace a její následné testování. Závěrem této diplomové práce je podrobení subsystému integračním i akceptačním testům.}
 
-\abstractEN{This diploma thesis follows up the bachelor thesis of Karolína Solanská called Children Usability Lab -- aplikace pro správu laboratoře. Her bachelor thesis is here expanded with design and implementation of a subsystem for management of all media recorded in the laboratory Children Usability Lab. Part of this work is about an analysis of the current system and existing technologies for the required media management. The work continues with a design, implementation and subsequent testing chapter. The implemented extension to the existing system fully covers both thesis' task and specified requirements.
-\par
-The conclusion of this diploma thesis is about integration and acceptance testing of the subsystem. The subsystem has been successfully deployed in the computer environment of the lab, where it makes usability testing eaisier than before.}
+\abstractEN{This diploma thesis follows up the bachelor thesis of Karolína Solanská called \uv{Children Usability Lab -- aplikace pro správu laboratoře}. Her bachelor thesis is here expanded with design and implementation of a subsystem for management of all media recorded in the laboratory Children Usability Lab. This subsystem consists of a web application extension and a backend section for media management. Part of this work is about an analysis of the current system and existing technologies for the required media management. The work continues with a design, implementation and subsequent testing chapter. The conclusion of this diploma thesis is about integration and acceptance testing of the subsystem.}
 
 \placeForDeclarationOfAuthenticity{V~Praze}
 \declarationOfAuthenticityOption{4} %volba Prohlášení (číslo 1-6)
@@ -66,7 +62,7 @@ Laboratoř použitelnosti na Fakultě informačních technologií ČVUT v Praze 
 \end{introduction}
 
 \chapter{Cíl práce}
-Cílem této diplomové práce je nejprve seznámení se s bakalářskou prací Karolíny Solanské s názvem Children Usability Lab - aplikace pro správu laboratoře (\cite{solankar}). V uvedené práci je třeba analyzovat veškeré specifické požadavky zaměřené na správu videa. Tyto požadavky je nutné znovu probrat s koordinátory  laboratoře Children Usability Lab, aktualizovat je a zakomponovat do specifických požadavků této práce. Vedle převzatých požadavků se nadefinuje i spousta dalších, nových funkčních i nefunkčních požadavků, které byly nashromážděny během posledních let běhu testů v laboratoři. Další částí analýzy je pak ponoření se do světa technologií, které usnadňují práci s videem a z existujících je třeba vybrat pokud možno ty nejvhodnější, které by se daly použít v praktické části této práce.
+Cílem této diplomové práce je nejprve analýza bakalářské práce Karolíny Solanské s názvem Children Usability Lab - aplikace pro správu laboratoře (\cite{solankar}). V uvedené práci je třeba analyzovat veškeré specifické požadavky zaměřené na správu videa. Tyto požadavky je nutné znovu probrat s koordinátory  laboratoře Children Usability Lab, aktualizovat je a zakomponovat do specifických požadavků této práce. Vedle převzatých požadavků se nadefinuje i spousta dalších, nových funkčních i nefunkčních požadavků, které byly nashromážděny během posledních let běhu testů v laboratoři. Další částí analýzy je pak ponoření se do světa technologií, které usnadňují práci s videem a z existujících je třeba vybrat pokud možno ty nejvhodnější, které by se daly použít v praktické části této práce.
 	
 	Výstup analytické části si poté převezme návrhová a implementační část, ve kterých se pomocí nástrojů softwarového inženýrství promění nabyté poznatky v reálný produkt, tedy modul pro správu videa, který půjde se stávajícím systémem provázat.
 	
@@ -496,7 +492,7 @@ V uvedené XML konfiguraci je uzel se jménem \uv{webcam} typu \uv{v4l2source}, 
 Zmíněná XML konfigurace vytvoří graf znázorněný obrázkem \ref{img:yuri_vytvoreni_xml}.
 \\
 \begin{figure}[h]\centering
-	\includegraphics[width=1\textwidth]{images/yuri_xml_graph.eps}
+	\includegraphics[width=0.6\textwidth]{images/yuri_xml_graph.eps}
 	\caption{Libyuri -- graf vytvořený pomocí XMLBuilder}\label{img:yuri_vytvoreni_xml}
 \end{figure}
 
