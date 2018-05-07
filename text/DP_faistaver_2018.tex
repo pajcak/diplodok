@@ -474,6 +474,7 @@ Konceptuálně představuje builder graf a zároveň je možné jej chápat jako
 \subsubsection{XMLBuilder} \label{subsec:analyza_yuri_vytvoreni_xml}
 V jádře Libyuri je také implementace builderu \uv{XMLBuilder}, který načítá XML soubory popisující graf a datové cesty a z nich pak výsledný graf vytvoří. Použití tohoto builderu je demonstrováno dále, kde je nejprve uvedena konfigurace grafu v jazyku XML a poté vygenerovaný graf.
 \\
+\begin{minipage}{\linewidth}
 \begin{lstlisting}[language=XML]
 <?xml version="1.0" ?>
 <app name="webcam" xmlns="urn:library:yuri:xmlschema:2001"
@@ -489,7 +490,7 @@ V jádře Libyuri je také implementace builderu \uv{XMLBuilder}, který načít
     <link name="yuyv_image" class="single" source="webcam:0" target="sdl:0"/>
 </app>
 \end{lstlisting}
-
+\end{minipage}
 V uvedené XML konfiguraci je uzel se jménem \uv{webcam} typu \uv{v4l2source}, který představuje zdroj z webkamery. Uzel nazvaný \uv{sdl} typu \uv{sdl\_window} je okno, které zobrazuje video. Mezi těmito uzly je orientovaná hrana (v Libyuri označovaná jako \textit{pipe} nebo také fronta), pojmenovaná \uv{yuyv\_image}, typu \uv{single}. Ukázková konfigurace zároveň obsahuje proměnnou (značka <variable>) obsahující systémovou cestu ke kameře. Tato proměnná je pak použita pro nastavení hodnoty parametru \uv{path} u uzlu \uv{v4l2source}. Výhody oproti přímému nastavení hodnoty (které je samozřejmě také možné) jsou dvě. Jednak je možné snadno zajistit stejnou hodnotu pro více parametrů (i v různých uzlech), ale také je možné tuto proměnnou nastavovat při spuštění yuri aplikace (více v sekci \ref{subsec:analyza_yuri_aplikace}). 
 
 Zmíněná XML konfigurace vytvoří graf znázorněný obrázkem \ref{img:yuri_vytvoreni_xml}.
@@ -527,7 +528,6 @@ Dále je uveden jednoduchý příklad XML kódu demonstrující události.\\
   route(dump:sequence) -> info:progress;
 </event>
 \end{lstlisting}
-
 Pokud se zanese tento příklad do existující XML konfigurace grafu, tak ve chvíli, kdy uzel pojmenovaný \uv{dump} vygeneruje událost s názvem \uv{sequence}, tak se ta událost pošle do uzlu \uv{info} pod názvem \uv{progress}.
 
 Specifikace směrování podporuje i funkcionální jazyk pro modifikaci událostí nebo kombinující více událostí dohromady. Je tak možné vytvářet i složitější konstrukce jak v příkladu uvedeném dále.\\
