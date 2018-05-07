@@ -23,7 +23,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -40,9 +40,9 @@
      inkscape:window-height="706"
      id="namedview14218"
      showgrid="false"
-     inkscape:zoom="0.69804131"
-     inkscape:cx="477.1722"
-     inkscape:cy="803.54381"
+     inkscape:zoom="0.98717949"
+     inkscape:cx="312.09434"
+     inkscape:cy="818.15887"
      inkscape:window-x="-8"
      inkscape:window-y="-8"
      inkscape:window-maximized="1"
@@ -10776,27 +10776,36 @@
        id="g13277">
       <use
          xlink:href="#glyph2-1"
-         x="213.064056"
-         y="205.479505"
-         id="use13275" />
+         x="213.06406"
+         y="205.47951"
+         id="use13275"
+         transform="translate(-4.5663487)"
+         width="100%"
+         height="100%" />
     </g>
     <g
        style="fill:rgb(0%,0%,0%);fill-opacity:1;"
        id="g13281">
       <use
          xlink:href="#glyph2-2"
-         x="220.622072"
-         y="205.479505"
-         id="use13279" />
+         x="220.62207"
+         y="205.47951"
+         id="use13279"
+         transform="translate(-4.5663487)"
+         width="100%"
+         height="100%" />
     </g>
     <g
        style="fill:rgb(0%,0%,0%);fill-opacity:1;"
        id="g13285">
       <use
          xlink:href="#glyph2-3"
-         x="224.940938"
-         y="205.479505"
-         id="use13283" />
+         x="224.94093"
+         y="205.47951"
+         id="use13283"
+         transform="translate(-4.5663487)"
+         width="100%"
+         height="100%" />
     </g>
     <g
        style="fill:rgb(0%,0%,0%);fill-opacity:1;"
@@ -10812,63 +10821,84 @@
        id="g13293">
       <use
          xlink:href="#glyph2-5"
-         x="231.419237"
-         y="205.479505"
-         id="use13291" />
+         x="231.41924"
+         y="205.47951"
+         id="use13291"
+         transform="translate(-4.5663487)"
+         width="100%"
+         height="100%" />
     </g>
     <g
        style="fill:rgb(0%,0%,0%);fill-opacity:1;"
        id="g13297">
       <use
          xlink:href="#glyph2-2"
-         x="235.378197"
-         y="205.479505"
-         id="use13295" />
+         x="235.3782"
+         y="205.47951"
+         id="use13295"
+         transform="translate(-4.5663487)"
+         width="100%"
+         height="100%" />
     </g>
     <g
        style="fill:rgb(0%,0%,0%);fill-opacity:1;"
        id="g13301">
       <use
          xlink:href="#glyph2-6"
-         x="239.697063"
-         y="205.479505"
-         id="use13299" />
+         x="239.69707"
+         y="205.47951"
+         id="use13299"
+         transform="translate(-4.5663487)"
+         width="100%"
+         height="100%" />
     </g>
     <g
        style="fill:rgb(0%,0%,0%);fill-opacity:1;"
        id="g13305">
       <use
          xlink:href="#glyph2-7"
-         x="242.576307"
-         y="205.479505"
-         id="use13303" />
+         x="242.57631"
+         y="205.47951"
+         id="use13303"
+         transform="translate(-4.5663487)"
+         width="100%"
+         height="100%" />
     </g>
     <g
        style="fill:rgb(0%,0%,0%);fill-opacity:1;"
        id="g13309">
       <use
          xlink:href="#glyph2-2"
-         x="246.535268"
-         y="205.479505"
-         id="use13307" />
+         x="246.53526"
+         y="205.47951"
+         id="use13307"
+         transform="translate(-4.5663487)"
+         width="100%"
+         height="100%" />
     </g>
     <g
        style="fill:rgb(0%,0%,0%);fill-opacity:1;"
        id="g13313">
       <use
          xlink:href="#glyph2-6"
-         x="250.854134"
-         y="205.479505"
-         id="use13311" />
+         x="250.85414"
+         y="205.47951"
+         id="use13311"
+         transform="translate(-4.5663487)"
+         width="100%"
+         height="100%" />
     </g>
     <g
        style="fill:rgb(0%,0%,0%);fill-opacity:1;"
        id="g13317">
       <use
          xlink:href="#glyph2-17"
-         x="253.733378"
-         y="205.479505"
-         id="use13315" />
+         x="253.73338"
+         y="205.47951"
+         id="use13315"
+         transform="translate(-4.5663487)"
+         width="100%"
+         height="100%" />
     </g>
     <g
        style="fill:rgb(0%,0%,0%);fill-opacity:1;"
@@ -10881,49 +10911,19 @@
     </g>
     <g
        style="fill:rgb(0%,0%,0%);fill-opacity:1;"
-       id="g13325">
-      <use
-         xlink:href="#glyph2-21"
-         x="258.052244"
-         y="205.479505"
-         id="use13323" />
-    </g>
+       id="g13325" />
     <g
        style="fill:rgb(0%,0%,0%);fill-opacity:1;"
-       id="g13329">
-      <use
-         xlink:href="#glyph2-22"
-         x="263.810732"
-         y="205.479505"
-         id="use13327" />
-    </g>
+       id="g13329" />
     <g
        style="fill:rgb(0%,0%,0%);fill-opacity:1;"
-       id="g13333">
-      <use
-         xlink:href="#glyph2-18"
-         x="267.769692"
-         y="205.479505"
-         id="use13331" />
-    </g>
+       id="g13333" />
     <g
        style="fill:rgb(0%,0%,0%);fill-opacity:1;"
-       id="g13337">
-      <use
-         xlink:href="#glyph2-13"
-         x="269.56922"
-         y="205.479505"
-         id="use13335" />
-    </g>
+       id="g13337" />
     <g
        style="fill:rgb(0%,0%,0%);fill-opacity:1;"
-       id="g13341">
-      <use
-         xlink:href="#glyph2-23"
-         x="273.52818"
-         y="205.479505"
-         id="use13339" />
-    </g>
+       id="g13341" />
     <path
        style=" stroke:none;fill-rule:nonzero;fill:rgb(87.5%,87.5%,87.5%);fill-opacity:1;"
        d="M 418.210938 14.042969 L 533.378906 14.042969 L 533.378906 111.199219 L 418.210938 111.199219 L 418.210938 14.042969 "
@@ -12907,4 +12907,15 @@
          id="use14211" />
     </g>
   </g>
+  <text
+     xml:space="preserve"
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:30px;line-height:1.25;font-family:SegoeUI, 'Segoe UI';-inkscape-font-specification:'SegoeUI, Segoe UI';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.75"
+     x="252.89513"
+     y="205.63194"
+     id="text8515"><tspan
+       sodipodi:role="line"
+       id="tspan8513"
+       x="252.89513"
+       y="205.63194"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:7.91700029px;font-family:Calibri;-inkscape-font-specification:'Calibri Bold';stroke-width:0.75">Apache</tspan></text>
 </svg>
