@@ -772,7 +772,7 @@ Jak již bylo zmíněno v sekci \ref{subsec:navrh_backend_ulohy} o správě úlo
 Tato kapitola se zabývá implementací rozšíření stávající aplikace, opěvovaného analýzou a návrhem. Nejprve je uvedena sekce o použití systému Gitlab pro verzování aplikace a také pro takzvanou \textit{continuous integration} neboli průběžnou integraci. Dále jsou detailněji popsány některé vybrané implementační zajímavosti. Poté již následuje instalační příručka, ve které je popsáno, jak lze z poskytnutých zdrojových souboru aplikaci nainstalovat do cílového prostředí. V závěru je stručná uživatelská příručka, která prozradí, jak aplikaci používat.
 
 \section{Verzování a continuous integration} \label{sec:impl_gitlab}
-Verzování zdrojového kódu je dnes samozřejmostí a tak i řešení této práce využilo tohoto procesu. Jako verzovací systém byl použitý systém Gitlab, který je fakultou zdarma poskytován studentům. Je zde možné mít zdarma i privátní repozitáře, což je pro vývoj aplikací značnou výhodou. Ve vzniklém repozitáři byli přidáni i další spolupracovníci, jako vedoucí práce či správce laboratoře CHUL, aby mohli kontrolovat stav vývoje a věcně podpořit své případné připomínky. Díky této správě verzí bylo možné evidovat kdo, kdy a jak měnil zdrojový kód aplikace. Lze se tak přesouvat časem ve vývoji produktu, obnovovat staré funkcionality, vracet se z kritických chyb a mít jej tak stále pod kontrolou.
+Verzování zdrojového kódu je dnes samozřejmostí a tak i řešení této práce využilo tohoto procesu. Jako verzovací systém byl použitý systém Gitlab, který je fakultou zdarma poskytován studentům. Je zde možné mít zdarma i privátní repozitáře, což je pro vývoj aplikací značnou výhodou. Ve vzniklém repozitáři byli přidáni i další spolupracovníci, jako vedoucí práce či správce laboratoře CHUL, aby mohli kontrolovat stav vývoje a věcně podpořit své případné připomínky. Díky této správě verzí bylo možné evidovat kdo, kdy a jak měnil zdrojový kód aplikace. Lze se tak přesouvat časem ve vývoji produktu, obnovovat staré funkcionality, vracet se z kritických chyb a mít jej tak stále pod kontrolou, neboť každému evidovanému souboru je přiděleno číslo verze, které se při každé modifikaci souboru změní. Důležité milníky vývoje lze pak oddělit od ostatních přidělením celému softwaru číslo verze.
 
 Gitlab patří mezi pokročilejší systémy pro kontrolu verzí a v jeho současné podobě nabízí možnost kontinuální integrace (nebo také continuous integration). Kontinuální integrace je proces, kdy se práce vývojářů často integruje do zdrojového kódu, nejméně denně. Systém kontinuální integrace je pak možné nastavit tak, aby každou z těchto integrací verifikoval pomocí automatizovaného sestavení zdrojového kódu verzované aplikace, nebo také automatizovaných testů, a tím tak co nejrychleji odhaloval potenciální chyby vzniklé při integraci. Automatizované sestavení je také možné provázat s automatizovaným nasazením a to i na jiný stroj, než na kterým sestavení proběhlo (například produkční systém). Kontinuální integrace umožňuje vyvíjet software mnohem rychleji se zachováním kvality detekce chybovosti. 
 
@@ -1029,9 +1029,19 @@ Po přidání zmíněného repozitáře již stačí aplikaci z balíčku nainst
 sudo apt-get install ./nazev_balicku.deb -y
 \end{lstlisting}
 
-Tento polední příkaz stáhne všechny zbylé závislosti, včetně prostředí PHP, webserveru Apache2 a další. Dále se postará o přesunutí souborů aplikace na potřebné místo, přidání konfiguračního souboru do seznamu dostupných webových stránek webserveru a následné znovu načtení konfigurace webserveru. Poté by již aplikace měla být dostupná na kořenové adrese lokálního stroje.
+Tento poslední příkaz stáhne všechny zbylé závislosti, včetně prostředí PHP, webserveru Apache2 a další. Dále se postará o přesunutí souborů aplikace na potřebné místo, přidání konfiguračního souboru do seznamu dostupných webových stránek webserveru a následné znovu načtení konfigurace webserveru. Poté by již aplikace měla být dostupná na kořenové adrese lokálního stroje.
 
-Pro zprovoznění streamování je nutné nainstalovat na příslušné servery knihovnu Libyuri. Přehledný a funkční návod pro instalaci Libyuri je k dispozici v odkazu \cite{yuri}.
+Pro zprovoznění streamování je nutné nainstalovat na příslušné servery knihovnu Libyuri. Přehledný a funkční návod pro instalaci Libyuri je k dispozici v odkazu \cite{yuri}. Po instalaci Libyuri je ještě potřeba nainstalovat technologii Node.js na CHUL serveru, například pomocí balíčkovacího manažeru npm.\\
+
+\begin{lstlisting}[language=bash,identifierstyle=\color{black}]
+sudo apt-get install npm -y
+\end{lstlisting}
+
+Nakonec spustit obalovací program pro libyuri na CHUL serveru pomocí následujícího příkazu. Soubor \textit{index.js} je k nalezení v adresáři \textit{yuri\_wrapper}.\\
+
+\begin{lstlisting}[language=bash,identifierstyle=\color{black}]
+node index.js
+\end{lstlisting}
 
 \chapter{Testování} \label{chap:testovani}
 Jeden z bodů zadání této práce specifikuje podrobení vytvořené aplikace integračním a akceptačním testům. Aplikaci bylo samozřejmě nutné podrobit i ostatním testům, včetně jednotkových, avšak v textu jsou uvedeny pouze zmíněné dva druhy. Zbylé testy je možné nalézt v kořenovém adresáři aplikace, ve složce \textit{tests}. Integrační a zejména akceptační testy běžně nedělají pouze programátoři, ale také tým testerů a případně samotný zákazník. Z tohoto důvodu byl průběh testů pravidelně koordinován se správcem CHUL laboratoře, Ondřejem Brémem.
