@@ -77,7 +77,7 @@ Jedná se o~část aplikace, která je viditelná běžným uživatelům.\\ \\
 \textbf{Backend}\\
 Jedná se o~část aplikace, uživatelům \uv{schovaná} za frontendem a~slouží především ke zpracování dat.\\ \\
 \textbf{CHUL}\\
-Children Usability Lab - laboratoř testování použitelnosti na Fakultě informačních technologií ČVUT v~Praze.\\ \\
+Children Usability Lab, což je laboratoř testování použitelnosti na Fakultě informačních technologií ČVUT v~Praze.\\ \\
 \textbf{SAGElab}\\
 Síťová a~multimediální laboratoř SAGE na Fakultě informačních technologií ČVUT v~Praze.\\ \\
 \textbf{CDN}\\
@@ -90,6 +90,8 @@ Jedná se o~softwarovou strukturu fungující jako knihovna funkcí a~podpůrný
  Jedná se o~technologii přenosu audiovizuálního materiálu mezi zdrojem a~koncovým uživatelem.\\ \\
 \textbf{WebSocket}\\
 Jedná se o~komunikační protokol, standardizován komisí IETF a~poskytující plně duplexní kanál přes TCP spojení. \\ \\
+\textbf{Grabovaci graficka karta, pripadne Continuous integration}\\
+TODO.\\ \\
 % \textbf{}\\
 % TODO.\\ \\
 
@@ -115,7 +117,7 @@ CHUL).\\}
 \section{Předchozí práce a~aktuální stav} \label{sec:analyza_predchozi_prace}
 Jak bylo řečeno v~úvodu, bakalářská práce Karolíny Solanské vyvinula systém, který slouží jako webová aplikace zajišťující plánování a~organizaci testů použitelnosti. Tento systém byl vytvořen jako plně funkční vůči zadaným požadavkům a~je nasazen v~laboratoři CHUL. Systém je celý implementován v~jazyku PHP s~použitím frameworku Nette. Systém je nasazený na externím serveru s~přístupem přes protokoly HTTP a~HTTPS. Technologie pro použitou databázi je PostgreSQL.
 	
-	Aktuální stav správy videa je příliš nepohodlný a~zdlouhavý. Webová aplikace nijak nekomunikuje s~jakýmkoliv zařízením v~laboratoři CHUL. Vše okolo videí se tedy musí dělat víceméně ručně. V~tomto kontextu se pracuje s~úžasnou knihovnou \textit{Libyuri}(vizte \cite{yuri}), která za pomocí dvou konfiguračních souborů spustí nahrávání, sloučí obrazy a~zvuk, uloží a~případně zobrazí v~systému SAGE. Naneštěstí existují pouze tyto 2 konfigurace, které se ještě ke všemu musí ručně pouštět z~příkazové řádky. Nyní neexistuje žádná jednoduchá možnost, jak pohodlně pracovat se záznamy (například ořezávat, přidávat titulek apod.) a~tím se tedy bude zabývat tato práce.
+	Aktuální stav správy videa je příliš nepohodlný a~zdlouhavý. Webová aplikace nijak nekomunikuje s~jakýmkoliv zařízením v~laboratoři CHUL. Vše okolo videí se tedy musí dělat víceméně ručně. V~tomto kontextu se pracuje s~úžasnou knihovnou Libyuri (vizte \cite{yuri}), která za pomocí dvou konfiguračních souborů spustí nahrávání, sloučí obrazy a~zvuk, uloží a~případně zobrazí v~systému SAGE. Naneštěstí existují pouze tyto 2 konfigurace, které se ještě ke všemu musí ručně pouštět z~příkazové řádky. Nyní neexistuje žádná jednoduchá možnost, jak pohodlně pracovat se záznamy (například ořezávat, přidávat titulek apod.) a~tím se tedy bude zabývat tato práce.
 	
 \subsection{Požadavky předchozí práce} \label{subsec:analyza_predchozi_prace_pozadavky}
 Zde jsou uvedeny všechny funkční požadavky z~předchozí práce, zaměřené na správu videa a~které podpořily důvod vzniku této práce.
@@ -481,6 +483,7 @@ V~jádře Libyuri je také implementace builderu \uv{XMLBuilder}, který načít
     <node class="v4l2source" name="webcam">
         <parameter name="path">@device</parameter>
     </node>
+    
     <node class="sdl_window" name="sdl"/>
 
     <link name="yuyv_image" class="single" source="webcam:0" target="sdl:0"/>
@@ -597,6 +600,7 @@ Návrh nejprve rozebere architekturu systému a~pak ve dvou podkapitolách prob�
 Schéma na obrázku \ref{img:navrh_architektura_nasazeni} uvedeném dále, představuje přibližný model nasazení v~provozu. Tento model se skládá z~pěti hlavních částí (zařízení), z~nichž první představuje klienta a~jeho webový prohlížeč. Ten komunikuje
 s~aplikací Apache, která představuje webový server. Samotná komunikace mezi klientem a~webovým serverem probíhá pomocí protokolů HTTPS a~SFTP pro procházení webové aplikace a~případný download videí. Aplikace Apache hostuje samotnou webovou aplikaci, jejíž podstatná část je tvořena PHP frameworkem Nette a~dále JavaScriptovou knihovnu Video.js (\ref{subsubsec:analyza_reseni_videojs}), která je odpovědná za práci s~videem na webu. Další částí diagramu je CHUL server, neboli server, nacházející se v~CHUL laboratoři, na kterém běží instance knihovny Libyuri (\ref{subsubsec:analyza_reseni_yuri}).  
 
+\pagebreak 
 Komunikace mezi Libyuri a~webovou Nette aplikací je zajištěno technologií websocketů, pomocí kterých se například z~webové aplikace pošle příkaz na spuštění nahrávání z~různých zařízení v~laboratoři (více v~podkapitole \ref{sec:navrh_communication}). Streamování do infrastruktury SAGE je věnováno další zařízení -- SAGE server, který se v~případě této práce nachází v~laboratoři SAGElab. Posílání streamů dat mezi CHUL serverem a~SAGE serverem probíhá mezi dvěma instancemi knihovny Libyuri, pomocí protokolu RTP. K~operačnímu systému CHUL serveru je pomocí technologie SSHFS připojen souborový systém dalšího a~posledního zařízení v~diagramu -- databázového a~multimediálního serveru (Dále jen \uv{DM server}). Tento DM server obsahuje zmíněnou databázi PostgreSQL a~také úložiště pro nahrané záznamy. Databázový systém PostgreSQL na DM serveru obsahuje především data potřebné webovou aplikací (jako jsou data o~uživatelích, experimentech, scénářích a~jiné) a~je se samotnou webovou aplikací spojena komunikačním protokolem TCP/IP. 
 \\
 \begin{figure}[h]\centering
@@ -715,23 +719,21 @@ Třetí a~nejzajímavější obrazovka z~wireframu v~řadě, na obrázku \ref{im
 \section{Backend} \label{sec:navrh_backend}
 \subsection{Databázový model} \label{subsec:navrh_backend_databaze}
 Při návrhu relačního databázového modelu se vycházelo z~již existujícího modelu. Předchozí práce (\cite{solankar}) totiž již se systémem pro správu videa a~streamů částečně počítala ve specifických požadavcích, ale i~během vytváření tehdejšího databázového modelu, který již obsahoval tabulku pro videa. Jak bylo zmíněno, tak rozšíření pro správu videí a~streamů se v~předchozí práci neimplementovalo a~tedy i~tato funkcionalita byla v~databázovém modelu pouze jakýmsi základním prototypem, který bylo nutné řádně poupravit. Na obrázku \ref{img:navrh_backend_db_orig}, který znázorňuje právě databázový model při konci předchozí závěrečné práce, je patrná zmíněná tabulka s~videi (\textit{Videos}), která však zdaleka neobsahuje všechny potřebné sloupce.
-\\
-\begin{figure}[h]\centering
-	\includegraphics[width=1\textwidth]{images/db_orig.eps}
-	\caption{Původní databázový model}\label{img:navrh_backend_db_orig}
-\end{figure}
 
-Horní část původního databázového modelu (\ref{img:navrh_backend_db_orig}) obsahuje tabulky (např. \textit{Users}, \textit{Logs}, \textit{Plans}, ...), které se správou videí a~streamů příliš nesouvisí, jsou však implementované v~původní webové aplikaci a~proto jsou zachovány v~nezměněné formě novém modelu. Bylo tedy třeba přidat část pro správu videí a~informací o~nich. Na obrázku \ref{img:navrh_backend_db} je uveden nově vytvořený databázový model, který je pak dále popsán.
-\\
-\begin{figure}[h]\centering
-	\includegraphics[width=1\textwidth]{images/db.eps}
-	\caption{Navrhnutý databázový model}\label{img:navrh_backend_db}
-\end{figure}
+Horní část původního databázového modelu (\ref{img:navrh_backend_db_orig}) obsahuje tabulky (např. \textit{Users}, \textit{Logs}, \textit{Plans}, ...), které se správou videí a~streamů příliš nesouvisí, jsou však implementované v~původní webové aplikaci a~proto jsou zachovány v~nezměněné formě novém modelu. Bylo tedy třeba přidat část pro správu videí a~informací o~nich. Na obrázku \ref{img:navrh_backend_db} je uveden nově vytvořený databázový model, který je dále popsán.
 
 Z~nového databázového modelu je patrné, že zmizela tabulka s~videi a~byla nahrazena tabulkou \textit{VideoRecords} a~\textit{AudioRecords}. Mimo videí bylo také třeba udržovat informace o~audio souborech, aby bylo možné s~nimi pracovat odděleně (například přidávat a~odebírat audio stopy k~videu). Z~důvodu nemožnosti implementace dědičnosti v~relačním databázovém modelu nebyla vytvořena třída \textit{Records}, která by zapouzdřovala možné nahrávky. Dále je z~diagramu patrná tabulka \textit{Jobs},  do které se budou ukládat jednotlivé úlohy pro úpravu záznamů (více v~sekci \ref{subsec:navrh_backend_ulohy}). Tato tabulka obsahuje vstupní záznamy (relace z~tabulek \textit{VideoRecords} a~\textit{AudioRecords}), které reprezentují záznamy připravené k~nějaké úpravě a~dále výstupní záznam realizovaný tabulkou \textit{OutputRecord}. Tabulka \textit{OutputRecord} obsahuje záznamy o~médiích vzniklých úpravou jiných po dokončení některé ze zmíněných úloh. Jako poslední je také přidána samostatná tabulka \textit{LabConfiguration}, která obsahuje informace o~nahrávacích zařízeních (které jsou připojené a~podobně), IP adresy a~informace o~zařízení SAGE, webserveru, CHUL serveru, úložišti a~další.
 
 V~tabulkách \textit{VideoRecord}, \textit{AudioRecord}, respektive \textit{OutputRecord} jsou sloupce reprezentující požadované metainformace nahraných, resp. upravených záznamů. Veškeré nahrané záznamy se nebudou ukládat do databáze přímo, ale do souborového systému a~databázové tabulky pak budou obsahovat sloupec s~lokací, kde se daný záznam v~souborovém systému nachází.
 
+\begin{figure}[h]\centering
+	\includegraphics[width=1\textwidth]{images/db_orig.eps}
+	\caption{Původní databázový model}\label{img:navrh_backend_db_orig}
+\end{figure}
+\begin{figure}[h]\centering
+	\includegraphics[width=1\textwidth]{images/db.eps}
+	\caption{Navrhnutý databázový model}\label{img:navrh_backend_db}
+\end{figure}
 
 \subsection{Správa úloh} \label{subsec:navrh_backend_ulohy}
 Při popisování vytvořeného databázového modelu byla zmíněna tabulka \textit{Jobs}, která obsahuje informace o~úlohových zpracování záznamů. Dále je popsáno, co za touto tabulkou stojí.
@@ -776,9 +778,9 @@ Tato kapitola se zabývá implementací rozšíření stávající aplikace, op�
 \section{Verzování a~continuous integration} \label{sec:impl_gitlab}
 Verzování zdrojového kódu je dnes samozřejmostí a~tak i~řešení této práce využilo tohoto procesu. Jako verzovací systém byl použitý systém Gitlab, který je fakultou zdarma poskytován studentům. Je zde možné mít zdarma i~privátní repozitáře, což je pro vývoj aplikací značnou výhodou. Ve vzniklém repozitáři byli přidáni i~další spolupracovníci, jako vedoucí práce či správce laboratoře CHUL, aby mohli kontrolovat stav vývoje a~věcně podpořit své případné připomínky. Díky této správě verzí bylo možné evidovat kdo, kdy a~jak měnil zdrojový kód aplikace. Lze se tak přesouvat časem ve vývoji produktu, obnovovat staré funkcionality, vracet se z~kritických chyb a~mít jej tak stále pod kontrolou, neboť každému evidovanému souboru je přiděleno číslo verze, které se při každé modifikaci souboru změní. Důležité milníky vývoje lze pak oddělit od ostatních přidělením čísla verze celému softwaru.
 
-Gitlab patří mezi pokročilejší systémy pro kontrolu verzí a~v~jeho současné podobě nabízí možnost kontinuální integrace (nebo také continuous integration). Kontinuální integrace je proces, kdy se práce vývojářů často integruje do zdrojového kódu, nejméně denně. Systém kontinuální integrace je pak možné nastavit tak, aby každou z~těchto integrací verifikoval pomocí automatizovaného sestavení zdrojového kódu verzované aplikace, nebo také automatizovaných testů, a~tím tak co nejrychleji odhaloval potenciální chyby vzniklé při integraci. Automatizované sestavení je také možné provázat s~automatizovaným nasazením a~to i~na jiný stroj, než na kterým sestavení proběhlo (například produkční systém). Kontinuální integrace umožňuje vyvíjet software mnohem rychleji se zachováním kvality detekce chybovosti. 
+Gitlab patří mezi pokročilejší systémy pro kontrolu verzí a~v~jeho současné podobě nabízí možnost kontinuální integrace (nebo také continuous integration). Kontinuální integrace je proces, kdy se práce vývojářů často integruje do zdrojového kódu, nejméně denně. Systém kontinuální integrace je pak možné nastavit tak, aby každou z~těchto integrací verifikoval pomocí automatizovaného sestavení zdrojového kódu verzované aplikace, nebo také automatizovaných testů, a~tím tak co nejrychleji odhaloval potenciální chyby vzniklé při integraci. Automatizované sestavení je také možné provázat s~automatizovaným nasazením a~to i~na jiný stroj, než na kterým sestavení proběhlo (například produkční systém).
 
-Při implementaci řešení této práce bylo tedy kontinuální integrace naplno využito. Celý proces od automatizovaného sestavení, testů, až po nasazení bylo možné vyřešit jedním konfiguračním souborem se syntaxí jazyku YAML. Tento soubor, s~názvem \textit{.gitlab-ci.yml}, se nachází na přiloženém CD. Z~tohoto souboru jsou vyjmuty části kódu pro ukázku toho, jak je kontinuální integrace nastavena.
+Při implementaci řešení této práce bylo tedy kontinuální integrace využito. Celý proces od automatizovaného sestavení, testů, až po nasazení bylo vyřešeno jedním konfiguračním souborem se syntaxí jazyku YAML. Tento soubor, s~názvem \textit{.gitlab-ci.yml}, se nachází na přiloženém CD. Z~tohoto souboru jsou vyjmuty části kódu pro ukázku toho, jak je kontinuální integrace nastavena.
 
 První hlavní částí konfiguračního souboru je stanovení tzv. \textit{stages}, což reprezentuje etapy samotné kontinuální integrace. Níže v~části kódu je vidět, že integrace má dvě etapy: etapa \uv{deploy}, která provede nasazení, a~etapa \uv{test}, která spustí integrační i~jiné testy.\\
 
@@ -859,7 +861,6 @@ Přestože je konfigurační soubor relativně jednoduchý, je příliš dlouhý
   <parameter name="resolution">320x240</parameter>
   <parameter name="fps">5</parameter>
   <parameter name="format">MJPEG</parameter>
-  <parameter name="fps_stats">100</parameter>
 </node>
 \end{lstlisting}
 
@@ -870,7 +871,6 @@ Při navedení datové hrany z~tohoto uzlu budeme mít zajištěno, že se ze za
   <parameter name="device">0</parameter>
   <parameter name="format">PAL</parameter>
   <parameter name="pixel_format">YUV</parameter>
-  <parameter name="fps_stats">100</parameter>
   <parameter name="audio">0</parameter>
   <parameter name="force_detection">1</parameter>
   <parameter name="connection">HDMI</parameter>
@@ -897,11 +897,11 @@ Díky zmíněnému mechanizmu je pak možné z~webové aplikace na snímky tohot
   </head>
   <body>
     <div id="image_container">
-      <img src="/loading.gif" id="image0" onerror="this.src='img_err.png';"/>
-      <img src="/loading.gif" id="image1" onerror="this.src='img_err.png';"/>
-      <img src="/loading.gif" id="image2" onerror="this.src='img_err.png';"/>
-      <img src="/loading.gif" id="image3" onerror="this.src='img_err.png';"/>
-      <img src="/loading.gif" id="image4" onerror="this.src='img_err.png';"/>
+      <img src="/loading.gif" id="image0" onerror="this.src='img_err.png';" />
+      <img src="/loading.gif" id="image1" onerror="this.src='img_err.png';" />
+      <img src="/loading.gif" id="image2" onerror="this.src='img_err.png';" />
+      <img src="/loading.gif" id="image3" onerror="this.src='img_err.png';" />
+      <img src="/loading.gif" id="image4" onerror="this.src='img_err.png';" />
     </div>
     <script>
       setInterval(function () {
@@ -980,7 +980,7 @@ V~kódu je patrné, že po přijetí nastavení pro export média (proměnná \t
 	<parameter name="filename">/bar/dstFile</parameter>
   </node>
 
-  <node class="jpeg_encoder" name="jpeg_out">
+  <node class="jpeg_encoder" name="jpeg">
     <parameter name="quality">90</parameter>
     <parameter name="force_mjpeg">1</parameter>
   </node>
@@ -1000,8 +1000,8 @@ V~kódu je patrné, že po přijetí nastavení pro export média (proměnná \t
   <link name="link1" class="single" source="source:0" target="contrast:0"/>
   <link name="link2" class="single" source="contrast:0" target="scale:0"/>
   <link name="link3" class="single" source="scale:0" target="fps:0"/>
-  <link name="link4" class="single" source="fps:0" target="jpeg_out:0"/>
-  <link name="jpeg_dumper" class="single" source="jpeg_out:0" target="dumper:0"/>
+  <link name="link4" class="single" source="fps:0" target="jpeg:0"/>
+  <link name="jpeg_dumper" class="single" source="jpeg:0" target="dumper:0"/>
 </app>
 \end{lstlisting}
 
@@ -1079,7 +1079,7 @@ class DBConnectionTest extends Tester\TestCase {
 	Řešením vzniklé chyby pak bylo upravení konfigurace PostgreSQL na onom vzdáleném databázovém serveru. Konfigurační soubory PostgreSQL se  obvykle nacházejí v~adresářích, jako je \textit{/etc/postgresql/<verze>/main/} nebo případně \textit{/var/lib/postgres/data}. Zde pak bylo nutné upravit soubory \textit{pg\_hba.conf} a~také \textit{postgresql.conf}. V~souboru \textit{postgresql.conf} stačilo odkomentovat či přidat řádku \uv{listen\_addresses = '*'} pro povolení naslouchání pro přípojení ze všech adres. Dále pak v~souboru \textit{pg\_hba.conf} limitovat připojení z~konkrétní IP adresy, případně podsítě, přidáním řádky \uv{host all all 185.88.73.30/23 trust}. Tato řádka má pět sloupců, které zleva znamenají: typ připojení (\uv{host} pro vzdálené a~\uv{local} pro lokální), jméno databáze (případně všechny pomocí \uv{all}), jméno uživatele (případně všechny pomocí \uv{all}), IP adresu počítače nebo sítě a~nakonec autentizační metodu (například \uv{trust} pro žádné ověření, \uv{md5} pro heslo zahešované funkcí md5 a~podobně).
 
 \section{Akceptační testování} \label{sec:testovani_akceptacni}
-Akceptační testy jsou testy, které by měly být realizované na straně zákazníka. Cílová skupina lidí, kteří budou tento systém využívat, je úzká, neboť v~případě tohoto systému jsou zákazníkem myšleni lidé, kteří vedou laboratoř CHUL. Mezi tyto lidi patří například vedoucí této práce Ing. Jiří Chludil, správce laboratoře Bc. Ondřej Brém, ale také technici ze sousední laboratoře SAGElab. Při tomto akceptačním testování nejsou potřeba uživatelé, na kterých je testování prováděno, neboť v~testovacích scénářích není kladen důraz na obsah streamovaného obrazového materiálu. 
+Akceptační testy jsou testy, které by měly být realizované na straně zákazníka. Cílová skupina lidí, kteří budou tento systém využívat, je úzká, neboť v~případě tohoto systému jsou zákazníkem myšleni lidé, kteří vedou laboratoř CHUL. Mezi tyto lidi patří vedoucí této práce Ing. Jiří Chludil, správce laboratoře Bc. Ondřej Brém, ale také technici ze sousední laboratoře SAGElab. Při tomto akceptačním testování nejsou potřeba uživatelé, na kterých je testování prováděno, neboť v~testovacích scénářích není kladen důraz na obsah streamovaného obrazového materiálu. 
 
 	Vytvořený systém se nepodařilo včas podrobit kompletnímu akceptačnímu testování. Správce CHUL laboratoře, který byl hlavním akceptačním testerem, byl časově zatížen spoluprací na jiných závěrečných pracích týkající se laboratoře, v~době mezi vytvořením první testovací verze aplikace a~odevzdáním práce. Před odevzdáním se Ondřejovi podařilo otestovat alespoň některé komponenty webové aplikace, jako je například webová stránka s~nastavením streamování (zde zejména živý náhled obrazových dat z~kamer v~laboratoři) nebo videopřehrávač. Testování komponent však nesplňuje definici akceptačního testování a~proto byla tato fáze pozastavena a~aplikace tak bude s~přislíbenými termíny akceptačně otestována do obhajoby této práce.
 		
@@ -1107,6 +1107,7 @@ V~této diplomové práci bylo navázáno na existující systém pro správu la
 	\item[XML] eXtensible Markup Language
 	\item[HTML] Hypertext Markup Language
 	\item[YAML] YAML Ain't Markup Language
+	\item[JSON] JavaScript Object Notation
 	\item[RTP] Real-time Transport Protocol
 	\item[HTTP] Hypertext Transfer Protocol
 	\item[HTTPS] Hypertext Transfer Protocol Secure
