@@ -688,29 +688,28 @@ Tento neorganizovaný seznam funkcionalit je nutné seskupit tak, aby to co nejl
 \end{itemize}
 
 \subsubsection{Task Graf} \label{subsubsec:navrh_frontend_ui_taskgraf}
-Zde jsou zobrazeny task grafy vytvořené ze zmíněného task listu. Byly vytvořeny grafy dva, přičemž jeden se týká oblasti nastavování streamování a~náhledu probíhajícího streamování (obrázek \ref{img:navrh_frontend_ui_taskgraf_1}) a~druhý se týká webového videopřehrávače a~editoru (obrázek \ref{img:navrh_frontend_ui_taskgraf_2}). V~grafech jsou znázorněny závislosti mezi uživatelskými akcemi reprezentované řádkami v~task listu. Jsou v~nich patrné uzly webových stránek (modrý obdélník) a~jednotlivých akcí (žlutý obdélník) na každé z~těchto stran.
-\\
+Zde jsou zobrazeny task grafy vytvořené ze zmíněného task listu. Byly vytvořeny grafy dva, přičemž jeden se týká oblasti nastavování streamování a~náhledu probíhajícího streamování (obrázek \ref{img:navrh_frontend_ui_taskgraf_1}) a~druhý se týká webového videopřehrávače a~editoru (obrázek \ref{img:navrh_frontend_ui_taskgraf_2}). V~grafech jsou znázorněny závislosti mezi uživatelskými akcemi reprezentované řádkami v~task listu. Jsou v~nich patrné uzly reprezentující webovou stránku (modrý obdélník) a~jednotlivé akce (žlutý obdélník) na každé z~těchto stran.
+
 \begin{figure}[h]\centering
-	\includegraphics[width=0.7\textwidth]{images/ui_task_flow_1.eps}
-	\caption{Task graf pro nastavení a~náhled streamování}\label{img:navrh_frontend_ui_taskgraf_2}
+	\includegraphics[width=0.68\textwidth]{images/ui_task_flow_1.eps}
+	\caption{Task graf pro nastavení a~náhled streamování}\label{img:navrh_frontend_ui_taskgraf_1}
 \end{figure}
-\\
 \begin{figure}[h]\centering
-	\includegraphics[width=1\textwidth]{images/ui_task_flow_2.eps}
-	\caption{Task graf pro video přehrávač a~editor}\label{img:navrh_frontend_ui_taskgraf_1}
+	\makebox[\textwidth][c]{\includegraphics[width=1.02\textwidth]{images/ui_task_flow_2.eps}}
+	\caption{Task graf pro video přehrávač a~editor}\label{img:navrh_frontend_ui_taskgraf_2}
 \end{figure}
 
 \subsubsection{Prototypování} \label{subsubsec:navrh_frontend_ui_proto}
 Z~již uspořádaného task listu a~z~něj vytvořených task grafů je patrné, že pro realizaci UI jsou potřeba tři webové stránky (jedna pro přehrávání a~úpravu záznamů, další pro nastavení a~spuštění nahrávání/streamování a~třetí pro sledování průběhu nahrávání/streamování) a~jedno modální okno pro nastavení exportu videí ve video editoru. Byly tedy vytvořeny prototypy stránek jako wireframe. Nejprve se prototypy načrtly na papír ke zjištění základních nedostatků a~později se z~těchto náčrtů vytvořil interaktivní wireframe. Při tvorbě wireframu se dá postupovat metodou \uv{od shora} (nejprve návrh hlavního rozvržení stránky a~poté zaměření na jednotlivé komponenty) či \uv{od zdola} (opak k~předchozí metodě). Zde se však postupovalo kombinovaně, tedy nejprve se promyslely komponenty a~s~vědomím potřebného místa pro ně se navrhovalo rozvržení stránky. 
 
-	Prototyp UI je v~této práci zobrazen jako screenshoty stránek interaktivního wireframu a~to čtyřmi obrázky. V~této kapitole je pro úsporu místa uveden pouze jeden obrázek a~zbylé jsou k~nalezení v~příloze \ref{chap:wireframes}. Obrázek \ref{img:navrh_frontend_ui_wf_config} představuje webovou stránku s~nastavením nahrávání a~streamování. V~sekci o~nastavení streamování v~task listu (vizte \ref{subsubsec:navrh_frontend_ui_tasklist}) se první dva body týkají zobrazení zařízení schopných nahrávání a~jejich následného výběru. Pro tyto funkcionality se alokovala horní část stránky, která obsahuje horizontální seznam zařízení spolu s~jejich náhledy. Dále byla zabrána střední část webové stránky, tedy hlavní část obsahu, ve které si bude uživatel moci stanovit pozice jednotlivých kamer. Dále je do pravé spodní části obrazovky přidáno tlačítko pro spuštění nahrávání a~streamování. V~poslední řadě je nad tímto tlačítkem oblast věnována nastavení cíle streamu a~podobně.
-\\
-\begin{figure}[h]\centering
-	\includegraphics[width=1\paperwidth, angle=90]{images/ui_wf_ulab-config.eps}
+	Prototyp UI je v~této práci zobrazen jako screenshoty stránek interaktivního wireframu a~to čtyřmi obrázky. V~této kapitole je uveden pouze jeden obrázek (\ref{img:navrh_frontend_ui_wf_config}) a~zbylé jsou k~nalezení v~příloze \ref{chap:wireframes}. Obrázek \ref{img:navrh_frontend_ui_wf_config} představuje webovou stránku s~nastavením nahrávání a~streamování. V~sekci o~nastavení streamování v~task listu (vizte \ref{subsubsec:navrh_frontend_ui_tasklist}) se první dva body týkají zobrazení nahrávacích zařízení a~jejich výběru. Pro tyto funkcionality se alokovala horní část stránky, která obsahuje seznam zařízení spolu s~jejich náhledy. Dále byla zabrána střední část webové stránky, tedy hlavní část obsahu, ve které si bude uživatel moci stanovit pozice jednotlivých kamer. Dále je do pravé spodní části obrazovky přidáno tlačítko pro spuštění nahrávání a~streamování. V~poslední řadě je nad tímto tlačítkem oblast věnována nastavení cíle streamu a~podobně.
+	
+\begin{figure}\centering
+	\includegraphics[width=1\paperwidth, angle=90]{images/ui_wf_test.eps}
 	\caption{Wireframe pro nastavení streamování}\label{img:navrh_frontend_ui_wf_config}
 \end{figure}
 
-Na obrázku \ref{img:navrh_frontend_ui_wf_preview} je stránka wireframu pro sledování průběhu streamování. V~task listu jsou v~sekci o~náhledu streamování pouze tři hlavní tasky -- zobrazení streamovaného obsahu, možnost přidání komentáře ke streamu a~zastavení streamování. Zastavení streamování je tlačítko podobné funkcionality jako spuštění streamování v~obrazovce na obrázku \ref{img:navrh_frontend_ui_wf_config} a~tak je žádoucí pro něj alokovat prostor na stejném místě v~obrazovce. Stejně tak zobrazení streamovaného obsahu, které bude mít stejný tvar a~obdobnou velikost jako prostor s~vybranými kamerami z~obrázku \ref{img:navrh_frontend_ui_wf_config}, zaujme stejné místo v~prostoru obrazovky. Zbylé místo v~pravé části nad tlačítkem pro zastavení streamování pak zabere funkcionalita pro přidání komentářů a~případně zobrazení nedávno přidaných. 
+Na obrázku \ref{img:navrh_frontend_ui_wf_preview} v~příloze je stránka wireframu pro sledování průběhu streamování. V~task listu jsou v~sekci o~náhledu streamování pouze tři hlavní tasky: zobrazení streamovaného obsahu, možnost přidání komentáře ke streamu a~zastavení streamování. Zastavení streamování je tlačítko podobné funkcionality jako spuštění streamování v~obrazovce na obrázku \ref{img:navrh_frontend_ui_wf_config} a~tak je žádoucí pro něj alokovat prostor na stejném místě v~obrazovce. Stejně tak zobrazení streamovaného obsahu, které bude mít stejný tvar a~obdobnou velikost jako prostor s~vybranými kamerami z~obrázku \ref{img:navrh_frontend_ui_wf_config}, zaujme stejné místo v~prostoru obrazovky. Zbylé místo v~pravé části nad tlačítkem pro zastavení streamování pak zabere funkcionalita pro přidání komentářů a~případně zobrazení nedávno přidaných. 
 
 Třetí a~nejzajímavější obrazovka z~wireframu v~řadě, na obrázku \ref{img:navrh_frontend_ui_wf_editor}, se týká přehrávače a~editoru videí. Této obrazovky se týká ta část task listu od bodu \uv{Spuštění editoru/přehrávače nahrávek} až do konce, přičemž pro část s~úpravou videa pro export je věnováno modální okno vyjádřené obrázkem \ref{img:navrh_frontend_ui_wf_export}. Obrazovka pro videopřehrávač a~editor nejprve v~levé horní části obsahuje název projektu a~ikonku pro export, která zobrazí zmíněné a~dále popsané modální okno. Pod těmito prvky je rozvedený seznam různých nahrávek daného projektu. V~pravé části obrazovky je pak samotný videopřehrávač, který přehrává média sestavená ve spodní části obrazovky na časové ose. Tato časová osa je rozdělena na tři části, jedna obsahuje videa, další audio stopy a~poslední titulky, které byly generovány jako komentáře během streamování. Časová osa zobrazuje upravovaná média rozprostřená v~čase zleva doprava. Zmíněné titulky/komentáře jsou pak ještě zobrazovány pod videopřehrávačem během přehrávání. Poslední a~zároveň jedna z~nejdůležitějších částí obrazovky je oblast mezi časovou osou a~horní částí webové stránky. Nachází se zde pásová oblast, která obsahuje většinu kontrolních prvků pro práci s~videem. Zleva jsou zde ikony pro střih videa, kopírování a~mazání elementů časové osy, práci se zvukem přehrávaného videa, přidání médií na časovou osu, v~další části pak spouštění, pozastavování a~přetáčení přehrávaného obsahu a~nakonec ikona pro nastavení obsahující například změnu rozlišení přehrávání či přepnutí do celoobrazovkového režimu.
 
@@ -726,12 +725,12 @@ Z~nového databázového modelu je patrné, že zmizela tabulka s~videi a~byla n
 
 V~tabulkách \textit{VideoRecord}, \textit{AudioRecord}, respektive \textit{OutputRecord} jsou sloupce reprezentující požadované metainformace nahraných, resp. upravených záznamů. Veškeré nahrané záznamy se nebudou ukládat do databáze přímo, ale do souborového systému a~databázové tabulky pak budou obsahovat sloupec s~lokací, kde se daný záznam v~souborovém systému nachází.
 
-\begin{figure}[h]\centering
-	\includegraphics[width=1\textwidth]{images/db_orig.eps}
+\begin{figure}\centering
+	\makebox[\textwidth][c]{\includegraphics[width=1.12\textwidth]{images/db_orig.eps}}
 	\caption{Původní databázový model}\label{img:navrh_backend_db_orig}
 \end{figure}
-\begin{figure}[h]\centering
-	\includegraphics[width=1\textwidth]{images/db.eps}
+\begin{figure}\centering
+	\makebox[\textwidth][c]{\includegraphics[width=1.12\textwidth]{images/db.eps}}
 	\caption{Navrhnutý databázový model}\label{img:navrh_backend_db}
 \end{figure}
 
@@ -744,9 +743,9 @@ Backendový subsystém pro zpracovávání záznamů upravených ve webové apli
 V~backendové části aplikace se na CHUL serveru nachází instance knihovny Libyuri. Tato knihovna zde bude sloužit jako prostředník mezi nahrávacími zařízeními v~CHUL laboratoři a~multimediálním úložištěm, případně webovou aplikací. Reference a~návod pro pojmy a~různé postupy je k~nalezení v~analýze, v~sekci \ref{sec:analyza_yuri}, kde je zevrubně popsáno, jak Libyuri pracuje. Libyuri na backendu vykonává dva druhy práce, jedním je proces spouštění nahrávání a~streamování a~jeho průběh spolu s~ukládáním. Další oblastí je zpracování videa upraveného ve webovém video editoru. Dále je uveden příklad prvního druhu zmíněné práce Libyri na backendu.
 
 Nejprve je zde, na obrázku \ref{img:navrh_backend_libyuri_sender}, uveden příklad konfigurace Libyuri pro spuštění nahrávání z~vybraných zařízení v~CHUL laboratoři. Tato konfigurace slouží jednak pro ilustraci toho, které moduly a~v~jakém pořadí by se měly propojit, a~zadruhé jako vzor pro to, jak budou vypadat konfigurace vytvářené za běhu, na základě uživatelova vstupu přes webovou aplikaci. Tato konfigurace se nachází na stroji CHUL server (vizte diagram nasazení \ref{img:navrh_architektura_nasazeni}) při tamní instanci knihovny Libyuri. 
-\\
+\\\\
 \begin{figure}[h]\centering
-	\includegraphics[width=1\textwidth]{images/ulab_sender.eps}
+	\makebox[\textwidth][c]{\includegraphics[width=1.2\textwidth]{images/ulab_sender.eps}}
 	\caption{Libyuri - konfigurace pro záznam v~CHUL}\label{img:navrh_backend_libyuri_sender}
 \end{figure}
 
@@ -757,7 +756,7 @@ V~takovéto konfiguraci prezentované obrázkem, který se interpretuje odshora 
 Nahrávaná data v~laboratoři CHUL a~odesílaná po síti pryč by měla být někde přijímána. K~tomu slouží další instance knihovny Libyuri s~pozměněnou konfigurací pro příjem dat a~následné zpracování. Pro ukázku je zde na obrázku \ref{img:navrh_backend_libyuri_receiver} uvedena konfigurace, která se nachází na serveru infrastruktury SAGE, a~která přijatá data souběžně ukládá na disk a~zároveň streamuje do systému SAGE.
 \\
 \begin{figure}[h]\centering
-	\includegraphics[width=1\textwidth]{images/ulab_receiver.eps}
+	\makebox[\textwidth][c]{\includegraphics[width=1.3\textwidth]{images/ulab_receiver.eps}}
 	\caption{Libyuri - konfigurace zobrazení v~SAGE a~ukládání}\label{img:navrh_backend_libyuri_receiver}
 \end{figure}
 
