@@ -53,6 +53,7 @@
 
 % \newacronym{CVUT}{{\v C}VUT}{{\v C}esk{\' e} vysok{\' e} u{\v c}en{\' i} technick{\' e} v Praze}
 % \newacronym{FIT}{FIT}{Fakulta informa{\v c}n{\' i}ch technologi{\' i}}
+\hyphenation{Libyuri}
 
 \begin{introduction}
 Testování použitelnosti je proces, při kterém se aplikace testuje přímo za pomocí vzorku koncových uživatelů a~díky kterému 
@@ -70,30 +71,32 @@ Cílem této diplomové práce je nejprve analýza bakalářské práce Karolín
 Součástí práce bude také instalační příručka, pomocí které bude možné systém nasadit v~různých laboratořích pro testování použitelnosti.
 
 \chapter{Analýza}
+Tato kapitola obsahuje rešeršní část diplomové práce. Nejprve jsou zde vysvětleny pojmy, které jsou nutné pro celkové pochopení uvedené problematiky a textu vůbec. Dále je rozebráno zadání práce a~u~každého jeho bodu je stručně popsáno, která část textu se jím zabývá. Poté se část kapitoly věnuje analýze předchozí bakalářské práce a~spolu se specifikací požadavků je stanoveno, jak tato diplomová práce naváže na aktuální stav problematiky. Pak následuje zevrubná rešerše existujících technologií spolu se sofistikovaným výběrem těch nejvhodnějších. Konec této kapitoly obsahuje seznámení se s~knihovnou Libyuri, která slouží pro zpracování multimediálních dat v~implementaci této práce.
 
 \section{Definice pojmů} \label{sec:analyza_definice_pojmu}
 \textbf{Frontend}\\
-Jedná se o~část aplikace, která je viditelná běžným uživatelům.\\ \\
+Jedná se o~tu část aplikace, která je viditelná běžným uživatelům. Frontend je většinou napojený na backendovou část aplikace.\\ \\
 \textbf{Backend}\\
 Jedná se o~část aplikace, uživatelům \uv{schovaná} za frontendem a~slouží především ke zpracování dat.\\ \\
 \textbf{CHUL}\\
 Children Usability Lab, což je laboratoř testování použitelnosti na Fakultě informačních technologií ČVUT v~Praze.\\ \\
 \textbf{SAGElab}\\
-Síťová a~multimediální laboratoř SAGE na Fakultě informačních technologií ČVUT v~Praze.\\ \\
+Síťová a~multimediální laboratoř SAGE na Fakultě informačních technologií ČVUT v~Praze.\\ \\ \\
 \textbf{CDN}\\
 CDN neboli Content Delivery Network je systém serverů rozmístěných po internetu, které spolupracují pro zajištění rychlého doručení dat klientovi.\\ \\
 \textbf{Hosting}\\
-Pronájem úložného prostoru uživateli na proprietárních serverech.\\ \\
+Pronájem úložného prostoru uživateli na proprietárních serverech. Hosting je rozdělen na různé druhy na základě služeb, které poskytuje (webhosting, e-mail hosting a podobně).\\ \\
 \textbf{Framework}\\
 Jedná se o~softwarovou strukturu fungující jako knihovna funkcí a~podpůrných nástrojů, která usnadňuje vývoj jiných softwarových projektů.\\ \\
 \textbf{Streaming}\\
  Jedná se o~technologii přenosu audiovizuálního materiálu mezi zdrojem a~koncovým uživatelem.\\ \\
 \textbf{WebSocket}\\
 Jedná se o~komunikační protokol, standardizován komisí IETF a~poskytující plně duplexní kanál přes TCP spojení. \\ \\
-\textbf{Grabovaci graficka karta, pripadne Continuous integration}\\
-TODO.\\ \\
-% \textbf{}\\
-% TODO.\\ \\
+\textbf{Grabovací grafická karta}\\
+Grafická karta s~jedním až několika video vstupy, sloužící  mj. pro příjem obrazu z~výkonnějších kamer. Rozhraní vstupů je nejčastěji SDI.\\ \\
+\textbf{Continuous integration}\\
+Continuous integration neboli kontinuální integrace je proces vývoje softwaru, spočívající v~časté
+integraci práce v~repozitáři projektu.\\
 
 \section{Rozbor zadání} \label{sec:analyza_rozbor_zadani}
 \begin{enumerate}
@@ -167,20 +170,20 @@ Uživatel bude moci nahrát zvuk k~libovolnému videu ze vstupního zařízení.
     \item \textbf{F2.4 -- Moderátor a~zadavatel mohou změnit rychlost přehrávání videa.\\}
     Uživatel bude moci ve webovém přehrávači změnit snímkovou frekvenci videa. Uživatel si v~nastavení přehrávaného videa zvolí rychlost, ze seznamem podporovaných hodnot.
     \item \textbf{F2.5 -- Moderátor a~zadavatel mohou přehrávání přepnout do celoobrazovkového režimu.\\}
-    Uživatel bude moci ve webovém přehrávači zapnout či vypnout přehrávání na celou obrazovku (tzv. fullscreen mód).
+    Uživatel bude moci v~nastavení webového přehrávače zapnout či vypnout režim přehrávání videa na celou obrazovku (tzv. fullscreen mód).
     \item \textbf{F2.6 -- Moderátor a~zadavatel mohou vybrané video streamovat do systému SAGE.\\}
-	Uživatel bude moci spustit streamování konkrétního videa do systému SAGE. Systém díky pomocnému softwaru zajistí stream na uživatelem zadanou IP adresu se systémem SAGE.
+	Uživatel bude moci spustit streamování konkrétního videa do systému SAGE. Systém díky pomocnému softwaru tento stream zajistí, a to na předem specifikovanou IP adresu a port zařízení se systémem SAGE.
     % \item \textbf{ \\}
   \end{description}
 
   \item \textbf{F3 -- Úprava záznamů}
   \begin{description}
     \item \textbf{F3.1 -- Moderátor a~zadavatel mohou sloučit několik videí paralelně do mřížky.\\}
-	Uživatel bude moci spojit několik videí vedle sebe do mřížky (např. do čtverce). Tyto videa se budou ve finálním složeném videu přehrávat souběžně. Pokud některé video bude kratší než ostatní, bude doplněno opakujícím se snímkem jednolité barvy.
+	Uživatel bude moci sloučit několik videí vedle sebe do mřížky (např. do čtverce či obdélníku). Tato sloučená videa se budou ve finálním složeném videu přehrávat souběžně. Pokud některé video bude kratší než ostatní, bude doplněno opakujícím se snímkem jednolité barvy.
     \item \textbf{F3.2 -- Moderátor a~zadavatel mohou video oříznout na menší časový úsek.\\}
-    Uživatel bude moci vybrat časy, na které chce aktuální video oříznout. Vzniklé oříznutí bude možné na video aplikovat a~poté jej upravovat dále.
+    Uživatel bude moci vybrat časy, na které chce aktuální video oříznout. Vzniklé oříznutí bude možné na video aplikovat a~poté jej upravovat dále.\pagebreak
     \item \textbf{F3.3 -- Moderátor a~zadavatel mohou přidat či nahradit zvukovou stopu videa.\\}
-    Uživateli budou zobrazeny existující zvukové záznamy, ze kterých si bude moci jeden vybrat. Vybraný záznam bude poté možné přidat k~vybranému videu. Pokud video již zvukový záznam má, přepíše se novým. Pokud bude zvukový záznam delší než video tak se ořízne na délku videa.
+    Uživatel si bude moci vybrat jeden z~existujících zvukových záznamů. Vybraný záznam bude poté možné přidat k~vybranému videu. Pokud video již zvukový záznam má, přepíše se novým. Pokud bude zvukový záznam delší než video tak se ořízne na délku videa.
     \item \textbf{F3.4 -- Moderátor a~zadavatel mohou transformovat obraz všech snímků videa.\\}
 	Uživatel bude moci zvolit transformaci obrazu pro celé video. Uživatel na stránce s~úpravou videa si vybere transformaci, kterou bude moci aplikovat na dané video. Systém  bude podporovat základní transformace jako rotace, změna kontrastu, apod.
     % \item \textbf{ \\}
@@ -260,7 +263,7 @@ Ultragrid (odkazem \cite{ultragrid_web}) je software, vyvíjený lidmi ze sdruž
 	Tento software je také možné použít jako komplexní řešení, neboť podobně jako Libyuri funguje na základě propojování uzlů, které pracují s~videem. Ultragrid má oproti Libyuri o~trochu lepší dokumentaci, ale na druhou stranu má mnohem menší počet modulů, což je mnohem větší slabina než zmíněná dokumentace. Navíc se nepodařilo nalézt srozumitelný návod či šablonu pro vytvoření vlastních modulů.
 
 \subsubsection{FFmpeg} \label{subsubsec:analyza_reseni_ffmpeg}
-FFmpeg (odkazem \cite{ffmpeg}) je jeden z~nejlepších a~nejznámějších open-source multimediálních frameworků vůbec, který je schopný kódovat, dekódovat, konvertovat, streamovat, filtrovat i~přehrávat nejen audio i~video záznamy. Tento software podporuje téměř všechny známé formáty záznamů od zastaralých, po ty nejnovější. Je také velmi dobře portabilní, neboť se dá zkompilovat a~spustit na distribucích operačních systémů typu Linux, Mac OS X, Microsoft Windows, BSD, Solaris, a~tak podobně.
+FFmpeg (odkazem \cite{ffmpeg}) je jeden z~nejlepších a~nejznámějších open-source multimediálních frameworků vůbec, který je schopný kódovat, dekódovat, konvertovat, streamovat, filtrovat i~přehrávat nejen audio i~video záznamy. Tento software podporuje většinu známých formátů, od zastaralých po ty nejnovější. Je také velmi dobře portabilní, neboť se dá zkompilovat a~spustit na distribucích operačních systémů typu Linux, Mac OS X, Microsoft Windows, BSD, Solaris, a~tak podobně.
 
 	Díky známosti, spolehlivosti a~komunitě tohoto frameworku by byla chyba jej nepoužít právě při zpracování videa. Naštěstí předchozí zmíněná softwarová řešení, jako Libyuri a~Ultragrid, tento framework mají v~sobě již zakomponován (pokud jsou ovšem zkompilovány s~podporou pro FFmpeg).
 
@@ -290,7 +293,7 @@ Video.js je open-source knihovna pro práci s~videem na webu (vizte \cite{videoj
 	Použití této knihovny je velice vhodné pro frontendovou část řešení této práce. Díky již zmíněným přednostem je lepší a~snadněji rozšiřitelná než samotný přehrávač vestavěný v~jazyku HTML5. Knihovnu je možné buď stáhnout a~v~případě potřeby i~upravit před použitím nebo použít CDN Fastly (\cite{fastly_cdn}), která poskytuje hosting všem nezbytným souborům knihovny Video.js. Knihovna je kompatibilní s~prohlížeči se zabudovaným HTML5 nebo případně i~s~technologií Flash. Podporovanými prohlížeči je většina dnes nejčastěji používaných jako například Firefox verze 3.5 a~vyšší, Internet Explorer 6 a~vyšší, Chrome verze 3 a~vyšší, Opera a~další (více na wiki projektu \cite{videojs_wiki}).
 
 \subsubsection{Afterglow} \label{subsubsec:analyza_reseni_afterglow}
-Afterglow je open-source HTML5 videopřehrávač pod MIT licencí. Dle (\cite{afterglow}) je jednoduše konfigurovatelný, plně responzivní a~je kompatibilní s~širokou škálou webových prohlížečů a~zařízení. Přehrávač má kvalitní dokumentaci (\cite{afterglow_doc}) s~ukázkovými příklady. Přehrávač je schopen přehrát YouTube i~Vimeo video. Je možné mu dodat více stejných videí, avšak o~jiném rozlišení i~v~jiném formátu a~uživatel si poté může v~přehrávači ze zadaných formátů a~rozlišení vybírat. Afterglow je díky obalení prohlížečům nativní HTML5 technologie, kompatibilní s~většinou dnes používaných prohlížečů a~je taktéž k~dispozici pomocí CDN jsDelivr.
+Afterglow je open-source HTML5 videopřehrávač pod MIT licencí. Dle (\cite{afterglow}) je jednoduše konfigurovatelný, plně responzivní a~je kompatibilní s~širokou škálou webových prohlížečů a~zařízení. Přehrávač má kvalitní dokumentaci (\cite{afterglow_doc}) s~ukázkovými příklady. Přehrávač je schopen přehrát videa ze serverů YouTube i~Vimeo. Je možné mu dodat více stejných videí, avšak o~jiném rozlišení i~v~jiném formátu a~uživatel si poté může v~přehrávači ze zadaných formátů a~rozlišení vybírat. Afterglow je díky obalení prohlížečům nativní HTML5 technologie, kompatibilní s~většinou dnes používaných prohlížečů a~je taktéž k~dispozici pomocí CDN jsDelivr.
 	
 	Tato nadstavba nativního HTML5 videopřehrávače má však několik nevýhod. Je to velice jednoduchá nadstavba a~neumožňuje dostatek nových funkcionalit nad nativním HTML5 přehrávačem, než které by bylo možno dopsat zanedlouho ručně. Komunita u~tohoto softwaru není zdaleka tak silná, jako u~zmíněného Video.js a~tak ani počet pluginů není tak velký (není zde například možné jednoduše udělat playlist videí).
 
@@ -328,9 +331,9 @@ Velikost uživatelské komunity vybrané technologie. Existence dalších zdroj�
 Má autor této práce nějaké zkušenosti s~danou technologií, které by mu umožnily snadnější, rychlejší a~efektivnější implementaci řešení?
 \end{description}
 
-Po porovnání všech nashromážděných technologií pomocí specifikovaných charakteristik bylo dosaženo výsledku, který je popsán tabulkou \ref{tbl:table_backend} pro backendové technologie a~tabulkou \ref{tbl:table_frontend} pro frontendové technologie. V~buňkách těchto tabulek jsou buď znaky \uv{+} reprezentující výhodu či užitečnost a~\uv{--} reprezentující nevýhodu či neužitečnost daného kritéria. Čím více znaků v~buňce, tím větší intenzita užitečnosti respektive neužitečnosti daného kritéria.
+Po porovnání všech nashromážděných technologií pomocí specifikovaných charakteristik bylo dosaženo výsledku, který je popsán tabulkou \ref{tbl:table_backend} pro backendové technologie a~tabulkou \ref{tbl:table_frontend} pro frontendové technologie. Uvnitř buněk těchto tabulek jsou buď znaky \mbox{\uv{+}} reprezentující výhodu či užitečnost a~\mbox{\uv{--}} reprezentující nevýhodu či neužitečnost daného kritéria. Čím více znaků v~buňce, tím větší intenzita užitečnosti respektive neužitečnosti daného kritéria.
 
-\begin{table}[]
+\begin{table}
 \catcode`\-=12 %kvuli pomlčce v řádce s cline{2-5} - jinak řvala ;)
 \centering
 \begin{tabular}{l|l|l|l|l|}
@@ -350,7 +353,7 @@ Po porovnání všech nashromážděných technologií pomocí specifikovaných 
 \label{tbl:table_backend}
 \end{table}
 
-\begin{table}[]
+\begin{table}
 \catcode`\-=12 %kvuli pomlčce v řádce s cline{2-5} - jinak řvala ;)
 \centering
 \begin{tabular}{l|l|l|l|}
@@ -423,9 +426,8 @@ Na tomto grafu je znázorněna jednoduchá konfigurace, kdy se berou data z~kame
 Každý uzel grafu má žádný nebo více vstupů a~stejně tak výstupů. Existují typy uzlů, které nemají žádný vstup ani výstup (pokud se nepodílí přímo na zpracování dat), stejně jako uzly s~pevně definovaným nebo i~neomezeným počtem vstupů/výstupů. Každý uzel je charakterizován svým libovolným jménem a~především třídou, která reprezentuje modul, plnící funkcionalitu daného uzlu. Tedy například v~ukázkovém grafu \ref{img:yuri_example} je jako první zleva uveden uzel se jménem \uv{Capture device} a~může být realizován například modulem \uv{v4l2source}, který dokáže načítat video z~kamery typu \textit{video4linux2}. Uzly mohou mít další množství parametrů, které jsou konkrétní každému modulu zvlášť (například zmíněný kamerový modul \textit{video4linux2} může mít další parametry typu šířka, výška, snímková frekvence a~jiné).
 
 \subsection{Hrany jako datová propojení uzlů} \label{subsec:analyza_yuri_hrany}
-Orientované hrany v~grafu konceptuálně představují fronty (často označované jako \textit{pipe}). Tyto fronty, realizující datová propojení uzlů, se naplňují a~vyprazdňují tzv. datovými rámci (co je to datový rámec je uvedeno v~sekci \ref{subsec:analyza_yuri_ramce}).
+Orientované hrany v~grafu konceptuálně představují fronty (často označované jako \textit{pipe}). Tyto fronty, realizující datová propojení uzlů, se naplňují a~vyprazdňují tzv. datovými rámci (co je to datový rámec je uvedeno v~sekci \ref{subsec:analyza_yuri_ramce}). V~Libyuri je aktuálně sedm odlišných implementací hran s~různými vlastnostmi.
 
-V~Libyuri je aktuálně 7 různých implementací hran s~různými vlastnostmi:
 \begin{description}
   \item \textbf{Single\\}
 Fronta o~maximální délce 1 datový rámec. Má pouze 2 stavy -- prázdná a~plná. Pokud dojde k~zápisu nového rámce do plné fronty, starý rámec se z~fronty vyhodí a~zapíše se do ní nový.
@@ -442,7 +444,8 @@ Jedná se o~nekonečnou frontu. Nemá žádné omezení, až na paměť počíta
 Uvedená množina front není omezená a~je možné ji rozšiřovat.
 
 \subsection{Datové rámce} \label{subsec:analyza_yuri_ramce}
-Po hranách grafu (mezi uzly) putují datové rámce, neboli \textit{frames}. Ty představují základní jednotku dat. Libyuri obsahuje hierarchii typů datových rámců z~nichž nejdůležitější typy rámců jsou:
+Po hranách grafu (mezi uzly) putují datové rámce, neboli \textit{frames}. Ty představují základní jednotku dat. Libyuri obsahuje hierarchii typů datových rámců z~nichž nejdůležitější typy rámců jsou uvedeny dále. Tato množina typů datových rámců se dá taktéž rozšiřovat pomocí specializace třídy \textit{Frame}.
+
 \begin{description}
   \item \textbf{Frame\\}
 Obecný snímek -- abstraktní třída reprezentující cokoliv, co může procházet po hranách.
@@ -454,8 +457,6 @@ Třída pro komprimovaný video snímek.
 Třída obsahující několik vzorků nekomprimovaného audia.
 \end{description}
 
-Množina typů datových rámců se dá taktéž rozšiřovat pomocí specializace třídy \textit{Frame}.
-
 \subsection{Vytvoření grafu} \label{subsec:analyza_yuri_vytvoreni}
 Pro vytvoření grafu je možné přímo využít funkcí z~API knihovny Libyuri. Pro snadnější vytváření je nicméně vhodné použít takzvaný builder. To je koncept třídy, která vytváří graf na základě nějakého vstupu. 
 
@@ -463,16 +464,15 @@ Pro vytvoření grafu je možné přímo využít funkcí z~API knihovny Libyuri
 Jádro obsahuje obecnou implementaci builderu pod názvem \uv{GenericBuilder}, usnadňující vytváření vlastních builderů. Jako příklad je možné použít vytvořený builder \uv{SimpleBuilder} v~aplikaci yuri\_simple (více o~aplikaci yuri\_simple v~sekci \ref{subsec:analyza_yuri_aplikace}). GenericBuilder vytváří graf specifikovaný množinou uzlů a~množinou hran.
 
 Konceptuálně představuje builder graf a~zároveň je možné jej chápat jako samostatný uzel, který může být součástí většího grafu. Například předchozí ukázkový graf (\ref{img:yuri_example}) je možné rozdělit na 3 propojené podgrafy, každý vytvořený pomocí jednoho builderu, jak je patrné na grafu \ref{img:yuri_subgraph}.
-\\
+
 \begin{figure}[h]\centering
 	\includegraphics[width=1\textwidth]{images/yuri_subgraph.eps}
 	\caption{Libyuri -- příklad propojených podgrafů pomocí builderu}\label{img:yuri_subgraph}
 \end{figure}
-
 \subsubsection{XMLBuilder} \label{subsec:analyza_yuri_vytvoreni_xml}
-V~jádře Libyuri je také implementace builderu \uv{XMLBuilder}, který načítá XML soubory popisující graf a~datové cesty a~z~nich pak výsledný graf vytvoří. Použití tohoto builderu je demonstrováno dále, kde je nejprve uvedena konfigurace grafu v~jazyku XML a~poté vygenerovaný graf.
-\\
-\begin{minipage}{\linewidth}
+V~jádře Libyuri je také implementace builderu \uv{XMLBuilder}, který načítá XML soubory popisující graf a~datové cesty a~z~nich pak výsledný graf vytvoří. Použití tohoto builderu je demonstrováno dále, kde je nejprve uvedena konfigurace grafu v~jazyku XML a~poté vygenerovaný graf.\\ \\
+
+%\begin{minipage}{\linewidth}
 \begin{lstlisting}[language=XML]
 <?xml version="1.0" ?>
 <app name="webcam" xmlns="urn:library:yuri:xmlschema:2001"
@@ -489,13 +489,12 @@ V~jádře Libyuri je také implementace builderu \uv{XMLBuilder}, který načít
     <link name="yuyv_image" class="single" source="webcam:0" target="sdl:0"/>
 </app>
 \end{lstlisting}
-\end{minipage}
-V~uvedené XML konfiguraci je uzel se jménem \uv{webcam} typu \uv{v4l2source}, který představuje zdroj z~webkamery. Uzel nazvaný \uv{sdl} typu \uv{sdl\_window} je okno, které zobrazuje video. Mezi těmito uzly je orientovaná hrana (v~Libyuri označovaná jako \textit{pipe}, v konfiguraci jako \textit{link}), pojmenovaná \uv{yuyv\_image}, typu \uv{single}. Ukázková konfigurace zároveň obsahuje proměnnou (značka <variable>) obsahující systémovou cestu ke kameře. Tato proměnná je pak použita pro nastavení hodnoty parametru \uv{path} u~uzlu \uv{v4l2source}. Výhody oproti přímému nastavení hodnoty (které je samozřejmě také možné) jsou dvě. Jednak je možné snadno zajistit stejnou hodnotu pro více parametrů (i~v~různých uzlech), ale také je možné tuto proměnnou nastavovat při spuštění yuri aplikace (více v~sekci \ref{subsec:analyza_yuri_aplikace}). 
+%\end{minipage}
 
-Zmíněná XML konfigurace vytvoří graf znázorněný obrázkem \ref{img:yuri_vytvoreni_xml}.
-\\
+	V~uvedené XML konfiguraci je uzel se jménem \uv{webcam} typu \uv{v4l2source}, který představuje zdroj z~webkamery. Uzel nazvaný \uv{sdl} typu \uv{sdl\_window} je okno, které zobrazuje video. Mezi těmito uzly je orientovaná hrana (v~Libyuri označovaná jako \textit{pipe}, v konfiguraci jako \textit{link}), pojmenovaná \uv{yuyv\_image}, typu \uv{single}. Ukázková konfigurace zároveň obsahuje proměnnou (značka <variable>) obsahující systémovou cestu ke kameře. Tato proměnná je pak použita pro nastavení hodnoty parametru \uv{path} u~uzlu \uv{v4l2source}. Výhody oproti přímému nastavení hodnoty (které je samozřejmě také možné) jsou dvě. Jednak je možné snadno zajistit stejnou hodnotu pro více parametrů (i~v~různých uzlech), ale také je možné tuto proměnnou nastavovat při spuštění yuri aplikace (více v~sekci \ref{subsec:analyza_yuri_aplikace}). Zmíněná XML konfigurace vytvoří graf znázorněný obrázkem \ref{img:yuri_vytvoreni_xml}.\\
+
 \begin{figure}[h]\centering
-	\includegraphics[width=0.6\textwidth]{images/yuri_xml_graph.eps}
+	\includegraphics[width=0.7\textwidth]{images/yuri_xml_graph.eps}
 	\caption{Libyuri -- graf vytvořený pomocí XMLBuilder}\label{img:yuri_vytvoreni_xml}
 \end{figure}
 
