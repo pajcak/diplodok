@@ -853,7 +853,7 @@ V~této části implementační kapitoly jsou uvedeny vybrané zajímavé funkce
 \subsection{Náhled z~nahrávacích zařízení} \label{subsec:impl_funkce_preview}
 Jednou z~potřebných funkcí aplikace bylo zobrazit náhledy nahrávacích zařízení ve webové části. Přímo na webové stránce s~nastavením streamování bylo třeba zobrazit seznam zařízení schopných nahrávání, jak je zmíněno ve frontendové části návrhu (vizte \ref{subsubsec:navrh_frontend_ui_proto}). Tato zařízení mohla být zobrazena jen jako pouhý text obsahující identifikátor daného zařízení. Jelikož se však jedná o~nahrávací zařízení, nejčastěji kamery, webkamery, obrazovky a~jiné, pak je uživatelsky velice přívětivé zobrazit přímé náhledy z~těchto zařízení. Pro tuto funkcionalitu byla využita instance knihovny Libyuri s~relativně jednoduchým konfiguračním souborem. Libyuri tak zajišťovala odběr snímků obrazu z~nahrávacích zařízení, jejich korekci a~následné předání frontendové části webové aplikace. Dále je vysvětleno, jak se tato funkcionalita implementovala. 
 
-Přestože je konfigurační soubor relativně jednoduchý, je příliš dlouhý, než aby zde zaplňoval pár stran. Na následujících několika úryvcích konfigurace v~jazyku XML je uvedeno několik příkladových uzlů konfiguračního grafu. Na prvním je ukázáno, jak v~takové konfiguraci vypadá uzel reprezentující zařízení webkamery.\\
+Konfigurační soubor je relativně jednoduchý, avšak příliš dlouhý, než aby zde zaplňoval místo. V~následujících úryvcích konfigurace v~jazyku XML je uvedeno několik příkladových uzlů konfiguračního grafu. Na prvním je ukázáno, jak v~takové konfiguraci vypadá uzel reprezentující zařízení webkamery.\\
 
 \begin{lstlisting}[language=XML]
 <node class="v4l2source" name="webcam0">
@@ -871,13 +871,12 @@ Při navedení datové hrany z~tohoto uzlu budeme mít zajištěno, že se ze za
   <parameter name="device">0</parameter>
   <parameter name="format">PAL</parameter>
   <parameter name="pixel_format">YUV</parameter>
-  <parameter name="audio">0</parameter>
   <parameter name="force_detection">1</parameter>
   <parameter name="connection">HDMI</parameter>
 </node>
 \end{lstlisting}
 
-Požadavek na data tohoto uzlu vyprodukuje obrazové rámce ve formátu PAL, s~kódováním barev YUV a~dalšími nastaveními. Knihovna Libyuri neumožňuje v~modulu \uv{decklink\_input} stanovit snímkovou frekvenci jinak, než pomocí rozlišení, kde často není taková frekvence, jaká je vyžadována. Z~tohoto důvodu je nutné přidat další uzel reprezentovaný modulem \uv{fix\_fps} pro požadovanou úpravu snímkové frekvence. Spolu s~přidáním dalších potřebných uzlů pak sestavený graf z~konfiguračního souboru vypadá tak, jako na obrázku \ref{img:impl_funkce_preview_conf}.
+Požadavek na data tohoto uzlu vyprodukuje obrazové rámce ve formátu PAL, s~kódováním barev YUV a~dalšími nastaveními. Knihovna Libyuri neumožňuje v~modulu \uv{decklink\_input} stanovit snímkovou frekvenci jinak, než pomocí rozlišení, kde často není taková frekvence, jaká je vyžadována. Z~tohoto důvodu je nutné přidat další uzel reprezentovaný modulem \uv{fix\_fps} pro požadovanou úpravu snímkové frekvence. Spolu s~přidáním dalších potřebných uzlů pak graf, sestavený z~konfiguračního souboru pro vytvoření náhledů nahrávacích zařízení vypadá tak, jako na obrázku \ref{img:impl_funkce_preview_conf}.
 \\
 \begin{figure}[h]\centering
 	\includegraphics[width=1\textwidth]{images/ulab_cam_preview.eps}
@@ -889,27 +888,25 @@ Graf konfigurace na obrázku \ref{img:impl_funkce_preview_conf} je z~velké čá
 Díky zmíněnému mechanizmu je pak možné z~webové aplikace na snímky tohoto webserveru odkazovat a~načítat znovu a~znovu v~libovolných časových intervalech respektujících snímkovou frekvenci uzlů v~Libyuri. Ukázková webová stránka zobrazující náhledy z~nahrávacích zařízení pak může vypadat následovně.\\
 
 \begin{lstlisting}[style=htmlcssjs]
-<!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
     <meta charset="utf-8">
     <title>Cam preview test</title>
   </head>
   <body>
     <div id="image_container">
-      <img src="/loading.gif" id="image0" onerror="this.src='img_err.png';" />
-      <img src="/loading.gif" id="image1" onerror="this.src='img_err.png';" />
-      <img src="/loading.gif" id="image2" onerror="this.src='img_err.png';" />
-      <img src="/loading.gif" id="image3" onerror="this.src='img_err.png';" />
-      <img src="/loading.gif" id="image4" onerror="this.src='img_err.png';" />
+      <img src="/loading.gif" id="image0" onerror="this.src='img_err.png';">
+      <img src="/loading.gif" id="image1" onerror="this.src='img_err.png';">
+      <img src="/loading.gif" id="image2" onerror="this.src='img_err.png';">
+      <img src="/loading.gif" id="image3" onerror="this.src='img_err.png';">
+      <img src="/loading.gif" id="image4" onerror="this.src='img_err.png';">
     </div>
     <script>
       setInterval(function () {
-        d = new Date();
-        for (var i = 0; i <= 4; i++) {
+        for (let i = 0; i <= 4; i++) {
           document.getElementById("image" + i).src = 
              'http://ulab.cesnet.cz:8880/image' + i + '.jpg?random='
-                + d.valueOf().toString() + Math.random().toString();
+                + Math.random().toString();
         }
       }, 2000);
     </script>
@@ -917,21 +914,21 @@ Díky zmíněnému mechanizmu je pak možné z~webové aplikace na snímky tohot
 </html>
 \end{lstlisting}
 
-V~kódu této webové stránky jsou patrné čtyři elementy \uv{img} reprezentující obrazové náhledy nahrávacích zařízení. Dále je pak vidět jednoduchá funkce jazyka JavaScript, která každé dvě sekundy přepíše zdrojový atribut obrazového elementu. Zdroj je přepsán na stejnou adresu se stejným jménem obrázku na Libyuri webserveru, avšak s~přidaným náhodným řetězcem, jako parametr za znakem otazníku, který přinutí prohlížeč, aby si obrázek nenahrál z~cache paměti, ale aby jej stáhl z~webového serveru. Výsledkem pak jsou náhledové obrazy z~kamer v~CHUL laboratoři, aktualizující se každé dvě sekundy.
+V~kódu této webové stránky jsou patrné čtyři elementy \uv{img} pro obrazové náhledy nahrávacích zařízení. Dále je pak vidět jednoduchá funkce jazyka JavaScript, která každé dvě sekundy přepíše zdrojový atribut obrazového elementu. Zdroj je přepsán na stejnou adresu se stejným jménem obrázku na Libyuri webserveru, avšak s~přidaným náhodným řetězcem, jako parametr za znakem otazníku, který přinutí prohlížeč, aby si obrázek nenahrál z~cache paměti, ale aby jej stáhl z~webového serveru. Výsledkem pak jsou náhledové obrazy z~kamer v~CHUL laboratoři, aktualizující se každé dvě sekundy.
 
 
 \subsection{Generování konfigurací pro Libyuri} \label{subsec:impl_funkce_generate}
-Tato sekce popisuje příjem konfigurace na websocketové straně Libyuri a~její převod z~formátu JSON do XML. Vše začne příjmem konfiguračního objektu syntaxe JSON od webserveru. Následuje příkladová ukázka struktury tohoto objektu.\\
+Tato sekce popisuje příjem konfigurace na websocketové straně Libyuri a~její převod z~formátu JSON do XML. Vše začne příjmem konfiguračního objektu syntaxe JSON od webserveru. Následuje ukázka struktury tohoto objektu.\\
 
 \begin{lstlisting}[language=json]
 {
-  "projectName":"MyProject",
-  "srcFile":"/foo/srcFile",
-  "dstFile":"/bar/dstFile",
+  "projectName": "MyProject",
+  "srcFile": "/foo/srcFile",
+  "dstFile": "/bar/dstFile",
   "actions": {
-    "contrast":20,
-    "scale":"200x200",
-    "fps":25
+    "contrast": 20,
+    "scale": "200x200",
+    "fps": 25
   }
 }
 \end{lstlisting}
@@ -939,12 +936,10 @@ Tato sekce popisuje příjem konfigurace na websocketové straně Libyuri a~jej�
 Jak je patrné, objekt obsahuje název projektu, zdrojový soubor určený k~úpravě a~cílový soubor, do kterého se upravený soubor uloží. Krom možných dalších parametrů obsahuje ještě část \uv{actions}, která obsahuje seznam úprav, které Libyuri na zdrojovém souboru provede. V~dalším úryvku kódu je ukázáno, jak probíhá zpracování přijatého konfiguračního objektu na přijímací straně websocketů.\\
 
 \begin{lstlisting}[style=htmlcssjs]
-var Exporter = require('./Exporter.js').Exporter;
-var ioIn = require('socket.io').listen(8090);
-var ioOut = require('socket.io-client');
-var socketOut = ioOut.connect('http://webserver:8090');
-
-...
+let Exporter = require('./Exporter.js').Exporter;
+let ioIn = require('socket.io').listen(8090);
+let ioOut = require('socket.io-client');
+let socketOut = ioOut.connect('http://webserver:8090');
 
 ioIn.on('connection', function (socketIn) {
   socketIn.on('export', function (data) {
@@ -963,6 +958,7 @@ ioIn.on('connection', function (socketIn) {
   });
   
 	...
+
 });
 \end{lstlisting}
 
@@ -970,14 +966,13 @@ V~kódu je patrné, že po přijetí nastavení pro export média (proměnná \t
 
 \begin{lstlisting}[language=XML]
 <app name="MyProject">
-
   <node class="rawavsource" name="source">
-	<parameter name="decode">1</parameter>
-	<parameter name="filename">/foo/srcFile</parameter>
+    <parameter name="decode">1</parameter>
+    <parameter name="filename">/foo/srcFile</parameter>
   </node>
 
   <node class="filedump" name="dumper">
-	<parameter name="filename">/bar/dstFile</parameter>
+    <parameter name="filename">/bar/dstFile</parameter>
   </node>
 
   <node class="jpeg_encoder" name="jpeg">
@@ -986,15 +981,15 @@ V~kódu je patrné, že po přijetí nastavení pro export média (proměnná \t
   </node>
 
   <node class="contrast" name="contrast">
-	<parameter name="contrast">20</parameter>
+    <parameter name="contrast">20</parameter>
   </node>
 
   <node class="scale" name="scale">
-	<parameter name="resolution">200x200</parameter>
+    <parameter name="resolution">200x200</parameter>
   </node>
 
   <node class="fix_fps" name="fps">
-	<parameter name="fps">25</parameter>
+    <parameter name="fps">25</parameter>
   </node>
 
   <link name="link1" class="single" source="source:0" target="contrast:0"/>
